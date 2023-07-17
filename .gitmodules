@@ -1,0 +1,3 @@
+[submodule "1-simple-recipes"]
+	path = 1-simple-recipes
+	url = https://github.com/BrunoLadiv/1-simple-recipes
