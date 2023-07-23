@@ -6,7 +6,7 @@
 .nav-bar{
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  /* padding: 15px; */
   background-color: #1f2937;
   
 }
@@ -65,11 +65,15 @@ a:hover {
   padding: 50px;
   background-color: #1f2937;
   color: white;
+  
 }
 .hero-text{
   padding-top: 50px;
 }
-
+.hero-text > h1{
+  font-size: 36px;
+  margin-bottom: 10px;
+}
 .hero-btn{
   margin-top: 15px;
   font-size: 15px;
@@ -101,4 +105,49 @@ a:hover {
 }
 .logo-svg{
   width: 100px;
+}
+.section-2 > h1{
+  font-size: 30px;
+  font-weight: bolder;
+  color: #1f2937;
+  text-align: center;
+  margin-top: 30px;
+  
+  
+}
+
+.container-2{
+  display:flex;
+  justify-content: center;
+  gap: 30px;
+  padding-bottom: 50px;
+  
+
+}
+
+.container-2 > div > img {
+  width: 250px;
+  margin-top: 30px;
+  border-radius: 10px;
+  
+
+  
+}
+.section-3{
+  background-color: #E5E7EB;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+ 
+}
+
+.section-3 > div {
+  width: 800px;
+  font-size: 28px;
+  font-style: italic;
+  
+  
+}
+.section-3 > div > h6 {
+  text-align: end;
 }
