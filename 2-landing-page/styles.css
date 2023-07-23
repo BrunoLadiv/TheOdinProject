@@ -115,6 +115,9 @@ a:hover {
   
   
 }
+.container-2 > div > h4 {
+  text-align: center;
+}
 
 .container-2{
   display:flex;
@@ -127,8 +130,10 @@ a:hover {
 
 .container-2 > div > img {
   width: 250px;
+  height: 312px;
   margin-top: 30px;
   border-radius: 10px;
+  object-fit: cover;
   
 
   
@@ -150,4 +155,40 @@ a:hover {
 }
 .section-3 > div > h6 {
   text-align: end;
+}
+
+.section-4 {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  color: white;
+}
+.section-4 > div {
+  width: 500px;
+  display: flex;
+  padding: 30px;
+  background-color:#1f2937 ;
+  border-radius: 30px;
+  justify-content: space-around;
+}
+
+.bottom-btn{
+  background-color: #1f2937;
+  border: 1px solid white;
+  border-radius: 15px;
+  margin-left: 50px;
+  color: white;
+  padding: 15px;
+  width: 150px;
+  
+}
+.bottom-btn:hover{
+  transform: scale(1.2);
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #1f2937;
+  color: white;
 }
