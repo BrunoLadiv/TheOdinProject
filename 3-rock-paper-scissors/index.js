@@ -12,9 +12,9 @@ function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase()
   if (playerSelection === computerSelection.toLowerCase()) {
     console.log("It's a tie! Both players chose " + playerSelection + '.')
-    document.querySelector('.tie').style.visibility = "visible"
+    document.querySelector('.tie').style.visibility = 'visible'
     setTimeout(() => {
-      document.querySelector('.tie').style.visibility = "hidden"
+      document.querySelector('.tie').style.visibility = 'hidden'
     }, 1000)
     return 'tie'
   } else if (
@@ -84,22 +84,38 @@ function game(userChoice) {
     )
     document.querySelector('.score-human').innerText = playerScore
     document.querySelector('.score-machine').innerText = machineScore
-  } else {
-    console.log(
-      `Game over ${
+    if (playerScore === 5 || machineScore === 5) {
+      console.log(
+        `Game over ${
+          playerScore > machineScore ? 'Player won' : 'Machine won'
+        } with a score of Player:${playerScore} Machine:${machineScore}`
+      )
+
+      document.querySelector('.game-winner').innerText = ` ${
         playerScore > machineScore ? 'Player won' : 'Machine won'
-      } with a score of Player:${playerScore} Machine:${machineScore}`
-    )
+        } with a score of Player:${playerScore} Machine:${machineScore}`
+      
+        document.querySelector('.game-winner').style.color = `${playerScore < machineScore ? 'red':'greenyellow'} `
 
-    playerScore = 0
-    machineScore = 0
-    document.querySelector('.score-human').innerText = playerScore
-    document.querySelector('.score-machine').innerText = machineScore
+      showPopup()
+    }
   }
-
-  // if (confirm('Play again? ')) {
-  //   game()
-  // } else {
-  //   alert('Goodbye')
-  // }
 }
+// popupstuff
+function showPopup() {
+  const popup = document.getElementById('popup')
+  popup.style.display = 'block'
+}
+
+function hidePopup() {
+  const popup = document.getElementById('popup')
+  popup.style.display = 'none'
+  playerScore = 0
+  machineScore = 0
+
+  document.querySelector('.score-human').innerText = playerScore
+  document.querySelector('.score-machine').innerText = machineScore
+  
+}
+
+// document.getElementById("showPopupBtn").addEventListener("click", showPopup);

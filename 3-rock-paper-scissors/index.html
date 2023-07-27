@@ -6,12 +6,13 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <script src="./index.js"></script>
+    <script defer src="./index.js" ></script>
     <link
       rel="stylesheet"
       href="styles.css"
     />
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>ROCK PAPER SCISSORS GAME</title>
   </head>
   <body>
     <header>Rock Paper Scissors</header>
@@ -66,6 +67,15 @@
         </div>
       </div>
     </div>
-    <footer>TEST</footer>
+    <div class="popup" id="popup">
+      <div class="popup-content">
+          <span class="close-btn" onclick="hidePopup()">&times;</span>
+          <h1>🔥 GAME OVER!!! 🔥 </h1>
+          <h4 class="game-winner">This is the content of the popup.</h4>
+      </div>
+    </div>
+    <h4 class="rules">FIRST TO GET 5 POINTS WINS!</h4>
+    <footer><a href="https://github.com/brunoladiv" target="_blank">
+      <i class="fab fa-github" aria-hidden="true"></i></a></footer>
   </body>
 </html>
