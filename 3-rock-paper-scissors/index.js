@@ -36,6 +36,7 @@ function playRound(playerSelection, computerSelection) {
 function userChoiceFunc(event) {
   let userChoice = event.target.textContent
   console.log(userChoice)
+  document.querySelector(".human-pick").innerText = userChoice
   // if (
   //   userChoice !== 'rock' &&
   //   userChoice !== 'paper' &&
@@ -52,6 +53,7 @@ function game(userChoice) {
   if (playerScore < 5 && machineScore < 5) {
     const userSelection = userChoice
     const computerSelection = getComputerChoice()
+    document.querySelector(".machine-pick").innerText = computerSelection
     let result = playRound(userSelection, computerSelection)
     if (result === 'player') {
       playerScore++
@@ -63,6 +65,8 @@ function game(userChoice) {
     console.log(
       `Current score player ${playerScore} | machine ${machineScore}  `
     )
+    document.querySelector('.score-human').innerText = playerScore
+    document.querySelector('.score-machine').innerText = machineScore
     
   } else {
     console.log(
@@ -70,8 +74,11 @@ function game(userChoice) {
         playerScore > machineScore ? 'Player won' : 'Machine won'
       } with a score of Player:${playerScore} Machine:${machineScore}`
     )
+
     playerScore = 0
     machineScore = 0
+    document.querySelector('.score-human').innerText = playerScore
+    document.querySelector('.score-machine').innerText = machineScore
     
   }
 
