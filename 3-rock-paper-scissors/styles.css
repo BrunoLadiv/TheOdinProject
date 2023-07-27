@@ -29,6 +29,9 @@ header{
 
 }
 
+.blink-border{
+  border: 10px solid greenyellow;
+}
 
 .card{
   display: flex;
@@ -41,6 +44,7 @@ header{
   /* border: 1px solid black; */
   margin-top: 100px;
   border-radius: 100px;
+ 
 }
 .btn{
   font-size: 66px;
@@ -109,7 +113,7 @@ footer{
 .win-text{
   display: flex;
   justify-content: space-between;
-  background-color: blue;
+ 
   height: 150px;
   width: 260px;
   font-size: 29px;
@@ -118,6 +122,15 @@ footer{
   
 }
 
-.h-win,.m-win{
+.h-win,.m-win, .tie{
   color: greenyellow;
+  visibility: hidden;
+  
 }
+.tie{
+  color: rgb(255,222,52) ;
+  font-size: 65px;
+  margin-top: -80px;
+  
+}
+

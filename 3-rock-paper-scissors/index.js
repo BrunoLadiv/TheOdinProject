@@ -12,6 +12,10 @@ function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase()
   if (playerSelection === computerSelection.toLowerCase()) {
     console.log("It's a tie! Both players chose " + playerSelection + '.')
+    document.querySelector('.tie').style.visibility = "visible"
+    setTimeout(() => {
+      document.querySelector('.tie').style.visibility = "hidden"
+    }, 1000)
     return 'tie'
   } else if (
     (playerSelection === '✊' && computerSelection === '✌️') ||
@@ -35,9 +39,9 @@ function playRound(playerSelection, computerSelection) {
 
 function userChoiceFunc(event) {
   let userChoice = event.target.textContent.trim()
-  
+
   console.log(userChoice)
-  // document.querySelector(".human-pick").innerText = userChoice
+  document.querySelector('.human-pick').innerText = userChoice
   // if (
   //   userChoice !== 'rock' &&
   //   userChoice !== 'paper' &&
@@ -54,12 +58,24 @@ function game(userChoice) {
   if (playerScore < 5 && machineScore < 5) {
     const userSelection = userChoice
     const computerSelection = getComputerChoice()
-    document.querySelector(".machine-pick").innerText = computerSelection
+    document.querySelector('.machine-pick').innerText = computerSelection
     let result = playRound(userSelection, computerSelection)
     if (result === 'player') {
+      document.querySelector('.cd-player').classList.add('blink-border')
+      document.querySelector('.h-win').style.visibility = 'visible'
+      setTimeout(() => {
+        document.querySelector('.h-win').style.visibility = 'hidden'
+        document.querySelector('.cd-player').classList.remove('blink-border')
+      }, 1000)
       playerScore++
       rounds++
     } else if (result === 'machine') {
+      document.querySelector('.cd-machine').classList.add('blink-border')
+      document.querySelector('.m-win').style.visibility = 'visible'
+      setTimeout(() => {
+        document.querySelector('.m-win').style.visibility = 'hidden'
+        document.querySelector('.cd-machine').classList.remove('blink-border')
+      }, 1000)
       machineScore++
       rounds++
     }
@@ -68,7 +84,6 @@ function game(userChoice) {
     )
     document.querySelector('.score-human').innerText = playerScore
     document.querySelector('.score-machine').innerText = machineScore
-    
   } else {
     console.log(
       `Game over ${
@@ -80,10 +95,8 @@ function game(userChoice) {
     machineScore = 0
     document.querySelector('.score-human').innerText = playerScore
     document.querySelector('.score-machine').innerText = machineScore
-    
   }
 
-  
   // if (confirm('Play again? ')) {
   //   game()
   // } else {
