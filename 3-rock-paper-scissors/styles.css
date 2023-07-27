@@ -35,9 +35,9 @@ header{
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* background-color:rgb(23, 3, 41); */
+  background-color:rgb(23, 3, 41);
   height: 500px;
-  width: 500px;
+  width: 600px;
   /* border: 1px solid black; */
   margin-top: 100px;
   border-radius: 100px;
@@ -67,9 +67,10 @@ header{
 
 .sep{
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin-top: 100px;
-  justify-content: space-between;
+  
 
   height: 500px ;
   width: 300px;
@@ -97,4 +98,26 @@ footer{
   text-align: center;
   padding: 20px;
   background-color:  rgb(23, 3, 41) ;
+}
+.players{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 150px;
+}
+
+.win-text{
+  display: flex;
+  justify-content: space-between;
+  background-color: blue;
+  height: 150px;
+  width: 260px;
+  font-size: 29px;
+  
+  margin-left: 10px;
+  
+}
+
+.h-win,.m-win{
+  color: greenyellow;
 }

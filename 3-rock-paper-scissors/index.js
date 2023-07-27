@@ -34,9 +34,10 @@ function playRound(playerSelection, computerSelection) {
 // console.log(playRound(playerSelection, computerSelection))
 
 function userChoiceFunc(event) {
-  let userChoice = event.target.textContent
+  let userChoice = event.target.textContent.trim()
+  
   console.log(userChoice)
-  document.querySelector(".human-pick").innerText = userChoice
+  // document.querySelector(".human-pick").innerText = userChoice
   // if (
   //   userChoice !== 'rock' &&
   //   userChoice !== 'paper' &&
