@@ -1,12 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="./index.js"></script>
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script src="./index.js"></script>
+    <link
+      rel="stylesheet"
+      href="styles.css"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>Rock Paper Scissors</header>
+    <div class="container">
+      <div class="card">
+        <div id="score">
+          <h1>SCORE:<span class="score">0</span></h1>
+        </div>
+        <div class="card-picked">?</div>
+        <div class="options">
+          <button onclick="userChoiceFunc(event)" class="btn">✊</button>
+          <button onclick="userChoiceFunc(event)" class="btn">✋</button>
+          <button onclick="userChoiceFunc(event)" class="btn">✌️</button>
+        </div>
+      </div>
+      <div class="sep">
+        <div class="avatar"><span class="player">🧑‍🦰</span></div>
+        <h1>VS</h1>
+        <div class="avatar"><span class="cpu">🤖</span></div>
+      </div>
+      <div class="card">
+        <div id="score">
+          <h1>SCORE:<span class="score">0</span></h1>
+        </div>
+        <div class="card-picked">?</div>
+        <div class="options">
+          <button class="btn btn-cpu" >✊</button>
+          <button class="btn btn-cpu" >✋</button>
+          <button class="btn btn-cpu" >✌️</button>
+        </div>
+      </div>
+    </div>
+    <footer>TEST</footer>
+  </body>
 </html>

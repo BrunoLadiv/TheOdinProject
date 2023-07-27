@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: rgb(255,222,52);
+  font-weight: bold;
+  
+  
+  font-family: 'Press Start 2P', cursive;
+}
+body{
+  background-color: rgb(73, 10, 132);
+}
+header{
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+  padding: 25px;
+  
+  background-color: rgb(23, 3, 41);
+}
+
+.container{
+ 
+  display:flex;
+  justify-content: center;
+
+}
+
+
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color:rgb(23, 3, 41); */
+  height: 500px;
+  width: 500px;
+  /* border: 1px solid black; */
+  margin-top: 100px;
+  border-radius: 100px;
+}
+.btn{
+  font-size: 66px;
+  border-radius: 30px;
+  background-color:  rgb(23, 3, 41);
+  width: 130px;
+  cursor: pointer;
+}
+.btn:hover{
+  transform: scale(1.5);
+}
+
+.btn-cpu{
+  cursor: not-allowed;
+}
+.btn-cpu:hover{
+  transform: scale(1.0);
+}
+.player, .cpu{
+  font-size: 75px;
+  
+  
+}
+
+.sep{
+  display: flex;
+  align-items: center;
+  margin-top: 100px;
+  justify-content: space-between;
+
+  height: 500px ;
+  width: 300px;
+}
+
+#score{
+  margin-top: 50px;
+}
+#score > h1{
+  font-size: 45px;
+}
+.card-picked{
+  font-size: 170px;
+  -webkit-text-stroke: 2px black
+}
+.options{
+  padding-bottom: 30px;
+}
+
+footer{
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  padding: 20px;
+  background-color:  rgb(23, 3, 41) ;
+}

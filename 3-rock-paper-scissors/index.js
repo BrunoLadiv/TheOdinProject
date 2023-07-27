@@ -1,5 +1,9 @@
+let rounds = 0
+let playerScore = 0
+let machineScore = 0
+
 function getComputerChoice() {
-  const choices = ['rock', 'paper', 'scissors']
+  const choices = ['✊', '✋', '✌️']
   const randomIndex = Math.floor(Math.random() * choices.length)
   return choices[randomIndex]
 }
@@ -10,9 +14,9 @@ function playRound(playerSelection, computerSelection) {
     console.log("It's a tie! Both players chose " + playerSelection + '.')
     return 'tie'
   } else if (
-    (playerSelection === 'rock' && computerSelection === 'scissors') ||
-    (playerSelection === 'paper' && computerSelection === 'rock') ||
-    (playerSelection === 'scissors' && computerSelection === 'paper')
+    (playerSelection === '✊' && computerSelection === '✌️') ||
+    (playerSelection === '✋' && computerSelection === '✊') ||
+    (playerSelection === '✌️' && computerSelection === '✋')
   ) {
     console.log(
       'You Win! ' + playerSelection + ' beats ' + computerSelection + '.'
@@ -29,50 +33,52 @@ function playRound(playerSelection, computerSelection) {
 // const playerSelection = 'rock'
 // console.log(playRound(playerSelection, computerSelection))
 
-function userChoiceFunc() {
-  let userChoice = prompt('Type your choice: ').toLowerCase()
+function userChoiceFunc(event) {
+  let userChoice = event.target.textContent
   console.log(userChoice)
-  if (
-    userChoice !== 'rock' &&
-    userChoice !== 'paper' &&
-    userChoice !== 'scissors'
-  ) {
-    console.log('Invalid choice, choosee between Paper, Rock or Scissors ')
-    userChoiceFunc()
-  }
-  return userChoice
+  // if (
+  //   userChoice !== 'rock' &&
+  //   userChoice !== 'paper' &&
+  //   userChoice !== 'scissors'
+  // ) {
+  //   console.log('Invalid choice, choosee between Paper, Rock or Scissors ')
+  //   userChoiceFunc()
+  // }
+  game(userChoice)
 }
 
-function game() {
-  let rounds = 0
-  let playerScore = 0
-  let machineScore = 0
+function game(userChoice) {
   console.log('Rock, Paper, Scissors Game')
-  while (rounds < 5) {
-    const userSelection = userChoiceFunc()
+  if (playerScore < 5 && machineScore < 5) {
+    const userSelection = userChoice
     const computerSelection = getComputerChoice()
     let result = playRound(userSelection, computerSelection)
     if (result === 'player') {
       playerScore++
+      rounds++
     } else if (result === 'machine') {
       machineScore++
+      rounds++
     }
     console.log(
       `Current score player ${playerScore} | machine ${machineScore}  `
     )
-    rounds++
+    
+  } else {
+    console.log(
+      `Game over ${
+        playerScore > machineScore ? 'Player won' : 'Machine won'
+      } with a score of Player:${playerScore} Machine:${machineScore}`
+    )
+    playerScore = 0
+    machineScore = 0
+    
   }
-  console.log(
-    `Game over ${
-      playerScore > machineScore ? 'Player won' : 'Machine won'
-    } with a score of Player:${playerScore} Machine:${machineScore}`
-  )
-  if (confirm('Play again? ')) {
-    game()
-  }
-  else {
-    alert("Goodbye")
-  }
-}
 
-game()
+  
+  // if (confirm('Play again? ')) {
+  //   game()
+  // } else {
+  //   alert('Goodbye')
+  // }
+}
