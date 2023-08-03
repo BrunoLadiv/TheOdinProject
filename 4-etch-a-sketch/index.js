@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '.sizetext'
     ).innerText = `Grid Size: ${gridSize} x ${gridSize}`
     const squareSize = (550 - (gridSize - 1) * 2) / gridSize
+    console.log(squareSize)
 
     clearGrid()
 

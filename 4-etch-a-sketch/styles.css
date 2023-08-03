@@ -23,16 +23,17 @@ body {
 
 .sketch-box {
   background-color: white;
-  box-sizing: border-box; 
+  box-sizing: content-box; 
   width: 550px; 
   height: 550px; 
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, 1fr);
+  grid-gap: 0px;
 }
 
 .square {
-  box-sizing: border-box;
+  box-sizing: content-box;
   width: 34px;
   height: 34px; 
   border: 1px solid #ded6d6;
