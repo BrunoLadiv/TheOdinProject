@@ -108,8 +108,8 @@ function calc(n1, operator, n2) {
   }
 }
 function divide(a, b) {
-  result = a / b
-  n1 = result
+  result = a / b === Infinity ? "Can't divide by 0"  : a / b
+  n1 = result === "Can't divide by 0" ? 0 : result
   n2 = ''
   operator = ''
   // handleDisplay(result)
