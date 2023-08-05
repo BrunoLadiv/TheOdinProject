@@ -7,6 +7,7 @@ let operator = ''
 let n1 = ''
 let n2 = ''
 let result = ''
+let isEvaluate = false
 
 buttons.forEach((button) => {
   button.addEventListener('click', evaluate)
@@ -31,8 +32,27 @@ function handleDisplay(text) {
   }
 }
 function evaluate(e) {
+  if (n1 && n2 && operator) {
+    if(e.target.innerText === '+' ||
+    e.target.innerText === '*' ||
+    e.target.innerText === '/' ||
+      e.target.innerText === '-') {
+      calc(n1,operator,n2)
+    }
+  }
+
+
+  if (e.target.innerText === '=') {
+    if (n1 && operator && n2) {
+      calc(n1, operator, n2)
+      isEvaluate = true
+    } else {
+      console.log('arguments missing' + n1 + operator + n2)
+      return
+    }
+  }
   
-  if (
+  else if (
     e.target.innerText === '+' ||
     e.target.innerText === '*' ||
     e.target.innerText === '/' ||
@@ -43,14 +63,7 @@ function evaluate(e) {
     clearAll()
   } else if (e.target.innerText === 'C') {
     deleteLast()
-  } else if (e.target.innerText === '=') {
-    if (n1 && operator && n2) {
-      calc(n1, operator, n2)
-    } else {
-      console.log('arguments missing' + n1 + operator + n2)
-      return
-    }
-  } else if (e.target.innerText === '.') {
+  }  else if (e.target.innerText === '.') {
     // idk what do here xd
   } else {
     if (!n1 || !operator) {
@@ -134,14 +147,22 @@ function clearAll() {
   history.innerText = ''
 }
 function deleteLast() {
-  if (n2) {
-    n2 = n2.slice(0, -1)
-  } else if (operator) {
-    operator = ''
-  } else if (n1) {
-    n1 = n1.slice(0, -1)
+  try {
+    if (n2) {
+      n2 = n2.slice(0, -1);
+    } else if (operator) {
+      operator = '';
+    } else if (n1) {
+      console.log(n1);
+      n1 = n1.slice(0, -1);
+    }
+    handleDisplay();
+    
+  } catch (error) {
+    return
   }
-  handleDisplay()
+
+  
 }
 
 handleDisplay()
