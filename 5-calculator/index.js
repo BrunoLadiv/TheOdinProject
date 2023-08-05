@@ -16,13 +16,22 @@ function handleDisplay(text) {
   if (result === '' || result === undefined) {
     textResult.innerText = '0'
   } else {
-    textResult.innerText = result
+    if (result.toString().length >= 12) {
+      textResult.style.fontSize = '30px'
+      textResult.innerText = result
+    } else {
+      textResult.style.fontSize = '50px'
+      textResult.innerText = result
+    }
   }
   if (text !== 'AC' && text !== 'C' && text !== '=' && text !== undefined) {
     history.innerText += text
+  } else if (text === 'C') {
+    history.innerText = history.innerText.slice(0, -1)
   }
 }
 function evaluate(e) {
+  
   if (
     e.target.innerText === '+' ||
     e.target.innerText === '*' ||
@@ -33,14 +42,14 @@ function evaluate(e) {
   } else if (e.target.innerText === 'AC') {
     clearAll()
   } else if (e.target.innerText === 'C') {
-    // call delete last func
+    deleteLast()
   } else if (e.target.innerText === '=') {
     if (n1 && operator && n2) {
       calc(n1, operator, n2)
     } else {
       console.log('arguments missing' + n1 + operator + n2)
+      return
     }
-    // call calc function
   } else if (e.target.innerText === '.') {
     // idk what do here xd
   } else {
@@ -94,13 +103,10 @@ function divide(a, b) {
 function multiply(a, b) {
   console.log(a + b)
   result = a * b
-  
 
   n1 = result
   n2 = ''
   operator = ''
-
-  
 }
 
 function sub(a, b) {
@@ -126,6 +132,16 @@ function clearAll() {
   n2 = ''
   result = ''
   history.innerText = ''
+}
+function deleteLast() {
+  if (n2) {
+    n2 = n2.slice(0, -1)
+  } else if (operator) {
+    operator = ''
+  } else if (n1) {
+    n1 = n1.slice(0, -1)
+  }
+  handleDisplay()
 }
 
 handleDisplay()

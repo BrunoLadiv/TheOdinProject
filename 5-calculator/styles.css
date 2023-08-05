@@ -1,6 +1,11 @@
 *{
   box-sizing: border-box;
+  
 }
+
+
+
+                
 body {
   display: flex;
   justify-content: center;
@@ -23,7 +28,8 @@ body {
   margin: 20px auto;
   border-radius: 15px;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: flex-end;
   
   
@@ -63,5 +69,12 @@ body {
 }
 .result{
   font-size: 55px;
-  margin-right: 20px;
+  margin-right: 10px;
+  font-family: 'Digital-7 Mono', sans-serif;
+  color: rgb(130, 208, 13);
+  
+}
+.history{
+  margin-right: 10px;
+  color: white;
 }
