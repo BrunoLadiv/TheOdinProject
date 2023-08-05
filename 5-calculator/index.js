@@ -66,8 +66,14 @@ function evaluate(e) {
     deleteLast()
   } else {
     if (!n1 || !operator) {
+      if (n1.includes('.') && e.target.innerText == '.') {
+        return 
+      }
       n1 += e.target.innerText
     } else if (n1 && operator) {
+      if (n2.includes('.') && e.target.innerText == '.') {
+        return 
+      }
       n2 += e.target.innerText
     }
   }
