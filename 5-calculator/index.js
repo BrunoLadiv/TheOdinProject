@@ -33,14 +33,16 @@ function handleDisplay(text) {
 }
 function evaluate(e) {
   if (n1 && n2 && operator) {
-    if(e.target.innerText === '+' ||
-    e.target.innerText === '*' ||
-    e.target.innerText === '/' ||
-      e.target.innerText === '-') {
-      calc(n1,operator,n2)
+    if (
+      e.target.innerText === '+' ||
+      e.target.innerText === '*' ||
+      e.target.innerText === '/' ||
+      e.target.innerText === '-' ||
+      e.target.innerText === '%'
+    ) {
+      calc(n1, operator, n2)
     }
   }
-
 
   if (e.target.innerText === '=') {
     if (n1 && operator && n2) {
@@ -50,21 +52,18 @@ function evaluate(e) {
       console.log('arguments missing' + n1 + operator + n2)
       return
     }
-  }
-  
-  else if (
+  } else if (
     e.target.innerText === '+' ||
     e.target.innerText === '*' ||
     e.target.innerText === '/' ||
-    e.target.innerText === '-'
+    e.target.innerText === '-' ||
+    e.target.innerText === '%'
   ) {
     operator = e.target.innerText
   } else if (e.target.innerText === 'AC') {
     clearAll()
   } else if (e.target.innerText === 'C') {
     deleteLast()
-  }  else if (e.target.innerText === '.') {
-    // idk what do here xd
   } else {
     if (!n1 || !operator) {
       n1 += e.target.innerText
@@ -86,9 +85,12 @@ function evaluate(e) {
   handleDisplay(e.target.innerText, result)
 }
 function calc(n1, operator, n2) {
-  n1 = Number(n1)
-  n2 = Number(n2)
+  n1 = parseFloat(n1)
+  n2 = parseFloat(n2)
   switch (operator) {
+    case '%':
+      calculateModulus(n1, n2)
+      break
     case '+':
       add(n1, n2)
       break
@@ -122,6 +124,13 @@ function multiply(a, b) {
   operator = ''
 }
 
+function calculateModulus(a, b) {
+  result = a % b
+  n1 = result
+  n2 = ''
+  operator = ''
+}
+
 function sub(a, b) {
   result = a - b
   n1 = result
@@ -149,20 +158,17 @@ function clearAll() {
 function deleteLast() {
   try {
     if (n2) {
-      n2 = n2.slice(0, -1);
+      n2 = n2.slice(0, -1)
     } else if (operator) {
-      operator = '';
+      operator = ''
     } else if (n1) {
-      console.log(n1);
-      n1 = n1.slice(0, -1);
+      console.log(n1)
+      n1 = n1.slice(0, -1)
     }
-    handleDisplay();
-    
+    handleDisplay()
   } catch (error) {
     return
   }
-
-  
 }
 
 handleDisplay()
