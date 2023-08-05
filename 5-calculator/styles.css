@@ -11,38 +11,57 @@ body {
 .calc-body {
   display: flex;
   flex-direction: column;
-  background-color: black;
+  background-color: rgb(34, 33, 33);
   height: 500px;
   width: 400px;
   border-radius: 30px;
 }
 .display{
-  background-color: blue;
-  width: 85%;
-  height: 100px;
-  margin: 30px auto;
-  border-radius: 30px;
+  background-color: rgb(128, 123, 124);
+  width: 90%;
+  height: 150px;
+  margin: 20px auto;
+  border-radius: 15px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
   
   
 
 }
 .button{
+  font-size: large;
+  font-weight: bold;
+  color: white;
   display: flex;
-  background-color: pink;
-  border: 1px solid black;
+  background-color: rgb(128, 123, 124);
+  
   width: 75px;
   height: 50px;
   margin: 5px;
-  border-radius: 10px;
+  border-radius: 9999px;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 2px 4px rgba(244, 242, 242, 0.2); 
+  cursor: pointer;
   
+}
+.button:hover{
+  background-color: rgb(183, 183, 183);
+  color: greenyellow;
 }
 .buttons{
   display: flex;
   justify-content: center;
-
+  
   height: 100%;
   width: 100%;
   flex-wrap: wrap;
+}
+.equal{
+  width: 160px;
+}
+.result{
+  font-size: 55px;
+  margin-right: 20px;
 }
