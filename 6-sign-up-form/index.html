@@ -10,10 +10,121 @@
       rel="stylesheet"
       href="styles.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="./index.js"></script>
     <title>SignUP Form</title>
   </head>
   <body>
-    <div class="hero-container">1</div>
-    <div class="form-container">2</div>
+    <div class="hero-container">
+      <div class="logo-container">
+        <img
+          class="logo"
+          src="./imgs/artificial-intelligence.png"
+          alt="logo"
+        />
+        <h1>SYNTHOTECH SOLUTIONS</h1>
+      </div>
+      <p class="img-credits">
+        Photo by
+        <a
+          href="https://unsplash.com/@thisisengineering?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+          >ThisisEngineering RAEng</a
+        >
+        on
+        <a
+          href="https://unsplash.com/photos/sbVu5zitZt0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+          >Unsplash</a
+        >
+      </p>
+    </div>
+    <div class="form-container">
+      <div>
+        <h1 class="slogan">Empowering Tomorrow with SynthoTech AI</h1>
+      </div>
+      <div>
+        <fieldset>
+          <h2>Contact Info</h2>
+          <form action="">
+            <div class="input-box">
+              <label for="first-name">First Name</label
+              ><input
+                name="first-name"
+                required
+                type="text"
+              />
+            </div>
+            <div class="input-box">
+              <label for="last-name">Last Name</label
+              ><input
+                name="last-name"
+                required
+                type="text"
+              />
+            </div>
+            <div class="input-box">
+              <label for="email">Email</label
+              ><input
+                name="email"
+                required
+                type="email"
+              />
+            </div>
+            <div class="input-box">
+              <label for="phone-number">Phone Number</label
+              ><input
+                name="phone-number"
+                required
+                type="number"
+              />
+            </div>
+            <div class="input-box">
+              <label for="password">Password</label
+              ><input
+                onchange="checkPasswords()"
+                id="password"
+                name="password"
+                required
+                type="password"
+              />
+            </div>
+            <div class="input-box">
+              <label for="confirm-password">Confirm Password</label
+              ><input
+                onchange="checkPasswords()"
+                id="confirmPassword"
+                name="confirm-password"
+                required
+                type="password"
+              />
+            </div>
+            <div class="btn-container">
+              <button
+                class="button"
+                type="submit"
+              >
+                Register
+              </button>
+            </div>
+          </form>
+          <p class="login">Already have an account? <a href="">LOG-IN</a></p>
+        </fieldset>
+      </div>
+
+      <footer>
+        <a
+          href="http://www.github.com/brunoladiv"
+          target="_blank"
+          ><i class="fa-brands fa-github fa-flip gh-icon"></i
+        ></a>
+      </footer>
+
+      <div></div>
+    </div>
   </body>
 </html>
