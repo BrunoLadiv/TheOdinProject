@@ -17,7 +17,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script src="./index.js"></script>
+    <script defer src="./index.js"></script>
     <title>SignUP Form</title>
   </head>
   <body>
@@ -86,22 +86,22 @@
             <div class="input-box">
               <label for="password">Password</label
               ><input
-                onchange="checkPasswords()"
                 id="password"
                 name="password"
                 required
                 type="password"
               />
+              <p class="min-char">must be at least 8 characteres</p>
             </div>
             <div class="input-box">
-              <label for="confirm-password">Confirm Password</label
+              <label  for="confirm-password">Confirm Password</label
               ><input
-                onchange="checkPasswords()"
                 id="confirmPassword"
                 name="confirm-password"
                 required
                 type="password"
               />
+              <p class="password-match">password does not match</p>
             </div>
             <div class="btn-container">
               <button

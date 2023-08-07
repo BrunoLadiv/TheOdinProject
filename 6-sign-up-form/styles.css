@@ -192,3 +192,11 @@ form{
 .login {
   text-align: center;
 }
+.password-match{
+  display: none;
+  color: red;
+}
+.min-char{
+  display: none;
+  color: red;
+}
