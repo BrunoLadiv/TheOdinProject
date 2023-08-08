@@ -183,6 +183,10 @@ form{
 }
 .gh-icon{
   font-size: 3rem;
+  
+}
+.gh-icon:hover{
+  color: #007aff;
 }
 .login > a{
   color: blue;
