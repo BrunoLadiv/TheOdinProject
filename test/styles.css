@@ -1,0 +1,27 @@
+.container{
+  height: 100vh;
+  display: grid;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+  grid-template-areas: 
+  "living-room living-room living-room "
+  "living-room living-room living-room "
+  "laundry-room bath-room bath-room"
+  "laundry-room bath-room bath-room"
+  "bed-room bed-room bed-room"
+  ;
+}
+.container > div {
+  border: 1px solid rgb(187, 46, 46);
+}
+.living-room{
+  grid-area: living-room;
+}
+.bed-room{
+  grid-area: bed-room;
+}
+.bath-room{
+  grid-area: bath-room;
+}
+.laundry{
+  grid-area: laundry-room;
+}
