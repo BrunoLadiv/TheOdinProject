@@ -254,7 +254,8 @@ div.header-section-2 > div:nth-child(1) > div >p{
   width: 85%;
 }
 .project-card > div > p {
-  margin: 15px 0px 10px;
+  color: rgb(130, 132, 144);
+  margin: 10px 0px 10px;
 }
 .project-card > div > h4 {
   margin-top: 10px;
@@ -265,4 +266,20 @@ div.header-section-2 > div:nth-child(1) > div >p{
   object-fit: cover;
   
   border-radius: 8px;
+}
+
+.card-icons{
+  height: 25px;
+  font-size: 15px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  color: rgb(130, 132, 144);
+  margin-bottom: 10px;
+}
+
+.card-icons > i:hover {
+  color: #1b7cb1;
+  transform: scale(1.1);
+
 }
