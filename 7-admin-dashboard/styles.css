@@ -360,3 +360,10 @@ hr {
 .users:hover{
   transform: scale(1.1);
 }
+body > div.main-container > div.header-container > div.header-section-2 > div:nth-child(1) > div > h1 > a{
+  text-decoration: none;
+}
+body > div.main-container > div.header-container > div.header-section-2 > div:nth-child(1) > div > h1 > a:hover{
+  color:#6fc5ff;
+  ;
+}
