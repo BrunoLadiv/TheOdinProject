@@ -334,6 +334,7 @@ hr {
 }
 
 .trending{
+  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
