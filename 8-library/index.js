@@ -125,6 +125,7 @@ bookForm.addEventListener('submit', (event) => {
     // Update library on screen
     renderLibrary(myLibrary)
     console.log(myLibrary)
+    bookForm.reset();
   } else {
     console.log('Book already in library.')
   }
