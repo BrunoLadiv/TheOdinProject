@@ -36,12 +36,9 @@
         >
           &times;
         </button>
-        <form
-          class="form"
-          id="bookForm"
-        >
+        <form class="form" id="bookForm">
           <p class="title">New book</p>
-
+        
           <label>
             <input
               required=""
@@ -52,7 +49,7 @@
             />
             <span>Title</span>
           </label>
-
+        
           <label>
             <input
               name="book-author"
@@ -63,7 +60,7 @@
             />
             <span>Author</span>
           </label>
-
+        
           <label>
             <input
               name="number-of-pages"
@@ -74,7 +71,7 @@
             />
             <span>Number of pages</span>
           </label>
-
+        
           <label>
             <input
               name="book-url"
@@ -83,17 +80,20 @@
               type="text"
               class="input"
             />
-            <span>Store Url</span>
+            <span>Store URL</span>
           </label>
-          <label class="file-input-container">
+        
+          <label>
             <input
-              type="file"
-              id="cover"
-              name="cover-cover"
-              accept="image/*"
+              required = ""
+              name="cover-url"
+              placeholder=""
+              type="url"
+              class="input"
             />
-            <span class="file-input-label">Choose a Cover Image</span>
+            <span>Cover Image URL</span>
           </label>
+        
           <label>
             <span>Have you read it? </span>
             <input
@@ -103,60 +103,17 @@
               type="checkbox"
             />
           </label>
+        
           <button class="submit">ADD</button>
         </form>
+        
       </div>
     </dialog>
     <div class="container">
       <ul class="list-inline">
-        <li class="book">
-          <img src="http://37signals.com/images/remote/remote_front.png" />
-        </li>
-
-        <li class="book">
-          <img src="http://www.blanq.org/text/moleskine_iphone_wallpaper.jpg" />
-        </li>
-
-        <li class="book">
-          <img src="https://d.gr-assets.com/books/1348927776l/8032112.jpg" />
-        </li>
-
-        <li class="book">
-          <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li>
-        <li class="book">
-          <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li>
-        <li class="book">
-          <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li>
-        <li class="book">
-          <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li>
-        <li class="book">
-          <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li>
-        <li class="book">
-          <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li>
-        <li class="book">
-          <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li>
-        <li class="book">
-          <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li>
-        <li class="book">
-          <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li>
-        <li class="book">
-          <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li>
-        <li class="book">
-          <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li>
-        <li class="book">
+        <dialog><li class="book">
           <button class="info-btn">
-            <i class="fa-solid fa-circle-info"></i>
+            <!-- <i class="fa-solid fa-circle-info"></i> -->
           </button>
           <dialog class="info-modal">
             <button
@@ -165,16 +122,18 @@
             >
               &times;
             </button>
-            <h1>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
-              expedita neque assumenda porro minus architecto quasi deserunt
-              ratione enim, ullam autem tempore eos consectetur eligendi
-              accusamus voluptates saepe. Cumque, magnam.15
-            </h1>
+            <h3 class="title-info">Title: Game of Thrones</h3>
+            <h3 class="author-info">Author: JRR Martin</h3>
+            <h3 class="pages-info">Pages: 343</h3>
+            <h3 class="read-info">Book read?: yes</h3>
+            <h3 class="store-link">
+              Store Link: www.amazon.com/book/game-of-thrones
+            </h3>
           </dialog>
 
-          <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li>
+          <img class="cover-url" src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
+        </li></dialog>
+        
       </ul>
 
       <form
