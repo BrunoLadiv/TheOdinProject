@@ -38,6 +38,41 @@ const myLibrary = [
     url: 'https://www.amazon.com.br/Name-Wind-Patrick-Rothfuss/dp/0756404746',
     cover: './images/51JThzjy3gL._SX306_BO1,204,203,200_ (1).jpg',
     isRead: true,
+  },{
+    title: 'The Eye of the World: Book One of the Wheel of Time',
+    author: 'Robert Jordan',
+    pages: 782,
+    url: 'https://www.amazon.com.br/Eye-World-Book-Wheel-Time/dp/1250754739',
+    cover: './images/51ePZIsgqlL._SX327_BO1,204,203,200_.jpg',
+    isRead: true,
+  },{
+    title: 'The Way of Kings',
+    author: 'Brandon Sanderson',
+    pages: 1007,
+    url: 'https://www.amazon.com.br/Way-Kings-Brandon-Sanderson/dp/0765365278',
+    cover: './images/51ttJEFwlNL._SX305_BO1,204,203,200_.jpg',
+    isRead: true,
+  },{
+    title: 'Gardens of the Moon (The Malazan Book of the Fallen, Book 1',
+    author: 'Steven Erikson',
+    pages: 672,
+    url: 'https://www.amazon.com/Gardens-Moon-Malazan-Book-Fallen/dp/0765348780',
+    cover: './images/0765322889.01._SCLZZZZZZZ_SX500_.jpg',
+    isRead: true,
+  },{
+    title: 'The Silmarillion',
+    author: 'J. R. R. Tolkien',
+    pages: 365,
+    url: 'https://www.amazon.com.br/Name-Wind-Patrick-Rothfuss/dp/0756404746',
+    cover: './images/41MCyY5mMaL._SX331_BO1,204,203,200_.jpg',
+    isRead: true,
+  },{
+    title: 'The Blade Itself',
+    author: 'Joe Abercrombie',
+    pages: 	529,
+    url: 'https://www.amazon.com.br/Blade-Itself-1-Joe-Abercrombie/dp/0316387312',
+    cover: './images/51xfs0AnKkL._SX319_BO1,204,203,200_.jpg',
+    isRead: true,
   },
 ]
 
@@ -137,9 +172,9 @@ function renderBook(book) {
   readInfo.classList.add('read-info')
   readInfo.textContent = `Book read?: ${book.isRead ? 'yes' : 'no'}`
 
-  const storeLink = document.createElement('h3')
-  storeLink.classList.add('store-link')
-  storeLink.textContent = `Store Link: ${book.url}`
+  const storeLink = document.createElement('h3'); 
+  storeLink.classList.add('store-link');
+  storeLink.innerHTML = `Store Link: <a href="${book.url}" target="_blank">${book.url}</a>`;
 
   const bookCover = document.createElement('img')
   bookCover.classList.add('book-cover')
@@ -183,6 +218,8 @@ function renderBook(book) {
     infoModal.close()
   })
 }
+
+
 
 function renderLibrary(library) {
   clearBookList()

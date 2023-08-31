@@ -1,5 +1,8 @@
+
+
+
 *{
-  
+  font-family: 'sans-serif';
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -371,11 +374,11 @@ dialog {
 }
 
 .close-button {
-  background-color: white;
+  background-color: #e5e9eee2 ;
   position: absolute;
-  top: 10px;
+  top: 4px;
   right: 15px;
-  font-size: 18px;
+  font-size: 22px;
   color: black;
   cursor: pointer;
   z-index: 9999999999;
