@@ -1,0 +1,352 @@
+*{
+  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  
+}
+:root {
+	font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320));
+}
+
+body{
+  height: 100vh;
+  display: flex;
+  
+  
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(88, 65, 44);
+
+}
+.container{
+  border: 1px solid green;
+  height: 100%;
+  width: 80%;
+  position: relative;
+}
+
+/* SEARCH BUTTON  */
+
+body, button, input {
+	font: 1em Hind, sans-serif;
+	line-height: 1.5em;
+}
+body, input {
+	color: #171717;
+}
+.search-bar {
+  position:fixed ;
+	display: flex;
+  right: 30%;
+  bottom: 0%;
+  
+}
+body {
+	background: #f1f1f1;
+	height: 100vh;
+}
+.search-bar input,
+.search-btn, 
+.search-btn:before, 
+.search-btn:after {
+	transition: all 0.25s ease-out;
+}
+.search-bar input,
+.search-btn {
+	width: 3em;
+	height: 3em;
+}
+.search-bar input:invalid:not(:focus),
+.search-btn {
+	cursor: pointer;
+  
+}
+.search-bar,
+.search-bar input:focus,
+.search-bar input:valid  {
+	width: 100%;
+  
+}
+.search-bar input:focus,
+.search-bar input:not(:focus) + .search-btn:focus {
+	outline: transparent;
+}
+.search-bar {
+	margin: auto;
+	padding: 1.5em;
+	justify-content: center;
+	max-width: 30em;
+}
+.search-bar input {
+	background: transparent;
+	border-radius: 1.5em;
+	box-shadow: 0 0 0 0.4em #171717 inset;
+	padding: 0.75em;
+	transform: translate(0.5em,0.5em) scale(0.5);
+	transform-origin: 100% 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.search-bar input::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+.search-bar input:focus,
+.search-bar input:valid {
+	background: #fff;
+	border-radius: 0.375em 0 0 0.375em;
+	box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+	transform: scale(1);
+  
+}
+.search-btn {
+	background: #171717;
+	border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+	padding: 0.75em;
+	position: relative;
+	transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
+	transform-origin: 0 50%;
+}
+.search-btn:before, 
+.search-btn:after {
+	content: "";
+	display: block;
+	opacity: 0;
+	position: absolute;
+}
+.search-btn:before {
+	border-radius: 50%;
+	box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+	top: 0.75em;
+	left: 0.75em;
+	width: 1.2em;
+	height: 1.2em;
+}
+.search-btn:after {
+	background: #f1f1f1;
+	border-radius: 0 0.25em 0.25em 0;
+	top: 51%;
+	left: 51%;
+	width: 0.75em;
+	height: 0.25em;
+	transform: translate(0.2em,0) rotate(45deg);
+	transform-origin: 0 50%;
+}
+.search-btn span {
+	display: inline-block;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+}
+
+/* Active state */
+.search-bar input:focus + .search-btn,
+.search-bar input:valid + .search-btn {
+	background: #2762f3;
+	border-radius: 0 0.375em 0.375em 0;
+	transform: scale(1);
+}
+.search-bar input:focus + .search-btn:before, 
+.search-bar input:focus + .search-btn:after,
+.search-bar input:valid + .search-btn:before, 
+.search-bar input:valid + .search-btn:after {
+	opacity: 1;
+}
+.search-bar input:focus + .search-btn:hover,
+.search-bar input:valid + .search-btn:hover,
+.search-bar input:valid:not(:focus) + .search-btn:focus {
+	background: #0c48db;
+}
+.search-bar input:focus + .search-btn:active,
+.search-bar input:valid + .search-btn:active {
+	transform: translateY(1px);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+	body, input {
+		color: white;
+	}
+	/* body {
+		background: #171717;
+	} */
+	.search-bar input {
+		box-shadow: 0 0 0 0.4em #323232 inset;
+	}
+	.search-bar input:focus,
+	.search-bar input:valid {
+		background: #3d3d3d;
+		box-shadow: 0 0 0 0.1em #3d3d3d inset;
+	}
+	.search-btn {
+		background: #323232;
+	}
+}
+
+/* ADD BOOK BUTTON  */
+
+.button {
+  --main-focus: #2d8cf0;
+  --font-color: #323232;
+  --bg-color-sub: #dedede;
+  --bg-color: #eee;
+  --main-color: #323232;
+  position: fixed;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+  right: 15%;
+  bottom: 5%;
+}
+.button__text{
+  font-size: 0.6rem;
+}
+.button, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.button .button__text {
+  transform: translateX(22px);
+  color: var(--font-color);
+  font-weight: 600;
+}
+
+.button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button .svg {
+  width: 20px;
+  fill: var(--main-color);
+}
+
+.button:hover {
+  background: var(--bg-color);
+}
+
+.button:hover .button__text {
+  color: transparent;
+  
+}
+
+.button:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+  --bg-color-sub: #2762f3
+  
+}
+
+.button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
+}
+
+.book-grid{
+  height: 90%;
+  border: 1px solid blue;
+}
+
+/* BOOK GRID  */
+
+.book, .book img, .book::after, .book::before {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+ul {
+  display: table-cell;
+  vertical-align: middle;
+}
+.list-inline {
+  width: 1536px;
+  
+  padding-left: 0;
+  list-style: none;
+}
+.list-inline > li {
+  display: inline-block;
+  margin-left: 2em;
+}
+
+.book {
+  cursor: pointer;
+  display: block;
+  width: 150px;
+  height: 220px;
+  position: relative;
+  background: #fff;
+  z-index: 1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1), 0 9px 20px 0 rgba(0, 0, 0, .25);
+  overflow: hidden;
+  transition: box-shadow 0.3s linear;
+  margin-top: 3%;
+}
+.book img {
+  width: inherit;
+  height: inherit;
+  transform-origin: 0 50%;
+  transform: rotateY(0);
+  transition: all 0.45s ease;
+}
+.book:hover {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25), 0 9px 20px 0 rgba(0, 0, 0, .45);
+}
+.book:hover img {
+  transform: rotateY(-25deg);
+  box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, .2);
+}
+.book::after, .book::before {
+  content: '';
+  display: block;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+}
+.book::before {
+  left: -3px;
+}
+.book::after {
+  left: -6px;
+}
+
+.remove-button, .details{
+  z-index: 5;
+  color: black;
+  position: absolute;
+  
+  
+}
+
+
+.details{
+  font-size: 25px;
+  right: 25%;
+  bottom: 0%;
+}
+.remove-button{
+  right: 8%;
+}
+.remove-button:hover{
+  transform: scale(1.5);
+  
+}
+
