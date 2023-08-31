@@ -1,18 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="container">
-    <div class="living-room"></div>
-    <div class="bed-room"></div>
-    <div class="bath-room"></div>
-    <div class="laundry-room"></div>
-   
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="styles.css"
+    />
+  </head>
+  <body>
+    <form class="form">
+      <p class="title">New book</p>
+
+      <label>
+        <input
+          required=""
+          placeholder=""
+          name="book-title"
+          type="text"
+          class="input"
+        />
+        <span>Title</span>
+      </label>
+
+      <label>
+        <input
+          name="book-author"
+          required=""
+          placeholder=""
+          type="text"
+          class="input"
+        />
+        <span>Author</span>
+      </label>
+
+      <label>
+        <input
+          name="number-of-pages"
+          required=""
+          placeholder=""
+          type="number"
+          class="input"
+        />
+        <span>Number of pages</span>
+      </label>
+
+      <label>
+        <input
+          name="book-url"
+          required=""
+          placeholder=""
+          type="url"
+          class="input"
+        />
+        <span>Store Url</span>
+      </label>
+      <label class="file-input-container">
+        <input
+          type="file"
+          id="cover"
+          name="cover-cover"
+          accept="image/*"
+        />
+        <span class="file-input-label">Choose a Cover Image</span>
+      </label>
+      <label>
+        <span>Have you read it? </span>
+        <input
+          name="isRead"
+          class="isRead"
+          required=""
+          placeholder=""
+          type="checkbox"
+        />
+      </label>
+      <button class="submit">ADD</button>
+    </form>
+  </body>
 </html>

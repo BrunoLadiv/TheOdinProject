@@ -28,6 +28,83 @@
     <title>Library</title>
   </head>
   <body>
+    <dialog class="book-modal">
+      <div>
+        <button
+          id="closeBtn"
+          class="close-button"
+        >
+          &times;
+        </button>
+        <form class="form">
+          <p class="title">New book</p>
+    
+          <label>
+            <input
+              required=""
+              placeholder=""
+              name="book-title"
+              type="text"
+              class="input"
+            />
+            <span>Title</span>
+          </label>
+    
+          <label>
+            <input
+              name="book-author"
+              required=""
+              placeholder=""
+              type="text"
+              class="input"
+            />
+            <span>Author</span>
+          </label>
+    
+          <label>
+            <input
+              name="number-of-pages"
+              required=""
+              placeholder=""
+              type="number"
+              class="input"
+            />
+            <span>Number of pages</span>
+          </label>
+    
+          <label>
+            <input
+              name="book-url"
+              required=""
+              placeholder=""
+              type="url"
+              class="input"
+            />
+            <span>Store Url</span>
+          </label>
+          <label class="file-input-container">
+            <input
+              type="file"
+              id="cover"
+              name="cover-cover"
+              accept="image/*"
+            />
+            <span class="file-input-label">Choose a Cover Image</span>
+          </label>
+          <label>
+            <span>Have you read it? </span>
+            <input
+              name="isRead"
+              class="isRead"
+              required=""
+              placeholder=""
+              type="checkbox"
+            />
+          </label>
+          <button class="submit">ADD</button>
+        </form>
+      </div>
+    </dialog>
     <div class="container">
       <ul class="list-inline">
         <li class="book">
@@ -59,25 +136,28 @@
         </li>
         <li class="book">
           <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li> <li class="book">
+        </li>
+        <li class="book">
           <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li> <li class="book">
+        </li>
+        <li class="book">
           <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li> <li class="book">
+        </li>
+        <li class="book">
           <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li> <li class="book">
+        </li>
+        <li class="book">
           <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li> <li class="book">
+        </li>
+        <li class="book">
           <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li> <li class="book">
+        </li>
+        <li class="book">
           <div class="details">Details</div>
           <span class="remove-button">&times;</span>
           <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-          
         </li>
-        
       </ul>
-      
 
       <form
         action=""
@@ -97,7 +177,7 @@
         </button>
       </form>
       <button
-        class="button"
+        class="button create-book-btn"
         type="button"
       >
         <span class="button__text">ADD BOOK</span>
