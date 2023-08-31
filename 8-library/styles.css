@@ -44,6 +44,7 @@ body, input {
 	display: flex;
   right: 30%;
   bottom: 0%;
+  z-index: 9999999999;
   
 }
 body {
@@ -591,4 +592,7 @@ dialog {
 }
 #closeBtn{
   background-color: white;
+}
+.create-book-btn{
+  z-index: 999999999;
 }
