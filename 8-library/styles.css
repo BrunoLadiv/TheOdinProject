@@ -589,3 +589,6 @@ dialog {
 .delete-book:active {
   background-color: #b30000; 
 }
+#closeBtn{
+  background-color: white;
+}
