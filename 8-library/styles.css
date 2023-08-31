@@ -328,7 +328,7 @@ ul {
   left: -6px;
 }
 
-.remove-button, .details{
+.info-btn{
   z-index: 5;
   color: black;
   position: absolute;
@@ -337,16 +337,15 @@ ul {
 }
 
 
-.details{
-  font-size: 25px;
-  right: 25%;
-  bottom: 0%;
+
+.info-btn{
+  right: 10%;
+  background-color: transparent;
+  border: 0;
 }
-.remove-button{
-  right: 9%;
-}
-.remove-button:hover{
-  transform: scale(1.5);
+.info-btn:hover{
+  transform: scale(1.3);
+  color: #0056b3
   
   
 }
@@ -543,4 +542,8 @@ dialog {
 
 .file-input-label:hover {
   background-color: #0056b3;
+}
+
+.input{
+  color: black;
 }

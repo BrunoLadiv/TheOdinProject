@@ -36,9 +36,12 @@
         >
           &times;
         </button>
-        <form class="form">
+        <form
+          class="form"
+          id="bookForm"
+        >
           <p class="title">New book</p>
-    
+
           <label>
             <input
               required=""
@@ -49,7 +52,7 @@
             />
             <span>Title</span>
           </label>
-    
+
           <label>
             <input
               name="book-author"
@@ -60,7 +63,7 @@
             />
             <span>Author</span>
           </label>
-    
+
           <label>
             <input
               name="number-of-pages"
@@ -71,13 +74,13 @@
             />
             <span>Number of pages</span>
           </label>
-    
+
           <label>
             <input
               name="book-url"
               required=""
               placeholder=""
-              type="url"
+              type="text"
               class="input"
             />
             <span>Store Url</span>
@@ -96,7 +99,6 @@
             <input
               name="isRead"
               class="isRead"
-              required=""
               placeholder=""
               type="checkbox"
             />
@@ -153,8 +155,24 @@
           <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
         </li>
         <li class="book">
-          <div class="details">Details</div>
-          <span class="remove-button">&times;</span>
+          <button class="info-btn">
+            <i class="fa-solid fa-circle-info"></i>
+          </button>
+          <dialog class="info-modal">
+            <button
+              id="closeModalBtn"
+              class="close-button"
+            >
+              &times;
+            </button>
+            <h1>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+              expedita neque assumenda porro minus architecto quasi deserunt
+              ratione enim, ullam autem tempore eos consectetur eligendi
+              accusamus voluptates saepe. Cumque, magnam.15
+            </h1>
+          </dialog>
+
           <img src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
         </li>
       </ul>
