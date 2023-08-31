@@ -50,6 +50,7 @@ const showInfoModal = document.querySelector('.info-modal')
 const infoModalBTN = document.querySelector('.info-btn')
 const closeModalBTN = document.querySelector('#closeModalBtn')
 const bookList = document.querySelector('.list-inline')
+const searchInput = document.getElementById('searchInput')
 
 // Event listeners
 createBookButton.addEventListener('click', () => showBookModal.showModal())
@@ -206,5 +207,17 @@ function findBookIndex(deleteButton) {
   }
   return -1
 }
+
+searchInput.addEventListener('input', () => {
+  const searchTerm = searchInput.value.toLowerCase();
+  const filteredLibrary = myLibrary.filter(book => {
+    return (
+      book.title.toLowerCase().includes(searchTerm) ||
+      book.author.toLowerCase().includes(searchTerm)
+    );
+  });
+
+  renderLibrary(filteredLibrary);
+});
 
 renderLibrary(myLibrary)

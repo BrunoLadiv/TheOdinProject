@@ -36,9 +36,12 @@
         >
           &times;
         </button>
-        <form class="form" id="bookForm">
+        <form
+          class="form"
+          id="bookForm"
+        >
           <p class="title">New book</p>
-        
+
           <label>
             <input
               required=""
@@ -49,7 +52,7 @@
             />
             <span>Title</span>
           </label>
-        
+
           <label>
             <input
               name="book-author"
@@ -60,7 +63,7 @@
             />
             <span>Author</span>
           </label>
-        
+
           <label>
             <input
               name="number-of-pages"
@@ -71,7 +74,7 @@
             />
             <span>Number of pages</span>
           </label>
-        
+
           <label>
             <input
               name="book-url"
@@ -82,10 +85,10 @@
             />
             <span>Store URL</span>
           </label>
-        
+
           <label>
             <input
-              required = ""
+              required=""
               name="cover-url"
               placeholder=""
               type="url"
@@ -93,7 +96,7 @@
             />
             <span>Cover Image URL</span>
           </label>
-        
+
           <label>
             <span>Have you read it? </span>
             <input
@@ -103,37 +106,40 @@
               type="checkbox"
             />
           </label>
-        
+
           <button class="submit">ADD</button>
         </form>
-        
       </div>
     </dialog>
     <div class="container">
       <ul class="list-inline">
-        <dialog><li class="book">
-          <button class="info-btn">
-            <!-- <i class="fa-solid fa-circle-info"></i> -->
-          </button>
-          <dialog class="info-modal">
-            <button
-              id="closeModalBtn"
-              class="close-button"
-            >
-              &times;
+        <dialog>
+          <li class="book">
+            <button class="info-btn">
+              <!-- <i class="fa-solid fa-circle-info"></i> -->
             </button>
-            <h3 class="title-info">Title: Game of Thrones</h3>
-            <h3 class="author-info">Author: JRR Martin</h3>
-            <h3 class="pages-info">Pages: 343</h3>
-            <h3 class="read-info">Book read?: yes</h3>
-            <h3 class="store-link">
-              Store Link: www.amazon.com/book/game-of-thrones
-            </h3>
-          </dialog>
+            <dialog class="info-modal">
+              <button
+                id="closeModalBtn"
+                class="close-button"
+              >
+                &times;
+              </button>
+              <h3 class="title-info">Title: Game of Thrones</h3>
+              <h3 class="author-info">Author: JRR Martin</h3>
+              <h3 class="pages-info">Pages: 343</h3>
+              <h3 class="read-info">Book read?: yes</h3>
+              <h3 class="store-link">
+                Store Link: www.amazon.com/book/game-of-thrones
+              </h3>
+            </dialog>
 
-          <img class="cover-url" src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg" />
-        </li></dialog>
-        
+            <img
+              class="cover-url"
+              src="http://ecx.images-amazon.com/images/I/51oXKWrcYYL.jpg"
+            />
+          </li>
+        </dialog>
       </ul>
 
       <form
@@ -141,6 +147,7 @@
         class="search-bar"
       >
         <input
+          id="searchInput"
           type="search"
           name="search"
           pattern=".*\S.*"
