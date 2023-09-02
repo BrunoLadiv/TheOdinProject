@@ -2,18 +2,25 @@
   box-sizing: border-box;
 }
 
+
 :root {
   --cell-size: 100px;
   --mark-size: calc(var(--cell-size) * .9);
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   margin: 0;
+  font-family: 'Pacifico', cursive;
+  align-items: center;
+  background-color: rgb(46, 152, 117);
+  
 }
 
 .board {
   width: 100vw;
-  height: 100vh;
+  min-height: 400px ;
   display: grid;
   justify-content: center;
   align-content: center;
@@ -25,7 +32,7 @@ body {
 .cell {
   width: var(--cell-size);
   height: var(--cell-size);
-  border: 1px solid black;
+  border: 2px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,13 +68,13 @@ body {
 .cell.x::before,
 .cell.x::after,
 .cell.circle::before {
-  background-color: black;
+  background-color: rgb(239, 205, 175);
 }
 
 .board.x .cell:not(.x):not(.circle):hover::before,
 .board.x .cell:not(.x):not(.circle):hover::after,
 .board.circle .cell:not(.x):not(.circle):hover::before {
-  background-color: lightgrey;
+  background-color: rgba(247, 235, 225, 0.79);
 }
 
 .cell.x::before,
@@ -109,5 +116,98 @@ body {
 .board.circle .cell:not(.x):not(.circle):hover::after {
   width: calc(var(--mark-size) * .7);
   height: calc(var(--mark-size) * .7);
-  background-color: white;
+  background-color: #2E9875;
+}
+
+
+.title{
+  color: rgb(239, 205, 175);
+  font-weight: 900;
+  font-size: 5rem;
+}
+.winning-message-modal{
+  text-align: center;
+  border: none;
+  color: rgb(239, 205, 175);
+  width: 500px;
+  height: 500px;
+  background-color: transparent;
+  
+}
+.winning-message-modal::backdrop{
+  background-color: rgba(0, 0, 0, 0.865);
+}
+
+.winning-message{
+  font-size: 5rem;
+}
+
+
+/* RESTART BTN  */
+.button {
+  --main-focus: rgb(239, 205, 175);
+  --font-color: #2E9875;
+  --bg-color-sub: #2E9875;
+  --bg-color: rgb(239, 205, 175);
+  --main-color: #323232;
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.button, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.button .button__text {
+  transform: translateX(30px);
+  color: var(--font-color);
+  font-weight: 600;
+}
+
+.button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button .svg {
+  width: 20px;
+  fill: var(--main-color);
+}
+
+.button:hover {
+  background: var(--bg-color);
+}
+
+.button:hover .button__text {
+  color: transparent;
+}
+
+.button:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
 }
