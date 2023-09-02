@@ -252,4 +252,5 @@ body {
 .menu-btn > svg:hover{
   transform: scale(1.2);
   fill: #2E9875;
+  cursor: pointer;
 }
