@@ -30,7 +30,11 @@ winningModal.addEventListener('keydown', (event) => {
     event.preventDefault()
   }
 })
-
+menuModal.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    event.preventDefault()
+  }
+})
 restartBtn.addEventListener('click', startGame)
 
 function menu() {
