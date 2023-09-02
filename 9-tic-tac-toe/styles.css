@@ -156,7 +156,7 @@ body {
 
 /* RESTART BTN  */
 .button {
-  --main-focus: rgb(239, 205, 175);
+  --main-focus: #efcdaf;
   --font-color: #2E9875;
   --bg-color-sub: #2E9875;
   --bg-color: rgb(239, 205, 175);
@@ -239,4 +239,17 @@ body {
 .players-container > *:hover{
   transform: scale(1.2);
   cursor: pointer;
+}
+.menu-btn{
+  margin-left: 30px;
+  margin-top: 5px;
+}
+.menu-btn > svg {
+  height: 33px;
+  
+}
+
+.menu-btn > svg:hover{
+  transform: scale(1.2);
+  fill: #2E9875;
 }

@@ -4,10 +4,11 @@ const winningModal = document.querySelector('.winning-message-modal')
 const winningMsg = document.querySelector('.winning-message')
 const restartBtn = document.getElementById('restart-button')
 const menuModal = document.querySelector('.menu-modal')
+const menuBtn = document.querySelector('.menu-btn')
 const pvpElement = document.querySelector('.pvp')
 const pveElement = document.querySelector('.pve')
 let mode
-let currentPlayer = X_CLASS
+let currentPlayer
 
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
@@ -32,31 +33,51 @@ winningModal.addEventListener('keydown', (event) => {
 
 restartBtn.addEventListener('click', startGame)
 
-function handleClick(e) {
-  const cell = e.target
-  const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
-  placeMark(cell, currentClass)
+function menu() {
+  menuModal.showModal()
+  pvpElement.addEventListener('click', () => {
+    mode = 'pvp'
+    startGame()
+    menuModal.close()
+  })
 
-  if (checkWin(currentClass)) {
-    endGame(false)
-  } else if (isDraw()) {
-    endGame(true)
-  } else {
-    swapTurns()
-    setBoardHoverClass()
+  pveElement.addEventListener('click', () => {
+    mode = 'pve'
+    startGame()
+    menuModal.close()
+  })
+}
+
+function handleClick(e) {
+  const cell = e.target;
+
+  if (mode === 'pvp' || (mode === 'pve' && currentPlayer === X_CLASS)) {
+    if (isValidMove(cell)) {
+      placeMark(cell);
+      if (checkWin(currentPlayer)) {
+        endGame(false);
+      } else if (isDraw()) {
+        endGame(true);
+      } else {
+        currentPlayer = currentPlayer === X_CLASS ? CIRCLE_CLASS : X_CLASS;
+        setBoardHoverClass();
+
+        if (mode === 'pve' && currentPlayer === CIRCLE_CLASS) {
+          makeAIMove();
+        }
+      }
+    }
   }
 }
 
-function menu() {
-  menuModal.showModal()
-}
-
-function placeMark(cell, currentClass) {
-  cell.classList.add(currentClass)
+function placeMark(cell) {
+  cell.classList.add(currentPlayer)
 }
 
 function endGame(draw) {
-  winningMsg.innerText = draw ? 'Draw!' : `${circleTurn ? 'O' : 'X'} Wins!`
+  winningMsg.innerText = draw
+    ? 'Draw!'
+    : `${currentPlayer === X_CLASS ? 'X' : 'O'} Wins!`
   winningModal.showModal()
 }
 
@@ -67,17 +88,13 @@ function isDraw() {
   )
 }
 
-function swapTurns() {
-  circleTurn = !circleTurn
-}
-
 function setBoardHoverClass() {
   board.classList.remove(X_CLASS, CIRCLE_CLASS)
-  board.classList.add(circleTurn ? CIRCLE_CLASS : X_CLASS)
+  board.classList.add(currentPlayer)
 }
 
 function startGame() {
-  circleTurn = false
+  currentPlayer = X_CLASS
   cellElements.forEach((cell) => {
     cell.classList.remove(X_CLASS, CIRCLE_CLASS)
     cell.removeEventListener('click', handleClick)
@@ -85,25 +102,48 @@ function startGame() {
   })
   setBoardHoverClass()
   winningModal.close()
+
+  if (mode === 'pve' && currentPlayer === CIRCLE_CLASS) {
+    makeAIMove()
+  }
 }
 
-function checkWin(currentClass) {
-  return WINNING_COMBINATIONS.some((combination) =>
-    combination.every((index) =>
-      cellElements[index].classList.contains(currentClass)
-    )
+function isValidMove(cell) {
+  return (
+    !cell.classList.contains(X_CLASS) && !cell.classList.contains(CIRCLE_CLASS)
   )
 }
 
-pvpElement.addEventListener('click', () => {
-  mode = 'pvp'
-  // You can add your logic here
-  console.log('PvP mode was clicked')
-})
+function checkWin(player) {
+  return WINNING_COMBINATIONS.some((combination) => {
+    return combination.every((index) => {
+      return cellElements[index].classList.contains(player)
+    })
+  })
+}
 
-pveElement.addEventListener('click', () => {
-  mode = 'pve'
-  // Handle PvE mode click
-  // You can add your logic here
-  console.log('PvE mode was clicked')
+function makeAIMove() {
+  const emptyCells = [...cellElements].filter(
+    (cell) =>
+      !cell.classList.contains(X_CLASS) &&
+      !cell.classList.contains(CIRCLE_CLASS)
+  )
+  const randomIndex = Math.floor(Math.random() * emptyCells.length)
+  const randomCell = emptyCells[randomIndex]
+  setTimeout(() => {
+    placeMark(randomCell)
+    if (checkWin(currentPlayer)) {
+      endGame(false)
+    } else if (isDraw()) {
+      endGame(true)
+    } else {
+      currentPlayer = currentPlayer === X_CLASS ? CIRCLE_CLASS : X_CLASS
+      setBoardHoverClass()
+    }
+  }, 200)
+}
+
+menuBtn.addEventListener('click', () => {
+  winningModal.close()
+  menu()
 })
