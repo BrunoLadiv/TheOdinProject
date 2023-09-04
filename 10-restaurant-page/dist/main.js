@@ -1,1 +1,1 @@
-console.log("hello world");
+(()=>{const t=document.querySelector("nav"),e=t.querySelector(".line"),n=t.querySelectorAll("ul li");n.forEach((i=>{i.addEventListener("click",(function(i){i.preventDefault(),n.forEach((t=>t.classList.remove("active"))),this.classList.add("active");const s=this.getBoundingClientRect(),l=t.getBoundingClientRect();e.style.transition="transform 0.3s ease-in-out",e.style.transform=`translateX(${s.left-l.left}px)`,setTimeout((()=>{e.style.transition="",e.style.width=s.width+"px"}),300)}))}))})();
