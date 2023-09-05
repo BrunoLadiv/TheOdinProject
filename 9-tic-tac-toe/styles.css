@@ -150,8 +150,18 @@ body {
   outline: none;
   box-shadow: none;
 }
+
+
+
+
 .menu-modal::backdrop{
   background-color: transparent;
+}
+
+@media (max-width: 600px){
+  .menu-modal::backdrop{
+    background-color: rgb(46, 152, 117);
+  }
 }
 
 /* RESTART BTN  */
