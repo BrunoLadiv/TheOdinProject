@@ -108,8 +108,18 @@ nav .line {
   left: 0; /* Set the initial left position to 0 */
 }
 
+/* CONTACT US PAGE  */
 
-/* MENU PAGE CSS */
+.contact-page{
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+
+/* MENU PAGE */
 
 
 .item-img{
@@ -119,8 +129,9 @@ nav .line {
 }
 
 .menu-page{
+  
   margin-top: 100px;
-  display: flex;
+  display: none;
   justify-content: space-around;
   width: 90%;
   flex-wrap: wrap;
