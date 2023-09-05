@@ -1,3 +1,4 @@
+import './styles.css'
 import { createHeader } from './pages/header'
 import { createHome } from './pages/home'
 import { createMenuSection as createMenu } from './pages/menu'
