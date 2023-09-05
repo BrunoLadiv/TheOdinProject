@@ -233,3 +233,8 @@ button {
 }
 
 
+.item-price{
+  width: 100%;
+  text-align: start;
+  color: #FF3944
+}

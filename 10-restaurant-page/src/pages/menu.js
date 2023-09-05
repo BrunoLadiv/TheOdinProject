@@ -1,8 +1,13 @@
+function getRandomPrice() {
+  // Generate a random price between 5 and 15 (inclusive)
+  return (Math.floor(Math.random() * 11) + 5).toFixed(2); // ToFixed(2) for 2 decimal places
+}
+
 export function createMenuSection() {
   const menuPage = document.createElement('div');
   menuPage.classList.add('menu-page');
 
-  // Sample menu items data
+  // Sample menu items data with random prices
   const menuItemsData = [
     {
       imgSrc: '../src/images/pngegg.png',
@@ -61,6 +66,10 @@ export function createMenuSection() {
     const description = document.createElement('p');
     description.textContent = itemData.description;
 
+    const priceSpan = document.createElement('span');
+    priceSpan.classList.add('item-price');
+    priceSpan.textContent = `$${getRandomPrice()}`;
+
     const orderButton = document.createElement('button');
     const boxSpan = document.createElement('span');
     boxSpan.classList.add('box');
@@ -69,6 +78,7 @@ export function createMenuSection() {
 
     itemDescription.appendChild(title);
     itemDescription.appendChild(description);
+    itemDescription.appendChild(priceSpan); // Add the price span
     itemDescription.appendChild(orderButton);
 
     menuItem.appendChild(img);
