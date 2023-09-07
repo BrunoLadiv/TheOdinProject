@@ -226,6 +226,7 @@ nav{
 }
 
 .todo-buttons i:hover{
+  cursor: pointer;
   transform: scale(1.2);
 }
 
@@ -241,6 +242,7 @@ nav{
 }
 
 .plus-todo:hover{
+  cursor: pointer;
   transform: scale(1.4);
 }
 
@@ -278,6 +280,7 @@ dialog::backdrop{
 }
 
 .close-new-todo-modal{
+  cursor: pointer;
   font-size: 30px;
   margin-right: 10px;
 }
@@ -313,9 +316,13 @@ textarea {
 }
 
 .create-todo-modal-btn{
-  
+  cursor: pointer;
   text-align: center;
   padding: 5px;
   grid-column-start: 2;
   margin-left: 80%;
+}
+
+.todo-done{
+  cursor: pointer;
 }

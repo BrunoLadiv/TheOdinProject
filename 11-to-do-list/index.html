@@ -27,11 +27,14 @@
         <span class="close-new-todo-modal">×</span>
       </div>
       <hr />
-      <form class="new-todo-form" action="">
+      <form
+        class="new-todo-form"
+        action=""
+      >
         <div class="title-input">
           <label for="title">Title:</label>
           <input
-          required
+            required
             name="title"
             type="text"
           />
@@ -44,23 +47,39 @@
             type="datetime-local"
           />
         </div>
-        <div  class="description-input">
+        <div class="description-input">
           <label for="description">Description:</label>
-          <textarea required style="height: 167px; width: 311px;">
-
-          </textarea>
+          <textarea
+            required
+            style="height: 167px; width: 311px"
+          ></textarea>
         </div>
         <div class="priority-inputy">
           <label for="taskPriority">Priority: </label>
-          <select required id="taskPriority" class="custom-select"  required="">
-            <option selected value="low" selected="">Low</option>
+          <select
+            required
+            id="taskPriority"
+            class="custom-select"
+            required=""
+          >
+            <option
+              selected
+              value="low"
+              selected=""
+            >
+              Low
+            </option>
             <option value="medium">Medium</option>
             <option value="high">High</option>
           </select>
         </div>
-        <button type="submit" class="create-todo-modal-btn">Create</button>
+        <button
+          type="submit"
+          class="create-todo-modal-btn"
+        >
+          Create
+        </button>
       </form>
-      
     </dialog>
     <div id="app">
       <div class="projects-container sidebar">
@@ -139,16 +158,19 @@
           </div>
 
           <ul class="to-do-ul">
-            <li class="todo-item">
+            <!-- <li class="todo-item">
               <p>
                 <input
+                  class="todo-done"
                   title="Mark as done"
                   type="checkbox"
                 />
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Lorem ipseeum dolor sit amet consectetur adipisicing elit.
                 Possimus, dignissimos.
               </p>
+              <p class="due-date">Due date: </p>
               <div class="todo-buttons">
+                <i class="fa-solid fa-circle-info"></i>
                 <i
                   title="Edit To-do"
                   class="fa-regular fa-pen-to-square edit-todo"
@@ -159,40 +181,7 @@
                 ></i
                 ><i class="fa-solid fa-flag"></i>
               </div>
-            </li>
-            <li class="todo-item">
-              <p>
-                <input type="checkbox" /> Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Possimus, dignissimos.
-              </p>
-              <div class="todo-buttons">
-                <i class="fa-regular fa-pen-to-square edit-todo"></i
-                ><i class="fa-regular fa-trash-can delete-todo"></i
-                ><i class="fa-solid fa-flag"></i>
-              </div>
-            </li>
-            <li class="todo-item">
-              <p>
-                <input type="checkbox" /> Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Possimus, dignissimos.
-              </p>
-              <div class="todo-buttons">
-                <i class="fa-regular fa-pen-to-square edit-todo"></i
-                ><i class="fa-regular fa-trash-can delete-todo"></i
-                ><i class="fa-solid fa-flag"></i>
-              </div>
-            </li>
-            <li class="todo-item">
-              <p>
-                <input type="checkbox" /> Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Possimus, dignissimos.
-              </p>
-              <div class="todo-buttons">
-                <i class="fa-regular fa-pen-to-square edit-todo"></i
-                ><i class="fa-regular fa-trash-can delete-todo"></i
-                ><i class="fa-solid fa-flag"></i>
-              </div>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
