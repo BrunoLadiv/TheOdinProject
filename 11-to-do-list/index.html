@@ -19,9 +19,14 @@
     <header>
       <nav>
         <h1><i class="fa-solid fa-check-double"></i> Just do it</h1>
-
       </nav>
     </header>
+    <dialog class="new-todo-modal">
+      <div class="new-todo-header">
+        <h1>New To Do</h1>
+        <span class="close-new-todo-modal">×</span>
+      </div>
+    </dialog>
     <div id="app">
       <div class="projects-container sidebar">
         <div class="container">
@@ -35,7 +40,7 @@
             <label
               class="tab"
               for="radio-1"
-              ><i class="fa-solid fa-list-check"></i></i> All
+              ><i class="fa-solid fa-list-check"></i> All
               <span class="notification">2</span></label
             >
             <input
@@ -87,6 +92,57 @@
         </div>
       </div>
       <div class="todos-container">
+        <div><div><h1>Today</h1> <button class="plus-todo">+</button></div>
+          
+
+          <ul class="to-do-ul">
+            <li class="todo-item">
+              <p>
+                <input type="checkbox" /> Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Possimus, dignissimos.
+              </p>
+              <div class="todo-buttons">
+                <i class="fa-regular fa-pen-to-square edit-todo"></i
+                ><i class="fa-regular fa-trash-can delete-todo"></i
+                ><i class="fa-solid fa-flag"></i>
+              </div>
+            </li>
+            <li class="todo-item">
+              <p>
+                <input type="checkbox" /> Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Possimus, dignissimos.
+              </p>
+              <div class="todo-buttons">
+                <i class="fa-regular fa-pen-to-square edit-todo"></i
+                ><i class="fa-regular fa-trash-can delete-todo"></i
+                ><i class="fa-solid fa-flag"></i>
+              </div>
+            </li>
+            <li class="todo-item">
+              <p>
+                <input type="checkbox" /> Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Possimus, dignissimos.
+              </p>
+              <div class="todo-buttons">
+                <i class="fa-regular fa-pen-to-square edit-todo"></i
+                ><i class="fa-regular fa-trash-can delete-todo"></i
+                ><i class="fa-solid fa-flag"></i>
+              </div>
+            </li>
+            <li class="todo-item">
+              <p>
+                <input type="checkbox" /> Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Possimus, dignissimos.
+              </p>
+              <div class="todo-buttons">
+                <i class="fa-regular fa-pen-to-square edit-todo"></i
+                ><i class="fa-regular fa-trash-can delete-todo"></i
+                ><i class="fa-solid fa-flag"></i>
+              </div>
+            </li>
+          </ul>
+          
+        </div>
       </div>
     </div>
     <script
