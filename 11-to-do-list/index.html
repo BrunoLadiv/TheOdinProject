@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Just do it</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1><i class="fa-solid fa-check-double"></i> Just do it</h1>
+
+      </nav>
+    </header>
+    <div id="app">
+      <div class="projects-container sidebar">
+        <div class="container">
+          <div class="tabs">
+            <input
+              type="radio"
+              id="radio-1"
+              name="tabs"
+              checked=""
+            />
+            <label
+              class="tab"
+              for="radio-1"
+              ><i class="fa-solid fa-list-check"></i></i> All
+              <span class="notification">2</span></label
+            >
+            <input
+              type="radio"
+              id="radio-2"
+              name="tabs"
+            />
+            <label
+              class="tab"
+              for="radio-2"
+              ><i class="fa-solid fa-calendar-day"></i>Today
+              <span class="notification">5</span></label
+            >
+            <input
+              type="radio"
+              id="radio-3"
+              name="tabs"
+            />
+            <label
+              class="tab"
+              for="radio-3"
+              ><i class="fa-solid fa-calendar-days"></i>Upcoming
+              <span class="notification">1</span></label
+            >
+            <input
+              type="radio"
+              id="radio-4"
+              name="tabs"
+            />
+            <label
+              class="tab"
+              for="radio-4"
+              ><i class="fa-solid fa-calendar-check"></i>Completed
+              <span class="notification">1</span></label
+            >
+            <span class="glider"></span>
+          </div>
+        </div>
+        <hr />
+        <div class="projects">
+          <h2><i class="fa-solid fa-diagram-project"></i> Projects</h2>
+          <ul class="project-item">
+            <li>project test 1</li>
+            <li>project test 2</li>
+            <li>project test 3</li>
+            <li>project test 4</li>
+            <li>project test 5</li>
+          </ul>
+        </div>
+      </div>
+      <div class="todos-container">
+      </div>
+    </div>
+    <script
+      type="module"
+      src="/main.js"
+    ></script>
+  </body>
+</html>

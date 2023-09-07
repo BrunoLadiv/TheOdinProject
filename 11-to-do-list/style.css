@@ -1,0 +1,194 @@
+:root{
+  --main-text-color: rgb(0, 0, 0);
+}
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+
+body{
+  background-color: #F8F8F8;
+  color: var(--main-text-color);
+}
+
+
+
+#app{
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  min-height: 100vh;
+}
+
+
+#app > * {
+  border: 1px solid rgba(1, 1, 1, 0.099);
+}
+
+
+
+/* RADIO BUTTONS  */
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 0 1px 0 rgba(224, 24, 24, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+  padding: 0.75rem;
+  width: 100%; /* Set width to 100% */
+}
+
+.tabs * {
+  z-index: 2;
+}
+
+.container input[type="radio"] {
+  display: none;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 30px;
+  font-size: 1.2rem;
+  color: black;
+  font-weight: 400;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: color 0.15s ease-in;
+  width: 100%; /* Set width to 100% */
+  margin: 5px 0;
+  text-align: center;
+  position: relative;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.8rem;
+  height: 0.8rem;
+  font-size: 10px;
+  border-radius: 50%;
+  background-color: #e6eef9;
+  transition: 0.15s ease-in;
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.container input[type="radio"]:checked + label {
+  color: #185ee0;
+  width: 50%; 
+}
+
+.container input[type="radio"]:checked + label > .notification {
+  background-color: #185ee0;
+  color: #fff;
+}
+
+.container input[id="radio-1"]:checked ~ .glider {
+  transform: translateY(0);
+}
+
+.container input[id="radio-2"]:checked ~ .glider {
+  transform: translateY(40px);
+}
+
+.container input[id="radio-3"]:checked ~ .glider {
+  transform: translateY(80px);
+}
+
+.container input[id="radio-4"]:checked ~ .glider {
+  transform: translateY(120px);
+}
+
+.glider {
+  position: absolute;
+  display: flex;
+  height: 40px;
+  width: 100%; /* Set glider width to 100% */
+  background-color: #00000018;
+  z-index: 1;
+  transition: 0.25s ease-out;
+}
+
+#app > div.projects-container > div > div > * > i {
+ margin-right: 10px;
+}
+
+#app > div.projects-container > div > div > label:nth-child(8) > i {
+  color: rgb(22, 232, 57);
+}
+#app > div.projects-container > div > div > label:nth-child(6) > i {
+  color: purple;
+}
+#app > div.projects-container > div > div > label:nth-child(4) > i {
+  color: aqua;
+}
+
+#app > div.projects-container > div > div > label:nth-child(2) > i{
+  color: #185ee0;
+}
+
+
+/* PROJECTS CSS */
+.project-item{
+  overflow: hidden;
+}
+
+.projects > h2 {
+  font-weight: 300;
+  font-size: 20px;
+  margin: 20px 0 10px 10px;
+}
+.projects > h2 > i {
+  font-size: 15px;
+  color: rgb(233, 132, 10);
+  margin-right: 5px;
+}
+.sidebar{
+  background-color: white;
+}
+
+.project-item > li {
+  
+  width: 100%;
+  margin: 5px 0px 5px 0;
+  list-style: none;
+  padding-left: 40px;
+}
+
+.project-item > li:hover{
+  background-color: #00000018;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+/* NAV CSS  */
+header{
+  background-color: rgba(163, 47, 47, 0.544);
+}
+nav{
+  margin-left: 3rem;
+  height: 3rem;
+  padding: 10px;
+}
+
+#app > div.projects-container.sidebar > hr {
+  width: 80%;
+  margin: 0 auto;
+}
