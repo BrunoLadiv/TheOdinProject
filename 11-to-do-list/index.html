@@ -23,9 +23,44 @@
     </header>
     <dialog class="new-todo-modal">
       <div class="new-todo-header">
-        <h1>New To Do</h1>
+        <h2>New Todo</h2>
         <span class="close-new-todo-modal">×</span>
       </div>
+      <hr />
+      <form class="new-todo-form" action="">
+        <div class="title-input">
+          <label for="title">Title:</label>
+          <input
+          required
+            name="title"
+            type="text"
+          />
+        </div>
+        <div class="date-input">
+          <label for="date">Due Date:</label>
+          <input
+            required
+            name="date"
+            type="datetime-local"
+          />
+        </div>
+        <div  class="description-input">
+          <label for="description">Description:</label>
+          <textarea required style="height: 167px; width: 311px;">
+
+          </textarea>
+        </div>
+        <div class="priority-inputy">
+          <label for="taskPriority">Priority: </label>
+          <select required id="taskPriority" class="custom-select"  required="">
+            <option selected value="low" selected="">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <button type="submit" class="create-todo-modal-btn">Create</button>
+      </form>
+      
     </dialog>
     <div id="app">
       <div class="projects-container sidebar">
@@ -92,18 +127,36 @@
         </div>
       </div>
       <div class="todos-container">
-        <div><div><h1>Today</h1> <button class="plus-todo">+</button></div>
-          
+        <div>
+          <div>
+            <h1>Today</h1>
+            <button
+              class="plus-todo"
+              title="Add to-do"
+            >
+              +
+            </button>
+          </div>
 
           <ul class="to-do-ul">
             <li class="todo-item">
               <p>
-                <input type="checkbox" /> Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Possimus, dignissimos.
+                <input
+                  title="Mark as done"
+                  type="checkbox"
+                />
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Possimus, dignissimos.
               </p>
               <div class="todo-buttons">
-                <i class="fa-regular fa-pen-to-square edit-todo"></i
-                ><i class="fa-regular fa-trash-can delete-todo"></i
+                <i
+                  title="Edit To-do"
+                  class="fa-regular fa-pen-to-square edit-todo"
+                ></i
+                ><i
+                  title="Delete To-do"
+                  class="fa-regular fa-trash-can delete-todo"
+                ></i
                 ><i class="fa-solid fa-flag"></i>
               </div>
             </li>
@@ -141,7 +194,6 @@
               </div>
             </li>
           </ul>
-          
         </div>
       </div>
     </div>

@@ -248,3 +248,74 @@ nav{
   display: flex;
   justify-content: space-between;
 }
+
+
+/* NEW TODO MODAL */
+
+
+.new-todo-modal {
+  border: none;
+  border-radius: 10px;
+  min-height: 400px ;
+  min-width: 700px;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+dialog::backdrop{
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.new-todo-header{
+  display: flex;
+  justify-content: space-between;
+}
+.new-todo-header > h2 {
+  margin: 10px 0 10px 15px;
+  font-weight: 400;
+}
+
+.close-new-todo-modal{
+  font-size: 30px;
+  margin-right: 10px;
+}
+.close-new-todo-modal:hover{
+  transform: scale(1.1);
+}
+
+body > dialog > hr {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.new-todo-form{
+  margin: 20px auto;
+  
+  
+  max-width: 600px;
+  min-height: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  
+}
+
+.new-todo-form > * {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  resize: none;
+}
+
+.create-todo-modal-btn{
+  
+  text-align: center;
+  padding: 5px;
+  grid-column-start: 2;
+  margin-left: 80%;
+}
