@@ -326,3 +326,16 @@ textarea {
 .todo-done{
   cursor: pointer;
 }
+
+/* PRIORITY CSS  */
+.high-priority {
+  color: red;
+}
+
+.medium-priority {
+  color: yellow;
+}
+
+.low-priority {
+  color: green;
+}

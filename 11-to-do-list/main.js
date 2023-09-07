@@ -5,7 +5,6 @@ const closeTodoModal = document.querySelector('.close-new-todo-modal')
 const createTodoForm = document.querySelector('.new-todo-form')
 const toDoUl = document.querySelector('.to-do-ul')
 
-
 // local storage
 const toDoListData = localStorage.getItem('todolistdata')
   ? JSON.parse(localStorage.getItem('todolistdata'))
@@ -28,12 +27,12 @@ function createNewTodo(todo) {
 }
 
 function renderTodos() {
-  toDoUl.innerHTML = '';
+  toDoUl.innerHTML = ''
 
   toDoListData.forEach((todo, index) => {
-    const newtodoli = document.createElement('li');
-    newtodoli.setAttribute('id', index);
-    newtodoli.setAttribute('class', 'todo-item');
+    const newtodoli = document.createElement('li')
+    newtodoli.setAttribute('id', index)
+    newtodoli.setAttribute('class', 'todo-item')
     newtodoli.innerHTML = `<p>
       <input
         class="todo-done"
@@ -42,7 +41,7 @@ function renderTodos() {
       />
       ${todo.title}
     </p>
-    <p class="due-date">Due date ${formatDate(todo.date)} </p>
+    <p class="due-date">Due date: ${formatDate(todo.date)} </p>
     <div class="todo-buttons">
       <i class="fa-solid fa-circle-info"></i>
       <i
@@ -53,17 +52,28 @@ function renderTodos() {
         title="Delete To-do"
         class="fa-regular fa-trash-can delete-todo"
       ></i
-      ><i class="fa-solid fa-flag"></i>
-    </div>`;
+      ><i class="fa-solid fa-flag ${checkPriority(todo.priority)}" title="${todo.priority} priority!"></i>
+    </div>`
 
-    toDoUl.appendChild(newtodoli);
-  });
+    toDoUl.appendChild(newtodoli)
+  })
 
   // Call the deleteTodo function after re-rendering
-  deleteTodo();
+  deleteTodo()
 }
 
-
+function checkPriority(priority) {
+  switch (priority) {
+    case 'high':
+      return 'high-priority';
+    case 'medium':
+      return 'medium-priority';
+    case 'low':
+      return 'low-priority';
+    default:
+      return '';
+  }
+}
 
 addTodoBtn.addEventListener('click', () => {
   newTodoModal.showModal()
@@ -80,16 +90,15 @@ function formatDate(tododate) {
   const hour = date.getHours().toString().padStart(2, '0')
   const minutes = date.getMinutes().toString().padStart(2, '0')
 
-  const formattedDate = `day: ${day}/${month}/${year} hour: ${hour}:${minutes}`
+  const formattedDate = `${day}/${month}/${year}  ${hour}:${minutes}`
   return formattedDate
 }
-
-
 
 function deleteTodo() {
   const deleteBtn = document.querySelectorAll('.delete-todo')
   deleteBtn.forEach((btn, index) => {
     btn.addEventListener('click', () => {
+      if (!confirm("Are you sure you want to delete? it can't be undone!")) return
       toDoListData.splice(index, 1)
       localStorage.setItem('todolistdata', JSON.stringify(toDoListData))
       renderTodos()
@@ -98,4 +107,3 @@ function deleteTodo() {
 }
 
 renderTodos()
-
