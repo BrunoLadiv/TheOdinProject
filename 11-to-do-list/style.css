@@ -150,15 +150,28 @@ body{
   overflow: hidden;
 }
 
-.projects > h2 {
+.projects > div > h2 {
   font-weight: 300;
   font-size: 20px;
   margin: 20px 0 10px 10px;
 }
-.projects > h2 > i {
+.projects > div >  h2 > i {
   font-size: 15px;
   color: rgb(233, 132, 10);
   margin-right: 5px;
+}
+.projects > div {
+  display: flex;
+}
+.projects > div > span {
+  align-self: center;
+  margin-top: 10px;
+  margin-left: 20px;
+  font-size: 20px;
+}
+.projects > div > span:hover{
+  transform: scale(1.2);
+  cursor: pointer;;
 }
 .sidebar{
   background-color: white;
@@ -258,8 +271,8 @@ nav{
 .new-todo-modal {
   border: none;
   border-radius: 10px;
-  min-height: 400px ;
-  min-width: 700px;
+  max-height: 600px ;
+  min-width: 650px;
   position: fixed;
   top: 40%;
   left: 50%;
@@ -309,6 +322,8 @@ body > dialog > hr {
 .new-todo-form > * {
   display: flex;
   flex-direction: column;
+  justify-content:space-around ;
+  
 }
 
 textarea {
@@ -338,4 +353,74 @@ textarea {
 
 .low-priority {
   color: green;
+}
+
+#project-select{
+  grid-column-start: 2;
+ 
+}
+
+body > dialog > form > div.priority-inputy {
+  max-height: 100px;
+}
+
+
+.projects-form{
+  height: 150px;
+  width: 400px;
+  margin: auto auto;
+  border: none;
+  border-radius: 30px;
+}
+
+.projects-form > h2 {
+  position: relative;
+  text-align: center;
+  margin-top: 20px;
+}
+div.projects > dialog > hr{
+  margin-top: 15px;
+  margin-left: 10%;
+  width: 80%;
+}
+
+.project-input{
+  display: flex;
+  margin-top: 15px;
+  margin-left: 40px;
+  gap: 10px;
+
+
+}
+
+.new-project-btn{
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+  border: 1px solid black;
+
+}
+
+.new-project-btn:hover{
+  transform: scale(1.1);
+}
+
+.close-new-project-modal{
+  position: absolute;
+  right: 5%;
+  top: 2%;
+  font-size: 30px;
+}
+
+.close-new-project-modal:hover{
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.delete-project-btn{
+  font-size: 15px;
+  margin-left: 5px;
 }

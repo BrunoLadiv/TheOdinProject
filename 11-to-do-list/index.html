@@ -31,48 +31,64 @@
         class="new-todo-form"
         action=""
       >
-        <div class="title-input">
-          <label for="title">Title:</label>
-          <input
-            required
-            name="title"
-            type="text"
-          />
+        <div>
+          <div class="title-input">
+            <label for="title">Title:</label>
+            <input
+              required
+              name="title"
+              type="text"
+            />
+          </div>
+          <div class="description-input">
+            <label for="description">Description:</label>
+            <textarea
+              required
+              style="height: 167px; width: 311px"
+            ></textarea>
+          </div>
         </div>
-        <div class="date-input">
-          <label for="date">Due Date:</label>
-          <input
-            required
-            name="date"
-            type="datetime-local"
-          />
-        </div>
-        <div class="description-input">
-          <label for="description">Description:</label>
-          <textarea
-            required
-            style="height: 167px; width: 311px"
-          ></textarea>
-        </div>
-        <div class="priority-inputy">
-          <label for="taskPriority">Priority: </label>
-          <select
-            required
-            id="taskPriority"
-            class="custom-select"
-            required=""
-          >
-            <option
-              selected
-              value="low"
-              selected=""
+        <div>
+          <div class="date-input">
+            <label for="date">Due Date:</label>
+            <input
+              required
+              name="date"
+              type="datetime-local"
+            />
+          </div>
+
+          <div class="priority-inputy">
+            <label for="taskPriority">Priority: </label>
+            <select
+              required
+              id="taskPriority"
+              class="custom-select"
+              required=""
             >
-              Low
-            </option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
+              <option
+                selected
+                value="low"
+                selected=""
+              >
+                Low
+              </option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="project-select-input">
+            <label for="project-select">Select project</label>
+            <select
+              id="project-select"
+              required=""
+            >
+              <option data-newtasktargetproject="_uk02tl09j">inbox</option>
+              <option data-newtasktargetproject="_6gkw19rdg">hgjhg</option>
+            </select>
+          </div>
         </div>
+
         <button
           type="submit"
           class="create-todo-modal-btn"
@@ -135,13 +151,24 @@
         </div>
         <hr />
         <div class="projects">
-          <h2><i class="fa-solid fa-diagram-project"></i> Projects</h2>
+          <dialog class="projects-form">
+            <span class="close-new-project-modal">×</span>
+            <h2>New Project</h2>
+            <hr>
+            <div class="project-input">
+              <label for="project-name">Project Name</label>
+              <input class="project-name-input" type="text" />
+            </div>
+            <button class="new-project-btn">New Project</button>
+          </dialog>
+          
+          <div>
+            <h2><i class="fa-solid fa-diagram-project"></i> Projects</h2>
+            <span class="add-project">+</span>
+          </div>
+
           <ul class="project-item">
-            <li>project test 1</li>
-            <li>project test 2</li>
-            <li>project test 3</li>
-            <li>project test 4</li>
-            <li>project test 5</li>
+            
           </ul>
         </div>
       </div>

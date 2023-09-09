@@ -1,109 +1,65 @@
+// main.js
 import './style.css'
-const newTodoModal = document.querySelector('.new-todo-modal')
-const addTodoBtn = document.querySelector('.plus-todo')
-const closeTodoModal = document.querySelector('.close-new-todo-modal')
-const createTodoForm = document.querySelector('.new-todo-form')
-const toDoUl = document.querySelector('.to-do-ul')
+import TodoList from './src/todolist.js'
+import { generateUniqueId } from './src/utils'
+import { createNewProject, projects, addTodoToProject } from './src/projects'
+const newProjectBtn = document.querySelector('.new-project-btn')
+const showProjectsForm = document.querySelector('.projects-form')
+const addProject = document.querySelector('.add-project')
+const projectSelectInput = document.querySelector('#project-select')
 
-// local storage
-const toDoListData = localStorage.getItem('todolistdata')
-  ? JSON.parse(localStorage.getItem('todolistdata'))
-  : []
-
-createTodoForm.addEventListener('submit', (e) => {
-  e.preventDefault()
-  // Access the form elements and retrieve the data
-  const title = createTodoForm.querySelector('input[name="title"]').value
-  const date = createTodoForm.querySelector('input[name="date"]').value
-  const description = createTodoForm.querySelector('textarea').value
-  const priority = createTodoForm.querySelector('#taskPriority').value
-  createNewTodo({ title, date, description, priority })
+newProjectBtn.addEventListener('click', () => {
+  const projectName = document.querySelector('.project-name-input').value
+  createNewProject(projectName)
+  console.log(projectName)
 })
 
-function createNewTodo(todo) {
-  toDoListData.push(todo)
-  localStorage.setItem('todolistdata', JSON.stringify(toDoListData))
-  renderTodos()
-}
+addProject.addEventListener('click', () => {
+  showProjectsForm.showModal()
+})
 
-function renderTodos() {
-  toDoUl.innerHTML = ''
+document.addEventListener('DOMContentLoaded', () => {
+  const todoList = new TodoList()
+  const addTodoBtn = document.querySelector('.plus-todo')
+  const newTodoModal = document.querySelector('.new-todo-modal') // Get the dialog element
 
-  toDoListData.forEach((todo, index) => {
-    const newtodoli = document.createElement('li')
-    newtodoli.setAttribute('id', index)
-    newtodoli.setAttribute('class', 'todo-item')
-    newtodoli.innerHTML = `<p>
-      <input
-        class="todo-done"
-        title="Mark as done"
-        type="checkbox"
-      />
-      ${todo.title}
-    </p>
-    <p class="due-date">Due date: ${formatDate(todo.date)} </p>
-    <div class="todo-buttons">
-      <i class="fa-solid fa-circle-info"></i>
-      <i
-        title="Edit To-do"
-        class="fa-regular fa-pen-to-square edit-todo"
-      ></i
-      ><i
-        title="Delete To-do"
-        class="fa-regular fa-trash-can delete-todo"
-      ></i
-      ><i class="fa-solid fa-flag ${checkPriority(todo.priority)}" title="${todo.priority} priority!"></i>
-    </div>`
-
-    toDoUl.appendChild(newtodoli)
+  addTodoBtn.addEventListener('click', () => {
+    newTodoModal.showModal()
+    renderProjectOptions() // Use showModal on the dialog element
   })
 
-  // Call the deleteTodo function after re-rendering
-  deleteTodo()
-}
+  const createTodoForm = document.querySelector('.new-todo-form')
 
-function checkPriority(priority) {
-  switch (priority) {
-    case 'high':
-      return 'high-priority';
-    case 'medium':
-      return 'medium-priority';
-    case 'low':
-      return 'low-priority';
-    default:
-      return '';
-  }
-}
+  createTodoForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const selectedProject = document.getElementById('project-select').value
+    const title = createTodoForm.querySelector('input[name="title"]').value
+    const date = createTodoForm.querySelector('input[name="date"]').value
+    const description = createTodoForm.querySelector('textarea').value
+    const priority = createTodoForm.querySelector('#taskPriority').value
 
-addTodoBtn.addEventListener('click', () => {
-  newTodoModal.showModal()
+    const newTodo = {
+      title,
+      date,
+      description,
+      priority,
+      completed: false,
+      project: selectedProject,
+      id: generateUniqueId(),
+    }
+
+    todoList.addTodo(newTodo)
+    addTodoToProject(newTodo.project, newTodo)
+    newTodoModal.close() // Use close on the dialog element to close it
+  })
+
+  todoList.render()
 })
-closeTodoModal.addEventListener('click', () => {
-  newTodoModal.close()
-})
 
-function formatDate(tododate) {
-  const date = new Date(tododate)
-  const day = date.getDate().toString().padStart(2, '0')
-  const month = (date.getMonth() + 1).toString().padStart(2, '0')
-  const year = date.getFullYear()
-  const hour = date.getHours().toString().padStart(2, '0')
-  const minutes = date.getMinutes().toString().padStart(2, '0')
-
-  const formattedDate = `${day}/${month}/${year}  ${hour}:${minutes}`
-  return formattedDate
-}
-
-function deleteTodo() {
-  const deleteBtn = document.querySelectorAll('.delete-todo')
-  deleteBtn.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-      if (!confirm("Are you sure you want to delete? it can't be undone!")) return
-      toDoListData.splice(index, 1)
-      localStorage.setItem('todolistdata', JSON.stringify(toDoListData))
-      renderTodos()
-    })
+function renderProjectOptions() {
+  projects.forEach((project) => {
+    const projectOption = document.createElement('option')
+    projectOption.innerText = project.name
+    projectSelectInput.appendChild(projectOption)
   })
 }
-
-renderTodos()
