@@ -190,7 +190,11 @@ body{
   cursor: pointer;
   transform: scale(1.2);
 }
-
+.project-item-li.active{
+  background-color: #00000018;
+  cursor: pointer;
+  transform: scale(1.2);
+}
 /* NAV CSS  */
 header{
   background-color: rgba(163, 47, 47, 0.544);
@@ -419,8 +423,17 @@ div.projects > dialog > hr{
   transform: scale(1.2);
   cursor: pointer;
 }
-
+.project-item-li{
+  position: relative;
+}
 .delete-project-btn{
+  
+  position: absolute;
   font-size: 15px;
-  margin-left: 5px;
+  right: 30px;
+  
+}
+.delete-project-btn:hover{
+  transform: scale(1.2);
+  
 }

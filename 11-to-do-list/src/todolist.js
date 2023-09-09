@@ -1,42 +1,109 @@
 import { formatDate, checkPriority } from './utils'
+import {projectName} from './projects'
 
 class TodoList {
   constructor() {
-    this.todos = JSON.parse(localStorage.getItem('todolistdata')) || [];
+    this.uncompletedTab = document.getElementById('radio-2')
+    this.allTab = document.getElementById('radio-1')
+    this.completedTab = document.getElementById('radio-3')
+    this.todos = JSON.parse(localStorage.getItem('todolistdata')) || []
+    this.selectedFilter = 'all'
+    this.selectedProject = 'default'
+    
+    
+    this.handleTab()
   }
 
   addTodo(todo) {
-    this.todos.push(todo);
-    localStorage.setItem('todolistdata', JSON.stringify(this.todos));
-    this.render();
+    this.todos.push(todo)
+    localStorage.setItem('todolistdata', JSON.stringify(this.todos))
+    this.render()
   }
 
   removeTodoById(id) {
-    const index = this.todos.findIndex((todo) => todo.id === id);
+    const index = this.todos.findIndex((todo) => todo.id === id)
     if (index !== -1) {
-      this.todos.splice(index, 1);
-      localStorage.setItem('todolistdata', JSON.stringify(this.todos));
-      this.render();
+      this.todos.splice(index, 1)
+      localStorage.setItem('todolistdata', JSON.stringify(this.todos))
+      this.render()
     }
   }
 
   toggleTodoCompleteById(id) {
-    const index = this.todos.findIndex((todo) => todo.id === id);
+    const index = this.todos.findIndex((todo) => todo.id === id)
     if (index !== -1) {
-      this.todos[index].completed = !this.todos[index].completed;
-      localStorage.setItem('todolistdata', JSON.stringify(this.todos));
-      this.render();
+      this.todos[index].completed = !this.todos[index].completed
+      localStorage.setItem('todolistdata', JSON.stringify(this.todos))
+      this.render()
     }
   }
 
-  render() {
-    const toDoUl = document.querySelector('.to-do-ul');
-    toDoUl.innerHTML = '';
+  filterTasks() {
+    let filteredTasks = []
 
-    this.todos.forEach((todo, index) => {
-      const newTodoLi = document.createElement('li');
-      newTodoLi.setAttribute('id', index);
-      newTodoLi.setAttribute('class', 'todo-item');
+    switch (this.selectedFilter) {
+      case 'completed':
+        // Filter completed tasks
+        filteredTasks = this.todos.filter((todo) => todo.completed)
+        break
+      case 'uncompleted':
+        // Show all tasks
+        filteredTasks = this.todos.filter((todo) => !todo.completed)
+        break
+
+      case 'all':
+        filteredTasks = this.todos
+        break
+      default:
+        // Default to showing all tasks
+        filteredTasks = this.todos
+    }
+
+    // Filter tasks by selected project
+    filteredTasks = filteredTasks.filter(
+      (todo) => todo.project === projectName
+    )
+
+    console.log(filteredTasks)
+    return filteredTasks
+  }
+
+  setFilter(filter) {
+    this.selectedFilter = filter
+    this.render() // Re-render the todo list with the new filter
+  }
+
+  handleTab() {
+    this.uncompletedTab.addEventListener('change', () => {
+      if (this.uncompletedTab.checked) {
+        this.setFilter('uncompleted')
+      }
+    })
+
+    this.allTab.addEventListener('change', () => {
+      if (this.allTab.checked) {
+        this.setFilter('all')
+      }
+    })
+
+    this.completedTab.addEventListener('change', () => {
+      if (this.completedTab.checked) {
+        this.setFilter('completed')
+      }
+    })
+  }
+
+  
+
+  render() {
+    const toDoUl = document.querySelector('.to-do-ul')
+
+    toDoUl.innerHTML = ''
+
+    this.filterTasks().forEach((todo) => {
+      const newTodoLi = document.createElement('li')
+      newTodoLi.setAttribute('id', todo.id)
+      newTodoLi.setAttribute('class', 'todo-item')
       newTodoLi.innerHTML = `
         <p>
           <input
@@ -63,33 +130,35 @@ class TodoList {
         todo.priority
       } priority!"></i>
         </div>
-      `;
+      `
 
-      toDoUl.appendChild(newTodoLi);
-    });
+      toDoUl.appendChild(newTodoLi)
+    })
 
-    this.setupEventListeners();
+    this.setupEventListeners()
   }
 
   setupEventListeners() {
-    const deleteBtns = document.querySelectorAll('.delete-todo');
+    const deleteBtns = document.querySelectorAll('.delete-todo')
     deleteBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
-        if (!confirm("Are you sure you want to delete? It can't be undone!")) return;
+        if (!confirm("Are you sure you want to delete? It can't be undone!"))
+          return
 
-        const todoId = btn.getAttribute('data-todo-id');
-        this.removeTodoById(todoId);
-      });
-    });
+        const todoId = btn.getAttribute('data-todo-id')
+        this.removeTodoById(todoId)
+      })
+    })
 
-    const checkbox = document.querySelectorAll('.todo-done');
+    const checkbox = document.querySelectorAll('.todo-done')
     checkbox.forEach((checkbox) => {
       checkbox.addEventListener('change', (event) => {
-        const todoId = checkbox.closest('.todo-item').getAttribute('id');
-        this.toggleTodoCompleteById(todoId);
-      });
-    });
+        const todoId = checkbox.closest('.todo-item').getAttribute('id')
+        console.log(todoId)
+        this.toggleTodoCompleteById(todoId)
+      })
+    })
   }
 }
 
-export default TodoList;
+export default TodoList
