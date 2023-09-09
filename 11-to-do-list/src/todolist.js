@@ -165,6 +165,16 @@ class TodoList {
   }
 
   setupEventListeners() {
+    const projectsForm = document.querySelector('.projects-form')
+    
+    const closeProjectModal = document.querySelector('.close-new-project-modal')
+    closeProjectModal.addEventListener('click', () => {
+      projectsForm.close()
+    })
+    const closeTodoModal = document.querySelector('.close-new-todo-modal')
+    closeTodoModal.addEventListener('click', () => {
+      newTodoModal.close()
+    })
     const editButtons = document.querySelectorAll('.edit-todo')
     editButtons.forEach((editButton) => {
       editButton.addEventListener('click', (event) => {

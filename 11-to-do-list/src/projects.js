@@ -28,14 +28,14 @@ export function createNewProject(projectName) {
   localStorage.setItem('projects', JSON.stringify(projects))
   renderProjects()
 
-  // Add UI logic to display the project in your projects tab
+  
 }
 
 export function addTodoToProject(projectName, todo) {
   const project = projects.find((p) => p.name === projectName)
   if (project) {
     project.addTodo(todo)
-    // Update your UI to display the new todo in the project
+    
   }
 }
 
