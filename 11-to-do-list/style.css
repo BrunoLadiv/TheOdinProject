@@ -341,6 +341,13 @@ textarea {
   grid-column-start: 2;
   margin-left: 80%;
 }
+.update-btn{
+  cursor: pointer;
+  text-align: center;
+  padding: 5px;
+  grid-column-start: 2;
+  margin-left: 80%;
+}
 
 .todo-done{
   cursor: pointer;
@@ -435,5 +442,18 @@ div.projects > dialog > hr{
 }
 .delete-project-btn:hover{
   transform: scale(1.2);
-  
+
+}
+
+.project-item-li.active.default > span {
+  display: none;
+} 
+.project-item-li.default > span {
+  display: none;
+} 
+.project-item-li > span{
+  display: none;
+}
+.project-item-li.active > span{
+  display: inline;
 }

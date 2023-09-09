@@ -21,14 +21,14 @@ addProject.addEventListener('click', () => {
 
 export const todoList = new TodoList()
 const addTodoBtn = document.querySelector('.plus-todo')
-const newTodoModal = document.querySelector('.new-todo-modal') // Get the dialog element
+export const newTodoModal = document.querySelector('.new-todo-modal') // Get the dialog element
 
 addTodoBtn.addEventListener('click', () => {
   newTodoModal.showModal()
   renderProjectOptions() // Use showModal on the dialog element
 })
 
-const createTodoForm = document.querySelector('.new-todo-form')
+export const createTodoForm = document.querySelector('.new-todo-form')
 
 createTodoForm.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -49,7 +49,7 @@ createTodoForm.addEventListener('submit', (e) => {
   }
 
   todoList.addTodo(newTodo)
-  console.log('PROJECT NAME' + newTodo.project, 'TODO' + newTodo)
+  // console.log('PROJECT NAME' + newTodo.project, 'TODO' + newTodo)
   addTodoToProject(newTodo.project, newTodo)
   newTodoModal.close() // Use close on the dialog element to close it
 })
@@ -57,7 +57,7 @@ createTodoForm.addEventListener('submit', (e) => {
 todoList.render()
 renderProjects()
 
-function renderProjectOptions() {
+export function renderProjectOptions() {
   projects.forEach((project) => {
     const projectOption = document.createElement('option')
     projectOption.innerText = project.name

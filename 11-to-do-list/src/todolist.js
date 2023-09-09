@@ -1,5 +1,6 @@
 import { formatDate, checkPriority } from './utils'
-import {projectName} from './projects'
+import { projectName } from './projects'
+import { createTodoForm, newTodoModal, renderProjectOptions } from '../main'
 
 class TodoList {
   constructor() {
@@ -9,8 +10,7 @@ class TodoList {
     this.todos = JSON.parse(localStorage.getItem('todolistdata')) || []
     this.selectedFilter = 'all'
     this.selectedProject = 'default'
-    
-    
+
     this.handleTab()
   }
 
@@ -60,9 +60,7 @@ class TodoList {
     }
 
     // Filter tasks by selected project
-    filteredTasks = filteredTasks.filter(
-      (todo) => todo.project === projectName
-    )
+    filteredTasks = filteredTasks.filter((todo) => todo.project === projectName)
 
     console.log(filteredTasks)
     return filteredTasks
@@ -93,7 +91,35 @@ class TodoList {
     })
   }
 
-  
+  findTodoById(id) {
+    return this.todos.find((todo) => todo.id === id)
+  }
+  editTodo(id) {
+    const selectedProject = document.getElementById('project-select').value
+    const title = createTodoForm.querySelector('input[name="title"]').value
+    const date = createTodoForm.querySelector('input[name="date"]').value
+    const description = createTodoForm.querySelector('textarea').value
+    const priority = createTodoForm.querySelector('#taskPriority').value
+
+    return {
+      title,
+      date,
+      description,
+      priority,
+      completed: false,
+      project: selectedProject,
+      id: id,
+    }
+  }
+  editTodoById(id, editedTodo) {
+    const index = this.todos.findIndex((todo) => todo.id === id)
+    if (index !== -1) {
+      // Replace the old todo with the edited todo
+      this.todos[index] = editedTodo
+      localStorage.setItem('todolistdata', JSON.stringify(this.todos))
+      this.render()
+    }
+  }
 
   render() {
     const toDoUl = document.querySelector('.to-do-ul')
@@ -139,6 +165,49 @@ class TodoList {
   }
 
   setupEventListeners() {
+    const editButtons = document.querySelectorAll('.edit-todo')
+    editButtons.forEach((editButton) => {
+      editButton.addEventListener('click', (event) => {
+        const todoId = editButton.closest('.todo-item').getAttribute('id')
+        const todoToEdit = this.findTodoById(todoId)
+        newTodoModal.showModal()
+        renderProjectOptions()
+        document.getElementById('project-select').value = todoToEdit.project
+        createTodoForm.querySelector('input[name="title"]').value =
+          todoToEdit.title
+        createTodoForm.querySelector('input[name="date"]').value =
+          todoToEdit.date
+        createTodoForm.querySelector('textarea').value = todoToEdit.description
+        createTodoForm.querySelector('#taskPriority').value =
+          todoToEdit.priority
+        createTodoForm.querySelector('.create-todo-modal-btn').style.display =
+          'none'
+        document.querySelector('.new-todo-header > h2').innerText = 'Edit todo'
+        const updateBtn = document.createElement('button')
+        updateBtn.setAttribute('class', 'update-btn')
+        updateBtn.setAttribute('type', 'button')
+        updateBtn.innerText = 'Update'
+        createTodoForm.appendChild(updateBtn)
+        newTodoModal.addEventListener('close', () => {
+          createTodoForm.querySelector('.create-todo-modal-btn').style.display =
+            'block'
+          updateBtn.style.display = 'none'
+          document.querySelector('.new-todo-header > h2').innerText = 'New todo'
+          createTodoForm.reset()
+        })
+        updateBtn.addEventListener('click', () => {
+          const editedTodo = this.editTodo(todoToEdit.id)
+          this.editTodoById(todoToEdit.id, editedTodo)
+          newTodoModal.close()
+          createTodoForm.querySelector('.create-todo-modal-btn').style.display =
+            'block'
+          updateBtn.style.display = 'none'
+          document.querySelector('.new-todo-header > h2').innerText = 'New todo'
+          createTodoForm.reset()
+        })
+      })
+    })
+
     const deleteBtns = document.querySelectorAll('.delete-todo')
     deleteBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
