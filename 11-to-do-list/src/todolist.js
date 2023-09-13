@@ -1,5 +1,12 @@
 import { formatDate, checkPriority } from './utils'
 import { createTodoForm, newTodoModal, renderProjectOptions } from '../main'
+const closeInfoModalBtn = document.querySelector('.close-info-modal-btn')
+const infoModal = document.querySelector('.info-modal')
+
+closeInfoModalBtn.addEventListener('click', () => {
+  infoModal.close()
+})
+
 
 class TodoList {
   constructor() {
@@ -59,14 +66,16 @@ class TodoList {
         filteredTasks = this.todos
     }
     console.log(filteredTasks)
-    filteredTasks = filteredTasks.filter((todo) => todo.project === this.selectedProject)
+    filteredTasks = filteredTasks.filter(
+      (todo) => todo.project === this.selectedProject
+    )
 
     return filteredTasks
   }
 
   setFilter(filter) {
     this.selectedFilter = filter
-    this.render() 
+    this.render()
   }
 
   handleTab() {
@@ -139,7 +148,7 @@ class TodoList {
         </p>
         <p class="due-date">Due date: ${formatDate(todo.date)} </p>
         <div class="todo-buttons">
-          <i class="fa-solid fa-circle-info"></i>
+          <i title="Show to-do info" class="fa-solid fa-circle-info info-btn"></i>
           <i
             title="Edit To-do"
             class="fa-regular fa-pen-to-square edit-todo"
@@ -212,6 +221,26 @@ class TodoList {
           document.querySelector('.new-todo-header > h2').innerText = 'New todo'
           createTodoForm.reset()
         })
+      })
+    })
+
+    const infoBtns = document.querySelectorAll('.info-btn')
+    console.log(infoBtns)
+    infoBtns.forEach((infoBtn) => {
+      infoBtn.addEventListener('click', (e) => {
+        const todo = e.currentTarget.closest('.todo-item')
+        if (todo) {
+          const id = todo.id
+          const todoInfo = this.todos.find((todo) => todo.id === id)
+          console.log(todoInfo)
+          document.querySelector('#title-info').value = todoInfo.title
+          document.querySelector('#due-date-info').value =  formatDate(todoInfo.date)
+          document.querySelector('#description-info').value = todoInfo.description
+          document.querySelector('#priority-info').value = todoInfo.priority
+          // Now you have the ID of the clicked item (8dfqrcig3 in your example)
+        }
+
+        infoModal.showModal()
       })
     })
 

@@ -16,11 +16,28 @@
     <title>Just do it</title>
   </head>
   <body>
+    
     <header>
       <nav>
         <h1><i class="fa-solid fa-check-double"></i> Just do it</h1>
       </nav>
     </header>
+    <dialog class="info-modal">
+      <span class="close-info-modal-btn">×</span>
+      <form id="todo-info-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title-info" readonly>
+
+        <label for="due-date">Due date:</label>
+        <input type="text" id="due-date-info" readonly>
+
+        <label for="description">Description:</label>
+        <textarea  id="description-info" readonly></textarea>
+
+        <label for="priority">Priority:</label>
+        <input  type="text" id="priority-info" readonly>
+    </form>
+    </dialog>
     <dialog class="new-todo-modal">
       <div class="new-todo-header">
         <h2>New Todo</h2>

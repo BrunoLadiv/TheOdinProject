@@ -1,6 +1,5 @@
 import { generateUniqueId } from './utils'
 import { todoList } from '../main'
-
 export const projects = JSON.parse(localStorage.getItem('projects')) || []
 export let projectName = 'default'
 

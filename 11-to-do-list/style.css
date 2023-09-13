@@ -465,3 +465,50 @@ div.projects > dialog > hr{
   font-size: 25px;
   color: rgb(105, 98, 98);
 }
+
+
+.info-btn:hover{
+  color: rgb(78, 153, 251);
+}
+
+.info-modal{
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 15px;
+  max-height: 500px;
+  min-width: 500px;
+  margin: auto auto;
+  padding: 30px;
+}
+.close-info-modal-btn{
+  font-size: 30px;
+  position: absolute;
+  right: 3%;
+  top: 0%;
+}
+.close-info-modal-btn:hover{
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+#todo-info-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#todo-info-form > textarea {
+  height: 150px;
+  resize: none;
+}
+#todo-info-form > input{
+  border: none;
+  padding-left: 10px;
+}
+#todo-info-form > textarea{
+  padding-left: 10px;
+}
+#todo-info-form > input:active, #todo-info-form > input:focus-visible, #todo-info-form > textarea:focus, #todo-info-form > textarea:focus-visible{
+  outline: none;
+  
+}
