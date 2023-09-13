@@ -39,20 +39,23 @@ class TodoList {
   }
 
   filterTasks() {
+    const page = document.querySelector('.page-title')
     let filteredTasks = []
 
     switch (this.selectedFilter) {
       case 'completed':
         // Filter completed tasks
-        console.log('cai aqui')
+        page.innerText = 'Completed Tasks'
         filteredTasks = this.todos.filter((todo) => todo.completed)
         break
       case 'uncompleted':
+        page.innerText = 'Uncompleted Tasks'
         // Show all tasks
         filteredTasks = this.todos.filter((todo) => !todo.completed)
         break
 
       case 'all':
+        page.innerText = 'All Tasks'
         filteredTasks = this.todos
         break
       default:

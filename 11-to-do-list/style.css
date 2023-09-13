@@ -457,3 +457,11 @@ div.projects > dialog > hr{
 .project-item-li.active > span{
   display: inline;
 }
+.project-item-li.active:first-child > span{
+  display: none;
+}
+
+.page-title{
+  font-size: 25px;
+  color: rgb(105, 98, 98);
+}

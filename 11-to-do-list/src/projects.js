@@ -15,9 +15,14 @@ export default class Project {
   }
 }
 
+export function deleteProject(id) {
+  console.log('projeto deletado')
+}
+
 export function createNewProject(projectName) {
   const project = new Project(projectName)
-
+  projects.forEach((p) => (p.active = false))
+  project.active = true
   projects.push(project)
   localStorage.setItem('projects', JSON.stringify(projects))
   renderProjects()
@@ -27,38 +32,94 @@ export function addTodoToProject(projectName, todo) {
   const project = projects.find((p) => p.name === projectName)
   console.log(project)
   if (project) {
-    project.addTodo(todo)
+    try {
+      project.addTodo(todo)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
+
+// export function renderProjects() {
+//   const projectsUL = document.querySelector('.project-item')
+
+//   if (projects.length === 0) {
+//     createNewProject('Default')
+//   }
+
+//   projectsUL.innerHTML = ''
+//   projects.forEach((project) => {
+//     const newProjectItem = document.createElement('li')
+//     newProjectItem.setAttribute('class', 'project-item-li')
+//     newProjectItem.innerHTML = `${project.name} <span id=${project.id} class="delete-project-btn">×</span> `
+//     projectsUL.appendChild(newProjectItem)
+//     const deleteProjectBtn = document.querySelector('.delete-project-btn')
+
+//     deleteProjectBtn.addEventListener('click', (event) => {
+//       console.log(event)
+//     })
+
+//     newProjectItem.addEventListener('click', () => {
+//       const listProjects = document.querySelectorAll('.project-item-li')
+//       listProjects.forEach((li) => {
+//         li.classList.remove('active')
+//       })
+//       newProjectItem.classList.add('active')
+//       projectName = project.name
+//       todoList.selectedProject = projectName
+//       todoList.render()
+//     })
+
+//     if (project.active) {
+//       newProjectItem.classList.add('active')
+//     }
+//   })
+// }
 
 export function renderProjects() {
   const projectsUL = document.querySelector('.project-item')
 
+  if (projects.length === 0) {
+    createNewProject('Default')
+  }
+
   projectsUL.innerHTML = ''
-  projects.forEach((project, index) => {
+  projects.forEach((project) => {
     const newProjectItem = document.createElement('li')
     newProjectItem.setAttribute('class', 'project-item-li')
-    newProjectItem.innerHTML = `${project.name} <span class="delete-project-btn">×</span> `
+    newProjectItem.innerHTML = `${project.name} <span id=${project.id} class="delete-project-btn">×</span> `
     projectsUL.appendChild(newProjectItem)
+
+    const deleteProjectBtn = newProjectItem.querySelector('.delete-project-btn')
+
+    deleteProjectBtn.addEventListener('click', (event) => {
+      const projectId = deleteProjectBtn.id
+      deleteProjectById(projectId, project.name)
+    })
 
     newProjectItem.addEventListener('click', () => {
       const listProjects = document.querySelectorAll('.project-item-li')
       listProjects.forEach((li) => {
         li.classList.remove('active')
       })
-      newProjectItem.classList.add('active') // Add "active" class to the clicked item
-      projectName = newProjectItem.innerText.replace(/[^a-zA-Z ]/g, '')
+      newProjectItem.classList.add('active')
+      projectName = project.name
       todoList.selectedProject = projectName
       todoList.render()
     })
 
-    // Check if it's the first iteration and add "active" class
-    if (index === 0) {
+    if (project.active) {
       newProjectItem.classList.add('active')
-      newProjectItem.classList.add('default')
-      projectName = project.name
-      todoList.selectedProject = projectName
-      todoList.render()
     }
   })
+}
+
+export function deleteProjectById(id, name) {
+  if(!confirm(`Are you sure you want to delete project ${name} ? `)) return
+  const index = projects.findIndex((project) => project.id === id)
+  if (index !== -1) {
+    projects.splice(index, 1)
+    localStorage.setItem('projects', JSON.stringify(projects))
+    renderProjects()
+  }
 }

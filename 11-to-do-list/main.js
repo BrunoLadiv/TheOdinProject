@@ -7,12 +7,18 @@ import { createNewProject, projects, addTodoToProject } from './src/projects'
 const newProjectBtn = document.querySelector('.new-project-btn')
 const showProjectsForm = document.querySelector('.projects-form')
 const addProject = document.querySelector('.add-project')
-const projectSelectInput = document.querySelector('#project-select')
+
+
+
+
+
+
 
 newProjectBtn.addEventListener('click', () => {
   const projectName = document.querySelector('.project-name-input').value
   createNewProject(projectName)
-  console.log(projectName)
+  showProjectsForm.close()
+  
 })
 
 addProject.addEventListener('click', () => {
@@ -55,6 +61,7 @@ createTodoForm.addEventListener('submit', (e) => {
 })
 
 todoList.render()
+
 renderProjects()
 
 export function renderProjectOptions() {
