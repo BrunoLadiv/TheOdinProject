@@ -1,15 +1,236 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-    <script type="module" crossorigin src="/assets/index-44b5bae5.js"></script>
-    <link rel="stylesheet" href="/assets/index-48a8825f.css">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Just do it</title>
+    <script type="module" crossorigin src="/assets/index-1b91e32c.js"></script>
+    <link rel="stylesheet" href="/assets/index-c642ece0.css">
   </head>
   <body>
-    <div id="app"></div>
+    
+    <header>
+      <nav>
+        <h1><i class="fa-solid fa-check-double"></i> Just do it</h1>
+      </nav>
+    </header>
+    <dialog class="info-modal">
+      <span class="close-info-modal-btn">×</span>
+      <form id="todo-info-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title-info" readonly>
+
+        <label for="due-date">Due date:</label>
+        <input type="text" id="due-date-info" readonly>
+
+        <label for="description">Description:</label>
+        <textarea  id="description-info" readonly></textarea>
+
+        <label for="priority">Priority:</label>
+        <input  type="text" id="priority-info" readonly>
+    </form>
+    </dialog>
+    <dialog class="new-todo-modal">
+      <div class="new-todo-header">
+        <h2>New Todo</h2>
+        <span class="close-new-todo-modal">×</span>
+      </div>
+      <hr />
+      <form
+        class="new-todo-form"
+        action=""
+      >
+        <div>
+          <div class="title-input">
+            <label for="title">Title:</label>
+            <input
+              required
+              name="title"
+              type="text"
+            />
+          </div>
+          <div class="description-input">
+            <label for="description">Description:</label>
+            <textarea
+              required
+              style="height: 167px; width: 311px"
+            ></textarea>
+          </div>
+        </div>
+        <div>
+          <div class="date-input">
+            <label for="date">Due Date:</label>
+            <input
+              required
+              name="date"
+              type="datetime-local"
+            />
+          </div>
+
+          <div class="priority-inputy">
+            <label for="taskPriority">Priority: </label>
+            <select
+              required
+              id="taskPriority"
+              class="custom-select"
+              required=""
+            >
+              <option
+                selected
+                value="low"
+                selected=""
+              >
+                Low
+              </option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="project-select-input">
+            <label for="project-select">Select project</label>
+            <select
+              id="project-select"
+              required=""
+            >
+              
+            </select>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="create-todo-modal-btn"
+        >
+          Create
+        </button>
+      </form>
+    </dialog>
+    <div id="app">
+      <div class="projects-container sidebar">
+        <div class="container">
+          <div class="tabs">
+            <input
+              type="radio"
+              id="radio-1"
+              name="tabs"
+              checked=""
+            />
+            <label
+              class="tab"
+              for="radio-1"
+              ><i class="fa-solid fa-list-check"></i> All
+              </label
+            >
+            <input
+              type="radio"
+              id="radio-2"
+              name="tabs"
+            />
+            <label
+              class="tab"
+              for="radio-2"
+              ><i class="fa-solid fa-calendar-day"></i>Uncompleted
+              </label
+            >
+            <!-- <input
+              type="radio"
+              id="radio-3"
+              name="tabs"
+            />
+            <label
+              class="tab"
+              for="radio-3"
+              ><i class="fa-solid fa-calendar-days"></i>Upcoming
+              <span class="notification">1</span></label
+            > -->
+            <input
+              type="radio"
+              id="radio-3"
+              name="tabs"
+            />
+            <label
+              class="tab"
+              for="radio-3"
+              ><i class="fa-solid fa-calendar-check"></i>Completed
+             </label
+            >
+            <span class="glider"></span>
+          </div>
+        </div>
+        <hr />
+        <div class="projects">
+          <dialog class="projects-form">
+            <span class="close-new-project-modal">×</span>
+            <h2>New Project</h2>
+            <hr>
+            <div class="project-input">
+              <label for="project-name">Project Name</label>
+              <input class="project-name-input" type="text" />
+            </div>
+            <button class="new-project-btn">New Project</button>
+          </dialog>
+          
+          <div>
+            <h2><i class="fa-solid fa-diagram-project"></i> Projects</h2>
+            <span class="add-project">+</span>
+          </div>
+
+          <ul class="project-item">
+            
+          </ul>
+        </div>
+      </div>
+      <div class="todos-container">
+        <div>
+          <div>
+            <h1 class="page-title">Today</h1>
+            <button
+              class="plus-todo"
+              title="Add to-do"
+            >
+              +
+            </button>
+          </div>
+
+          <ul class="to-do-ul">
+            <!-- <li class="todo-item">
+              <p>
+                <input
+                  class="todo-done"
+                  title="Mark as done"
+                  type="checkbox"
+                />
+                Lorem ipseeum dolor sit amet consectetur adipisicing elit.
+                Possimus, dignissimos.
+              </p>
+              <p class="due-date">Due date: </p>
+              <div class="todo-buttons">
+                <i class="fa-solid fa-circle-info"></i>
+                <i
+                  title="Edit To-do"
+                  class="fa-regular fa-pen-to-square edit-todo"
+                ></i
+                ><i
+                  title="Delete To-do"
+                  class="fa-regular fa-trash-can delete-todo"
+                ></i
+                ><i class="fa-solid fa-flag"></i>
+              </div>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
     
   </body>
 </html>
