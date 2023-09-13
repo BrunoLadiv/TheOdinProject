@@ -44,6 +44,7 @@ class TodoList {
     switch (this.selectedFilter) {
       case 'completed':
         // Filter completed tasks
+        console.log('cai aqui')
         filteredTasks = this.todos.filter((todo) => todo.completed)
         break
       case 'uncompleted':
@@ -59,7 +60,7 @@ class TodoList {
         filteredTasks = this.todos
     }
 
-    filteredTasks = this.todos.filter((todo) => todo.project === projectName)
+    filteredTasks = filteredTasks.filter((todo) => todo.project === projectName)
 
     return filteredTasks
   }
