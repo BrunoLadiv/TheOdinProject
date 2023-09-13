@@ -1,5 +1,4 @@
 import { formatDate, checkPriority } from './utils'
-import { projectName } from './projects'
 import { createTodoForm, newTodoModal, renderProjectOptions } from '../main'
 
 class TodoList {
@@ -9,7 +8,7 @@ class TodoList {
     this.completedTab = document.getElementById('radio-3')
     this.todos = JSON.parse(localStorage.getItem('todolistdata')) || []
     this.selectedFilter = 'all'
-    this.selectedProject = 'default'
+    this.selectedProject = 'Default'
 
     this.handleTab()
   }
@@ -44,13 +43,11 @@ class TodoList {
 
     switch (this.selectedFilter) {
       case 'completed':
-        // Filter completed tasks
         page.innerText = 'Completed Tasks'
         filteredTasks = this.todos.filter((todo) => todo.completed)
         break
       case 'uncompleted':
         page.innerText = 'Uncompleted Tasks'
-        // Show all tasks
         filteredTasks = this.todos.filter((todo) => !todo.completed)
         break
 
@@ -59,18 +56,17 @@ class TodoList {
         filteredTasks = this.todos
         break
       default:
-        // Default to showing all tasks
         filteredTasks = this.todos
     }
-
-    filteredTasks = filteredTasks.filter((todo) => todo.project === projectName)
+    console.log(filteredTasks)
+    filteredTasks = filteredTasks.filter((todo) => todo.project === this.selectedProject)
 
     return filteredTasks
   }
 
   setFilter(filter) {
     this.selectedFilter = filter
-    this.render() // Re-render the todo list with the new filter
+    this.render() 
   }
 
   handleTab() {
@@ -116,7 +112,6 @@ class TodoList {
   editTodoById(id, editedTodo) {
     const index = this.todos.findIndex((todo) => todo.id === id)
     if (index !== -1) {
-      // Replace the old todo with the edited todo
       this.todos[index] = editedTodo
       localStorage.setItem('todolistdata', JSON.stringify(this.todos))
       this.render()
