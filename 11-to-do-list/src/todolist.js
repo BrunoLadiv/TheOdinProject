@@ -59,10 +59,8 @@ class TodoList {
         filteredTasks = this.todos
     }
 
-    // Filter tasks by selected project
-    filteredTasks = filteredTasks.filter((todo) => todo.project === projectName)
+    filteredTasks = this.todos.filter((todo) => todo.project === projectName)
 
-    console.log(filteredTasks)
     return filteredTasks
   }
 
@@ -166,7 +164,7 @@ class TodoList {
 
   setupEventListeners() {
     const projectsForm = document.querySelector('.projects-form')
-    
+
     const closeProjectModal = document.querySelector('.close-new-project-modal')
     closeProjectModal.addEventListener('click', () => {
       projectsForm.close()

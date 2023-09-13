@@ -1,12 +1,6 @@
 import { generateUniqueId } from './utils'
 import { todoList } from '../main'
-export const projects = JSON.parse(localStorage.getItem('projects')) || [
-  {
-    name: 'Default',
-    todos: [],
-    id: '9pfm25j5o',
-  },
-]
+export const projects = JSON.parse(localStorage.getItem('projects')) || []
 export let projectName = 'default'
 
 export default class Project {
@@ -23,25 +17,23 @@ export default class Project {
 
 export function createNewProject(projectName) {
   const project = new Project(projectName)
-  console.log(projects)
+
   projects.push(project)
   localStorage.setItem('projects', JSON.stringify(projects))
   renderProjects()
-
-  
 }
 
 export function addTodoToProject(projectName, todo) {
   const project = projects.find((p) => p.name === projectName)
+  console.log(project)
   if (project) {
     project.addTodo(todo)
-    
   }
 }
 
 export function renderProjects() {
   const projectsUL = document.querySelector('.project-item')
-  
+
   projectsUL.innerHTML = ''
   projects.forEach((project, index) => {
     const newProjectItem = document.createElement('li')

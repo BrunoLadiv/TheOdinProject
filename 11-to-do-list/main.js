@@ -58,6 +58,10 @@ todoList.render()
 renderProjects()
 
 export function renderProjectOptions() {
+  const projectSelectInput = document.getElementById('project-select')
+
+  projectSelectInput.innerHTML = ''
+
   projects.forEach((project) => {
     const projectOption = document.createElement('option')
     projectOption.innerText = project.name
