@@ -1,7 +1,7 @@
-function convertDate(timestamp) {
-  const milliseconds = timestamp * 1000
+function convertDate(timestamp, timezoneOffset) {
+  const milliseconds = (timestamp + timezoneOffset) * 1000;
 
-  const date = new Date(milliseconds)
+  const date = new Date(milliseconds);
 
   const weekdayNames = [
     'Sunday',
@@ -11,22 +11,22 @@ function convertDate(timestamp) {
     'Thursday',
     'Friday',
     'Saturday',
-  ]
+  ];
 
-  const year = date.getFullYear()
-  const month = (date.getMonth() + 1).toString().padStart(2, '0')
-  const day = date.getDate().toString().padStart(2, '0')
-  const hours = date.getHours().toString().padStart(2, '0')
-  const minutes = date.getMinutes().toString().padStart(2, '0')
-  // const seconds = date.getSeconds().toString().padStart(2, '0')
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const hours = date.getHours();
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const amOrPm = hours >= 12 ? 'pm' : 'am';
+  const formattedHour = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
 
-  const dayOfWeekNumeric = date.getDay()
+  const dayOfWeekNumeric = date.getDay();
+  const dayOfWeekString = weekdayNames[dayOfWeekNumeric];
 
-  const dayOfWeekString = weekdayNames[dayOfWeekNumeric]
+  const readableDate = `${dayOfWeekString}, ${day}/${month}/${year}, ${formattedHour}:${minutes} ${amOrPm}`;
 
-  const readableDate = `${dayOfWeekString}, ${day}/${month}/${year}, ${hours}:${minutes}`
-
-  return readableDate
+  return readableDate;
 }
 
 // eslint-disable-next-line consistent-return
