@@ -11,5 +11,6 @@ module.exports = {
   },
   rules: {
     semi: 'off',
+    'comma-dangle': 'off',
   },
 }

@@ -11,7 +11,6 @@ function getForecast({ coord, name, country }) {
     .then((data) => {
       const cityData = { ...data, name, country }
       dom.renderCurrentWeather(cityData)
-      
     })
 }
 

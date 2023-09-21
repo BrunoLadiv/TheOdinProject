@@ -1,4 +1,4 @@
-export default function convertDate(timestamp) {
+function convertDate(timestamp) {
   const milliseconds = timestamp * 1000
 
   const date = new Date(milliseconds)
@@ -29,7 +29,29 @@ export default function convertDate(timestamp) {
   return readableDate
 }
 
+// eslint-disable-next-line consistent-return
+function imgSetter(status) {
+  switch (status) {
+    case 'clear sky':
+      return 'src/assets/sun.svg'
 
-function imgSetter() {
-  
+    case 'few clouds':
+      return 'src/assets/cloud-sun.svg'
+    case 'overcast clouds':
+    case 'scattered clouds':
+    case 'broken clouds':
+      return 'src/assets/cloud.svg'
+    case 'shower rain':
+    case 'rain':
+      return 'src/assets/cloud-sun-rain.svg'
+    case 'thunderstorm':
+      return 'src/assets/lightning.svg'
+    case 'snow':
+    case 'mist':
+      return 'src/assets/cloud-snow.svg'
+    default:
+      return 'src/assets/sun.svg'
+  }
 }
+
+export { imgSetter, convertDate }
