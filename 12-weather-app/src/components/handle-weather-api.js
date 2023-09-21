@@ -29,3 +29,5 @@ function getCityCoords(cityName) {
 }
 
 export { getCityCoords, getForecast }
+
+// getCityCoords('Curitiba')

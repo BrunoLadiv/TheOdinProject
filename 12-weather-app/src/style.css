@@ -24,10 +24,8 @@ body{
   width: 85%;
   display: grid;
   grid-template-columns: 5fr 2fr;
-  grid-template-rows: 3;
 
 }
-
 
 
 .section1{
@@ -114,10 +112,12 @@ body{
 /* AIR COND SECTION  */
 
 .air-conditions{
+  position: relative;
   margin-top: 30px;
   width: 95%;
   background-color: var(--section-bg-color);
-  padding: 30px;
+  height: 90px;
+  padding-top: 30px;
   border-radius: 15px;
 
   
@@ -128,7 +128,6 @@ body{
 }
 
 .air-condition-items{
-  margin-top: 20px;
   display: flex;
   justify-content: space-around;
 }
@@ -176,7 +175,7 @@ body{
   width: 95%;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  min-height: 200px;
+  min-height: 190px;
   background-color: var(--section-bg-color);
   border-radius: 15px;
 
@@ -199,11 +198,31 @@ body{
   
 }
 
-.tday-forecast-title{
+.tday-forecast-title, .air-conditions-title{
   position: absolute;
   font-size: 15px;
-  top: 6%;
+  top: 5%;
   left: 2%;
   color: rgba(167, 165, 165, 0.939);
   font-weight: 800;
+}
+
+.air-condition-item > h1 {
+  margin-left: 10px;
+}
+.air-condition-item:not(:first-child) > h1{
+  margin-left: 20px;
+}
+
+
+@media (max-width: 600px) {
+  #app{
+    grid-template-columns: 1fr ;
+    
+    
+  }
+  .section2{
+    grid-row: 3/6;
+    grid-column: 1/2;
+  }
 }

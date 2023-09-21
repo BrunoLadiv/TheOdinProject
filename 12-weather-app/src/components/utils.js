@@ -1,7 +1,7 @@
 function convertDate(timestamp, timezoneOffset) {
-  const milliseconds = (timestamp + timezoneOffset) * 1000;
+  const milliseconds = (timestamp + timezoneOffset) * 1000
 
-  const date = new Date(milliseconds);
+  const date = new Date(milliseconds)
 
   const weekdayNames = [
     'Sunday',
@@ -11,22 +11,22 @@ function convertDate(timestamp, timezoneOffset) {
     'Thursday',
     'Friday',
     'Saturday',
-  ];
+  ]
 
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-  const hours = date.getHours();
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-  const amOrPm = hours >= 12 ? 'pm' : 'am';
-  const formattedHour = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
+  const year = date.getFullYear()
+  const month = (date.getMonth() + 1).toString().padStart(2, '0')
+  const day = date.getDate().toString().padStart(2, '0')
+  const hours = date.getHours()
+  const minutes = date.getMinutes().toString().padStart(2, '0')
+  const amOrPm = hours >= 12 ? 'pm' : 'am'
+  const formattedHour = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours
 
-  const dayOfWeekNumeric = date.getDay();
-  const dayOfWeekString = weekdayNames[dayOfWeekNumeric];
+  const dayOfWeekNumeric = date.getDay()
+  const dayOfWeekString = weekdayNames[dayOfWeekNumeric]
 
-  const readableDate = `${dayOfWeekString}, ${day}/${month}/${year}, ${formattedHour}:${minutes} ${amOrPm}`;
+  const readableDate = `${dayOfWeekString}, ${day}/${month}/${year}, ${formattedHour}:${minutes} ${amOrPm}`
 
-  return readableDate;
+  return readableDate
 }
 
 // eslint-disable-next-line consistent-return
@@ -37,6 +37,7 @@ function imgSetter(status) {
 
     case 'few clouds':
       return 'src/assets/cloud-sun.svg'
+    case 'mist':
     case 'overcast clouds':
     case 'scattered clouds':
     case 'broken clouds':
@@ -47,7 +48,6 @@ function imgSetter(status) {
     case 'thunderstorm':
       return 'src/assets/lightning.svg'
     case 'snow':
-    case 'mist':
       return 'src/assets/cloud-snow.svg'
     default:
       return 'src/assets/sun.svg'
