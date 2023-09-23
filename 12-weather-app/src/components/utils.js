@@ -37,24 +37,24 @@ function convertDate(timestamp, timezoneOffset, isFull = true) {
 function imgSetter(status) {
   switch (status) {
     case 'clear sky':
-      return '/sun.svg'
+      return './sun.svg'
 
     case 'few clouds':
-      return '/cloud-sun.svg'
+      return './cloud-sun.svg'
     case 'mist':
     case 'overcast clouds':
     case 'scattered clouds':
     case 'broken clouds':
-      return '/cloud.svg'
+      return './cloud.svg'
     case 'shower rain':
     case 'rain':
-      return '/cloud-sun-rain.svg'
+      return './cloud-sun-rain.svg'
     case 'thunderstorm':
-      return '/lightning.svg'
+      return './lightning.svg'
     case 'snow':
-      return '/cloud-snow.svg'
+      return './cloud-snow.svg'
     default:
-      return '/sun.svg'
+      return './sun.svg'
   }
 }
 
