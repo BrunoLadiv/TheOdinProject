@@ -37,24 +37,24 @@ function convertDate(timestamp, timezoneOffset, isFull = true) {
 function imgSetter(status) {
   switch (status) {
     case 'clear sky':
-      return '/src/public/assets/sun.svg'
+      return '/sun.svg'
 
     case 'few clouds':
-      return '/src/public/assets/cloud-sun.svg'
+      return '/cloud-sun.svg'
     case 'mist':
     case 'overcast clouds':
     case 'scattered clouds':
     case 'broken clouds':
-      return '/src/public/assets/cloud.svg'
+      return '/cloud.svg'
     case 'shower rain':
     case 'rain':
-      return '/src/public/assets/cloud-sun-rain.svg'
+      return '/cloud-sun-rain.svg'
     case 'thunderstorm':
-      return '/src/public/assets/lightning.svg'
+      return '/lightning.svg'
     case 'snow':
-      return '/src/public/assets/cloud-snow.svg'
+      return '/cloud-snow.svg'
     default:
-      return '/src/public/assets/sun.svg'
+      return '/sun.svg'
   }
 }
 
