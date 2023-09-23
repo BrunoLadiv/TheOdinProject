@@ -6,11 +6,12 @@ const searchBnt = document.querySelector('.search-btn')
 
 searchInput.addEventListener('change', () => {
   const city = searchInput.value
+  searchInput.blur()
   weatherAPI.getCityCoords(city)
   searchInput.value = ''
-  searchInput.blur()
 })
 searchBnt.addEventListener('click', () => {
+  searchInput.blur()
   const city = searchInput.value
   weatherAPI.getCityCoords(city)
 })
