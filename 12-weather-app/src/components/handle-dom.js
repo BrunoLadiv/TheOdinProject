@@ -128,7 +128,7 @@ function renderHourlyForecast(cityData) {
 
 function renderWindConditions(cityData) {
   const realFeel = document.querySelector('.real-feel-temp')
-  realFeel.innerText = Math.round(cityData.current.feels_like)
+  realFeel.innerText = `${Math.round(cityData.current.feels_like)}°`
   const windSpeed = document.querySelector('.wind-speed')
   windSpeed.innerText = `${cityData.current.wind_speed}km/hour`
   const humidityPercentage = document.querySelector('.humidity-percentage')
