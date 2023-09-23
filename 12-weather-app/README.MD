@@ -13,7 +13,7 @@ You can try the app live [here](https://brunoladiv.github.io/TheOdinProject/12-w
 - Get real-time weather information for any city in the world.
 - View details such as temperature, weather conditions, humidity, and wind speed.
 - Display a 7-day weather forecast.
-- Automatically update background images based on the current weather conditions.
+- Display 24 hour forecast.
 
 ## How to Use
 
@@ -27,5 +27,3 @@ You can try the app live [here](https://brunoladiv.github.io/TheOdinProject/12-w
 - CSS
 - JavaScript
 - [OpenWeatherMap API](https://openweathermap.org/api)
-
-
