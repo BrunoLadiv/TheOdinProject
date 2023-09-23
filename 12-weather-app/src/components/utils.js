@@ -1,9 +1,11 @@
-function convertDate(timestamp, timezoneOffset) {
-  const milliseconds = (timestamp + timezoneOffset) * 1000
+function convertDate(timestamp, timezoneOffset, isFull = true) {
+  const milliseconds = timestamp * 1000
 
   const date = new Date(milliseconds)
 
-  const weekdayNames = [
+  date.setSeconds(date.getSeconds() + timezoneOffset)
+
+  const daysOfWeek = [
     'Sunday',
     'Monday',
     'Tuesday',
@@ -12,21 +14,23 @@ function convertDate(timestamp, timezoneOffset) {
     'Friday',
     'Saturday',
   ]
+  const dayOfWeek = daysOfWeek[date.getUTCDay()]
 
-  const year = date.getFullYear()
-  const month = (date.getMonth() + 1).toString().padStart(2, '0')
-  const day = date.getDate().toString().padStart(2, '0')
-  const hours = date.getHours()
-  const minutes = date.getMinutes().toString().padStart(2, '0')
-  const amOrPm = hours >= 12 ? 'pm' : 'am'
-  const formattedHour = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours
+  const year = date.getUTCFullYear()
+  const month = (date.getUTCMonth() + 1).toString().padStart(2, '0')
+  const day = date.getUTCDate().toString().padStart(2, '0')
+  const hours = date.getUTCHours().toString().padStart(2, '0')
+  const minutes = date.getUTCMinutes().toString().padStart(2, '0')
+  // const seconds = date.getUTCSeconds().toString().padStart(2, '0')
 
-  const dayOfWeekNumeric = date.getDay()
-  const dayOfWeekString = weekdayNames[dayOfWeekNumeric]
+  let formattedDate
+  if (isFull) {
+    formattedDate = `${dayOfWeek}, ${day}/${month}/${year} ${hours}:${minutes}`
+  } else {
+    formattedDate = `${dayOfWeek}, ${hours}:${minutes}`
+  }
 
-  const readableDate = `${dayOfWeekString}, ${day}/${month}/${year}, ${formattedHour}:${minutes} ${amOrPm}`
-
-  return readableDate
+  return formattedDate
 }
 
 // eslint-disable-next-line consistent-return
