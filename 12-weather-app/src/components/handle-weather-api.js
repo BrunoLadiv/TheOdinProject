@@ -12,6 +12,7 @@ function getForecast({ coord, name, country }) {
       const cityData = { ...data, name, country }
       dom.renderCurrentWeather(cityData)
       dom.renderHourlyForecast(cityData)
+      dom.renderWindConditions(cityData)
     })
 }
 
@@ -31,4 +32,4 @@ function getCityCoords(cityName) {
 
 export { getCityCoords, getForecast }
 
-getCityCoords('Curitiba')
+// getCityCoords('Curitiba')

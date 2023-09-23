@@ -127,4 +127,16 @@ function renderHourlyForecast(cityData) {
   tf6Temp.innerText = `${Math.round(cityData.hourly[24].temp)}°`
 }
 
-export { renderHourlyForecast, renderCurrentWeather }
+function renderWindConditions(cityData) {
+  console.log(cityData)
+  const realFeel = document.querySelector('.real-feel-temp')
+  realFeel.innerText = Math.round(cityData.current.feels_like)
+  const windSpeed = document.querySelector('.wind-speed')
+  windSpeed.innerText = `${cityData.current.wind_speed}km/hour`
+  const humidityPercentage = document.querySelector('.humidity-percentage')
+  humidityPercentage.innerText = `${cityData.current.humidity}%`
+  const uvIndex = document.querySelector('.uv-index')
+  uvIndex.innerText = cityData.current.uvi
+}
+
+export { renderHourlyForecast, renderCurrentWeather, renderWindConditions }
