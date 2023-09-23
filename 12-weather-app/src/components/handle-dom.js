@@ -1,6 +1,6 @@
 import { convertDate, imgSetter } from './utils'
 // eslint-disable-next-line import/prefer-default-export
-export function renderCurrentWeather(cityData) {
+function renderCurrentWeather(cityData) {
   console.log(cityData)
   const cityName = document.querySelector('.current-city-name > h1')
   cityName.innerHTML = `${cityData.name} <span class="country-name"><sup>${cityData.country}</sup></span>`
@@ -25,3 +25,9 @@ export function renderCurrentWeather(cityData) {
   title="${weatherDescription}"
 />`
 }
+
+function renderHourlyForecast(hourlyForecast) {
+  console.log(hourlyForecast)
+}
+
+export { renderHourlyForecast, renderCurrentWeather }
