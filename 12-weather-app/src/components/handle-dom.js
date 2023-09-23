@@ -195,9 +195,21 @@ function renderSevenDayForecast(data) {
   }
 }
 
+function handleLoader(isLoaded) {
+  const dialog = document.getElementById('loader')
+  if (isLoaded) {
+    dialog.close()
+    dialog.style.display = 'none'
+  } else {
+    dialog.style.display = 'flex'
+    dialog.showModal()
+  }
+}
+
 export {
   renderHourlyForecast,
   renderCurrentWeather,
   renderWindConditions,
   renderSevenDayForecast,
+  handleLoader,
 }
