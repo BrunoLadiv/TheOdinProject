@@ -13,6 +13,7 @@ function getForecast({ coord, name, country }) {
       dom.renderCurrentWeather(cityData)
       dom.renderHourlyForecast(cityData)
       dom.renderWindConditions(cityData)
+      dom.renderSevenDayForecast(cityData.daily)
     })
 }
 

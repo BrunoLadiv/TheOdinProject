@@ -25,7 +25,7 @@ function convertDate(timestamp, timezoneOffset, isFull = true) {
 
   let formattedDate
   if (isFull) {
-    formattedDate = `${dayOfWeek}, ${day}/${month}/${year} ${hours}:${minutes}`
+    formattedDate = `${dayOfWeek}, ${day}/${month}/${year}, ${hours}:${minutes}`
   } else {
     formattedDate = `${dayOfWeek}, ${hours}:${minutes}`
   }

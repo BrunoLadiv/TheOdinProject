@@ -134,8 +134,8 @@ body{
 
 /* SEVEN DAY FORECAST SECTION  */
 
-.day-forecast-svg > img {
-  height: 60px;
+.day > img {
+  height: 85px;
 }
 .seven-day-forecast-container{
   height: 100%;
@@ -225,4 +225,8 @@ body{
     grid-row: 3/6;
     grid-column: 1/2;
   }
+}
+
+.day-name  {
+  min-width: 90px;
 }

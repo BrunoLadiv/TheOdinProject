@@ -139,4 +139,71 @@ function renderWindConditions(cityData) {
   uvIndex.innerText = cityData.current.uvi
 }
 
-export { renderHourlyForecast, renderCurrentWeather, renderWindConditions }
+// Function to display the 7-day forecast
+function renderSevenDayForecast(data) {
+  const forecastContainer = document.querySelector(
+    '.seven-day-forecast-container'
+  )
+
+  forecastContainer.innerHTML = ''
+  forecastContainer.innerHTML = ' <h3>7-day forecast</h3>'
+
+  for (let i = 0; i < data.length; i++) {
+    const dayData = data[i]
+
+    const dayElement = document.createElement('div')
+    dayElement.classList.add('day')
+
+    const dayNameElement = document.createElement('h3')
+    dayNameElement.classList.add('day-name')
+    if (i === 0) {
+      dayNameElement.textContent = 'Today'
+    } else if (i === 1) {
+      dayNameElement.textContent = 'Tomorrow'
+    } else {
+      const date = new Date(dayData.dt * 1000)
+      const options = { weekday: 'long' }
+      dayNameElement.textContent = new Intl.DateTimeFormat(
+        'en-US',
+        options
+      ).format(date)
+    }
+
+    const weatherIconElement = document.createElement('img')
+    const weatherDescription = dayData.weather[0].description
+
+    weatherIconElement.src = imgSetter(weatherDescription)
+    weatherIconElement.alt = weatherDescription
+    weatherIconElement.title = weatherDescription
+
+    const minMaxElement = document.createElement('div')
+    minMaxElement.classList.add('min-max')
+
+    const maxTemperatureElement = document.createElement('h3')
+    maxTemperatureElement.classList.add('max')
+    maxTemperatureElement.innerHTML = `<sup>max</sup> ${Math.round(
+      dayData.temp.max
+    )}°`
+
+    const minTemperatureElement = document.createElement('h3')
+    minTemperatureElement.classList.add('min')
+    minTemperatureElement.innerHTML = `<sup>min</sup> ${Math.round(
+      dayData.temp.min
+    )}°`
+
+    dayElement.appendChild(dayNameElement)
+    dayElement.appendChild(weatherIconElement)
+    minMaxElement.appendChild(maxTemperatureElement)
+    minMaxElement.appendChild(minTemperatureElement)
+    dayElement.appendChild(minMaxElement)
+
+    forecastContainer.appendChild(dayElement)
+  }
+}
+
+export {
+  renderHourlyForecast,
+  renderCurrentWeather,
+  renderWindConditions,
+  renderSevenDayForecast,
+}
