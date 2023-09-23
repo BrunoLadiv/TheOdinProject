@@ -195,9 +195,9 @@ function renderSevenDayForecast(data) {
   }
 }
 
-function handleLoader(isLoaded) {
+function renderLoader(isLoaded) {
   const dialog = document.getElementById('loader')
-  if (isLoaded) {
+  if (!isLoaded) {
     dialog.close()
     dialog.style.display = 'none'
   } else {
@@ -211,5 +211,5 @@ export {
   renderCurrentWeather,
   renderWindConditions,
   renderSevenDayForecast,
-  handleLoader,
+  renderLoader,
 }

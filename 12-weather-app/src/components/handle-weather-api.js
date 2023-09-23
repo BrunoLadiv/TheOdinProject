@@ -14,12 +14,12 @@ function getForecast({ coord, name, country }) {
       dom.renderHourlyForecast(cityData)
       dom.renderWindConditions(cityData)
       dom.renderSevenDayForecast(cityData.daily)
-      dom.handleLoader(true)
+      dom.renderLoader(false)
     })
 }
 
 function getCityCoords(cityName) {
-  dom.handleLoader(false)
+  dom.renderLoader(true)
   fetch(`${BASE_URL}weather?q=${cityName}&APPID=${API_KEY}`)
     .then((r) => r.json())
     .then((data) => {
