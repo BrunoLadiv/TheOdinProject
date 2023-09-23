@@ -1,7 +1,6 @@
 import { imgSetter, convertDate } from './utils'
 // eslint-disable-next-line import/prefer-default-export
 function renderCurrentWeather(cityData) {
-  console.log(cityData)
   const cityName = document.querySelector('.current-city-name > h1')
   cityName.innerHTML = `${cityData.name} <span class="country-name"><sup>${cityData.country}</sup></span>`
   const dateTime = document.querySelector('.current-date-time')
@@ -128,7 +127,6 @@ function renderHourlyForecast(cityData) {
 }
 
 function renderWindConditions(cityData) {
-  console.log(cityData)
   const realFeel = document.querySelector('.real-feel-temp')
   realFeel.innerText = Math.round(cityData.current.feels_like)
   const windSpeed = document.querySelector('.wind-speed')
@@ -139,15 +137,15 @@ function renderWindConditions(cityData) {
   uvIndex.innerText = cityData.current.uvi
 }
 
-// Function to display the 7-day forecast
 function renderSevenDayForecast(data) {
   const forecastContainer = document.querySelector(
     '.seven-day-forecast-container'
   )
 
   forecastContainer.innerHTML = ''
-  forecastContainer.innerHTML = ' <h3>7-day forecast</h3>'
+  forecastContainer.innerHTML = ' <h3>7 day forecast</h3>'
 
+  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < data.length; i++) {
     const dayData = data[i]
 
@@ -181,15 +179,11 @@ function renderSevenDayForecast(data) {
 
     const maxTemperatureElement = document.createElement('h3')
     maxTemperatureElement.classList.add('max')
-    maxTemperatureElement.innerHTML = `<sup>max</sup> ${Math.round(
-      dayData.temp.max
-    )}°`
+    maxTemperatureElement.innerHTML = `max:  ${Math.round(dayData.temp.max)}°`
 
     const minTemperatureElement = document.createElement('h3')
     minTemperatureElement.classList.add('min')
-    minTemperatureElement.innerHTML = `<sup>min</sup> ${Math.round(
-      dayData.temp.min
-    )}°`
+    minTemperatureElement.innerHTML = `min: ${Math.round(dayData.temp.min)}°`
 
     dayElement.appendChild(dayNameElement)
     dayElement.appendChild(weatherIconElement)

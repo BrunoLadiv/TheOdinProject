@@ -134,7 +134,7 @@ body{
 
 /* SEVEN DAY FORECAST SECTION  */
 
-.day > img {
+.day > img, .day-forecast-svg > img  {
   height: 85px;
 }
 .seven-day-forecast-container{
@@ -215,7 +215,7 @@ body{
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   #app{
     grid-template-columns: 1fr ;
     
@@ -227,6 +227,14 @@ body{
   }
 }
 
-.day-name  {
+.day-name {
   min-width: 90px;
+}
+
+.search-btn:hover{
+  cursor: pointer;
+}
+
+.seven-day-forecast-container > h3 {
+  color: rgba(167, 165, 165, 0.939);
 }
