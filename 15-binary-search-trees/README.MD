@@ -40,7 +40,7 @@ To use this binary search tree implementation, follow these steps:
 
 3. Navigate to the project directory in your terminal.
 
-4. Run the provided driver script to create, manipulate, and test the binary search tree. You can customize the script as needed for your specific use case.
+4. Run the provided main script to create, manipulate, and test the binary search tree. You can customize the script as needed for your specific use case.
 
 ```shell
-node driver.js
+node main.js
