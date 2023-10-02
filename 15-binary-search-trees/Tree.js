@@ -81,65 +81,55 @@ class Tree {
     return node
   }
 
-  levelOrder(func) {
-    if (!this.root) {
-      return []
-    }
-    const result = []
-    const queue = [this.root]
+  levelOrder(arr = [], queue = [], root = this.root) {
+    if (root === null) return
+    arr.push(root.data)
+
+    queue.push(root.left)
+    queue.push(root.right)
+
     while (queue.length) {
-      const node = queue.shift()
-      result.push(node.data)
-      if (node.left) {
-        queue.push(node.left)
-      }
-      if (node.right) {
-        queue.push(node.right)
-      }
-      if (func) {
-        func(node)
-      }
+      const level = queue[0]
+      queue.shift()
+      this.levelOrder(arr, queue, level)
     }
-    return result
+
+    return arr
   }
 
-  inorder(func, node) {
-    if (!node) {
-      node = this.root
-    }
-    if (node) {
-      this.inorder(func, node.left)
-      if (func) {
-        func(node)
-      }
-      this.inorder(func, node.right)
-    }
+  inorder(arr = [], root = this.root) {
+    if (root === null) return
+
+    if (root.left) this.inorder(arr, root.left)
+
+    arr.push(root.data)
+
+    if (root.right) this.inorder(arr, root.right)
+
+    return arr
+  }
+  preorder(arr = [], root = this.root) {
+    if (root === null) return
+
+    arr.push(root.data)
+
+    if (root.left) this.preorder(arr, root.left)
+
+    if (root.right) this.preorder(arr, root.right)
+
+    return arr
   }
 
-  preorder(func, node) {
-    if (!node) {
-      node = this.root
-    }
-    if (node) {
-      if (func) {
-        func(node)
-      }
-      this.preorder(func, node.left)
-      this.preorder(func, node.right)
-    }
-  }
+  postorder(arr = [], root = this.root) {
+    if (root === null) return
 
-  postorder(func, node) {
-    if (!node) {
-      node = this.root
-    }
-    if (node) {
-      this.postorder(func, node.left)
-      this.postorder(func, node.right)
-      if (func) {
-        func(node)
-      }
-    }
+    if (root.left) this.postorder(arr, root.left)
+
+    if (root.right) this.postorder(arr, root.right)
+
+    arr.push(root.data)
+
+    return arr
   }
 
   height(node) {
@@ -179,6 +169,5 @@ class Tree {
     this.root = this.buildTree(nodes)
   }
 }
-
 
 module.exports = Tree

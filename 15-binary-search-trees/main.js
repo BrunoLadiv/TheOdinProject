@@ -11,6 +11,18 @@ function main() {
   // Confirm that the tree is balanced by calling isBalanced
   console.log('\nTree is Balanced:', bst.isBalanced())
   //Print out all elements in level, pre, post, and in order.
+  // Level Order of Initial Tree
+  console.log('\nLevel Order of Initial Tree:', bst.levelOrder());
+  // Pre Order of Initial Tree
+  console.log('\nPre Order of Initial Tree:', bst.preorder())
+  // Post Order of Initial Tree
+  console.log('\nPost Order of Initial Tree:', bst.postorder())
+  // In Order of Initial Tree
+  console.log('\nIn Order of Initial Tree:', bst.inorder())
+
+  
+
+  //////////
   console.log('\nHeight of Initial Tree:', bst.height())
   console.log('\nLevel Order of Initial Tree:')
   prettyPrint(bst.root)
@@ -46,6 +58,7 @@ function main() {
 
   console.log('\nLevel Order after Rebalance:')
   prettyPrint(bst.root)
+  
 }
 
 main()
