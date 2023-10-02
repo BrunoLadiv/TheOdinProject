@@ -6,9 +6,14 @@ A web-based chess puzzle game where you can find the shortest path for a knight 
 
 ## Table of Contents
 
+- [Live preview](#live-preview)
 - [Introduction](#introduction)
 - [Features](#features)
 - [How to Play](#how-to-play)
+
+## Live preview
+
+- [Live preview](https://brunoladiv.github.io/TheOdinProject/16-knights-travails/dist/)
 
 ## Introduction
 
