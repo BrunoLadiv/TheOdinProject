@@ -1,20 +1,20 @@
 
 
 body {
+  color: white;
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #12022c;
+  background-color: #2d2c2f;
 }
 
 .chessboard {
   display: grid;
-  grid-template-columns: repeat(8, 50px); /* Adjust the size of each tile */
-  grid-template-rows: repeat(8, 50px); /* Adjust the size of each tile */
-  gap: 1px; /* Gap between tiles */
-  border: 1px solid #333; /* Border around the chessboard */
+  grid-template-columns: repeat(8, 50px); 
+  grid-template-rows: repeat(8, 50px); 
+  gap: 1px;
+  border: 1px solid #333; 
 }
 
 .tile {
@@ -27,7 +27,6 @@ body {
   cursor: pointer;
 }
 
-/* Alternating colors for tiles */
 .white {
   background-color: #f0d9b5;
 }
@@ -36,15 +35,24 @@ body {
   background-color: #b58863;
 }
 
-/* Styles for the start and end positions */
 .start {
-  background-color: #00ff00; /* Green */
-  color: #000;
-  font-weight: bold;
+  background-image: url('./Chess-Knight.svg');
+  background-repeat: no-repeat;
+  background-size: contain; 
+  background-position: center center;
 }
 
 .end {
-  background-color: #ff0000; /* Red */
-  color: #fff;
-  font-weight: bold;
+  background-image: url('./bandeira-de-chegada.png');
+  background-repeat: no-repeat;
+  background-size: contain; 
+  background-position: center center;
+  
 }
+
+
+.path {
+  background-color: #44ff0ade; 
+  
+}
+
