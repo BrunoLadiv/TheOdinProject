@@ -3,12 +3,14 @@ function capitalize(str) {
 }
 
 function reverseString(str) {
-  return str.split('').reverse().join('');
+  return str.split('').reverse().join('')
 }
 
-
-export {
-  capitalize,
-  reverseString
-
+const calculator = {
+  add: (a, b) => a + b,
+  subtract: (a, b) => a - b,
+  divide: (a, b) => (b === 0 ? 'Cannot divide by zero' : a / b),
+  multiply: (a, b) => a * b,
 }
+
+export { capitalize, reverseString, calculator }
