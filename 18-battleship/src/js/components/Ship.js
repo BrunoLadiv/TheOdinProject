@@ -1,7 +1,7 @@
 export default class Ship {
   constructor(length) {
     this.length = length
-    this.hits = Array(length).fill(false) // Initialize hits as an array of 'false' values
+    this.hits = Array(length).fill(false) 
   }
 
   hit(position) {
