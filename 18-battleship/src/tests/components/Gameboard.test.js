@@ -39,18 +39,18 @@ describe('Gameboard', () => {
   })
 
   it('should check if all ships are sunk', () => {
-    gameboard.placeShip(ship, 2, 3, false);
-    gameboard.receiveAttack(2, 3);
-    gameboard.receiveAttack(2, 4);
-    gameboard.receiveAttack(2, 5);
-    
+    gameboard.placeShip(ship, 2, 3, false)
+    gameboard.receiveAttack(2, 3)
+    gameboard.receiveAttack(2, 4)
+    gameboard.receiveAttack(2, 5)
+
     // Ensure all ships are hit and sunk
-    ship.hit(0);
-    ship.hit(1);
-    ship.hit(2);
-    
-    expect(gameboard.allShipsSunk()).toBe(true);
-  });
+    ship.hit(0)
+    ship.hit(1)
+    ship.hit(2)
+
+    expect(gameboard.allShipsSunk()).toBe(true)
+  })
   it('should check if not all ships are sunk', () => {
     gameboard.placeShip(ship, 2, 3, false)
     gameboard.receiveAttack(2, 3)

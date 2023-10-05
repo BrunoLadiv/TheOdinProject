@@ -58,16 +58,20 @@ export default class Gameboard {
   
   receiveAttack(x, y) {
     if (x < 0 || x >= this.rows || y < 0 || y >= this.columns) {
-      return false 
+      return false; // Attack is out of bounds
     }
 
-    if (this.board[x][y] !== null) {
-      const ship = this.board[x][y]
-      ship.hit(y) 
-      return true 
+    if (this.board[x][y] === null) {
+      // Mark the attacked position as empty
+      this.board[x][y] = 'miss';
+      return false
+    } else {
+      const ship = this.board[x][y];
+      ship.hit(y); // Give the hit to the ship
+      this.board[x][y] = 'hit'; // Mark the attacked position as hit
     }
 
-    return false 
+    return true; // Attack processed
   }
 
   allShipsSunk() {
