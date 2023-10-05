@@ -13,4 +13,22 @@ const calculator = {
   multiply: (a, b) => a * b,
 }
 
-export { capitalize, reverseString, calculator }
+function caesarCipher(str, shift) {
+  return str
+    .split('')
+    .map((char) => shiftChar(char, shift))
+    .join('')
+}
+
+function shiftChar(char, shift) {
+  if (/[a-zA-Z]/.test(char)) {
+    const isUpperCase = char === char.toUpperCase()
+    const startCode = isUpperCase ? 65 : 97
+    const shiftedCharCode =
+      ((((char.charCodeAt(0) - startCode + shift) % 26) + 26) % 26) + startCode
+    return String.fromCharCode(shiftedCharCode)
+  }
+  return char
+}
+
+export { capitalize, reverseString, calculator, caesarCipher }
