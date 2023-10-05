@@ -1,4 +1,4 @@
-import { capitalize, reverseString, calculator, caesarCipher } from './index'
+import { capitalize, reverseString, calculator, caesarCipher, analyzeArray } from './index'
 
 describe('capitalize function', () => {
   it('capitalizes the first character of a string', () => {
@@ -63,5 +63,31 @@ describe('caesarCipher function', () => {
   it('wraps from z to a and Z to A', () => {
     expect(caesarCipher('xyzXYZ', 3)).toBe('abcABC')
     expect(caesarCipher('abcABC', -3)).toBe('xyzXYZ')
+  })
+})
+
+describe('analyzeArray function', () => {
+  it('returns the correct analysis for a non-empty array', () => {
+    expect(analyzeArray([1, 8, 3, 4, 2, 6])).toEqual({
+      average: 4,
+      min: 1,
+      max: 8,
+      length: 6,
+    })
+  })
+
+  it('returns NaN for average, undefined for min and max, and 0 for length for an empty array', () => {
+    expect(analyzeArray([])).toEqual({
+      average: NaN,
+      min: undefined,
+      max: undefined,
+      length: 0,
+    })
+  })
+
+  it('throws an error for a non-array input', () => {
+    expect(() => analyzeArray('not an array')).toThrowError(
+      'Input is not an array'
+    )
   })
 })

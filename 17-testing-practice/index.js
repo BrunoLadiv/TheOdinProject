@@ -31,4 +31,31 @@ function shiftChar(char, shift) {
   return char
 }
 
-export { capitalize, reverseString, calculator, caesarCipher }
+function analyzeArray(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error('Input is not an array');
+  }
+
+  if (arr.length === 0) {
+    return {
+      average: NaN,
+      min: undefined,
+      max: undefined,
+      length: 0,
+    };
+  }
+
+  const sum = arr.reduce((acc, num) => acc + num, 0);
+  const average = sum / arr.length;
+  const min = Math.min(...arr);
+  const max = Math.max(...arr);
+
+  return {
+    average,
+    min,
+    max,
+    length: arr.length,
+  };
+}
+
+export { capitalize, reverseString, calculator, caesarCipher, analyzeArray }
