@@ -18,17 +18,17 @@ export default class Gameboard {
   // Place a ship on the game board
   placeShip(ship, x, y, isVertical) {
     if (x < 0 || x >= this.rows || y < 0 || y >= this.columns) {
-      return false 
+      return false
     }
 
     if (isVertical) {
       if (x + ship.length > this.rows) {
-        return false 
+        return false
       }
 
       for (let i = 0; i < ship.length; i++) {
         if (this.board[x + i][y] !== null) {
-          return false 
+          return false
         }
       }
 
@@ -37,12 +37,12 @@ export default class Gameboard {
       }
     } else {
       if (y + ship.length > this.columns) {
-        return false 
+        return false
       }
 
       for (let i = 0; i < ship.length; i++) {
         if (this.board[x][y + i] !== null) {
-          return false 
+          return false
         }
       }
 
@@ -55,23 +55,22 @@ export default class Gameboard {
     return true
   }
 
-  
   receiveAttack(x, y) {
     if (x < 0 || x >= this.rows || y < 0 || y >= this.columns) {
-      return false; // Attack is out of bounds
+      return false // Attack is out of bounds
     }
 
     if (this.board[x][y] === null) {
       // Mark the attacked position as empty
-      this.board[x][y] = 'miss';
+      this.board[x][y] = 'miss'
       return false
     } else {
-      const ship = this.board[x][y];
-      ship.hit(y); // Give the hit to the ship
-      this.board[x][y] = 'hit'; // Mark the attacked position as hit
+      const ship = this.board[x][y]
+      ship.hit(y) // Give the hit to the ship
+      this.board[x][y] = 'hit' // Mark the attacked position as hit
     }
 
-    return true; // Attack processed
+    return true // Attack processed
   }
 
   allShipsSunk() {
