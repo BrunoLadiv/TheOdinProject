@@ -10,3 +10,9 @@ createGameBoardHTML(player1.gameboard, 'player', cellClickHandler)
 createGameBoardHTML(cpu.gameboard, 'cpu', cellClickHandler)
 createFleetContainer()
 dragNdrop()
+
+
+export {
+  player1,
+  cpu
+}

@@ -11,6 +11,8 @@ export default class Ship {
     }
   }
 
+  
+
   isSunk() {
     return this.hits.every((hit) => hit === true)
   }
