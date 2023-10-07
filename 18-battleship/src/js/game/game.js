@@ -11,8 +11,12 @@ createGameBoardHTML(cpu.gameboard, 'cpu', cellClickHandler)
 createFleetContainer()
 dragNdrop()
 
+function renderBoard() {
+  createGameBoardHTML(player1.gameboard, 'player', cellClickHandler)
+}
 
 export {
   player1,
-  cpu
+  cpu,
+  renderBoard
 }

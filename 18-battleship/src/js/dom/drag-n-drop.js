@@ -1,6 +1,7 @@
 import Ship from '../factories/Ship'
 import { player1 } from '../game/game'
 import { isVertical } from './fleetContainer'
+import { renderBoard } from '../game/game'
 
 let shipLength
 
@@ -60,6 +61,7 @@ function dragNdrop() {
         }
       })
       cell.classList.add('fodase')
+      
       removeHighlight(highlightedCells)
     })
   })
@@ -70,7 +72,7 @@ function highlightCells(shipLength, x, y, isVertical) {
 
   if (isVertical) {
     for (let i = 0; i < shipLength; i++) {
-      const cell = document.querySelector(`[data-x="${x}"][data-y="${y - i}"]`)
+      const cell = document.querySelector(`[data-x="${x}"][data-y="${y + i}"]`)
       if (cell) {
         cellsToHighlight.push(cell)
         cell.style.backgroundColor = 'blue'
@@ -94,7 +96,7 @@ function createShip(shipname, shipLength, x, y) {
   console.log(player1.gameboard)
   console.log(newShip)
   console.log(x, y)
-  player1.gameboard.placeShip(newShip, x, y, isVertical)
+  player1.gameboard.placeShip(newShip, y, x, isVertical)
   console.log(player1.gameboard)
 }
 
