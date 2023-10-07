@@ -2,13 +2,19 @@
  margin: 0;
  border: 0;
  box-sizing: border-box;
- padding: 0;
  background-color: rgb(10, 73, 10);
 }
 body{
   min-height: 100vh;
 }
 
+button {
+  border: 1px solid black;
+}
+button:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
 
 .game-container {
   min-height: 80%;
@@ -59,22 +65,23 @@ body{
 }
 
 .fleet-container {
+  /* display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; */
   border: 1px solid black;
   
 }
 
 .ship {
   border: 1px solid black;
-  height: 15px;
   margin-top: 5px;
   width: 150px;
   height: 50px;
   background-color: transparent;
+
 }
 
-.ship.active {
-  border: 1px solid red;
-}
+
 
 
 .carrier{
@@ -98,3 +105,13 @@ body{
   background-image: url(../public/images/destroyer.svg);
 
 }
+
+
+
+.ship-vertical:active {
+  border: 1px solid cyan;
+  width: 50px;
+  height: 150px;
+  
+}
+

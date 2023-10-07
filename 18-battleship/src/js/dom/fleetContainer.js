@@ -1,4 +1,5 @@
 import { createFleet } from '../game/ships'
+let isVertical = true // Default to horizontal placement
 
 function createFleetContainer() {
   const fleetContainer = document.querySelector('.fleet-container')
@@ -15,9 +16,15 @@ function createFleetContainer() {
 
     fleetContainer.appendChild(div)
   })
+  const rotateBtn = document.createElement('button')
+  rotateBtn.classList.add('rotate-btn')
+  rotateBtn.innerText = 'Rotate'
+  rotateBtn.addEventListener('click', rotateFunc)
+  fleetContainer.appendChild(rotateBtn)
 }
 
-
-export {
-  createFleetContainer
+function rotateFunc() {
+  isVertical = !isVertical
 }
+
+export { createFleetContainer, isVertical }

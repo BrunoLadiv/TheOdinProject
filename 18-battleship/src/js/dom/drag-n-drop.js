@@ -1,12 +1,17 @@
 import Ship from '../factories/Ship'
 import { player1 } from '../game/game'
+import {isVertical} from './fleetContainer'
+
+let shipLength
+
+let highlightedCells = []
 
 function dragNdrop() {
   const ships = document.querySelectorAll('.ship')
 
-  // Add dragstart event listener to each ship
   ships.forEach((ship) => {
     ship.addEventListener('dragstart', (event) => {
+      shipLength = parseInt(ship.getAttribute('ship-length'))
       event.dataTransfer.setData(
         'text/plain',
         JSON.stringify({
@@ -19,15 +24,24 @@ function dragNdrop() {
 
   const boardCells = document.querySelectorAll('.board-cell')
 
-  // Add dragover event listener to each valid drop target (e.g., board cells)
   boardCells.forEach((cell) => {
     cell.addEventListener('dragover', (event) => {
-      event.preventDefault() // Prevent default behavior to allow drop
+      event.preventDefault()
+      const x = Number(cell.dataset.x)
+      const y = Number(cell.dataset.y)
+      highlightedCells = highlightCells(shipLength, x, y, isVertical)
     })
-  })
 
-  // Add drop event listener to each valid drop target
-  boardCells.forEach((cell) => {
+    cell.addEventListener('dragleave', (event) => {
+      event.preventDefault()
+      removeHighlight(highlightedCells)
+    })
+
+    cell.addEventListener('dragend', (event) => {
+      event.preventDefault()
+      removeHighlight(highlightedCells)
+    })
+
     cell.addEventListener('drop', (event) => {
       event.preventDefault()
       const shipData = JSON.parse(event.dataTransfer.getData('text/plain'))
@@ -40,10 +54,34 @@ function dragNdrop() {
       )
 
       createShip(shipName, shipLength, x, y)
-      // Place the ship in the cell (You may need to adjust the logic to match your game)
-      cell.classList.add('fodase') // Add the 'ship' class to the cell
+      cell.classList.add('fodase')
+      removeHighlight(highlightedCells)
     })
   })
+}
+
+function highlightCells(shipLength, x, y, isVertical) {
+  const cellsToHighlight = []
+
+  if (isVertical) {
+    for (let i = 0; i < shipLength; i++) {
+      const cell = document.querySelector(`[data-x="${x}"][data-y="${y - i}"]`)
+      if (cell) {
+        cellsToHighlight.push(cell)
+        cell.style.backgroundColor = 'blue'
+      }
+    }
+  } else {
+    for (let i = 0; i < shipLength; i++) {
+      const cell = document.querySelector(`[data-x="${x + i}"][data-y="${y}"]`)
+      if (cell) {
+        cellsToHighlight.push(cell)
+        cell.style.backgroundColor = 'blue'
+      }
+    }
+  }
+
+  return cellsToHighlight
 }
 
 function createShip(shipname, shipLength, x, y) {
@@ -53,6 +91,12 @@ function createShip(shipname, shipLength, x, y) {
   console.log(x, y)
   player1.gameboard.placeShip(newShip, x, y, false)
   console.log(player1.gameboard)
+}
+
+function removeHighlight(cells) {
+  cells.forEach((cell) => {
+    cell.style.backgroundColor = ''
+  })
 }
 
 export { dragNdrop }
