@@ -2,7 +2,6 @@
  margin: 0;
  border: 0;
  box-sizing: border-box;
- background-color: rgb(10, 73, 10);
 }
 body{
   min-height: 100vh;
@@ -108,10 +107,9 @@ button:hover{
 
 
 
-.ship-vertical:active {
+.ship:active {
   border: 1px solid cyan;
-  width: 50px;
-  height: 150px;
+  background-color: #cccccc00;
   
 }
 

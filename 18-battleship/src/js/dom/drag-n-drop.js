@@ -1,6 +1,6 @@
 import Ship from '../factories/Ship'
 import { player1 } from '../game/game'
-import {isVertical} from './fleetContainer'
+import { isVertical } from './fleetContainer'
 
 let shipLength
 
@@ -54,6 +54,11 @@ function dragNdrop() {
       )
 
       createShip(shipName, shipLength, x, y)
+      ships.forEach((ship) => {
+        if (ship.dataset.shipname === shipName) {
+          ship.remove()
+        }
+      })
       cell.classList.add('fodase')
       removeHighlight(highlightedCells)
     })
@@ -89,7 +94,7 @@ function createShip(shipname, shipLength, x, y) {
   console.log(player1.gameboard)
   console.log(newShip)
   console.log(x, y)
-  player1.gameboard.placeShip(newShip, x, y, false)
+  player1.gameboard.placeShip(newShip, x, y, isVertical)
   console.log(player1.gameboard)
 }
 
