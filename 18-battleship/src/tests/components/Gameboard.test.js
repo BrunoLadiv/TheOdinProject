@@ -1,6 +1,6 @@
 import { describe, expect, beforeEach, it } from 'vitest'
-import Ship from '../../js/components/Ship'
-import Gameboard from '../../js/components/Gameboard'
+import Ship from '../../js/factories/Ship'
+import Gameboard from '../../js/factories/Gameboard'
 
 describe('Gameboard', () => {
   let gameboard
@@ -8,7 +8,7 @@ describe('Gameboard', () => {
 
   beforeEach(() => {
     gameboard = new Gameboard(10, 10) // Create a 10x10 game board
-    ship = new Ship(3) // Create a ship with a length of 3
+    ship = new Ship('carrier',3) // Create a ship with a length of 3
   })
 
   it('should place a ship horizontally', () => {
@@ -25,7 +25,7 @@ describe('Gameboard', () => {
 
   it('should not place a ship overlapping another ship', () => {
     gameboard.placeShip(ship, 2, 3, false)
-    const overlappingShip = new Ship(4) // Create another ship with a different length
+    const overlappingShip = new Ship('submarine',4) 
     expect(gameboard.placeShip(overlappingShip, 2, 3, false)).toBe(false)
   })
 

@@ -1,9 +1,9 @@
 import { test, describe, assert } from 'vitest'
-import Ship from '../../js/components/Ship' // Adjust the import path as needed
+import Ship from '../../js/factories/Ship' // Adjust the import path as needed
 
 describe('Ship class', () => {
   test('initializes correctly', () => {
-    const ship = new Ship(3)
+    const ship = new Ship('carrier', 3)
 
     // Check if the ship's length is set correctly
     assert.equal(ship.length, 3)
@@ -13,7 +13,7 @@ describe('Ship class', () => {
   })
 
   test('hit() method marks positions correctly', () => {
-    const ship = new Ship(4)
+    const ship = new Ship('crusader',4)
 
     // Mark positions 1 and 3 as hit
     ship.hit(1)
@@ -24,7 +24,7 @@ describe('Ship class', () => {
   })
 
   test('isSunk() method works correctly', () => {
-    const ship = new Ship(3)
+    const ship = new Ship('submarine',3)
 
     // Mark all positions as hit
     ship.hit(0)

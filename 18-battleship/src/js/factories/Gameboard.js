@@ -18,41 +18,41 @@ export default class Gameboard {
   // Place a ship on the game board
   placeShip(ship, x, y, isVertical) {
     if (x < 0 || x >= this.rows || y < 0 || y >= this.columns) {
-      return false
+      return false; // Out of bounds
     }
-
+  
     if (isVertical) {
       if (x + ship.length > this.rows) {
-        return false
+        return false; // Ship doesn't fit vertically
       }
-
+  
       for (let i = 0; i < ship.length; i++) {
         if (this.board[x + i][y] !== null) {
-          return false
+          return false; // Overlapping ship
         }
       }
-
+  
       for (let i = 0; i < ship.length; i++) {
-        this.board[x + i][y] = ship
+        this.board[x + i][y] = ship;
       }
     } else {
       if (y + ship.length > this.columns) {
-        return false
+        return false; // Ship doesn't fit horizontally
       }
-
+  
       for (let i = 0; i < ship.length; i++) {
         if (this.board[x][y + i] !== null) {
-          return false
+          return false; // Overlapping ship
         }
       }
-
+  
       for (let i = 0; i < ship.length; i++) {
-        this.board[x][y + i] = ship
+        this.board[x][y + i] = ship;
       }
     }
-
-    this.ships.push(ship)
-    return true
+  
+    this.ships.push(ship);
+    return true;
   }
 
   receiveAttack(x, y) {
