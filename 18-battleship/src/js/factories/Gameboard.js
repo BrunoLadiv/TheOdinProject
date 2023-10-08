@@ -1,3 +1,4 @@
+import { createFleet } from "../game/ships"
 export default class Gameboard {
   constructor(rows, columns) {
     this.rows = rows
@@ -18,19 +19,19 @@ export default class Gameboard {
   // Place a ship on the game board
   placeShip(ship, x, y, isVertical) {
     if (x < 0 || x >= this.rows || y < 0 || y >= this.columns) {
-      alert('Out of bounds')
+      // alert('Out of bounds')
       return false // Out of bounds
     }
 
     if (isVertical) {
       if (x + ship.length > this.rows) {
-        alert('not enough space')
+        // alert('not enough space')
         return false // Ship doesn't fit vertically
       }
 
       for (let i = 0; i < ship.length; i++) {
         if (this.board[x + i][y] !== null) {
-          alert("can't overlap ships")
+          // alert("can't overlap ships")
           return false // Overlapping ship
         }
       }
@@ -40,13 +41,13 @@ export default class Gameboard {
       }
     } else {
       if (y + ship.length > this.columns) {
-        alert('not enough space')
+        // alert('not enough space')
         return false // Ship doesn't fit horizontally
       }
 
       for (let i = 0; i < ship.length; i++) {
         if (this.board[x][y + i] !== null) {
-          alert("can't overlap ships")
+          // alert("can't overlap ships")
           return false // Overlapping ship
         }
       }
@@ -84,5 +85,18 @@ export default class Gameboard {
 
   getShips() {
     return this.ships
+  }
+
+  placeRandomShips() {
+    const fleet = createFleet()
+    for (const ship of fleet) {
+      let validPlacement = false;
+      while (!validPlacement) {
+        const x = Math.floor(Math.random() * this.rows);
+        const y = Math.floor(Math.random() * this.columns);
+        const isVertical = Math.random() < 0.5; 
+        validPlacement = this.placeShip(ship, x, y, isVertical);
+      }
+    }
   }
 }
