@@ -1,3 +1,4 @@
+
 *{
  margin: 0;
  border: 0;
@@ -5,12 +6,15 @@
 
 }
 body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-height: 100vh;
-  background-color: rgb(12, 4, 69);
+  background: url(../public/images/background.jpg)
 }
 
 button {
-  border: 1px solid black;
+  border: 1px solid rgba(255, 255, 255, 0.726);
 }
 button:hover{
   transform: scale(1.1);
@@ -18,9 +22,14 @@ button:hover{
 }
 
 .game-container {
+  background-color: #1716164a;
+  width: 70%;
   min-height: 80%;
   display: flex;
-  justify-content: space-around;
+  
+}
+.cpu-board{
+  margin-left: auto;
 }
 
 .board{
@@ -31,25 +40,14 @@ button:hover{
   grid-template-rows: repeat(10, 1fr);
 }
 
-.player-board {
-  width: 33%;
-  border: 2px solid #000;
-  box-sizing: border-box;
-}
-
-.cpu-board {
-  width: 33%;
-  border: 2px solid #000;
-  box-sizing: border-box;
-}
 
 .board-cell {
   min-width: 100%;
   min-height: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc8e;
   /* display: inline-block; */
   cursor: pointer;
-  background-color: #fff;
+  background-color: #1716164a;
   vertical-align: top;
 }
 
@@ -66,22 +64,21 @@ button:hover{
 }
 
 .fleet-container {
-  /* display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap; */
-  border: 1px solid black;
-  
+  min-height: 80%;
+  margin-left: 10px;  
 }
 
 .ship {
-  border: 1px solid black;
   margin-top: 5px;
   width: 150px;
   height: 50px;
   background-color: transparent;
 
 }
-
+.ship:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
 
 
 
@@ -108,24 +105,18 @@ button:hover{
 }
 
 
-
-.ship:active {
-  border: 1px solid cyan;
-  background-color: #cccccc00;
-  
+.player-board > .board > .ship-cell {
+  background-color: #3498db; /* Color for cells with a ship */
 }
 
 
 
-/* TEST CSS  */
+body > h1 {
+  font-family: 'Old Standard TT';
+  font-weight: 900;
+  font-size: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: white;
 
-/* .board-cell {
-  width: 100%;
-  padding-bottom: 100%; 
-  background-color: #ddd; 
-  border: 1px solid #888; 
-} */
-
-.ship-cell {
-  background-color: #3498db; /* Color for cells with a ship */
 }
