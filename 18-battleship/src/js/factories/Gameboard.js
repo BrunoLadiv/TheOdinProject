@@ -73,6 +73,11 @@ export default class Gameboard {
     } else {
       const ship = this.board[x][y]
       ship.hit(y) // Give the hit to the ship
+      console.log('test', ship)
+      if (ship.isSunk()) {
+        console.log(`${ship.name} sunk`)
+      }
+
       this.board[x][y] = 'hit' // Mark the attacked position as hit
     }
 
