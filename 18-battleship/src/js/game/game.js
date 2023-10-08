@@ -6,6 +6,9 @@ import {
 } from '../dom/createBoards'
 import { dragNdrop } from '../dom/drag-n-drop'
 import { createFleetContainer } from '../dom/fleetContainer'
+import { cpuAI, cpuAttackedCell } from './cpu'
+const gameStarted = true
+let playerTurn = true
 
 const player1 = new Player('player1')
 const cpu = new Player('cpu')
@@ -27,14 +30,42 @@ function renderBoard() {
 }
 
 function shoot(event) {
-  if (event.target.parentElement.parentElement.classList.contains('player-board') ) return
-  const x = event.target.dataset.x
-  const y = event.target.dataset.y
+  if (gameStarted && playerTurn) {
+    const x = event.target.dataset.x
+    const y = event.target.dataset.y
 
-  console.log(`Clicked on cell: ${x}, ${y}`)
-  player1.takeTurn(y, x)
-  
-  console.log(cpu.gameboard.board)
+    const didHit = player1.takeTurn(y, x)
+    if (didHit === 'hit') {
+      event.target.style.backgroundColor = 'red'
+    } else {
+      event.target.style.backgroundColor = 'yellow'
+    }
+
+    if (cpu.gameboard.allShipsSunk()) {
+      alert('Game over Player won')
+      location.reload()
+    }
+    playerTurn = false
+
+    // After the player's turn, check if it's still the player's turn before allowing the CPU to take a turn
+    setTimeout(() => {
+      if (!playerTurn) {
+        const didHit = cpuAI(cpu)
+        if (didHit === 'hit') {
+          cpuAttackedCell.style.backgroundColor = 'red'
+        } else {
+          cpuAttackedCell.style.backgroundColor = 'yellow'
+        }
+        if (player1.gameboard.allShipsSunk()) {
+          alert('Game over CPU won')
+          location.reload()
+        }
+        playerTurn = true
+      }
+    }, 1000) // Adjust the delay (in milliseconds) as needed
+  }
 }
 
-export { player1, cpu, renderBoard, shoot }
+
+
+export { player1, cpu, renderBoard, shoot, playerTurn }

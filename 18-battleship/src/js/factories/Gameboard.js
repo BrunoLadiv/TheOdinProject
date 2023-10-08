@@ -1,4 +1,4 @@
-import { createFleet } from "../game/ships"
+import { createFleet } from '../game/ships'
 export default class Gameboard {
   constructor(rows, columns) {
     this.rows = rows
@@ -69,19 +69,24 @@ export default class Gameboard {
     if (this.board[x][y] === null) {
       // Mark the attacked position as empty
       this.board[x][y] = 'miss'
-      return false
+      return 'miss'
     } else {
       const ship = this.board[x][y]
-      ship.hit(y) // Give the hit to the ship
-      console.log('test', ship)
-      if (ship.isSunk()) {
-        console.log(`${ship.name} sunk`)
+      try {
+        ship.hit() // Give the hit to the ship
+        console.log('test', ship)
+        if (ship.isSunk()) {
+          console.log(`${ship.name} sunk`)
+        }
+      } catch (error) {
+        console.log('Already attacked this block!')
       }
 
-      this.board[x][y] = 'hit' // Mark the attacked position as hit
+      this.board[x][y] = 'hit'
+      // Attack processed
+      // Mark the attacked position as hit
+      return 'hit'
     }
-
-    return true // Attack processed
   }
 
   allShipsSunk() {
@@ -95,12 +100,12 @@ export default class Gameboard {
   placeRandomShips() {
     const fleet = createFleet()
     for (const ship of fleet) {
-      let validPlacement = false;
+      let validPlacement = false
       while (!validPlacement) {
-        const x = Math.floor(Math.random() * this.rows);
-        const y = Math.floor(Math.random() * this.columns);
-        const isVertical = Math.random() < 0.5; 
-        validPlacement = this.placeShip(ship, x, y, isVertical);
+        const x = Math.floor(Math.random() * this.rows)
+        const y = Math.floor(Math.random() * this.columns)
+        const isVertical = Math.random() < 0.5
+        validPlacement = this.placeShip(ship, x, y, isVertical)
       }
     }
   }

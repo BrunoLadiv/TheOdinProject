@@ -1,6 +1,4 @@
-
-
-import { shoot } from "../game/game"
+import { playerTurn, shoot } from '../game/game'
 
 const playerBoardContainer = document.querySelector('.player-board')
 const cpuBoardContainer = document.querySelector('.cpu-board')
@@ -37,12 +35,9 @@ function createGameBoardHTML(gameboard, player, clickHandler) {
 }
 
 function cellClickHandler(event) {
+  if (event.target.parentElement.parentElement.classList.contains('player-board') || !playerTurn) return
   // When the user clicks a cell
   shoot(event)
-  
-  
 }
-
-
 
 export { createGameBoardHTML, cellClickHandler, playerBoardContainer }

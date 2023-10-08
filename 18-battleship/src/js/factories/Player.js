@@ -19,12 +19,12 @@ export default class Player {
 
     const result = this.opponentGameboard.receiveAttack(x, y)
 
-    if (result) {
+    if (result === 'hit') {
       console.log(`${this.name} attacked (${x}, ${y}) and hit!`)
-      return true
+      return 'hit'
     } else {
       console.log(`${this.name} attacked (${x}, ${y}) and missed.`)
-      return false
+      return 'missed'
     }
   }
 }
