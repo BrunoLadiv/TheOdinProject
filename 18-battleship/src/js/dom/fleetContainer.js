@@ -1,5 +1,5 @@
 import { createFleet } from '../game/ships'
-let isVertical = true // Default to horizontal placement
+let isVertical = false
 
 function createFleetContainer() {
   const fleetContainer = document.querySelector('.fleet-container')

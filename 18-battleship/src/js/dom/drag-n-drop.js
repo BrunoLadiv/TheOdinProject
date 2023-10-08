@@ -9,7 +9,7 @@ let highlightedCells = []
 
 function dragNdrop() {
   const ships = document.querySelectorAll('.ship')
-  const playerBoardContainer = document.querySelector('.player-board') // Add this line
+  const playerBoardContainer = document.querySelector('.player-board') 
 
   ships.forEach((ship) => {
     ship.addEventListener('dragstart', (event) => {
@@ -24,7 +24,6 @@ function dragNdrop() {
     })
   })
 
-  // Attach the event listeners to the parent container
   playerBoardContainer.addEventListener('dragover', (event) => {
     event.preventDefault()
     const cell = event.target
@@ -55,12 +54,16 @@ function dragNdrop() {
       `Dropped ship ${shipName} (Length: ${shipLength}) at cell: ${x}, ${y}`
     )
 
-    createShip(shipName, shipLength, x, y)
-    ships.forEach((ship) => {
-      if (ship.dataset.shipname === shipName) {
-        ship.remove()
-      }
-    })
+    const validShip = createShip(shipName, shipLength, x, y)
+    console.log(validShip)
+    if (validShip) {
+      ships.forEach((ship) => {
+        if (ship.dataset.shipname === shipName) {
+          ship.remove()
+        }
+      })
+    }
+    
     renderBoard()
     cell.classList.add('fodase')
 
@@ -97,8 +100,9 @@ function createShip(shipname, shipLength, x, y) {
   console.log(player1.gameboard)
   console.log(newShip)
   console.log(x, y)
-  player1.gameboard.placeShip(newShip, y, x, isVertical)
+  const shipCreated = player1.gameboard.placeShip(newShip, y, x, isVertical)
   console.log(player1.gameboard)
+  return shipCreated
 }
 
 function removeHighlight(cells) {

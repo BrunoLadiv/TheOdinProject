@@ -18,16 +18,19 @@ export default class Gameboard {
   // Place a ship on the game board
   placeShip(ship, x, y, isVertical) {
     if (x < 0 || x >= this.rows || y < 0 || y >= this.columns) {
+      alert('Out of bounds')
       return false // Out of bounds
     }
 
     if (isVertical) {
       if (x + ship.length > this.rows) {
+        alert('not enough space')
         return false // Ship doesn't fit vertically
       }
 
       for (let i = 0; i < ship.length; i++) {
         if (this.board[x + i][y] !== null) {
+          alert("can't overlap ships")
           return false // Overlapping ship
         }
       }
@@ -37,11 +40,13 @@ export default class Gameboard {
       }
     } else {
       if (y + ship.length > this.columns) {
+        alert('not enough space')
         return false // Ship doesn't fit horizontally
       }
 
       for (let i = 0; i < ship.length; i++) {
         if (this.board[x][y + i] !== null) {
+          alert("can't overlap ships")
           return false // Overlapping ship
         }
       }
