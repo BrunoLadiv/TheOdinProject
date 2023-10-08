@@ -57,4 +57,4 @@ function cellClickHandler(event) {
   console.log(`Clicked on cell: ${x}, ${y}`)
 }
 
-export { createGameBoardHTML, cellClickHandler }
+export { createGameBoardHTML, cellClickHandler, playerBoardContainer }

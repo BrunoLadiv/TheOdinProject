@@ -9,6 +9,7 @@ let highlightedCells = []
 
 function dragNdrop() {
   const ships = document.querySelectorAll('.ship')
+  const playerBoardContainer = document.querySelector('.player-board') // Add this line
 
   ships.forEach((ship) => {
     ship.addEventListener('dragstart', (event) => {
@@ -23,47 +24,47 @@ function dragNdrop() {
     })
   })
 
-  const boardCells = document.querySelectorAll('.board-cell')
+  // Attach the event listeners to the parent container
+  playerBoardContainer.addEventListener('dragover', (event) => {
+    event.preventDefault()
+    const cell = event.target
+    const x = Number(cell.dataset.x)
+    const y = Number(cell.dataset.y)
+    highlightedCells = highlightCells(shipLength, x, y, isVertical)
+  })
 
-  boardCells.forEach((cell) => {
-    cell.addEventListener('dragover', (event) => {
-      event.preventDefault()
-      const x = Number(cell.dataset.x)
-      const y = Number(cell.dataset.y)
-      highlightedCells = highlightCells(shipLength, x, y, isVertical)
+  playerBoardContainer.addEventListener('dragleave', (event) => {
+    event.preventDefault()
+    removeHighlight(highlightedCells)
+  })
+
+  playerBoardContainer.addEventListener('dragend', (event) => {
+    event.preventDefault()
+    removeHighlight(highlightedCells)
+  })
+
+  playerBoardContainer.addEventListener('drop', (event) => {
+    event.preventDefault()
+    const cell = event.target
+    const shipData = JSON.parse(event.dataTransfer.getData('text/plain'))
+    const shipName = shipData.shipName
+    const shipLength = Number(shipData.shipLength)
+    const x = Number(cell.dataset.x)
+    const y = Number(cell.dataset.y)
+    console.log(
+      `Dropped ship ${shipName} (Length: ${shipLength}) at cell: ${x}, ${y}`
+    )
+
+    createShip(shipName, shipLength, x, y)
+    ships.forEach((ship) => {
+      if (ship.dataset.shipname === shipName) {
+        ship.remove()
+      }
     })
+    renderBoard()
+    cell.classList.add('fodase')
 
-    cell.addEventListener('dragleave', (event) => {
-      event.preventDefault()
-      removeHighlight(highlightedCells)
-    })
-
-    cell.addEventListener('dragend', (event) => {
-      event.preventDefault()
-      removeHighlight(highlightedCells)
-    })
-
-    cell.addEventListener('drop', (event) => {
-      event.preventDefault()
-      const shipData = JSON.parse(event.dataTransfer.getData('text/plain'))
-      const shipName = shipData.shipName
-      const shipLength = Number(shipData.shipLength)
-      const x = Number(cell.dataset.x)
-      const y = Number(cell.dataset.y)
-      console.log(
-        `Dropped ship ${shipName} (Length: ${shipLength}) at cell: ${x}, ${y}`
-      )
-
-      createShip(shipName, shipLength, x, y)
-      ships.forEach((ship) => {
-        if (ship.dataset.shipname === shipName) {
-          ship.remove()
-        }
-      })
-      cell.classList.add('fodase')
-      
-      removeHighlight(highlightedCells)
-    })
+    removeHighlight(highlightedCells)
   })
 }
 
