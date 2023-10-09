@@ -86,7 +86,7 @@ function highlightCells(shipLength, x, y, isVertical) {
       const cell = document.querySelector(`[data-x="${x}"][data-y="${y + i}"]`)
       if (cell) {
         cellsToHighlight.push(cell)
-        cell.style.backgroundColor = 'blue'
+        cell.style.backgroundColor = '#cccccc8e'
       }
     }
   } else {
@@ -94,7 +94,7 @@ function highlightCells(shipLength, x, y, isVertical) {
       const cell = document.querySelector(`[data-x="${x + i}"][data-y="${y}"]`)
       if (cell) {
         cellsToHighlight.push(cell)
-        cell.style.backgroundColor = 'blue'
+        cell.style.backgroundColor = '#cccccc8e'
       }
     }
   }

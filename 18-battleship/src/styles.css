@@ -33,6 +33,7 @@ button:hover{
 }
 
 .board{
+  position: relative;
   height: 500px;
   width: 500px;
   display: grid;
@@ -72,42 +73,37 @@ button:hover{
   margin-top: 5px;
   width: 150px;
   height: 50px;
-  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain }
 
-}
+
 .ship:hover{
   transform: scale(1.1);
   cursor: pointer;
 }
 
 
-
-.carrier{
-  background-image: url(../public/images/carrier.svg);
-}
-
-.battleship{
-  background-image: url(../public/images/battleship.svg);
-
-}
-
-.cruiser{
-  background-image: url(../public/images/cruiser.svg);
-
-}
-.submarine{
-  background-image: url(../public/images/submarine.svg);
-
-}
-.destroyer{
-  background-image: url(../public/images/destroyer.svg);
-
-}
-
-
-.player-board > .board > .ship-cell {
-  background-color: #3498db; /* Color for cells with a ship */
-}
+  .carrier{
+    background-image: url(../public/images/carrier.png);
+  }
+  
+  .battleship{
+    background-image: url(../public/images/battleship.png);
+  
+  }
+  
+  .cruiser{
+    background-image: url(../public/images/cruiser.png);
+  
+  }
+  .submarine{
+    background-image: url(../public/images/submarine.png);
+  
+  }
+  .destroyer{
+    background-image: url(../public/images/destroyer.png);
+  
+  }
 
 
 
@@ -140,4 +136,10 @@ body > h1 {
 
 .cpt-avatar, .pirate-avatar{
   height: 100px;
+}
+
+
+.ship-image > img{
+  height: 100%;
+  width: 100%;
 }
