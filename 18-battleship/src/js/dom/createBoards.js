@@ -47,6 +47,7 @@ function createGameBoardHTML(gameboard, player, clickHandler) {
           // Create an absolute div for the ship image above the cells
           const shipImageDiv = document.createElement('div')
           shipImageDiv.style.position = 'absolute'
+          shipImageDiv.style.zIndex = '-1'
 
           if (isVertical) {
             shipImageDiv.classList.add(

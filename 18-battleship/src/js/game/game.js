@@ -36,9 +36,9 @@ function shoot(event) {
 
     const didHit = player1.takeTurn(y, x)
     if (didHit === 'hit') {
-      event.target.style.backgroundColor = 'red'
+      event.target.classList.add('hit')
     } else {
-      event.target.style.backgroundColor = 'yellow'
+      event.target.classList.add('miss')
     }
 
     if (cpu.gameboard.allShipsSunk()) {
@@ -53,9 +53,9 @@ function shoot(event) {
       if (!playerTurn) {
         const didHit = cpuAI(cpu)
         if (didHit === 'hit') {
-          cpuAttackedCell.style.backgroundColor = 'red'
+          cpuAttackedCell.classList.add('hit')
         } else {
-          cpuAttackedCell.style.backgroundColor = 'yellow'
+          cpuAttackedCell.classList.add('miss')
         }
         if (player1.gameboard.allShipsSunk()) {
           alert('Game over CPU won')
