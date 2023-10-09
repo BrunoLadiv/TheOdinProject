@@ -247,6 +247,7 @@ body > h1 {
 
 
 .cpu-speech-bubble {
+  opacity: 0;
   position: relative;
   background-color: #ffffff18;
   border: 2px solid #ffffff5f;
@@ -279,6 +280,7 @@ body > h1 {
 
 
 .player-speech-bubble {
+  opacity: 0;
   position: relative;
   background-color: #ffffff18;
   border: 2px solid #ffffff5f;

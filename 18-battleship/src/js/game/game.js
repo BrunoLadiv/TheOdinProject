@@ -7,10 +7,10 @@ import {
 import { dragNdrop } from '../dom/drag-n-drop'
 import { createFleetContainer } from '../dom/fleetContainer'
 import { cpuAI, cpuAttackedCell } from './cpu'
-const gameStarted = true
+import { playerDialog } from '../dom/notifications'
 let playerTurn = true
 
-const player1 = new Player('player1')
+const player1 = new Player('player')
 const cpu = new Player('cpu')
 player1.setOpponentGameboard(cpu.gameboard)
 cpu.setOpponentGameboard(player1.gameboard)
@@ -29,8 +29,19 @@ function renderBoard() {
   createGameBoardHTML(player1.gameboard, 'player', cellClickHandler)
 }
 
+function isPreGame() {
+  const shipsInContainer = document.querySelectorAll(
+    '.fleet-container .ship'
+  ).length
+  if (shipsInContainer != 0) {
+    playerDialog('player', 'pregame')
+  }
+  return shipsInContainer == 0 ? true : false
+}
+
 function shoot(event) {
-  if (gameStarted && playerTurn) {
+  const preGameStatus = isPreGame()
+  if (preGameStatus && playerTurn) {
     const y = event.target.dataset.y
     const x = event.target.dataset.x
 
@@ -42,7 +53,7 @@ function shoot(event) {
     }
 
     if (cpu.gameboard.allShipsSunk()) {
-      alert('Game over Player won')
+      playerDialog('player', 'gameover')
       location.reload()
     }
     playerTurn = false
@@ -58,12 +69,13 @@ function shoot(event) {
           cpuAttackedCell.classList.add('miss')
         }
         if (player1.gameboard.allShipsSunk()) {
-          alert('Game over CPU won')
+          playerDialog('cpu', 'gameover')
+
           location.reload()
         }
         playerTurn = true
       }
-    }, 1000) // Adjust the delay (in milliseconds) as needed
+    }, 2000) // Adjust the turn delay
   }
 }
 

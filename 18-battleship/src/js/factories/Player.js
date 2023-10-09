@@ -1,4 +1,5 @@
 import Gameboard from './Gameboard'
+import {playerDialog} from '../dom/notifications'
 
 export default class Player {
   constructor(name) {
@@ -20,10 +21,10 @@ export default class Player {
     const result = this.opponentGameboard.receiveAttack(x, y)
 
     if (result === 'hit') {
-      console.log(`${this.name} attacked (${x}, ${y}) and hit!`)
+      playerDialog(this.name, 'hit')
       return 'hit'
     } else {
-      console.log(`${this.name} attacked (${x}, ${y}) and missed.`)
+      playerDialog(this.name, 'miss')
       return 'missed'
     }
   }

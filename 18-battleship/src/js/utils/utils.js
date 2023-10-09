@@ -1,3 +1,0 @@
-function notifications() {
-  //do this
-}
