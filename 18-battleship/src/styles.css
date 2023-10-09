@@ -221,7 +221,7 @@ body > h1 {
 
 
 .cpt-avatar, .pirate-avatar{
-  height: 100px;
+  height: 130px;
 }
 
 
@@ -242,3 +242,60 @@ body > h1 {
     opacity: 1;
   }
 }
+
+/* TEST */
+
+
+.cpu-speech-bubble {
+  position: relative;
+  background-color: #ffffff18;
+  border: 2px solid #ffffff5f;
+  border-radius: 10px;
+  max-width: 300px;
+  padding: 10px;
+  margin: 20px;
+}
+
+.cpu-speech-bubble::before {
+  content: "";
+  position: absolute;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #ffffff5f transparent transparent #ffffff5f; /* Adjust this line */
+  top: 50%;
+  right: -20px; /* Adjust this value to position the tip */
+  transform: translateY(20%);
+}
+
+.character {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.message {
+  margin-top: 5px;
+}
+
+
+
+.player-speech-bubble {
+  position: relative;
+  background-color: #ffffff18;
+  border: 2px solid #ffffff5f;
+  border-radius: 10px;
+  max-width: 300px;
+  padding: 10px;
+  margin: 20px;
+}
+
+.player-speech-bubble::before {
+  content: "";
+  position: absolute;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #ffffff5f #ffffff5f transparent transparent;
+  top: 50%;
+  left: -20px; /* Adjust this value to position the tip */
+  transform: translateY(20%);
+}
+
