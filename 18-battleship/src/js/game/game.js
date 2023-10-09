@@ -31,8 +31,8 @@ function renderBoard() {
 
 function shoot(event) {
   if (gameStarted && playerTurn) {
-    const x = event.target.dataset.x
     const y = event.target.dataset.y
+    const x = event.target.dataset.x
 
     const didHit = player1.takeTurn(y, x)
     if (didHit === 'hit') {
@@ -46,6 +46,7 @@ function shoot(event) {
       location.reload()
     }
     playerTurn = false
+    // console.log(' 🚀 ~ file: game.js:50 ~ playerTurn:', playerTurn)
 
     // After the player's turn, check if it's still the player's turn before allowing the CPU to take a turn
     setTimeout(() => {
@@ -65,7 +66,5 @@ function shoot(event) {
     }, 1000) // Adjust the delay (in milliseconds) as needed
   }
 }
-
-
 
 export { player1, cpu, renderBoard, shoot, playerTurn }

@@ -120,3 +120,24 @@ body > h1 {
   color: white;
 
 }
+
+.notifications-container{
+  background-color: #1716164a ;
+  width: 70%;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+
+}
+.player-notification, .cpu-notification{
+  display: flex;
+  width: 50%;
+}
+.cpu-notification{
+  justify-content: flex-end;
+}
+
+
+.cpt-avatar, .pirate-avatar{
+  height: 100px;
+}

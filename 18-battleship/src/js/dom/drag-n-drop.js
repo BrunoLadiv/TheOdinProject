@@ -9,11 +9,12 @@ let highlightedCells = []
 
 function dragNdrop() {
   const ships = document.querySelectorAll('.ship')
-  const playerBoardContainer = document.querySelector('.player-board') 
+  const playerBoardContainer = document.querySelector('.player-board')
 
   ships.forEach((ship) => {
     ship.addEventListener('dragstart', (event) => {
       shipLength = parseInt(ship.getAttribute('ship-length'))
+      event.dataTransfer.setData('ship', 'true');
       event.dataTransfer.setData(
         'text/plain',
         JSON.stringify({
@@ -26,10 +27,12 @@ function dragNdrop() {
 
   playerBoardContainer.addEventListener('dragover', (event) => {
     event.preventDefault()
-    const cell = event.target
-    const x = Number(cell.dataset.x)
-    const y = Number(cell.dataset.y)
-    highlightedCells = highlightCells(shipLength, x, y, isVertical)
+    if (event.dataTransfer.types.includes('ship')) {
+      const cell = event.target;
+      const x = Number(cell.dataset.x);
+      const y = Number(cell.dataset.y);
+      highlightedCells = highlightCells(shipLength, x, y, isVertical);
+    }
   })
 
   playerBoardContainer.addEventListener('dragleave', (event) => {
@@ -45,25 +48,29 @@ function dragNdrop() {
   playerBoardContainer.addEventListener('drop', (event) => {
     event.preventDefault()
     const cell = event.target
-    const shipData = JSON.parse(event.dataTransfer.getData('text/plain'))
-    const shipName = shipData.shipName
-    const shipLength = Number(shipData.shipLength)
-    const x = Number(cell.dataset.x)
-    const y = Number(cell.dataset.y)
-    console.log(
-      `Dropped ship ${shipName} (Length: ${shipLength}) at cell: ${x}, ${y}`
-    )
 
-    const validShip = createShip(shipName, shipLength, x, y)
-    console.log(validShip)
-    if (validShip) {
-      ships.forEach((ship) => {
-        if (ship.dataset.shipname === shipName) {
-          ship.remove()
-        }
-      })
+    try {
+      const shipData = JSON.parse(event.dataTransfer.getData('text/plain'))
+      const shipName = shipData.shipName
+      const shipLength = Number(shipData.shipLength)
+      const x = Number(cell.dataset.x)
+      const y = Number(cell.dataset.y)
+      console.log(
+        `Dropped ship ${shipName} (Length: ${shipLength}) at cell: ${x}, ${y}`
+      )
+      const validShip = createShip(shipName, shipLength, x, y)
+      console.log(validShip)
+      if (validShip) {
+        ships.forEach((ship) => {
+          if (ship.dataset.shipname === shipName) {
+            ship.remove()
+          }
+        })
+      }
+    } catch (error) {
+      return
     }
-    
+
     renderBoard()
     cell.classList.add('fodase')
 
