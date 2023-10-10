@@ -8,6 +8,7 @@ import { dragNdrop } from '../dom/drag-n-drop'
 import { createFleetContainer } from '../dom/fleetContainer'
 import { cpuAI, cpuAttackedCell } from './cpu'
 import { playerDialog } from '../dom/notifications'
+import { PlayFireSound } from '../utils/utils'
 let playerTurn = true
 
 const player1 = new Player('player')
@@ -42,6 +43,8 @@ function isPreGame() {
 function shoot(event) {
   const preGameStatus = isPreGame()
   if (preGameStatus && playerTurn) {
+    document.querySelector("body > div.game-container > div.fleet-container > button").style.opacity = '0'
+    PlayFireSound()
     const y = event.target.dataset.y
     const x = event.target.dataset.x
 
@@ -62,6 +65,7 @@ function shoot(event) {
     // After the player's turn, check if it's still the player's turn before allowing the CPU to take a turn
     setTimeout(() => {
       if (!playerTurn) {
+        PlayFireSound()
         const didHit = cpuAI(cpu)
         if (didHit === 'hit') {
           cpuAttackedCell.classList.add('hit')
@@ -75,7 +79,7 @@ function shoot(event) {
         }
         playerTurn = true
       }
-    }, 2000) // Adjust the turn delay
+    }, 2500) // Adjust the turn delay
   }
 }
 

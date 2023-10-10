@@ -1,5 +1,6 @@
 import Gameboard from './Gameboard'
-import {playerDialog} from '../dom/notifications'
+import { playerDialog } from '../dom/notifications'
+import { playHitSound, playMissSound } from '../utils/utils'
 
 export default class Player {
   constructor(name) {
@@ -21,10 +22,14 @@ export default class Player {
     const result = this.opponentGameboard.receiveAttack(x, y)
 
     if (result === 'hit') {
+      playHitSound()
       playerDialog(this.name, 'hit')
+
       return 'hit'
-    } else {
+    } else if(result === 'miss') {
+      playMissSound()
       playerDialog(this.name, 'miss')
+
       return 'missed'
     }
   }

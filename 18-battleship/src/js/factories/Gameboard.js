@@ -19,7 +19,6 @@ export default class Gameboard {
   // Place a ship on the game board
   placeShip(ship, x, y, isVertical) {
     if (x < 0 || x >= this.rows || y < 0 || y >= this.columns) {
-      // alert('Out of bounds')
       return false // Out of bounds
     }
 
@@ -31,7 +30,6 @@ export default class Gameboard {
 
       for (let i = 0; i < ship.length; i++) {
         if (this.board[x + i][y] !== null) {
-          // alert("can't overlap ships")
           return false // Overlapping ship
         }
       }
@@ -74,7 +72,6 @@ export default class Gameboard {
       const ship = this.board[x][y]
       try {
         ship.hit() // Give the hit to the ship
-        console.log('test', ship)
         if (ship.isSunk()) {
           console.log(`${ship.name} sunk`)
         }

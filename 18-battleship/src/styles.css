@@ -150,6 +150,7 @@ button:hover{
 }
 
 .fleet-container {
+  position: relative;
   min-height: 80%;
   margin-left: 10px;
   z-index: 5;
@@ -301,3 +302,52 @@ body > h1 {
   transform: translateY(20%);
 }
 
+
+/* ROTATE BTN  */
+
+.button {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+  height: 34px;
+  width: 112px;
+  border: none;
+  background: #ffffff5f;
+  border-radius: 20px;
+  cursor: pointer;
+  bottom: 5%;
+  left: 10%;
+}
+
+.lable {
+  line-height: 20px;
+  font-size: 17px;
+  color:  white;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
+.button:hover {
+  background: #09020252;
+}
+
+.button:hover .svg-icon {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+body > div.game-container > div.cpu-board > div > div.ship-image{
+  display: none;
+}

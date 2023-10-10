@@ -1,5 +1,4 @@
-let cpuAttackedCell 
-
+let cpuAttackedCell
 
 function cpuAI(cpuPlayer) {
   const availablePositions = generateAllPositions(
@@ -13,7 +12,7 @@ function cpuAI(cpuPlayer) {
     const position = availablePositions[randomIndex]
     const x = position.x
     const y = position.y
-    cpuAttackedCell = document.querySelector(`[data-x="${x}"][data-y="${y}"]`); 
+    cpuAttackedCell = document.querySelector(`[data-x="${x}"][data-y="${y}"]`);
 
     validMove = cpuPlayer.takeTurn(y, x)
     if (validMove === 'hit' || validMove === 'miss') {
@@ -24,7 +23,7 @@ function cpuAI(cpuPlayer) {
   return validMove
 }
 
-// Helper function to generate all possible positions on the game board
+// // Helper function to generate all possible positions on the game board
 function generateAllPositions(rows, columns) {
   const positions = []
   for (let x = 0; x < rows; x++) {
@@ -35,4 +34,5 @@ function generateAllPositions(rows, columns) {
   return positions
 }
 
-export { cpuAI, cpuAttackedCell }
+export { cpuAI, cpuAttackedCell };
+
