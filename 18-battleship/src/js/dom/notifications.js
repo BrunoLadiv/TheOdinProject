@@ -2,6 +2,7 @@ const playerMSGBubble = document.querySelector('.player-speech-bubble .message')
 const cpuMSGBubble = document.querySelector('.cpu-speech-bubble .message')
 const playerMSGBubbleCTN = document.querySelector('.player-speech-bubble')
 const cpuMSGBubbleCTN = document.querySelector('.cpu-speech-bubble')
+let gameover
 const cpuHitMessages = [
   'That was a direct hit!',
   "We've damaged their hull!",
@@ -54,28 +55,26 @@ const preGameMessages = [
   "It's time to deploy our fleet! Drag and drop our ships onto the battlefield.",
 ]
 const gameOverMessages = [
-  "Victory is yours!",
-  "Congratulations on the win!",
+  'Victory is yours!',
+  'Congratulations on the win!',
   "You've emerged victorious!",
-  "Well done on your triumph!",
+  'Well done on your triumph!',
   "You've achieved victory!",
-];
-
-
+]
 
 function hitMSG(player) {
   // Randomly select a hit message
-  console.log(player)
 
   const hitMessages = player === 'cpu' ? cpuHitMessages : playerHitMessages
-  console.log(hitMessages)
   const randomIndex = Math.floor(Math.random() * hitMessages.length)
   const message = hitMessages[randomIndex]
 
   if (player === 'player') {
     playerMSGBubble.innerText = message
+    cpuMSGBubble.innerText = "..."
   } else {
     cpuMSGBubble.innerText = message
+    playerMSGBubble.innerText = '...'
   }
 }
 
@@ -84,11 +83,12 @@ function missMSG(player) {
   const hitMessages = player === 'cpu' ? cpuMissedHits : playerMissedHits
   const randomIndex = Math.floor(Math.random() * hitMessages.length)
   const message = hitMessages[randomIndex]
-  console.log(player)
   if (player === 'player') {
     cpuMSGBubble.innerText = message
+    playerMSGBubble.innerText = '...'
   } else if (player === 'cpu') {
     playerMSGBubble.innerText = message
+    cpuMSGBubble.innerText = '...'
   }
 }
 
@@ -99,21 +99,20 @@ function preGameNotification() {
   playerMSGBubble.innerText = message
 }
 
-function gameOverMSG(player){
+function gameOverMSG(player) {
   const randomIndex = Math.floor(Math.random() * gameOverMessages.length)
   const message = gameOverMessages[randomIndex]
   if (player === 'player') {
-    playerMSGBubble.innerText = message
-
+    cpuMSGBubble.innerText = message + ' I surrender!'
+    playerMSGBubble.innerText = 'Hahahahaha'
   } else {
-    cpuMSGBubble.innerText = message
-
+    playerMSGBubble.innerText = message + ' I surrender!'
+    cpuMSGBubble.innerText = 'Hahahahaha'
   }
-
-
 }
 
 function playerDialog(player, msg) {
+  if (gameover) return
   let bubbleContainer
   if (player === 'player') {
     if (msg === 'hit') {
@@ -133,7 +132,9 @@ function playerDialog(player, msg) {
       bubbleContainer.style.opacity = '1'
       preGameNotification()
     } else if (msg === 'gameover') {
-      gameOverMSG()
+      gameover = true
+      gameOverMSG(player)
+      return
     }
   } else if (player === 'cpu') {
     if (msg === 'hit') {
@@ -148,11 +149,12 @@ function playerDialog(player, msg) {
       bubbleContainer.style.opacity = '1'
 
       missMSG(player)
+    } else if (msg === 'gameover') {
+      gameover = true
+      gameOverMSG(player)
+      return
     }
   }
-  setTimeout(() => {
-    bubbleContainer.style.opacity = '0'
-  }, 2000)
 }
 
 export { playerDialog }

@@ -10,6 +10,7 @@ import { cpuAI, cpuAttackedCell } from './cpu'
 import { playerDialog } from '../dom/notifications'
 import { PlayFireSound } from '../utils/utils'
 let playerTurn = true
+let gameOver
 
 const player1 = new Player('player')
 const cpu = new Player('cpu')
@@ -42,8 +43,10 @@ function isPreGame() {
 
 function shoot(event) {
   const preGameStatus = isPreGame()
-  if (preGameStatus && playerTurn) {
-    document.querySelector("body > div.game-container > div.fleet-container > button").style.opacity = '0'
+  if (preGameStatus && playerTurn && !gameOver) {
+    document.querySelector(
+      'body > div.game-container > div.fleet-container > button'
+    ).style.opacity = '0'
     PlayFireSound()
     const y = event.target.dataset.y
     const x = event.target.dataset.x
@@ -57,7 +60,9 @@ function shoot(event) {
 
     if (cpu.gameboard.allShipsSunk()) {
       playerDialog('player', 'gameover')
-      location.reload()
+      
+      gameOver = true
+      return
     }
     playerTurn = false
     // console.log(' 🚀 ~ file: game.js:50 ~ playerTurn:', playerTurn)
@@ -74,13 +79,16 @@ function shoot(event) {
         }
         if (player1.gameboard.allShipsSunk()) {
           playerDialog('cpu', 'gameover')
+          
+          gameOver = true
 
-          location.reload()
+          return
         }
         playerTurn = true
       }
     }, 2500) // Adjust the turn delay
   }
+  return
 }
 
 export { player1, cpu, renderBoard, shoot, playerTurn }

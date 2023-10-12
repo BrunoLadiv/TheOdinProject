@@ -6,6 +6,7 @@
 
 }
 body{
+  
   position: relative;
   display: flex;
   flex-direction: column;
@@ -348,6 +349,19 @@ body > h1 {
   }
 }
 
-body > div.game-container > div.cpu-board > div > div.ship-image{
+/* body > div.game-container > div.cpu-board > div > div.ship-image{
   display: none;
+} */
+
+.game-over-modal {
+  position: fixed;
+  top: 1%;
+  left: 1%;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensure it's above other content */
 }
