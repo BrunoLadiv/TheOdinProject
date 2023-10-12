@@ -93,10 +93,19 @@ function missMSG(player) {
 }
 
 function preGameNotification() {
+  const playerBoard = document.querySelector("body > div.game-container > div.player-board > div")
+  const fleetContainer = document.querySelector("body > div.game-container > div.fleet-container")
+  playerBoard.classList.add('pre-game')
+  fleetContainer.classList.add('pre-game')
+  
   const randomIndex = Math.floor(Math.random() * preGameMessages.length)
   const message = preGameMessages[randomIndex]
 
   playerMSGBubble.innerText = message
+  setTimeout(() => {
+    playerBoard.classList.remove('pre-game')
+    fleetContainer.classList.remove('pre-game')
+  }, 4000);
 }
 
 function gameOverMSG(player) {
@@ -105,9 +114,15 @@ function gameOverMSG(player) {
   if (player === 'player') {
     cpuMSGBubble.innerText = message + ' I surrender!'
     playerMSGBubble.innerText = 'Hahahahaha'
+    setTimeout(() => {
+      location.reload()
+    }, 5000);
   } else {
     playerMSGBubble.innerText = message + ' I surrender!'
     cpuMSGBubble.innerText = 'Hahahahaha'
+    setTimeout(() => {
+      location.reload()
+    }, 5000);
   }
 }
 
