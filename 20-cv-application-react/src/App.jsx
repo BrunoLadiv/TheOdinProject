@@ -1,9 +1,10 @@
+import { SectionContainer } from './components/styled/SectionContainer.style'
 
 function App() {
   return (
     <>
-      <div className="resume-container"></div>
-      <div className="form-container"></div>
+      <SectionContainer minWidth='300px' percentageSize='40%' ></SectionContainer>
+      <SectionContainer minWidth='300px' percentageSize='60%' ></SectionContainer>
     </>
   )
 }

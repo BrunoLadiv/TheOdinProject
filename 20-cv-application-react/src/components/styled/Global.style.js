@@ -1,4 +1,7 @@
-*{
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyles = createGlobalStyle`
+  *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -25,20 +28,6 @@ body{
   display: flex;
   flex-wrap: wrap;
 }
+`
 
-
-.resume-container, .form-container {
-  border: 1px solid rgb(0, 0, 0);
-  background-color: white;
-  
-}
-
-.resume-container{
-  flex: 1 1 35%;
-  min-width: 375px;
-}
-
-.form-container{
-  flex: 1 1 65%;
-  min-width: 375px;
-}
+export default GlobalStyles
