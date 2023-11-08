@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
 
 body{
   height: 100vh;
-  width: 100vw;
+  min-width: 100vw;
   background-color: black;
   
 }
@@ -28,7 +28,11 @@ body{
   display: flex;
   flex-wrap: wrap;
 }
-
+/* @media (max-width: 768px) {
+    #root{
+      min-width: 100vw;
+    }
+  } */
 
 `
 
