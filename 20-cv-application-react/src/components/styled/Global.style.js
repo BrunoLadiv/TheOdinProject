@@ -28,6 +28,8 @@ body{
   display: flex;
   flex-wrap: wrap;
 }
+
+
 `
 
 export default GlobalStyles
