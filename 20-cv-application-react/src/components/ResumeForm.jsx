@@ -24,6 +24,7 @@ export default function ResumeForm() {
       <Accordion
         expanded={expanded === 'panel1'}
         onChange={handleChange('panel1')}
+        style={{marginTop:'40px'}}
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

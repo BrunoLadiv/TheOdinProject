@@ -6,9 +6,10 @@ export const ResumeContainer = styled.section`
   width: 85%;
   display: flex;
   flex-wrap: wrap;
-  background-color: green;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1118px) {
     width: 100%; 
   }
+
+  
 `

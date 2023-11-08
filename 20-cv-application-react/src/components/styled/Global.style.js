@@ -8,15 +8,12 @@ const GlobalStyles = createGlobalStyle`
   
 }
 
-
-
 body{
   height: 100vh;
   min-width: 100vw;
-  background-color: black;
+  background-color: #EBECF0;
   
 }
-
 
 
 
@@ -24,7 +21,7 @@ body{
   
   margin: 0px auto;
   min-height: 100%;
-  width: 80%;
+  width: 85%;
   display: flex;
   flex-wrap: wrap;
 }
