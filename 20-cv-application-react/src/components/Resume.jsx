@@ -15,7 +15,7 @@ export function Resume({ side }) {
         <ResumeStyle>
           <h1>{resumeState.personalDetails.name}</h1>
           <Divider
-            style={{ color:' #323B4C' }}
+            style={{ color: ' #323B4C' }}
             sx={{
               '&::after': {
                 backgroundColor: '#ffffff69',
@@ -27,7 +27,14 @@ export function Resume({ side }) {
           >
             Eperience
           </Divider>
-          
+          {resumeState.experienceArray.map((obj) => {
+            console.log('aqu', obj);
+          return  <>
+              <h2>{obj.companyName}</h2>
+              <h3>{obj.positionTitle}</h3>
+              <p>{formatDate(obj.startDate) } - {formatDate(obj.endDate)}</p>
+            </>
+          })}
         </ResumeStyle>
       </>
     )

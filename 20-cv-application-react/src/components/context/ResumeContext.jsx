@@ -68,7 +68,12 @@ function reducer(resumeState, action) {
             education: initialState.education,
             educationArray: []
           }
-      
+        case 'experience':
+          return {
+            ...resumeState,
+            experience: initialState.experience,
+            experienceArray: []
+          }
         default:
           return resumeState
       }
@@ -86,7 +91,7 @@ function reducer(resumeState, action) {
           return {
             ...resumeState,
             experienceArray: [...resumeState.experienceArray, {
-              ...resumeState.education
+              ...resumeState.experience
             } ], experience: initialState.experience
           }
         

@@ -179,9 +179,9 @@ export default function ResumeForm() {
               })
             }
             value={resumeState.education.location}
+            InputLabelProps={{ shrink: resumeState.education.location}}
             label="Location"
             type="text"
-            InputLabelProps={{ shrink: resumeState.education.location}}
             variant="standard"
           />
           <BtnFormContainer>
@@ -258,6 +258,8 @@ export default function ResumeForm() {
                 payload: { companyName: e.target.value },
               })
             }
+            value={resumeState.experience.companyName}
+            InputLabelProps={{ shrink: resumeState.experience.companyName}}
             label="Company name"
             type="text"
             variant="standard"
@@ -269,6 +271,8 @@ export default function ResumeForm() {
                 payload: { positionTitle: e.target.value },
               })
             }
+            value={resumeState.experience.positionTitle}
+            InputLabelProps={{ shrink: resumeState.experience.positionTitle}}
             label="Position title"
             type="text"
             variant="standard"
@@ -281,6 +285,8 @@ export default function ResumeForm() {
               })
             }
             InputLabelProps={{ shrink: true }}
+            value={resumeState.experience.startDate}
+            
             label="Start date"
             type="date"
             variant="standard"
@@ -293,10 +299,29 @@ export default function ResumeForm() {
               })
             }
             InputLabelProps={{ shrink: true }}
+            value={resumeState.experience.endDate}
+            
             label="End date"
             type="date"
             variant="standard"
           />
+          <BtnFormContainer>
+            <Button
+              onClick={()=> dispatch({type: 'RESET', payload: 'experience'})}
+              
+              variant="outlined"
+              color="error"
+            >
+              Reset
+            </Button>
+            <Button
+              onClick={()=> dispatch({type: 'SAVE', payload: 'experience'})}
+              variant="outlined"
+              color="success"
+            >
+              Save
+            </Button>
+          </BtnFormContainer>
         </AccordionDetails>
       </Accordion>
     </>

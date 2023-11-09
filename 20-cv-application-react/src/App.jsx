@@ -23,14 +23,14 @@ function App() {
             minWidth="200px"
             percentageSize="35%"
           >
-            <Resume side={'left'}/>
+            <Resume side={'left'} />
           </SectionContainer>
           <SectionContainer
             bg={'white'}
             minWidth="230px"
             percentageSize="65%"
           >
-            <Resume side={'right'}/>
+            <Resume side={'right'} />
           </SectionContainer>
         </ResumeContainer>
       </SectionContainer>
