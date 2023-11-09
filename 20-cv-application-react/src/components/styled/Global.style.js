@@ -25,11 +25,22 @@ body{
   display: flex;
   flex-wrap: wrap;
 }
-/* @media (max-width: 768px) {
-    #root{
-      min-width: 100vw;
-    }
-  } */
+@media print {
+  body {
+    
+    color: black;    
+  }
+  #root > section.sc-bdnyFh.dBekji{
+    display: none;
+  }
+  #root > section.sc-bdnyFh.isqJgw > section > section.sc-bdnyFh.hwjNcH > div.MuiAvatar-root.MuiAvatar-circular.MuiAvatar-colorDefault.css-1vfbbup-MuiAvatar-root{
+    display: none;
+  }
+  #root > section.sc-bdnyFh.isqJgw > section > section.sc-bdnyFh.hwjNcH{
+    background-color: white;
+  }
+
+}
 
 `
 

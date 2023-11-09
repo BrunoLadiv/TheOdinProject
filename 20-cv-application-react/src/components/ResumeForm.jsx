@@ -12,7 +12,6 @@ import WorkHistoryIcon from '@mui/icons-material/WorkHistory'
 import { ResumeContext } from './context/ResumeContext'
 import Button from '@mui/material/Button'
 import { BtnFormContainer } from './styled/BtnFormContainer'
-
 export default function ResumeForm() {
   const { resumeState, dispatch } = React.useContext(ResumeContext)
   const [expanded, setExpanded] = React.useState('panel1')
@@ -127,8 +126,7 @@ export default function ResumeForm() {
             label="School"
             required
             type="text"
-            InputLabelProps={{ shrink: resumeState.education.school}}
-
+            InputLabelProps={{ shrink: resumeState.education.school }}
             variant="standard"
           />
           <TextField
@@ -168,7 +166,6 @@ export default function ResumeForm() {
             value={resumeState.education.endDate}
             label="End date"
             type="date"
-            
             variant="standard"
           />
           <TextField
@@ -179,28 +176,141 @@ export default function ResumeForm() {
               })
             }
             value={resumeState.education.location}
-            InputLabelProps={{ shrink: resumeState.education.location}}
+            InputLabelProps={{ shrink: resumeState.education.location }}
             label="Location"
             type="text"
             variant="standard"
           />
           <BtnFormContainer>
             <Button
-              onClick={()=> dispatch({type: 'RESET', payload: 'education'})}
-              
+              onClick={() => dispatch({ type: 'RESET', payload: 'education' })}
               variant="outlined"
               color="error"
             >
               Reset
             </Button>
             <Button
-              onClick={()=> dispatch({type: 'SAVE', payload: 'education'})}
+              onClick={() => dispatch({ type: 'SAVE', payload: 'education' })}
               variant="outlined"
               color="success"
             >
               Save
             </Button>
           </BtnFormContainer>
+          {resumeState.educationArray.map((obj) => {
+            return (
+              <Accordion key={obj.id}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography>{obj.school}</Typography>
+                </AccordionSummary>
+                <AccordionDetails
+                  sx={{ display: 'flex', flexDirection: 'column' }}
+                >
+                  <TextField
+                    onChange={(e) =>
+                      dispatch({
+                        type: 'EDIT',
+                        payload: { ...obj, school: e.target.value },
+                        change: 'EDUCATION',
+                      })
+                    }
+                    value={obj.school}
+                    label="School"
+                    required
+                    type="text"
+                    InputLabelProps={{ shrink: obj.school }}
+                    variant="standard"
+                  />
+                  <TextField
+                    onChange={(e) =>
+                      dispatch({
+                        type: 'EDIT',
+                        payload: { ...obj, degree: e.target.value },
+                        change: 'EDUCATION',
+                      })
+                    }
+                    value={obj.degree}
+                    InputLabelProps={{ shrink: obj.degree }}
+                    required
+                    label="Degree"
+                    type="text"
+                    variant="standard"
+                  />
+                  <TextField
+                    onChange={(e) =>
+                      dispatch({
+                        type: 'EDIT',
+                        payload: { ...obj, startDate: e.target.value },
+                        change: 'EDUCATION',
+                      })
+                    }
+                    InputLabelProps={{ shrink: true }}
+                    value={obj.startDate}
+                    label="Start date"
+                    type="date"
+                    variant="standard"
+                  />
+                  <TextField
+                    onChange={(e) =>
+                      dispatch({
+                        type: 'EDIT',
+                        payload: { ...obj, endDate: e.target.value },
+                        change: 'EDUCATION',
+                      })
+                    }
+                    InputLabelProps={{ shrink: true }}
+                    value={obj.endDate}
+                    label="End date"
+                    type="date"
+                    variant="standard"
+                  />
+                  <TextField
+                    onChange={(e) =>
+                      dispatch({
+                        type: 'EDIT',
+                        payload: { ...obj, location: e.target.value },
+                        change: 'EDUCATION',
+                      })
+                    }
+                    value={obj.location}
+                    InputLabelProps={{ shrink: obj.location }}
+                    label="Location"
+                    type="text"
+                    variant="standard"
+                  />
+                  <BtnFormContainer>
+                    <Button
+                      onClick={() =>
+                        dispatch({ type: 'DELETE', id: obj.id, payload: 'EDUCATION' })
+                      }
+                      variant="outlined"
+                      color="error"
+                    >
+                      Delete
+                    </Button>
+                  </BtnFormContainer>
+                  {resumeState.educationArray.map((obj) => {
+                    return (
+                      <Accordion key={obj.id}>
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls="panel1a-content"
+                          id="panel1a-header"
+                        >
+                          <Typography>{obj.school}</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>const</AccordionDetails>
+                      </Accordion>
+                    )
+                  })}
+                </AccordionDetails>
+              </Accordion>
+            )
+          })}
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -259,7 +369,7 @@ export default function ResumeForm() {
               })
             }
             value={resumeState.experience.companyName}
-            InputLabelProps={{ shrink: resumeState.experience.companyName}}
+            InputLabelProps={{ shrink: resumeState.experience.companyName }}
             label="Company name"
             type="text"
             variant="standard"
@@ -272,7 +382,7 @@ export default function ResumeForm() {
               })
             }
             value={resumeState.experience.positionTitle}
-            InputLabelProps={{ shrink: resumeState.experience.positionTitle}}
+            InputLabelProps={{ shrink: resumeState.experience.positionTitle }}
             label="Position title"
             type="text"
             variant="standard"
@@ -286,7 +396,6 @@ export default function ResumeForm() {
             }
             InputLabelProps={{ shrink: true }}
             value={resumeState.experience.startDate}
-            
             label="Start date"
             type="date"
             variant="standard"
@@ -300,22 +409,20 @@ export default function ResumeForm() {
             }
             InputLabelProps={{ shrink: true }}
             value={resumeState.experience.endDate}
-            
             label="End date"
             type="date"
             variant="standard"
           />
           <BtnFormContainer>
             <Button
-              onClick={()=> dispatch({type: 'RESET', payload: 'experience'})}
-              
+              onClick={() => dispatch({ type: 'RESET', payload: 'experience' })}
               variant="outlined"
               color="error"
             >
               Reset
             </Button>
             <Button
-              onClick={()=> dispatch({type: 'SAVE', payload: 'experience'})}
+              onClick={() => dispatch({ type: 'SAVE', payload: 'experience' })}
               variant="outlined"
               color="success"
             >

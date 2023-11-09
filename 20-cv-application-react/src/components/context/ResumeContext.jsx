@@ -22,10 +22,8 @@ const initialState = {
     endDate: '',
   },
   educationArray: [],
-  experienceArray: []
+  experienceArray: [],
 }
-
-
 
 function reducer(resumeState, action) {
   switch (action.type) {
@@ -58,21 +56,20 @@ function reducer(resumeState, action) {
           ...action.payload,
         },
       }
-    
+
     case 'RESET':
       switch (action.payload) {
         case 'education':
-          
           return {
             ...resumeState,
             education: initialState.education,
-            educationArray: []
+            educationArray: [],
           }
         case 'experience':
           return {
             ...resumeState,
             experience: initialState.experience,
-            experienceArray: []
+            experienceArray: [],
           }
         default:
           return resumeState
@@ -80,26 +77,106 @@ function reducer(resumeState, action) {
     case 'SAVE':
       switch (action.payload) {
         case 'education':
-          
           return {
             ...resumeState,
-            educationArray: [...resumeState.educationArray, {
-              ...resumeState.education
-            } ], education: initialState.education
+            educationArray: [
+              ...resumeState.educationArray,
+              {
+                ...resumeState.education,
+                id: crypto.randomUUID(),
+              },
+            ],
+            education: initialState.education,
           }
         case 'experience':
           return {
             ...resumeState,
-            experienceArray: [...resumeState.experienceArray, {
-              ...resumeState.experience
-            } ], experience: initialState.experience
+            experienceArray: [
+              ...resumeState.experienceArray,
+              {
+                ...resumeState.experience,
+                id: crypto.randomUUID(),
+              },
+            ],
+            experience: initialState.experience,
           }
-        
-      
+
         default:
           return resumeState
       }
 
+    case 'EDIT':
+      switch (action.change) {
+        case 'EDUCATION': {
+          const updatedEducationArray = resumeState.educationArray.map(
+            (item) => {
+              if (item.id === action.payload.id) {
+                return {
+                  ...item,
+                  ...action.payload,
+                }
+              }
+              return item
+            }
+          )
+
+          return {
+            ...resumeState,
+            educationArray: updatedEducationArray,
+          }
+        }
+        case 'EXPERIENCE': {
+          const updatedExperienceArray = resumeState.experienceArray.map(
+            (item) => {
+              if (item.id === action.payload.id) {
+                return {
+                  ...item,
+                  ...action.payload,
+                }
+              }
+              return item
+            }
+          )
+
+          return {
+            ...resumeState,
+            experienceArray: updatedExperienceArray,
+          }
+        }
+
+        default:
+          return resumeState
+      }
+    case 'DELETE':
+      switch (action.payload) {
+        case 'EDUCATION': {
+          const idToDelete = action.id
+
+          const updatedEducationArray = resumeState.educationArray.filter(
+            (item) => item.id !== idToDelete
+          )
+
+          return {
+            ...resumeState,
+            educationArray: updatedEducationArray,
+          }
+        }
+        case 'EXPERIENCE':{
+          const idToDelete = action.id
+
+          const updatedEperienceArray = resumeState.experienceArray.filter(
+            (item) => item.id !== idToDelete
+          )
+
+          return {
+            ...resumeState,
+            experienceArray: updatedEperienceArray,
+          }
+        }
+
+        default:
+          return resumeState
+      }
     default:
       return resumeState
   }

@@ -12,9 +12,18 @@ export const LeftPSContainer = styled.div`
     font-size: 18px;
     font-weight: bolder;
   }
+ 
   & > p {
     
     font-size: 14px;
     margin-left: 10px;
+  }
+  @media print{
+    color: black;
+    font-weight: bolder;
+    & > span{
+      color: black;
+    }
+
   }
 `

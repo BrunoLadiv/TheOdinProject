@@ -6,5 +6,6 @@ export const BtnFormContainer = styled.div`
   justify-content: center;
   margin-top: 10px;
   gap: 10px;
+  margin-bottom: 15px;
 
 `

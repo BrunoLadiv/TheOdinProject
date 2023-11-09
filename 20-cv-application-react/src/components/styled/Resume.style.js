@@ -5,9 +5,11 @@ import styled from "styled-components";
 
 
 export const ResumeStyle = styled.div`
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@300&display=swap');
   margin: 0 auto;
   width: 80%;
   & > h1{
+    font-family: 'Cormorant', serif;
     font-size: 50px;
     text-align: center;
     margin-top: 15px;
