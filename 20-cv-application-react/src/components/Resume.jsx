@@ -42,7 +42,7 @@ export function Resume({ side }) {
       <>
         
         <Divider
-          style={{ color: 'white', marginTop:'50px' }}
+          style={{ color: 'white', marginTop:'15px' }}
           sx={{
             '&::after': {
               backgroundColor: '#ffffff69',
@@ -66,7 +66,7 @@ export function Resume({ side }) {
           })}
         </LeftPSContainer>
         <Divider
-          style={{ color: 'white' }}
+          style={{ color: 'white', marginTop:'15px' }}
           sx={{
             '&::after': {
               backgroundColor: '#ffffff69',
@@ -95,7 +95,7 @@ export function Resume({ side }) {
           })}
         </LeftPSContainer>
         <Divider
-          style={{ color: 'white' }}
+          style={{ color: 'white', marginTop:'15px' }}
           sx={{
             '&::after': {
               backgroundColor: '#ffffff69',
@@ -108,7 +108,7 @@ export function Resume({ side }) {
           Tech Skills
         </Divider>
         <LeftPSContainer>
-          <p>{resumeState.techSkills}</p>
+          <p style={{marginTop:'10px'}}>{resumeState.techSkills}</p>
         </LeftPSContainer>
       </>
     )

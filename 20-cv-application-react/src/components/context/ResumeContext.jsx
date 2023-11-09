@@ -1,29 +1,85 @@
 import React from 'react'
 
+// const initialState = {
+//   personalDetails: {
+//     name: '',
+//     email: '',
+//     phone: '',
+//     address: '',
+//   },
+//   education: {
+//     school: '',
+//     degree: '',
+//     startDate: '',
+//     endDate: '',
+//     location: '',
+//   },
+//   techSkills: '',
+//   experience: {
+//     companyName: '',
+//     positionTitle: '',
+//     startDate: '',
+//     endDate: '',
+//   },
+//   educationArray: [],
+//   experienceArray: [],
+// }
 const initialState = {
   personalDetails: {
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    phone: '123-456-7890',
+    address: '123 Main Street, Cityville',
   },
   education: {
-    school: '',
-    degree: '',
-    startDate: '',
-    endDate: '',
-    location: '',
+    school: 'University of Fiction',
+    degree: 'Bachelor of Science in Fictional Studies',
+    startDate: '2015-09-01',
+    endDate: '2019-05-31',
+    location: 'Cityville',
   },
-  techSkills: '',
+  techSkills: 'JavaScript, React, Node.js',
   experience: {
-    companyName: '',
-    positionTitle: '',
-    startDate: '',
-    endDate: '',
+    companyName: 'Tech Co.',
+    positionTitle: 'Software Engineer',
+    startDate: '2019-06-01',
+    endDate: '2022-12-31',
   },
-  educationArray: [],
-  experienceArray: [],
-}
+  educationArray: [
+    {
+      id: '53252352',
+      school: 'High School of Fiction',
+      degree: 'High School Diploma',
+      startDate: '2011-09-01',
+      endDate: '2015-05-31',
+      location: 'Cityville',
+    },
+    {
+      id: '5325235',
+      school: 'Fictional Coding Bootcamp',
+      degree: 'Coding Certificate',
+      startDate: '2019-01-01',
+      endDate: '2019-03-31',
+      location: 'Tech City',
+    },
+  ],
+  experienceArray: [
+    {
+      id: '3442432',
+      companyName: 'Code Innovators',
+      positionTitle: 'Junior Developer',
+      startDate: '2020-01-01',
+      endDate: '2021-06-30',
+    },
+    {
+      id: '52352352',
+      companyName: 'Tech Solutions Ltd.',
+      positionTitle: 'Senior Developer',
+      startDate: '2022-01-01',
+      endDate: '2023-12-31',
+    },
+  ],
+};
 
 function reducer(resumeState, action) {
   switch (action.type) {

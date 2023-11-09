@@ -25,7 +25,7 @@ export default function ResumeForm() {
       <Accordion
         expanded={expanded === 'panel1'}
         onChange={handleChange('panel1')}
-        style={{ marginTop: '40px' }}
+        style={{ marginTop: '30px' }}
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -152,7 +152,7 @@ export default function ResumeForm() {
             InputLabelProps={{ shrink: true }}
             value={resumeState.education.startDate}
             label="Start date"
-            type="date"
+            type="month"
             variant="standard"
           />
           <TextField
@@ -165,7 +165,7 @@ export default function ResumeForm() {
             InputLabelProps={{ shrink: true }}
             value={resumeState.education.endDate}
             label="End date"
-            type="date"
+            type="month"
             variant="standard"
           />
           <TextField
@@ -285,7 +285,11 @@ export default function ResumeForm() {
                   <BtnFormContainer>
                     <Button
                       onClick={() =>
-                        dispatch({ type: 'DELETE', id: obj.id, payload: 'EDUCATION' })
+                        dispatch({
+                          type: 'DELETE',
+                          id: obj.id,
+                          payload: 'EDUCATION',
+                        })
                       }
                       variant="outlined"
                       color="error"
@@ -293,20 +297,6 @@ export default function ResumeForm() {
                       Delete
                     </Button>
                   </BtnFormContainer>
-                  {resumeState.educationArray.map((obj) => {
-                    return (
-                      <Accordion key={obj.id}>
-                        <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel1a-content"
-                          id="panel1a-header"
-                        >
-                          <Typography>{obj.school}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>const</AccordionDetails>
-                      </Accordion>
-                    )
-                  })}
                 </AccordionDetails>
               </Accordion>
             )
@@ -397,7 +387,7 @@ export default function ResumeForm() {
             InputLabelProps={{ shrink: true }}
             value={resumeState.experience.startDate}
             label="Start date"
-            type="date"
+            type="month"
             variant="standard"
           />
           <TextField
@@ -410,7 +400,7 @@ export default function ResumeForm() {
             InputLabelProps={{ shrink: true }}
             value={resumeState.experience.endDate}
             label="End date"
-            type="date"
+            type="month"
             variant="standard"
           />
           <BtnFormContainer>
@@ -500,11 +490,15 @@ export default function ResumeForm() {
                     type="date"
                     variant="standard"
                   />
-                  
+
                   <BtnFormContainer>
                     <Button
                       onClick={() =>
-                        dispatch({ type: 'DELETE', id: obj.id, payload: 'EXPERIENCE' })
+                        dispatch({
+                          type: 'DELETE',
+                          id: obj.id,
+                          payload: 'EXPERIENCE',
+                        })
                       }
                       variant="outlined"
                       color="error"
@@ -512,20 +506,6 @@ export default function ResumeForm() {
                       Delete
                     </Button>
                   </BtnFormContainer>
-                  {resumeState.educationArray.map((obj) => {
-                    return (
-                      <Accordion key={obj.id}>
-                        <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel1a-content"
-                          id="panel1a-header"
-                        >
-                          <Typography>{obj.school}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>const</AccordionDetails>
-                      </Accordion>
-                    )
-                  })}
                 </AccordionDetails>
               </Accordion>
             )
