@@ -26,3 +26,12 @@ export function stringAvatar(name) {
     children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
   };
 }
+
+export function formatDate(inputDate) {
+  const date = new Date(inputDate);
+
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  const formattedDate = date.toLocaleDateString('en-GB', options);
+
+  return formattedDate;
+}

@@ -14,14 +14,18 @@ const initialState = {
     endDate: '',
     location: '',
   },
-  techSkills: [],
+  techSkills: '',
   experience: {
     companyName: '',
     positionTitle: '',
     startDate: '',
     endDate: '',
   },
+  educationArray: [],
+  experienceArray: []
 }
+
+
 
 function reducer(resumeState, action) {
   switch (action.type) {
@@ -44,7 +48,7 @@ function reducer(resumeState, action) {
     case 'UPDATE_TECH':
       return {
         ...resumeState,
-        techSkills: [...resumeState.techSkills, action.payload],
+        techSkills: action.payload,
       }
     case 'UPDATE_EXPERIENCE':
       return {
@@ -53,6 +57,42 @@ function reducer(resumeState, action) {
           ...resumeState.experience,
           ...action.payload,
         },
+      }
+    
+    case 'RESET':
+      switch (action.payload) {
+        case 'education':
+          
+          return {
+            ...resumeState,
+            education: initialState.education,
+            educationArray: []
+          }
+      
+        default:
+          return resumeState
+      }
+    case 'SAVE':
+      switch (action.payload) {
+        case 'education':
+          
+          return {
+            ...resumeState,
+            educationArray: [...resumeState.educationArray, {
+              ...resumeState.education
+            } ], education: initialState.education
+          }
+        case 'experience':
+          return {
+            ...resumeState,
+            experienceArray: [...resumeState.experienceArray, {
+              ...resumeState.education
+            } ], experience: initialState.experience
+          }
+        
+      
+        default:
+          return resumeState
       }
 
     default:

@@ -10,9 +10,11 @@ import SchoolIcon from '@mui/icons-material/School'
 import BuildIcon from '@mui/icons-material/Build'
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory'
 import { ResumeContext } from './context/ResumeContext'
+import Button from '@mui/material/Button'
+import { BtnFormContainer } from './styled/BtnFormContainer'
 
 export default function ResumeForm() {
-  const { dispatch } = React.useContext(ResumeContext)
+  const { resumeState, dispatch } = React.useContext(ResumeContext)
   const [expanded, setExpanded] = React.useState('panel1')
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -24,7 +26,7 @@ export default function ResumeForm() {
       <Accordion
         expanded={expanded === 'panel1'}
         onChange={handleChange('panel1')}
-        style={{marginTop:'40px'}}
+        style={{ marginTop: '40px' }}
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -121,8 +123,12 @@ export default function ResumeForm() {
                 payload: { school: e.target.value },
               })
             }
+            value={resumeState.education.school}
             label="School"
+            required
             type="text"
+            InputLabelProps={{ shrink: resumeState.education.school}}
+
             variant="standard"
           />
           <TextField
@@ -132,6 +138,8 @@ export default function ResumeForm() {
                 payload: { degree: e.target.value },
               })
             }
+            value={resumeState.education.degree}
+            required
             label="Degree"
             type="text"
             variant="standard"
@@ -144,6 +152,7 @@ export default function ResumeForm() {
               })
             }
             InputLabelProps={{ shrink: true }}
+            value={resumeState.education.startDate}
             label="Start date"
             type="date"
             variant="standard"
@@ -156,8 +165,10 @@ export default function ResumeForm() {
               })
             }
             InputLabelProps={{ shrink: true }}
+            value={resumeState.education.endDate}
             label="End date"
             type="date"
+            
             variant="standard"
           />
           <TextField
@@ -167,10 +178,29 @@ export default function ResumeForm() {
                 payload: { location: e.target.value },
               })
             }
+            value={resumeState.education.location}
             label="Location"
             type="text"
+            InputLabelProps={{ shrink: resumeState.education.location}}
             variant="standard"
           />
+          <BtnFormContainer>
+            <Button
+              onClick={()=> dispatch({type: 'RESET', payload: 'education'})}
+              
+              variant="outlined"
+              color="error"
+            >
+              Reset
+            </Button>
+            <Button
+              onClick={()=> dispatch({type: 'SAVE', payload: 'education'})}
+              variant="outlined"
+              color="success"
+            >
+              Save
+            </Button>
+          </BtnFormContainer>
         </AccordionDetails>
       </Accordion>
       <Accordion

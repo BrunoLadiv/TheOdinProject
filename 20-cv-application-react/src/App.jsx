@@ -1,7 +1,7 @@
 import { SectionContainer } from './components/styled/SectionContainer.style'
 import ResumeForm from './components/ResumeForm'
 import { ResumeContainer } from './components/styled/ResumeContainer'
-import { ResumeA } from './components/Resume'
+import { Resume } from './components/Resume'
 
 function App() {
   return (
@@ -23,14 +23,14 @@ function App() {
             minWidth="200px"
             percentageSize="35%"
           >
-            <ResumeA/>
+            <Resume side={'left'}/>
           </SectionContainer>
           <SectionContainer
             bg={'white'}
             minWidth="230px"
             percentageSize="65%"
           >
-            <h2>TEST2</h2>
+            <Resume side={'right'}/>
           </SectionContainer>
         </ResumeContainer>
       </SectionContainer>
