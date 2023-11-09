@@ -429,6 +429,107 @@ export default function ResumeForm() {
               Save
             </Button>
           </BtnFormContainer>
+          {resumeState.experienceArray.map((obj) => {
+            return (
+              <Accordion key={obj.id}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography>{obj.companyName}</Typography>
+                </AccordionSummary>
+                <AccordionDetails
+                  sx={{ display: 'flex', flexDirection: 'column' }}
+                >
+                  <TextField
+                    onChange={(e) =>
+                      dispatch({
+                        type: 'EDIT',
+                        payload: { ...obj, companyName: e.target.value },
+                        change: 'EXPERIENCE',
+                      })
+                    }
+                    value={obj.companyName}
+                    label="Company name"
+                    required
+                    type="text"
+                    InputLabelProps={{ shrink: obj.companyName }}
+                    variant="standard"
+                  />
+                  <TextField
+                    onChange={(e) =>
+                      dispatch({
+                        type: 'EDIT',
+                        payload: { ...obj, positionTitle: e.target.value },
+                        change: 'EXPERIENCE',
+                      })
+                    }
+                    value={obj.positionTitle}
+                    InputLabelProps={{ shrink: obj.positionTitle }}
+                    required
+                    label="Position title"
+                    type="text"
+                    variant="standard"
+                  />
+                  <TextField
+                    onChange={(e) =>
+                      dispatch({
+                        type: 'EDIT',
+                        payload: { ...obj, startDate: e.target.value },
+                        change: 'EXPERIENCE',
+                      })
+                    }
+                    InputLabelProps={{ shrink: true }}
+                    value={obj.startDate}
+                    label="Start date"
+                    type="date"
+                    variant="standard"
+                  />
+                  <TextField
+                    onChange={(e) =>
+                      dispatch({
+                        type: 'EDIT',
+                        payload: { ...obj, endDate: e.target.value },
+                        change: 'EXPERIENCE',
+                      })
+                    }
+                    InputLabelProps={{ shrink: true }}
+                    value={obj.endDate}
+                    label="End date"
+                    type="date"
+                    variant="standard"
+                  />
+                  
+                  <BtnFormContainer>
+                    <Button
+                      onClick={() =>
+                        dispatch({ type: 'DELETE', id: obj.id, payload: 'EXPERIENCE' })
+                      }
+                      variant="outlined"
+                      color="error"
+                    >
+                      Delete
+                    </Button>
+                  </BtnFormContainer>
+                  {resumeState.educationArray.map((obj) => {
+                    return (
+                      <Accordion key={obj.id}>
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls="panel1a-content"
+                          id="panel1a-header"
+                        >
+                          <Typography>{obj.school}</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>const</AccordionDetails>
+                      </Accordion>
+                    )
+                  })}
+                </AccordionDetails>
+              </Accordion>
+            )
+          })}
         </AccordionDetails>
       </Accordion>
     </>
