@@ -1,4 +1,4 @@
-# Odin Academy CV Builder
+# The Odin Project CV Builder
 ![screenshot](./public/ss.png)
 
 This project is a CV (Curriculum Vitae) builder developed as part of the curriculum at Odin Project. It utilizes React and `useReducer` to manage state efficiently. The CV builder allows users to create and customize their CVs in a user-friendly interface.
