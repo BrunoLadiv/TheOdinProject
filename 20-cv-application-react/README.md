@@ -1,8 +1,23 @@
-# React + Vite
+# Odin Academy CV Builder
+![screenshot](./public/ss.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a CV (Curriculum Vitae) builder developed as part of the curriculum at Odin Academy. It utilizes React and `useReducer` to manage state efficiently. The CV builder allows users to create and customize their CVs in a user-friendly interface.
 
-Currently, two official plugins are available:
+## Table of Contents
+- [Technologies](#technologies)
+- [Live Preview](#live-preview)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Technologies
+
+- **React:** A JavaScript library for building user interfaces.
+- **useReducer:** A React hook for managing complex state logic in a predictable way.
+
+## Live Preview
+
+Check out the live preview of the project [here](https://the-odin-project-sooty.vercel.app/).
+
+### Todo List
+
+- [ ] Improve interface
+- [ ] Simplify state management

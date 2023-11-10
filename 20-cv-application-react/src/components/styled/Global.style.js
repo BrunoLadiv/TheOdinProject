@@ -18,7 +18,7 @@ body{
 
 
 #root{
-  
+  letter-spacing: 0.4px;
   margin: 0px auto;
   min-height: 100%;
   width: 85%;
@@ -27,7 +27,7 @@ body{
 }
 @media print {
   body {
-    
+    font-family: sans-serif;
     color: black;    
   }
   #root > section.sc-bdnyFh.dBekji{

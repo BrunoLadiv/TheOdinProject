@@ -1,37 +1,8 @@
-function stringToColor(string) {
-  let hash = 0;
-  let i;
+export function formatDateMonthYear(dateString) {
+  const [year, month] = dateString.split('-');
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-  /* eslint-disable no-bitwise */
-  for (i = 0; i < string.length; i += 1) {
-    hash = string.charCodeAt(i) + ((hash << 5) - hash);
-  }
+  const formattedDate = `${months[parseInt(month, 10) - 1]} ${year}`;
 
-  let color = '#';
-
-  for (i = 0; i < 3; i += 1) {
-    const value = (hash >> (i * 8)) & 0xff;
-    color += `00${value.toString(16)}`.slice(-2);
-  }
-  /* eslint-enable no-bitwise */
-
-  return color;
-}
-
-export function stringAvatar(name) {
-  return {
-    sx: {
-      bgcolor: stringToColor(name),
-    },
-    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
-  };
-}
-
-export function formatDate(inputDate) {
-  const date = new Date(inputDate);
-
-  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  const formattedDate = date.toLocaleDateString('en-GB', options);
-
-  return formattedDate;
+  return formattedDate
 }

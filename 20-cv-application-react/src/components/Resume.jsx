@@ -1,4 +1,4 @@
-import {  formatDate } from '../helper/helper'
+import {  formatDateMonthYear } from '../helper/helper'
 import Divider from '@mui/material/Divider'
 import { LeftPSContainer } from './styled/LeftPSContainer'
 import React from 'react'
@@ -31,7 +31,7 @@ export function Resume({ side }) {
           return  <>
               <h2>{obj.companyName}</h2>
               <h3>{obj.positionTitle}</h3>
-              <p>{formatDate(obj.startDate) } - {formatDate(obj.endDate)}</p>
+              <p>{formatDateMonthYear(obj.startDate) } - {formatDateMonthYear(obj.endDate)}</p>
             </>
           })}
         </ResumeStyle>
@@ -42,6 +42,7 @@ export function Resume({ side }) {
       <>
         
         <Divider
+          className='divider'
           style={{ color: 'white', marginTop:'15px' }}
           sx={{
             '&::after': {
@@ -66,6 +67,7 @@ export function Resume({ side }) {
           })}
         </LeftPSContainer>
         <Divider
+          className='divider'
           style={{ color: 'white', marginTop:'15px' }}
           sx={{
             '&::after': {
@@ -85,8 +87,8 @@ export function Resume({ side }) {
                 <h3>{obj.school}</h3>
                 <p>{obj.degree}</p>
                 {obj.startDate && obj.endDate && (
-                  <p>
-                    {formatDate(obj.startDate)} - {formatDate(obj.endDate)}{' '}
+                  <p className='date'>
+                    {formatDateMonthYear(obj.startDate)} - {formatDateMonthYear(obj.endDate)}{', '}
                     {obj.location}
                   </p>
                 )}
@@ -95,6 +97,7 @@ export function Resume({ side }) {
           })}
         </LeftPSContainer>
         <Divider
+          className='divider'
           style={{ color: 'white', marginTop:'15px' }}
           sx={{
             '&::after': {

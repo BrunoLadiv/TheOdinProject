@@ -10,20 +10,24 @@ export const LeftPSContainer = styled.div`
   & > h3 {
     margin-top: 10px;
     font-size: 18px;
-    font-weight: bolder;
+    font-weight: 200;
   }
  
   & > p {
-    
-    font-size: 14px;
+    font-weight: 100;
+    font-size: 13px;
     margin-left: 10px;
   }
+  & > .date{
+    margin-left: 15px;
+    font-size: 11px;
+    font-weight: 50;
+  }
+
   @media print{
     color: black;
-    font-weight: bolder;
-    & > span{
-      color: black;
-    }
+    font-weight: bold;
+   
 
   }
 `
