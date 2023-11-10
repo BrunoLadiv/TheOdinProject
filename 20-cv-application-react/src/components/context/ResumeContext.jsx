@@ -1,29 +1,29 @@
 import React from 'react'
 
-// const initialState = {
-//   personalDetails: {
-//     name: '',
-//     email: '',
-//     phone: '',
-//     address: '',
-//   },
-//   education: {
-//     school: '',
-//     degree: '',
-//     startDate: '',
-//     endDate: '',
-//     location: '',
-//   },
-//   techSkills: '',
-//   experience: {
-//     companyName: '',
-//     positionTitle: '',
-//     startDate: '',
-//     endDate: '',
-//   },
-//   educationArray: [],
-//   experienceArray: [],
-// }
+const emptyInitialState = {
+  personalDetails: {
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+  },
+  education: {
+    school: '',
+    degree: '',
+    startDate: '',
+    endDate: '',
+    location: '',
+  },
+  techSkills: '',
+  experience: {
+    companyName: '',
+    positionTitle: '',
+    startDate: '',
+    endDate: '',
+  },
+  educationArray: [],
+  experienceArray: [],
+}
 const initialState = {
   personalDetails: {
     name: 'John Doe',
@@ -118,13 +118,13 @@ function reducer(resumeState, action) {
         case 'education':
           return {
             ...resumeState,
-            education: initialState.education,
+            education: emptyInitialState.education,
             educationArray: [],
           }
         case 'experience':
           return {
             ...resumeState,
-            experience: initialState.experience,
+            experience: emptyInitialState.experience,
             experienceArray: [],
           }
         default:
@@ -142,7 +142,7 @@ function reducer(resumeState, action) {
                 id: crypto.randomUUID(),
               },
             ],
-            education: initialState.education,
+            education: emptyInitialState.education,
           }
         case 'experience':
           return {
@@ -154,7 +154,7 @@ function reducer(resumeState, action) {
                 id: crypto.randomUUID(),
               },
             ],
-            experience: initialState.experience,
+            experience: emptyInitialState.experience,
           }
 
         default:
