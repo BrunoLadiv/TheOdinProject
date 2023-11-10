@@ -28,7 +28,7 @@ export const ResumeStyle = styled.div`
     margin-left: 15px;
     font-size: 15px;
   }
-
+  
 
 
 `

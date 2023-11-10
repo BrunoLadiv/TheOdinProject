@@ -39,6 +39,11 @@ body{
   #root > section.sc-bdnyFh.isqJgw > section > section.sc-bdnyFh.hwjNcH{
     background-color: white;
   }
+  @media (max-width: '1100px'){
+      #ls{
+        order: 2;
+      }
+  }
 
 }
 

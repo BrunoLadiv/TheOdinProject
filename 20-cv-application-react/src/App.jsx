@@ -19,6 +19,7 @@ function App() {
       >
         <ResumeContainer>
           <SectionContainer
+            order={'2'} 
             bg={'#323B4C'}
             minWidth="200px"
             percentageSize="35%"

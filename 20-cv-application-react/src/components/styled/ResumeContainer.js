@@ -9,6 +9,7 @@ export const ResumeContainer = styled.section`
 
   @media (max-width: 1118px) {
     width: 100%; 
+    
   }
 
   
