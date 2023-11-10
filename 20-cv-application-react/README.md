@@ -12,6 +12,8 @@ This project is a CV (Curriculum Vitae) builder developed as part of the curricu
 
 - **React:** A JavaScript library for building user interfaces.
 - **useReducer:** A React hook for managing complex state logic in a predictable way.
+- **useContext:** A React hook for accessing and utilizing a shared context. In this project, `useContext` is employed to share state across components efficiently. It facilitates the propagation of data without the need for manual passing through prop drilling.
+
 
 ## Live Preview
 
