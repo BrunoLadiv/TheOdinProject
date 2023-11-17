@@ -27,7 +27,6 @@ export function Resume({ side }) {
             Eperience
           </Divider>
           {resumeState.experienceArray.map((obj) => {
-            console.log('aqu', obj);
           return  <>
               <h2>{obj.companyName}</h2>
               <h3>{obj.positionTitle}</h3>

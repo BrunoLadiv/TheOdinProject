@@ -242,7 +242,6 @@ export const ResumeContext = React.createContext()
 
 export function ResumeContextProvider({ children }) {
   const [resumeState, dispatch] = React.useReducer(reducer, initialState)
-  console.log(resumeState)
 
   return (
     <ResumeContext.Provider value={{ resumeState, dispatch }}>
