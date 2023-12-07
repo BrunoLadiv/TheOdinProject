@@ -13,8 +13,8 @@ const GlobalStyles = createGlobalStyle`
   }
   body{
     background-image: url(${BgImage});
-    background-size: cover; /* Adjust the size to cover the entire container */
-    background-position: center; /* Center the background image */
+    background-size: cover; 
+    background-position: center; 
     background-repeat: no-repeat; 
   }
 

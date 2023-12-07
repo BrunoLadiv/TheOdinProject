@@ -10,7 +10,9 @@ const PokemonImg = styled.img`
 `
 const PokemonName = styled.p`
   color: var(--secondary-text-color);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 2px black;
+  text-transform: capitalize;
 `
 const PokemonCard = styled.div`
   background-color: #887b7b70;

@@ -13,45 +13,50 @@ const Main = styled.main`
 export default function MainSection() {
   const [pokemonData, setPokemonData] = useState([])
   const numberOfPokemon = 15
-  
-  useEffect(() => {
-    const fetchPokemonData = async () => {
-      try {
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon?limit=${numberOfPokemon}`
-        )
-        const data = await response.json()
+  const totalPokemonCount = 720
 
-        // Extract information about each Pokemon
+  useEffect(() => {
+    const fetchRandomPokemonData = async () => {
+      try {
+        const randomIndices = [];
+        while (randomIndices.length < numberOfPokemon) {
+          const randomIndex = Math.floor(Math.random() * totalPokemonCount) + 1;
+          if (!randomIndices.includes(randomIndex)) {
+            randomIndices.push(randomIndex);
+          }
+        }
+
         const pokemonList = await Promise.all(
-          data.results.map(async (pokemon) => {
-            const detailsResponse = await fetch(pokemon.url)
-            const detailsData = await detailsResponse.json()
+          randomIndices.map(async (index) => {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}`);
+            const data = await response.json();
 
             const pokemonInfo = {
-              name: detailsData.name,
-              imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${detailsData.id}.png`,
-              
-            }
+              name: data.name,
+              imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`,
+            };
 
-            return pokemonInfo
+            return pokemonInfo;
           })
-        )
+        );
 
-        setPokemonData(pokemonList)
+        setPokemonData(pokemonList);
       } catch (error) {
-        console.error('Error fetching Pokemon data:', error)
+        console.error('Error fetching random Pokemon data:', error);
       }
-    }
+    };
 
-    fetchPokemonData()
-  }, []) // Empty dependency array to run once on mount
-
+    fetchRandomPokemonData();
+  }, []);
   return (
     <Main>
-      {pokemonData.map(pokemon => {
-        
-        return <Card key={pokemon.name} pokemon={pokemon}/>
+      {pokemonData.map((pokemon) => {
+        return (
+          <Card
+            key={pokemon.name}
+            pokemon={pokemon}
+          />
+        )
       })}
     </Main>
   )
