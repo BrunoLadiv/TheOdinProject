@@ -13,6 +13,8 @@ const PokemonName = styled.p`
   font-size: 1.5rem;
   text-shadow: 2px 2px 2px black;
   text-transform: capitalize;
+  text-align: center;
+  margin-bottom: 5px;
 `
 const PokemonCard = styled.div`
   background-color: #887b7b70;
@@ -26,10 +28,9 @@ const PokemonCard = styled.div`
     transform: translateY(-5%);
   }
 `
-export default function Card({ pokemon }) {
-  console.log(pokemon, 'dentro da func')
+export default function Card({ pokemon , handleCardClick}) {
   return (
-    <PokemonCard>
+    <PokemonCard onClick={()=> handleCardClick(pokemon.name)}>
       <PokemonImg src={pokemon.imageUrl} />
       <PokemonName>{pokemon.name}</PokemonName>
     </PokemonCard>

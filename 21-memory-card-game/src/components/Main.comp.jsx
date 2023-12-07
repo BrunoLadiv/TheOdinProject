@@ -9,10 +9,16 @@ const Main = styled.main`
   margin: 3rem auto;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 `
+const DIFFICULTIES = {
+  'easy': 7,
+  'normal': 14,
+  'hard': 21
+}
 
-export default function MainSection() {
+export default function MainSection({difficulty}) {
   const [pokemonData, setPokemonData] = useState([])
-  const numberOfPokemon = 15
+  const [pickedList, setPickedList] = useState([])
+  const numberOfPokemon = DIFFICULTIES[difficulty]
   const totalPokemonCount = 720
 
   useEffect(() => {
@@ -48,11 +54,25 @@ export default function MainSection() {
 
     fetchRandomPokemonData();
   }, []);
+  function handleCardClick(pokemon) {
+    console.log(pokemon)
+    const isPicked = pickedList.includes(pokemon)
+    if (isPicked) {
+      setPickedList([])
+      alert('gamer over')
+
+    } else {
+      setPickedList([...pickedList, pokemon])
+      const shuffledPokemons = pokemonData.slice().sort(() => Math.random() - 0.5);
+      setPokemonData(shuffledPokemons)
+    }
+  }
   return (
     <Main>
       {pokemonData.map((pokemon) => {
         return (
           <Card
+            handleCardClick={handleCardClick}
             key={pokemon.name}
             pokemon={pokemon}
           />
