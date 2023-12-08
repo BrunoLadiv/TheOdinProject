@@ -61,7 +61,6 @@ export default function MainSection({ difficulty }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   function handleCardClick(pokemon) {
-    console.log(pokemon)
     const isPicked = pickedList.includes(pokemon)
     if (isPicked) {
       setPickedList([])
