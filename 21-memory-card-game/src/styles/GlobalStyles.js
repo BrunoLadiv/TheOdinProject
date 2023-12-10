@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
-import BgImage from '../assets/background-img.jpg'
+import { createGlobalStyle } from "styled-components";
+import BgImage from "../assets/background-img.jpg";
 
 const GlobalStyles = createGlobalStyle`
   *{
@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     border: 0;
   }
-  html,body{
+  html,body,#root{
     font-family: 'Pixelify Sans', sans-serif;
     height: 100%;  
   }
@@ -25,5 +25,5 @@ const GlobalStyles = createGlobalStyle`
   }
 
 
-`
-export default GlobalStyles
+`;
+export default GlobalStyles;
