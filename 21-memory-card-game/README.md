@@ -1,6 +1,6 @@
 # The Odin Project: Memory Card Game
 
-Welcome to the Pokemon Memory Card Game, a project created as part of TheOdium Project curriculum. This game is built using React, fetching Pokemon data from [PokeAPI](https://pokeapi.co/), and styled components for an engaging user interface.
+Welcome to the Pokemon Memory Card Game, a project created as part of TheOdium Project curriculum. This game is built using React, fetching Pokemon data from [PokeAPI](https://pokeapi.co/), fetch random pokemons every new game, and styled components for an engaging user interface.
 
 ![Game Screenshot](./screenshot.png)
 

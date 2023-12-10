@@ -39,6 +39,7 @@ const DIFFICULTIES = {
 
 export default function MainSection({
   difficulty,
+  setResult,
   setGameStatus,
   score,
   setScore,
@@ -104,6 +105,16 @@ export default function MainSection({
         .slice()
         .sort(() => Math.random() - 0.5);
       setPokemonData(shuffledPokemons);
+      if (pickedList.length + 1 === pokemonData.length) {
+        setScore({
+          ...score,
+          current: 0,
+          totalCards: pokemonData.length,
+          best: pickedList.length + 1,
+        });
+        setResult("won");
+        setGameStatus("gameover");
+      }
     }
   }
   return (
