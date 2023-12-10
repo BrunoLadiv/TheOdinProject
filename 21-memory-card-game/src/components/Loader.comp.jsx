@@ -10,12 +10,9 @@ const rotate = keyframes`
   }
 `;
 
-const Loader = styled.div`
+const Loader = styled.img`
   width: 200px;
   height: 200px;
-  background-image: url(${PokeballSVG});
-  background-size: contain;
-  background-repeat: no-repeat;
   animation: ${rotate} 2s linear infinite;
 `;
 
@@ -35,7 +32,7 @@ const LoaderContainer = styled.div`
 const LoaderSVG = () => {
   return (
     <LoaderContainer>
-      <Loader />;
+      <Loader src={PokeballSVG} />;
     </LoaderContainer>
   );
 };
