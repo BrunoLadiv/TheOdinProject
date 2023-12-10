@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import PokeballSVG from "../assets/loader.svg";
+import PokeballSVG from "../assets/loader.svg?url";
 
 const rotate = keyframes`
   from {
