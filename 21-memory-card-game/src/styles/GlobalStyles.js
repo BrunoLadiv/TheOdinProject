@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     border: 0;
   }
-  html,body,#root{
+  html,body{
     font-family: 'Pixelify Sans', sans-serif;
     height: 100%;  
   }

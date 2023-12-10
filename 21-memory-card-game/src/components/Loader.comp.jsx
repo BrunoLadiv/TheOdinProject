@@ -1,5 +1,5 @@
-import styled, { keyframes } from 'styled-components'
-import PokeballSVG from '../assets/loader.svg'
+import styled, { keyframes } from "styled-components";
+import PokeballSVG from "../assets/loader.svg";
 
 const rotate = keyframes`
   from {
@@ -8,7 +8,7 @@ const rotate = keyframes`
   to {
     transform: rotate(360deg);
   }
-`
+`;
 
 const Loader = styled.div`
   width: 200px;
@@ -17,7 +17,7 @@ const Loader = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   animation: ${rotate} 2s linear infinite;
-`
+`;
 
 const LoaderContainer = styled.div`
   position: absolute;
@@ -28,14 +28,16 @@ const LoaderContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+  height: 100vh;
+  margin-top: -300px;
+`;
 
 const LoaderSVG = () => {
   return (
     <LoaderContainer>
       <Loader />;
     </LoaderContainer>
-  )
-}
+  );
+};
 
-export default LoaderSVG
+export default LoaderSVG;

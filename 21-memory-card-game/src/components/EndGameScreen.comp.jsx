@@ -1,27 +1,22 @@
 import styled from "styled-components";
-
+import { EndGameOptions } from "./ConfigScreen.comp.jsx";
 const Wrapper = styled.div`
-  background-color: green;
   height: 100%;
   display: flex;
   justify-content: center;
   margin-top: 5rem;
 `;
-
-const EndGameOptios = styled.div`
-  background-color: white;
-  height: 50%;
-  width: 500px;
-`;
-export default function EndGameScreen() {
+export default function EndGameScreen({ setGameStatus }) {
   return (
     <Wrapper>
-      <EndGameOptios>
-        <ul>
-          <li>Play again (same pokemons, difficulty)</li>
-          <li>Restart (choose difficulty, new pokemons)</li>
-        </ul>
-      </EndGameOptios>
+      <EndGameOptions>
+        <li
+          onClick={() => setGameStatus("config")}
+          title="(change difficulty and get new pokemons)"
+        >
+          Restart
+        </li>
+      </EndGameOptions>
     </Wrapper>
   );
 }

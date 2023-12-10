@@ -6,15 +6,19 @@ import EndGameScreen from "./components/EndGameScreen.comp";
 import { useState } from "react";
 
 function App() {
-  const [gameStatus, setGameStatus] = useState("gameover");
+  const [gameStatus, setGameStatus] = useState("config");
   const [difficulty, setDifficulty] = useState("");
 
   return (
     <>
       <GlobalStyles />
       <Header />
-      {gameStatus === "game" && <MainSection difficulty={difficulty} />}
-      {gameStatus === "gameover" && <EndGameScreen />}
+      {gameStatus === "game" && (
+        <MainSection setGameStatus={setGameStatus} difficulty={difficulty} />
+      )}
+      {gameStatus === "gameover" && (
+        <EndGameScreen setGameStatus={setGameStatus} />
+      )}
       {gameStatus === "config" && (
         <ConfigScreen
           setDifficulty={setDifficulty}

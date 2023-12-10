@@ -1,80 +1,107 @@
-import styled from 'styled-components'
-import Card from './Card.comp'
-import LoaderSVG from './Loader.comp'
-import { useState, useEffect } from 'react'
+import styled from "styled-components";
+import Card from "./Card.comp";
+import LoaderSVG from "./Loader.comp";
+import { useState, useEffect } from "react";
 
 const Main = styled.main`
+  position: relative;
   display: grid;
   gap: 25px;
   width: 70%;
   margin: 3rem auto;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-`
+  @media (max-width: 740px) {
+    width: 100%;
+  }
+`;
+
+const ScoreWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 427px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+`;
+const Score = styled.h3`
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 1.5rem;
+  transform: translateY(-120%);
+`;
 const DIFFICULTIES = {
   easy: 7,
   normal: 14,
   hard: 21,
-}
+};
 
-export default function MainSection({ difficulty }) {
-  const [pokemonData, setPokemonData] = useState([])
-  const [pickedList, setPickedList] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const numberOfPokemon = DIFFICULTIES[difficulty]
-  const totalPokemonCount = 720
+export default function MainSection({ difficulty, setGameStatus }) {
+  const [pokemonData, setPokemonData] = useState([]);
+  const [pickedList, setPickedList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const numberOfPokemon = DIFFICULTIES[difficulty];
+  const totalPokemonCount = 720;
 
   useEffect(() => {
     const fetchRandomPokemonData = async () => {
       try {
-        const randomIndices = []
+        const randomIndices = [];
         while (randomIndices.length < numberOfPokemon) {
-          const randomIndex = Math.floor(Math.random() * totalPokemonCount) + 1
+          const randomIndex = Math.floor(Math.random() * totalPokemonCount) + 1;
           if (!randomIndices.includes(randomIndex)) {
-            randomIndices.push(randomIndex)
+            randomIndices.push(randomIndex);
           }
         }
 
         const pokemonList = await Promise.all(
           randomIndices.map(async (index) => {
             const response = await fetch(
-              `https://pokeapi.co/api/v2/pokemon/${index}`
-            )
-            const data = await response.json()
+              `https://pokeapi.co/api/v2/pokemon/${index}`,
+            );
+            const data = await response.json();
 
             const pokemonInfo = {
               name: data.name,
               imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`,
-            }
+            };
 
-            return pokemonInfo
-          })
-        )
+            return pokemonInfo;
+          }),
+        );
 
-        setPokemonData(pokemonList)
-        setIsLoading(false)
+        setPokemonData(pokemonList);
+        setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching random Pokemon data:', error)
+        console.error("Error fetching random Pokemon data:", error);
       }
-    }
+    };
 
-    fetchRandomPokemonData()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    fetchRandomPokemonData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   function handleCardClick(pokemon) {
-    const isPicked = pickedList.includes(pokemon)
+    const isPicked = pickedList.includes(pokemon);
     if (isPicked) {
-      setPickedList([])
-      alert('gamer over')
+      setPickedList([]);
+      setGameStatus("gameover");
     } else {
-      setPickedList([...pickedList, pokemon])
+      setPickedList([...pickedList, pokemon]);
       const shuffledPokemons = pokemonData
         .slice()
-        .sort(() => Math.random() - 0.5)
-      setPokemonData(shuffledPokemons)
+        .sort(() => Math.random() - 0.5);
+      setPokemonData(shuffledPokemons);
     }
   }
   return (
     <Main>
+      {!isLoading && (
+        <ScoreWrapper>
+          <Score>Current Score: 5/12 </Score>
+          <Score>Best Score: 12</Score>
+        </ScoreWrapper>
+      )}
       {!isLoading &&
         pokemonData.map((pokemon) => {
           return (
@@ -83,9 +110,9 @@ export default function MainSection({ difficulty }) {
               key={pokemon.name}
               pokemon={pokemon}
             />
-          )
+          );
         })}
       {isLoading && <LoaderSVG />}
     </Main>
-  )
+  );
 }
