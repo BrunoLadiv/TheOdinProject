@@ -8,16 +8,33 @@ import { useState } from "react";
 function App() {
   const [gameStatus, setGameStatus] = useState("config");
   const [difficulty, setDifficulty] = useState("");
+  const [result, setResult] = useState("");
+  const [score, setScore] = useState({
+    best: 0,
+    difc: "",
+    totalCards: 0,
+    current: 0,
+  });
 
   return (
     <>
       <GlobalStyles />
-      <Header />
+      <Header gameStatus={gameStatus} />
       {gameStatus === "game" && (
-        <MainSection setGameStatus={setGameStatus} difficulty={difficulty} />
+        <MainSection
+          setResult={setResult}
+          setGameStatus={setGameStatus}
+          difficulty={difficulty}
+          score={score}
+          setScore={setScore}
+        />
       )}
       {gameStatus === "gameover" && (
-        <EndGameScreen setGameStatus={setGameStatus} />
+        <EndGameScreen
+          score={score}
+          result={result}
+          setGameStatus={setGameStatus}
+        />
       )}
       {gameStatus === "config" && (
         <ConfigScreen

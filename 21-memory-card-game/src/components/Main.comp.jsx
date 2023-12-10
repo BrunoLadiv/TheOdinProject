@@ -37,7 +37,12 @@ const DIFFICULTIES = {
   hard: 21,
 };
 
-export default function MainSection({ difficulty, setGameStatus }) {
+export default function MainSection({
+  difficulty,
+  setGameStatus,
+  score,
+  setScore,
+}) {
   const [pokemonData, setPokemonData] = useState([]);
   const [pickedList, setPickedList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -84,10 +89,17 @@ export default function MainSection({ difficulty, setGameStatus }) {
   function handleCardClick(pokemon) {
     const isPicked = pickedList.includes(pokemon);
     if (isPicked) {
+      setScore({
+        ...score,
+        current: 0,
+        totalCards: pokemonData.length,
+        best: pickedList.length,
+      });
       setPickedList([]);
       setGameStatus("gameover");
     } else {
       setPickedList([...pickedList, pokemon]);
+      setScore({ ...score, current: pickedList.length + 1 });
       const shuffledPokemons = pokemonData
         .slice()
         .sort(() => Math.random() - 0.5);
@@ -98,8 +110,9 @@ export default function MainSection({ difficulty, setGameStatus }) {
     <Main>
       {!isLoading && (
         <ScoreWrapper>
-          <Score>Current Score: 5/12 </Score>
-          <Score>Best Score: 12</Score>
+          <Score>
+            Current Score: {score.current}/{pokemonData.length}
+          </Score>
         </ScoreWrapper>
       )}
       {!isLoading &&

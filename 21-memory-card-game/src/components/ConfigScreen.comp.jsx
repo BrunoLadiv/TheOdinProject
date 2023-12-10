@@ -8,7 +8,6 @@ const Wrapper = styled.div`
 const StartGameScreen = styled.form`
   width: 40%;
   height: 400px;
-  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +32,7 @@ const DifficultyContainer = styled.ul`
       }
     }
     &:nth-child(1) {
-      color: green;
+      color: #0ee10e;
     }
     &:nth-child(2) {
       color: white;
@@ -43,17 +42,12 @@ const DifficultyContainer = styled.ul`
     }
   }
 `;
-export const EndGameOptions = styled(DifficultyContainer)`
-  & li {
-    &:nth-child(1) {
-      color: white;
-    }
-  }
-`;
+export const EndGameOptions = styled(DifficultyContainer)``;
 
 const Title = styled.h1`
   font-size: 4rem;
   color: white;
+  text-align: center;
   text-shadow: #050404 1px 0 10px;
 `;
 export default function ConfigScreen({ setDifficulty, setGameStatus }) {

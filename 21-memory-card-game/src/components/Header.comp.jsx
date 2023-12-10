@@ -1,19 +1,24 @@
 import styled from "styled-components";
-
-const Title = styled.h1`
-  color: var(--primary-text-color);
-  text-align: center;
-  margin: 0;
-  font-size: 5rem;
-`
+import LogoImgOne from "../assets/logo1.png";
+import LogoImgTwo from "../assets/logo2.png";
+const Logo = styled.img`
+  height: ${(props) => (props.gameStatus === "game" ? "100%" : "50%")};
+`;
 
 const HeaderWrapper = styled.header`
-`
+  height: ${(props) => (props.gameStatus === "game" ? "150px" : "300px")};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
-export default function Header() {
+export default function Header({ gameStatus }) {
   return (
-    <HeaderWrapper>
-      <Title>POKE MEMO</Title>
+    <HeaderWrapper gameStatus={gameStatus}>
+      <Logo gameStatus={gameStatus} src={LogoImgOne} />
+      <Logo src={gameStatus === "game" ? "" : LogoImgTwo} />
     </HeaderWrapper>
-  )
+  );
 }
+
