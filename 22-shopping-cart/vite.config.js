@@ -5,6 +5,22 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "",
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [
+          [
+            "babel-plugin-styled-components",
+            {
+              displayName: true,
+              fileName: true,
+            },
+          ],
+        ],
+      },
+    }),
+    {
+      name: "@styled/typescript-styled-plugin",
+      tags: ["styled", "css", "sty"],
+    },
   ],
 });
