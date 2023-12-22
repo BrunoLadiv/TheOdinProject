@@ -5,13 +5,16 @@ const GlobalStyles = createGlobalStyle`
   *::after,
   *::before {
     box-sizing: border-box;
+  
+  }
+
   :root {
     --primary: #fff;
     --secondary: #8046fd;
     --terceary: #d0bcff;
 
   }
-  }
+
   body {
     background-color: #141218;
     color: white;
