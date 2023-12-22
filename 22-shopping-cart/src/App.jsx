@@ -10,6 +10,13 @@ function App() {
       <Header />
       <HeroSection />
       <Carousel />
+      <Carousel />
+      <Carousel />
+      <Carousel />
+      <Carousel />
+      <Carousel />
+      <Carousel />
+      <Carousel />
     </>
   )
 }

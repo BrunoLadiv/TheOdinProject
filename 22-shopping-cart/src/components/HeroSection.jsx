@@ -1,5 +1,6 @@
 import heroIMG from '../assets/heroimg.png'
 import styled from 'styled-components'
+import Button from './Button'
 
 const HeroSectionWrapper = styled.section`
   display: flex;
@@ -50,6 +51,9 @@ export default function HeroSection() {
           Embark on an epic journey through the depths of the underworld in
           Hades, a critically acclaimed roguelike dungeon crawler.
         </TextDescription>
+        <Button>
+          Add to cart
+        </Button>
       </TextContainer>
     </HeroSectionWrapper>
   )
