@@ -31,6 +31,8 @@ const TextDescription = styled.p`
   font-size: 1rem;
   font-weight: 100;
   max-width: 258px;
+  line-height: 18px;
+
 `
 
 export default function HeroSection() {
