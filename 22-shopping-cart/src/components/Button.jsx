@@ -11,7 +11,7 @@ const Btn = styled.button`
   border-radius: 100px;
   cursor: pointer;
   transition: transform 0.3s ease;
-  &:hover {
+  &:hover , &:focus, &:active {
     transform: scale(1.1);
   }
 `

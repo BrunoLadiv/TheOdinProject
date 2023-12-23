@@ -2,6 +2,7 @@ import Carousel from './components/Carousel'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
 import GlobalStyles from './GlobalStyles'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -12,11 +13,7 @@ function App() {
       <Carousel />
       <Carousel />
       <Carousel />
-      <Carousel />
-      <Carousel />
-      <Carousel />
-      <Carousel />
-      <Carousel />
+      <Footer />
     </>
   )
 }

@@ -7,7 +7,6 @@ import styled from 'styled-components'
 const HeaderContainer = styled.header`
   height: 74px;
   margin-top: 40px;
-  border: solid white;
   display: flex;
   align-items: center;
   justify-content: space-between;
