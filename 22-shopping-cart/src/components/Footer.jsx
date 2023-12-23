@@ -13,6 +13,7 @@ const FooterContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 32px;
 `
 const SocialsContainer = styled.ul`
   list-style: none;
@@ -112,8 +113,7 @@ export default function Footer() {
           </a>
         </li>
       </SocialsContainer>
-
-      <h4>
+      <h4 style={{width: '288px', textAlign: 'start'}}>
         Powered by{' '}
         <a
           rel="noreferrer"
@@ -124,6 +124,7 @@ export default function Footer() {
         </a>{' '}
         api
       </h4>
+
     </FooterContainer>
   )
 }

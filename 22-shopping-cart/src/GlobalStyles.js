@@ -12,11 +12,12 @@ const GlobalStyles = createGlobalStyle`
     --primary: #fff;
     --secondary: #8046fd;
     --terceary: #d0bcff;
+    --bg-color: #141218
 
   }
 
   body {
-    background-color: #141218;
+    background-color: var(--bg-color);
     color: white;
     margin: 0;
     padding: 0;

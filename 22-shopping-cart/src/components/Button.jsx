@@ -5,7 +5,7 @@ const Btn = styled.button`
   color: ${(props) => (props.color ? props.color : 'var(--secondary)')};
   padding: 10px;
   width: 105px;
-  height: 38pxpx;
+  height: 38px;
   text-align: center;
   border: none;
   border-radius: 100px;

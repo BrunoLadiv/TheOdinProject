@@ -1,16 +1,20 @@
 import cartSVG from '../assets/cart.svg'
 import logoSVG from '../assets/logo.svg'
-import hamburgerMenu from '../assets/charm_menu-hamburger.svg'
 import magnifyingSVG from '../assets/mdi_magnify.svg'
 import styled from 'styled-components'
-
+import MobileMenu from './MobileMenu'
 const HeaderContainer = styled.header`
+
+  position: sticky;
+  top: 30px;;
   height: 74px;
   margin-top: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
+  background-color: var(--bg-color);
+  z-index: 50;
 `
 const ButtonsContainer = styled.div`
   display: flex;
@@ -53,10 +57,7 @@ export default function Header() {
           src={cartSVG}
           alt="cart"
         />
-        <img
-          src={hamburgerMenu}
-          alt="hamburger menu"
-        />
+        <MobileMenu />
       </ButtonsContainer>
     </HeaderContainer>
   )
