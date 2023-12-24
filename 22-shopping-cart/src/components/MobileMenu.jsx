@@ -47,6 +47,7 @@ const MobileMenuItemList = styled.ul`
   align-items: flex-end;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   top: -50px;
   left: 0;
   z-index: 100;
@@ -57,11 +58,10 @@ const MobileMenuItemList = styled.ul`
   );
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 20px;
-  border: 1px solid rgba(6, 6, 6, 0.678);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   transform: translateX(0);
   transition: all 0.3s ease;
+  margin-top: 20px;
   & li {
     list-style: none;
     margin-bottom: 15px;
