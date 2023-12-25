@@ -18,7 +18,7 @@ const CarouselCategory = styled.h2`
   font-size: 1.2rem;
   font-weight: 100;
 `
-export default function Carousel() {
+export default function Carousel(){
   return (
     <>
       <CarouselCategory>

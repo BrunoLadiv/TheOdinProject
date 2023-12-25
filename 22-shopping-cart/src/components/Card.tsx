@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import CarouselImg from "../assets/carouselimg.png"
 
+
 const CardContainer = styled.div`
   height: 233px;
   width: 159px;
@@ -30,14 +31,17 @@ const CardDescriptionContainer = styled.div`
     color: var(--secondary);
   }
 `
-export default function Card() {
+function Card(){
   return (
     <CardContainer>
       <CardImage src={CarouselImg} />
       <CardDescriptionContainer>
         <h3>Days Gone</h3>
-        <p>$34,99</p>
+        <p>$34.99</p>
       </CardDescriptionContainer>
     </CardContainer>
-  )
+  );
 }
+
+export default Card;
+

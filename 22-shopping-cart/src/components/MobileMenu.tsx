@@ -17,6 +17,7 @@ const MobileMenuBtn = styled.label`
   z-index: 999;
   & > input[type='checkbox'] {
     -webkit-appearance: none;
+    appearance: none;
     display: none;
     visibility: hidden;
   }
@@ -85,7 +86,7 @@ const MobileMenuItemClosed = styled(MobileMenuItemList)`
 `
 const MobileMenuContainer = styled.div``
 export default function MobileMenu() {
-  const [isOpened, setIsOpened] = useState(false)
+  const [isOpened, setIsOpened] = useState<boolean>(false)
   const MobileMenuItems = isOpened ? MobileMenuItemList : MobileMenuItemClosed
   return (
     <MobileMenuContainer>
