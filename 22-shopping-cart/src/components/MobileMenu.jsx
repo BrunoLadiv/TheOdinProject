@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 
+
 const MobileMenuBtn = styled.label`
   position: relative;
   display: flex;
@@ -47,7 +48,7 @@ const MobileMenuItemList = styled.ul`
   align-items: flex-end;
   width: 100%;
   height: 100vh;
-  height: 100dvh;
+  height: 110dvh;
   top: -50px;
   left: 0;
   z-index: 100;
@@ -61,7 +62,7 @@ const MobileMenuItemList = styled.ul`
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   transform: translateX(0);
   transition: all 0.3s ease;
-  margin-top: 20px;
+  margin-top: 15px;
   & li {
     list-style: none;
     margin-bottom: 15px;
@@ -80,6 +81,7 @@ const MobileMenuItemList = styled.ul`
 `
 const MobileMenuItemClosed = styled(MobileMenuItemList)`
   transform: translateX(-100%);
+  
 `
 const MobileMenuContainer = styled.div``
 export default function MobileMenu() {
