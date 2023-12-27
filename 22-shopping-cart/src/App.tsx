@@ -1,21 +1,15 @@
-import Carousel from './components/Carousel'
+import { Outlet } from 'react-router-dom'
 import Header from './components/Header'
-import HeroSection from './components/HeroSection'
-import GlobalStyles from './GlobalStyles'
 import Footer from './components/Footer'
+import GlobalStyles from './GlobalStyles'
 
-function App() {
+export default function App() {
   return (
     <>
       <GlobalStyles />
       <Header />
-      <HeroSection />
-      <Carousel />
-      <Carousel />
-      <Carousel />
+      <Outlet />
       <Footer />
     </>
   )
 }
-
-export default App
