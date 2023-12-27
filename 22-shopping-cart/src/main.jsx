@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import {createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
 import Home from './routes/Home'
+import ErrorPage from './routes/ErrorPage'
+import GameDetails from './routes/GameDetails'
 import Games from './routes/Games' 
 
 
@@ -12,6 +14,7 @@ const router= createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
@@ -21,6 +24,11 @@ const router= createBrowserRouter([
         path: 'games',
         element: <Games />
       
+      },
+      {
+        path: 'games/:id',
+        element: <GameDetails />
+        
       }
       
     ]
@@ -29,8 +37,6 @@ const router= createBrowserRouter([
 ])
 
 
-console.log(router)
-{/* main.tsx */}
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />

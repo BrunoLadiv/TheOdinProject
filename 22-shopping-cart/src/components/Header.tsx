@@ -3,6 +3,8 @@ import logoSVG from '../assets/logo.svg'
 import magnifyingSVG from '../assets/mdi_magnify.svg'
 import styled from 'styled-components'
 import MobileMenu from './MobileMenu'
+
+
 const HeaderContainer = styled.header`
 
   position: sticky;

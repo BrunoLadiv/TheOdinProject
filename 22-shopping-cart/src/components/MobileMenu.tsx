@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 
 const MobileMenuBtn = styled.label`
@@ -94,6 +95,7 @@ export default function MobileMenu() {
         <input
           type="checkbox"
           id="check"
+          checked={isOpened}
           onClick={() => setIsOpened(!isOpened)}
         />
         <span className="top"></span>
@@ -101,11 +103,11 @@ export default function MobileMenu() {
         <span className="bot"></span>
       </MobileMenuBtn>
       <MobileMenuItems>
-        <li>
-          <a href="#home">Home</a>
+        <li onClick={() => setIsOpened(false)}>
+          <Link to="/">Home</Link>
         </li>
-        <li>
-          <a href="#about">About</a>
+        <li onClick={() => setIsOpened(false)}>
+          <Link to="/games">Games</Link>
         </li>
         <li>
           <a href="#skills">Skills</a>
