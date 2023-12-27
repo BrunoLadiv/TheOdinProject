@@ -13,6 +13,7 @@
     "babel-plugin-styled-components": "^2.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.1",
     "styled-components": "^6.1.1"
   },
   "devDependencies": {
