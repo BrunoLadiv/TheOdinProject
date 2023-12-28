@@ -1,33 +1,44 @@
-
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 interface StyledButtonProps {
-  bg?: string;
-  color?: string;
+  bg?: string
+  color?: string
 }
 
 const Btn = styled.button<StyledButtonProps>`
   background-color: ${(props) => (props.bg ? props.bg : 'var(--terceary)')};
   color: ${(props) => (props.color ? props.color : 'var(--secondary)')};
   padding: 10px;
-  width: 105px;
-  height: 38px;
+  display: flex;
+  gap: 5px;
   text-align: center;
   border: none;
   border-radius: 100px;
   cursor: pointer;
   transition: transform 0.3s ease;
-  &:hover, &:focus, &:active {
+  &:hover,
+  &:focus,
+  &:active {
     transform: scale(1.1);
   }
-`;
+  & img {
+    height: 15px;
+  }
+`
 
 interface ButtonProps extends StyledButtonProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 function Button({ children, bg, color }: ButtonProps) {
-  return <Btn bg={bg} color={color}>{children}</Btn>;
+  return (
+    <Btn
+      bg={bg}
+      color={color}
+    >
+      {children}
+    </Btn>
+  )
 }
 
-export default Button;
+export default Button

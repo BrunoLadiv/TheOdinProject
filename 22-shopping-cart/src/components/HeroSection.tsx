@@ -1,11 +1,11 @@
 import heroIMG from '../assets/heroimg.png'
 import styled from 'styled-components'
 import Button from './Button'
+import CartSVG from '../assets/cart.svg'
 
 const HeroSectionWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  
 `
 const ImgContainer = styled.div`
   width: 100%;
@@ -33,12 +33,11 @@ const TextDescription = styled.p`
   font-weight: 100;
   max-width: 258px;
   line-height: 18px;
-
 `
 
 export default function HeroSection() {
   return (
-    <HeroSectionWrapper> 
+    <HeroSectionWrapper>
       <ImgContainer>
         <HeroImg
           src={heroIMG}
@@ -51,7 +50,9 @@ export default function HeroSection() {
           Embark on an epic journey through the depths of the underworld in
           Hades, a critically acclaimed roguelike dungeon crawler.
         </TextDescription>
+        <h3>$32,90</h3>
         <Button>
+          <img src={CartSVG} />
           Add to cart
         </Button>
       </TextContainer>
