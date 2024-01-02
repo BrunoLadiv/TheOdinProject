@@ -1,21 +1,29 @@
 import styled from 'styled-components'
-import CarouselImg from '../assets/carouselimg.png'
 import { Link } from 'react-router-dom'
 
+const GameLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+`
 type CardProps = {
   width?: string
   height?: string
+  game?: {
+    name: string
+    background_image: string
+    slug: string
+  }
 }
 const CardContainer = styled.div<CardProps>`
-  height: ${(props) => (props.height ? props.height : 'fit-content')};
-  width: ${(props) => (props.width ? props.width : '159px')};
+  height: ${(props) => (props.height ? props.height : '250px')};
+  width: ${(props) => (props.width ? props.width : '250px')};
 
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   overflow: hidden;
 `
 const CardImage = styled.img`
-  object-fit: contain;
+  object-fit: cover;
   width: 100%;
 `
 const CardDescriptionContainer = styled.div`
@@ -36,21 +44,20 @@ const CardDescriptionContainer = styled.div`
     color: var(--secondary);
   }
 `
-function Card({ width, height }: CardProps) {
-  const gameNameMock = 'DaysGone'
+function Card({ width, height, game }: CardProps) {
   return (
-    <Link to={`/games/${gameNameMock}`}>
+    <GameLink to={`/games/${game?.slug}`}>
       <CardContainer
         width={width}
         height={height}
       >
-        <CardImage src={CarouselImg} />
+        <CardImage src={game?.background_image} />
         <CardDescriptionContainer>
-          <h3>Days Gone</h3>
+          <h3>{game?.name}</h3>
           <p>$34.99</p>
         </CardDescriptionContainer>
       </CardContainer>{' '}
-    </Link>
+    </GameLink>
   )
 }
 
