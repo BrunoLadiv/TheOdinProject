@@ -14,7 +14,7 @@ export default function Games() {
       <h1>All games</h1>
       <AllGamesGridContainer>
       {[...Array(19)].map(index => (
-        <Card key={index} />
+        <Card key={index} width='70%' />
       ))}
       </AllGamesGridContainer>
     </>
