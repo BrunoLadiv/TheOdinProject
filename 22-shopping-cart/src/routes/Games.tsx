@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Card from '../components/Card'
-import { useQuery, useInfiniteQuery } from 'react-query'
+import { useInfiniteQuery } from 'react-query'
 import axios from 'axios'
 import React from 'react'
 
@@ -32,7 +32,7 @@ const AllGamesGridContainer = styled.div`
 export default function Games() {
   const { isLoading, isError, error, data, hasNextPage, fetchNextPage } =
     useInfiniteQuery(['games'], fetchAllGames, {
-      getNextPageParam: (lastPage, pages) => {
+      getNextPageParam: (_lastPage, pages) => {
         // console.log(lastPage.data)
         if (pages.length < 20) {
           return pages.length + 1

@@ -24,31 +24,35 @@ const HeroImg = styled.img`
 `
 
 const HeroGameTitle = styled.h1`
-  font-size: 2.5rem;
+  font-size: 1.4rem;
   margin: 0;
   margin-top: 16px;
 `
 const TextDescription = styled.p`
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 100;
   max-width: 258px;
   line-height: 18px;
+  color: #b0aaaa;
 `
-
-export default function HeroSection() {
+type HeroSectionProps = {
+  name?: string,
+  description_raw?: string,
+  background_image?: string
+}
+export default function HeroSection({name,description_raw, background_image}: HeroSectionProps) {
   return (
     <HeroSectionWrapper>
       <ImgContainer>
         <HeroImg
-          src={heroIMG}
-          alt="hero"
+          src={background_image}
+          alt={`picture of ${name}`}
         />
       </ImgContainer>
       <TextContainer>
-        <HeroGameTitle>Hades</HeroGameTitle>
+        <HeroGameTitle>{name}</HeroGameTitle>
         <TextDescription>
-          Embark on an epic journey through the depths of the underworld in
-          Hades, a critically acclaimed roguelike dungeon crawler.
+        {description_raw}
         </TextDescription>
         <h3>$32,90</h3>
         <Button>

@@ -56,7 +56,7 @@ function Card({ width, height, game }: CardProps) {
           <h3>{game?.name}</h3>
           <p>$34.99</p>
         </CardDescriptionContainer>
-      </CardContainer>{' '}
+      </CardContainer>
     </GameLink>
   )
 }
