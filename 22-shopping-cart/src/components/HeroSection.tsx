@@ -2,6 +2,7 @@ import heroIMG from '../assets/heroimg.png'
 import styled from 'styled-components'
 import Button from './Button'
 import CartSVG from '../assets/cart.svg'
+import { useCart } from '../services/providers/CartContext'
 
 const HeroSectionWrapper = styled.section`
   display: flex;
@@ -39,11 +40,19 @@ const TextDescription = styled.p`
   text-overflow: ellipsis;
 `
 type HeroSectionProps = {
-  name?: string,
-  description_raw?: string,
+  name?: string
+  description_raw?: string
   background_image?: string
 }
-export default function HeroSection({name,description_raw, background_image}: HeroSectionProps) {
+export default function HeroSection({
+  name,
+  description_raw,
+  background_image,
+}: HeroSectionProps) {
+  const { state, dispatch } = useCart()
+  function handleAddToCart() {
+    dispatch({ type: 'add-to-cart', payload: { name, background_image } })
+  }
   return (
     <HeroSectionWrapper>
       <ImgContainer>
@@ -54,11 +63,9 @@ export default function HeroSection({name,description_raw, background_image}: He
       </ImgContainer>
       <TextContainer>
         <HeroGameTitle>{name}</HeroGameTitle>
-        <TextDescription>
-        {description_raw}
-        </TextDescription>
+        <TextDescription>{description_raw}</TextDescription>
         <h3>$32,90</h3>
-        <Button>
+        <Button onClick={handleAddToCart}>
           <img src={CartSVG} />
           Add to cart
         </Button>

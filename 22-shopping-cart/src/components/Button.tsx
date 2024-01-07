@@ -28,12 +28,14 @@ const Btn = styled.button<StyledButtonProps>`
 
 interface ButtonProps extends StyledButtonProps {
   children: React.ReactNode,
+  onClick: any
   
 }
 
-function Button({ children, bg, color}: ButtonProps) {
+function Button({ children, bg, color, onClick}: ButtonProps) {
   return (
     <Btn
+      onClick={onClick}
       bg={bg}
       color={color}
       
