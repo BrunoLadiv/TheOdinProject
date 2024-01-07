@@ -15,7 +15,7 @@ type CardProps = {
   }
 }
 const CardContainer = styled.div<CardProps>`
-  height: ${(props) => (props.height ? props.height : '250px')};
+  height: ${(props) => (props.height ? props.height : '300px')};
   width: ${(props) => (props.width ? props.width : '250px')};
 
   border-top-left-radius: 8px;
@@ -25,6 +25,7 @@ const CardContainer = styled.div<CardProps>`
 const CardImage = styled.img`
   object-fit: cover;
   width: 100%;
+  height: 50%;
 `
 const CardDescriptionContainer = styled.div`
   display: flex;
@@ -37,6 +38,9 @@ const CardDescriptionContainer = styled.div`
     margin-top: 18px;
     font-size: 0.9rem;
     font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   & > p {
     font-size: 0.7rem;
@@ -52,7 +56,7 @@ function Card({ width, height, game }: CardProps) {
         height={height}
       >
         <CardImage src={game?.background_image} />
-        <CardDescriptionContainer>
+        <CardDescriptionContainer title={game?.name}>
           <h3>{game?.name}</h3>
           <p>$34.99</p>
         </CardDescriptionContainer>

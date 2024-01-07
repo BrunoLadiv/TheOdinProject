@@ -17,25 +17,25 @@ const CarouselContainer = styled.section`
 const CarouselCategory = styled.h2`
   font-size: 1.2rem;
   font-weight: 100;
-
 `
 interface Game {
-  name: string,
-  slug: string,
+  name: string
+  slug: string
   background_image: string
 }
 type CarouselProps = {
   data?: Game[]
+  title: string
 }
-export default function Carousel({ data }: CarouselProps) {
+export default function Carousel({ data, title }: CarouselProps) {
   return (
     <>
-      <CarouselCategory>Most Popular</CarouselCategory>
+      <CarouselCategory>{title}</CarouselCategory>
       <CarouselContainer>
         <div>
-          {data?.map(game => {
-           return <Card game={game} />
-         })}
+          {data?.map((game) => {
+            return <Card game={game} />
+          })}
         </div>
       </CarouselContainer>
     </>

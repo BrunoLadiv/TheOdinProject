@@ -13,20 +13,20 @@ const fetchNewReleases = () =>
   )
 const fetchUpcoming = () =>
   axios.get(
-    'https://rawg.io/api/games/calendar/platforms?key=c542e67aec3a4340908f9de9e86038af'
+    'https://rawg.io/api/games/calendar/2024/1?ordering=-released&popular=true&page=1&page_size=20&key=c542e67aec3a4340908f9de9e86038af'
   )
 
 function Home() {
   const { data: top250Data } = useQuery('top-250', fetchTop250)
-  const { data: newReleasesData } = useQuery('new-releases', fetchTop250)
-  const { data: upcomingData } = useQuery('upcoming', fetchTop250)
+  const { data: newReleasesData } = useQuery('new-releases', fetchNewReleases)
+  const { data: upcomingData } = useQuery('upcoming',fetchUpcoming)
   console.log(top250Data?.data.results)
   return (
     <>
       <HeroSection />
-      <Carousel data={top250Data?.data.results}/>
-      {/* <Carousel data={newReleasesData} />
-      <Carousel data={upcomingData}/> */}
+      <Carousel title='Top 250' data={top250Data?.data.results}/>
+      <Carousel title='New releases' data={newReleasesData?.data.results} />
+      <Carousel title='Upcoming' data={upcomingData?.data.results}/>
     </>
   )
 }
