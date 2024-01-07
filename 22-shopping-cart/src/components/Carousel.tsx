@@ -34,7 +34,7 @@ export default function Carousel({ data, title }: CarouselProps) {
       <CarouselContainer>
         <div>
           {data?.map((game) => {
-            return <Card key={game.name} game={game} />
+            return <Card key={game.name} game={{ ...game, price: 19.99 }}  />
           })}
         </div>
       </CarouselContainer>

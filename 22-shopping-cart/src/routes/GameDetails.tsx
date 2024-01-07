@@ -32,20 +32,28 @@ export default function GameDetails() {
     )
   )
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-  },[])
+    window.scrollTo(0, 0)
+  }, [])
   if (isLoading) return <h1>Loading...</h1>
+  //@ts-ignore
   if (isError) return <h1>{error.message}</h1>
   return (
     <>
-      <HeroSection background_image={data?.data.background_image} name={data?.data.name} description_raw={data?.data.description_raw}/>
+      <HeroSection
+        background_image={data?.data.background_image}
+        name={data?.data.name}
+        description_raw={data?.data.description_raw}
+        price={19.99}
+      />
       <GameDetailsContainer>
         <h3>Rating: {data?.data.rating}</h3>
         <DescriContainer>
           <h4>Genre</h4>
-          <p>{data?.data.genres.map(genre => {
-            return `${genre.name}, `
-          })}</p>
+          <p>
+            {data?.data.genres.map((genre: any) => {
+              return `${genre.name}, `
+            })}
+          </p>
         </DescriContainer>
         <DescriContainer>
           <h4>Release date</h4>
@@ -53,9 +61,11 @@ export default function GameDetails() {
         </DescriContainer>
         <DescriContainer>
           <h4>Plataforms</h4>
-          <p>{data?.data.platforms.map(item => {
-            return `${item.platform.name}, `
-          })}</p>
+          <p>
+            {data?.data.platforms.map((item:any) => {
+              return `${item.platform.name}, `
+            })}
+          </p>
         </DescriContainer>
       </GameDetailsContainer>
     </>

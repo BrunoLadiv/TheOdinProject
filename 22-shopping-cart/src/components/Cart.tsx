@@ -28,7 +28,10 @@ const CartContainer = styled.div`
 `
 
 const ItemsContainer = styled.div`
-  max-height: 300px;
+  max-height: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
   overflow: scroll;
 `
 const CartItems = styled.div`
@@ -55,33 +58,71 @@ const CloseBtn = styled.button`
   top: 35px;
 `
 const CartBtn = styled.button`
+  position: relative;
   background-color: transparent;
   border: none;
+  & > span {
+    color: white;
+    background-color: var(--secondary);
+    padding: 3px;
+    border-radius: 999999px;
+    font-size: 0.6rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
 `
+const CartItem = styled.div`
+  position: relative;
+  width: fit-content;
+  & > button {
+    position: absolute;
+    bottom: 5px;
+    right: 30%;
+    background-color: transparent;
+    color: white;
+    border: none;
+  }
+`
+
 export default function Cart() {
   const { state, dispatch } = useCart()
   const [isOpened, setIsOpened] = useState(false)
   const { items } = state
-  if (!isOpened) return <CartBtn onClick={()=> setIsOpened(true)}><img src={CartSVG}/></CartBtn>
+  const totalPrices = items
+    //@ts-ignore
+    .reduce((sum, game) => sum + game.price, 0)
+    .toFixed(2)
+  if (!isOpened)
+    return (
+      <CartBtn onClick={() => setIsOpened(true)}>
+        <img src={CartSVG} />
+        {items.length && <span>{items.length}</span>}
+      </CartBtn>
+    )
   return (
     <CartContainer>
       <CartItems>
         <CloseBtn onClick={() => setIsOpened(false)}>X</CloseBtn>
         <p>Your cart:</p>
         <ItemsContainer>
-          {items.map((item) => {
+          {items.map((item:any) => {
             return (
-              <Card
-                game={item}
-                width="120px"
-                height="120px"
-                mt="5px"
-              />
+              <CartItem>
+                <button onClick={()=> dispatch({type:'remove-from-cart', payload: item.name})}>remove</button>
+                <Card
+                  game={item}
+                  width="150px"
+                  height="150px"
+                  mt="5px"
+                  pe="none"
+                />
+              </CartItem>
             )
           })}
         </ItemsContainer>
-        <h5>Total: 1294$</h5>
-        <PaymentBtn>Go to payment.</PaymentBtn>
+        {items.length >= 1 && <h5>Total: ${totalPrices}</h5>}
+        {items.length >= 1 && <PaymentBtn>Go to payment.</PaymentBtn>}
       </CartItems>
     </CartContainer>
   )

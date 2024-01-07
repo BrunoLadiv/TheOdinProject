@@ -6,6 +6,7 @@ import React from 'react'
 
 
 
+
 const LoadMoreBtn = styled.button`
   background-color: var(--terceary);
   padding: 10px;
@@ -42,6 +43,7 @@ export default function Games() {
       },
     })
   if (isLoading) return 'loading...'
+  //@ts-ignore
   if (isError) return <h1>{error.message}</h1>
 
   return (
@@ -51,11 +53,11 @@ export default function Games() {
         {data?.pages.map((group, index) => {
           return (
             <React.Fragment key={index}>
-              {group.data.results.map((game) => {
+              {group.data.results.map((game:any) => {
                 return (
                   <Card
                     key={game.id}
-                    game={game}
+                    game={{...game, price: 19.99}}
                   />
                 )
               })}

@@ -35,6 +35,7 @@ function Home() {
     <>
       {randomGameDetails && (
         <HeroSection
+          price={19.99}
           name={randomGameDetails.data.name}
           background_image={randomGameDetails.data.background_image}
           description_raw={randomGameDetails.data.description_raw}

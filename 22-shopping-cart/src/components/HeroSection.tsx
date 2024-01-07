@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Button from './Button'
 import CartSVG from '../assets/cart.svg'
 import { useCart } from '../services/providers/CartContext'
+import { useState } from 'react'
 
 const HeroSectionWrapper = styled.section`
   display: flex;
@@ -43,15 +44,38 @@ type HeroSectionProps = {
   name?: string
   description_raw?: string
   background_image?: string
+  price: number
 }
+const AlreadyInCartAlert = styled.div`
+  background-color: #ff0000be;
+  font-size: 1.5rem;
+  padding: 20px;
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 99999;
+`
 export default function HeroSection({
   name,
   description_raw,
   background_image,
+  price
 }: HeroSectionProps) {
   const { state, dispatch } = useCart()
+  const [showWarning, setShowWarning] = useState(false)
+
+  function handleWarning() {
+    setShowWarning(true)
+    setTimeout(() => {
+      setShowWarning(false)
+    }, 1000);
+  }
+
   function handleAddToCart() {
-    dispatch({ type: 'add-to-cart', payload: { name, background_image } })
+    if(state.items.find(game => game.name === name)) return handleWarning()
+    dispatch({ type: 'add-to-cart', payload: { name, background_image, price } })
   }
   return (
     <HeroSectionWrapper>
@@ -64,7 +88,8 @@ export default function HeroSection({
       <TextContainer>
         <HeroGameTitle>{name}</HeroGameTitle>
         <TextDescription>{description_raw}</TextDescription>
-        <h3>$32,90</h3>
+        <h3>${price}</h3>
+        {showWarning && <AlreadyInCartAlert>Game already in your cart</AlreadyInCartAlert>}
         <Button onClick={handleAddToCart}>
           <img src={CartSVG} />
           Add to cart

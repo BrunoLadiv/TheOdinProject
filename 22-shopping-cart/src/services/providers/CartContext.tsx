@@ -1,6 +1,9 @@
 import React, { createContext, useReducer, ReactNode, useContext } from 'react'
 
 type CartItem = {
+  name?: string
+  background_image?: string;
+  price?: number
 }
 
 type CartState = {
@@ -28,7 +31,8 @@ function reducer(state: CartState, action: CartAction): CartState {
     case 'remove-from-cart':
       return {
         ...state,
-        items: state.items.filter((item) => item !== action.payload),
+        //@ts-ignore
+        items: state.items.filter((item) => item.name !== action.payload),
       }
     default:
       return state
@@ -44,7 +48,11 @@ type ThemeProviderProps = {
 }
 
 export function useCart() {
-  return useContext(CartContext)
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context
 }
 
 export default function ThemeProvider({ children }: ThemeProviderProps) {
