@@ -1,8 +1,8 @@
-import cartSVG from '../assets/cart.svg'
 import logoSVG from '../assets/logo.svg'
 import magnifyingSVG from '../assets/mdi_magnify.svg'
 import styled from 'styled-components'
 import MobileMenu from './MobileMenu'
+import Cart from './Cart'
 
 
 const HeaderContainer = styled.header`
@@ -55,10 +55,8 @@ export default function Header() {
             alt="magnifying glass"
           />
         </SearchContainer>
-        <img
-          src={cartSVG}
-          alt="cart"
-        />
+        <Cart/>
+        
         <MobileMenu />
       </ButtonsContainer>
     </HeaderContainer>

@@ -8,6 +8,7 @@ const GameLink = styled(Link)`
 type CardProps = {
   width?: string
   height?: string
+  mt?: string
   game?: {
     name: string
     background_image: string
@@ -35,7 +36,7 @@ const CardDescriptionContainer = styled.div`
   padding-bottom: 24px;
   & > h3 {
     margin: 0;
-    margin-top: 18px;
+    margin-top: ${props => props.mt? props.mt : "18px" };
     font-size: 0.9rem;
     font-weight: 500;
     overflow: hidden;
@@ -48,7 +49,7 @@ const CardDescriptionContainer = styled.div`
     color: var(--secondary);
   }
 `
-function Card({ width, height, game }: CardProps) {
+function Card({ width, height, game, mt }: CardProps) {
   return (
     <GameLink to={`/games/${game?.slug}`}>
       <CardContainer
@@ -56,7 +57,7 @@ function Card({ width, height, game }: CardProps) {
         height={height}
       >
         <CardImage src={game?.background_image} />
-        <CardDescriptionContainer title={game?.name}>
+        <CardDescriptionContainer title={game?.name} mt={mt}>
           <h3>{game?.name}</h3>
           <p>$34.99</p>
         </CardDescriptionContainer>
