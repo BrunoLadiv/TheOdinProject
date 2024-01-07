@@ -107,7 +107,7 @@ export default function MobileMenu() {
           <Link to="/">Home</Link>
         </li>
         <li onClick={() => setIsOpened(false)}>
-          <Link to="/games">Games</Link>
+          <Link to="/games">All Games</Link>
         </li>
         
       </MobileMenuItems>

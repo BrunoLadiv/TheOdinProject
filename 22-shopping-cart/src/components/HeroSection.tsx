@@ -1,4 +1,3 @@
-import heroIMG from '../assets/heroimg.png'
 import styled from 'styled-components'
 import Button from './Button'
 import CartSVG from '../assets/cart.svg'

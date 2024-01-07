@@ -3,7 +3,7 @@ import magnifyingSVG from '../assets/mdi_magnify.svg'
 import styled from 'styled-components'
 import MobileMenu from './MobileMenu'
 import Cart from './Cart'
-
+import { Link } from 'react-router-dom'
 
 const HeaderContainer = styled.header`
 
@@ -42,10 +42,12 @@ export default function Header() {
   return (
     <HeaderContainer>
       <LogoContainer>
+        <Link to={'/'}>
         <img
           src={logoSVG}
           alt="logo"
         />
+        </Link>
       </LogoContainer>
       <ButtonsContainer>
         <SearchContainer>
