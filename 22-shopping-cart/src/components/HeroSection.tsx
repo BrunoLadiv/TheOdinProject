@@ -34,6 +34,9 @@ const TextDescription = styled.p`
   max-width: 258px;
   line-height: 18px;
   color: #b0aaaa;
+  max-height: 145px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 type HeroSectionProps = {
   name?: string,
