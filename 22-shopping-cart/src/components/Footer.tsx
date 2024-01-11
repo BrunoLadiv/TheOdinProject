@@ -14,6 +14,10 @@ const FooterContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 32px;
+   @media (min-width: 1440px){
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `
 const SocialsContainer = styled.ul`
   list-style: none;

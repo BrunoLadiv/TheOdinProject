@@ -13,6 +13,9 @@ const CarouselContainer = styled.section`
   & > div > * {
     scroll-snap-align: start;
   }
+   @media (min-width: 1440px){
+    margin-bottom: 80px;
+  }
 `
 const CarouselCategory = styled.h2`
   font-size: 1.2rem;

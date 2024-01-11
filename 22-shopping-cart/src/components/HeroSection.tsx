@@ -7,6 +7,11 @@ import { useState } from 'react'
 const HeroSectionWrapper = styled.section`
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    margin-bottom: 100px;
+  }
 `
 const ImgContainer = styled.div`
   width: 100%;
@@ -15,6 +20,13 @@ const ImgContainer = styled.div`
 const TextContainer = styled.div`
   width: 100%;
   padding-left: 36px;
+  @media (min-width: 1440px) {
+    margin-top: 50px;
+    width: 40%;
+    & > h3 {
+      margin-top: 100px;
+    }
+  }
 `
 const HeroImg = styled.img`
   width: 100%;
@@ -60,7 +72,7 @@ export default function HeroSection({
   name,
   description_raw,
   background_image,
-  price
+  price,
 }: HeroSectionProps) {
   const { state, dispatch } = useCart()
   const [showWarning, setShowWarning] = useState(false)
@@ -69,12 +81,15 @@ export default function HeroSection({
     setShowWarning(true)
     setTimeout(() => {
       setShowWarning(false)
-    }, 1000);
+    }, 1000)
   }
 
   function handleAddToCart() {
-    if(state.items.find(game => game.name === name)) return handleWarning()
-    dispatch({ type: 'add-to-cart', payload: { name, background_image, price } })
+    if (state.items.find((game) => game.name === name)) return handleWarning()
+    dispatch({
+      type: 'add-to-cart',
+      payload: { name, background_image, price },
+    })
   }
   return (
     <HeroSectionWrapper>
@@ -88,7 +103,9 @@ export default function HeroSection({
         <HeroGameTitle>{name}</HeroGameTitle>
         <TextDescription>{description_raw}</TextDescription>
         <h3>${price}</h3>
-        {showWarning && <AlreadyInCartAlert>Game already in your cart</AlreadyInCartAlert>}
+        {showWarning && (
+          <AlreadyInCartAlert>Game already in your cart</AlreadyInCartAlert>
+        )}
         <Button onClick={handleAddToCart}>
           <img src={CartSVG} />
           Add to cart

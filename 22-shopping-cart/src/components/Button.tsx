@@ -13,7 +13,7 @@ const Btn = styled.button<StyledButtonProps>`
   gap: 5px;
   text-align: center;
   border: none;
-  border-radius: 100px;
+  border-radius: 5px;
   cursor: pointer;
   transition: transform 0.3s ease;
   &:hover,
@@ -46,3 +46,5 @@ function Button({ children, bg, color, onClick}: ButtonProps) {
 }
 
 export default Button
+
+
