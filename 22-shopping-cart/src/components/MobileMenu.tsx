@@ -44,7 +44,7 @@ const MobileMenuBtn = styled.label`
   }
 `
 const MobileMenuItemList = styled.ul`
-  display: flex;
+  display: ${props => props.isOpened? 'flex': 'none'};
   flex-direction: column;
   position: absolute;
   align-items: flex-end;
@@ -74,21 +74,15 @@ const MobileMenuItemList = styled.ul`
     text-decoration: none;
     color: var(--primary);
     font-size: 1.5rem;
-    font-weight: 100;
-    
+    font-weight: 100
   }
   & li:first-child {
     margin-top: 150px;
   }
 `
-const MobileMenuItemClosed = styled(MobileMenuItemList)`
-  transform: translateX(-100%);
-  
-`
 const MobileMenuContainer = styled.div``
 export default function MobileMenu() {
   const [isOpened, setIsOpened] = useState<boolean>(false)
-  const MobileMenuItems = isOpened ? MobileMenuItemList : MobileMenuItemClosed
   return (
     <MobileMenuContainer>
       <MobileMenuBtn >
@@ -102,7 +96,7 @@ export default function MobileMenu() {
         <span className="mid"></span>
         <span className="bot"></span>
       </MobileMenuBtn>
-      <MobileMenuItems>
+      <MobileMenuItemList isOpened={isOpened} >
         <li onClick={() => setIsOpened(false)}>
           <Link to="/">Home</Link>
         </li>
@@ -110,7 +104,7 @@ export default function MobileMenu() {
           <Link to="/games">All Games</Link>
         </li>
         
-      </MobileMenuItems>
+      </MobileMenuItemList>
     </MobileMenuContainer>
   )
 }
