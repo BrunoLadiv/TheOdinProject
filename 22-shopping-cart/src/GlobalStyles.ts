@@ -25,11 +25,14 @@ const GlobalStyles = createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
+    -webkit-appearance: none;
     width: 5px;
   }
   ::-webkit-scrollbar-thumb {
     background-color: var(--secondary);
     border-radius: 15px;
+    border: 5px solid transparent;
+    width: 30px;
     &:hover{
       background-color: var(--terceary);
       cursor: grab;

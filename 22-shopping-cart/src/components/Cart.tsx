@@ -1,8 +1,8 @@
-import styled from 'styled-components'
-import { useCart } from '../services/providers/CartContext'
-import Card from './Card'
-import { useState } from 'react'
-import CartSVG from '../assets/cart.svg'
+import styled from "styled-components";
+import { useCart } from "../services/providers/CartContext";
+import Card from "./Card";
+import { useState } from "react";
+import CartSVG from "../assets/cart.svg";
 
 const CartContainer = styled.div`
   height: 110vh;
@@ -25,20 +25,26 @@ const CartContainer = styled.div`
   justify-content: flex-end;
   margin-top: -50px;
   transform: translateX(0);
-`
+`;
 
 const ItemsContainer = styled.div`
   max-height: 450px;
   display: flex;
   flex-direction: column;
   gap: 18px;
-  overflow: scroll;
-`
+  overflow-y: scroll;
+  @media (min-width: 800px) {
+    max-height: 700px;
+  }
+`;
 const CartItems = styled.div`
   width: 60%;
   background-color: var(--bg-color);
   padding: 28px;
-`
+  @media (min-width: 800px) {
+    width: 20%;
+  }
+`;
 const PaymentBtn = styled.button`
   background-color: var(--terceary);
   border: none;
@@ -46,7 +52,7 @@ const PaymentBtn = styled.button`
   color: white;
   padding: 10px;
   color: var(--secondary);
-`
+`;
 const CloseBtn = styled.button`
   background-color: transparent;
   color: white;
@@ -56,7 +62,7 @@ const CloseBtn = styled.button`
   position: absolute;
   right: 15px;
   top: 35px;
-`
+`;
 const CartBtn = styled.button`
   position: relative;
   background-color: transparent;
@@ -71,7 +77,7 @@ const CartBtn = styled.button`
     bottom: 0;
     right: 0;
   }
-`
+`;
 const CartItem = styled.div`
   position: relative;
   width: fit-content;
@@ -83,33 +89,39 @@ const CartItem = styled.div`
     color: white;
     border: none;
   }
-`
+`;
 
 export default function Cart() {
-  const { state, dispatch } = useCart()
-  const [isOpened, setIsOpened] = useState(false)
-  const { items } = state
+  const { state, dispatch } = useCart();
+  const [isOpened, setIsOpened] = useState(false);
+  const { items } = state;
   const totalPrices = items
     //@ts-ignore
     .reduce((sum, game) => sum + game.price, 0)
-    .toFixed(2)
+    .toFixed(2);
   if (!isOpened)
     return (
       <CartBtn onClick={() => setIsOpened(true)}>
         <img src={CartSVG} />
         {items.length && <span>{items.length}</span>}
       </CartBtn>
-    )
+    );
   return (
     <CartContainer>
       <CartItems>
         <CloseBtn onClick={() => setIsOpened(false)}>X</CloseBtn>
         <p>Your cart:</p>
         <ItemsContainer>
-          {items.map((item:any) => {
+          {items.map((item: any) => {
             return (
               <CartItem>
-                <button onClick={()=> dispatch({type:'remove-from-cart', payload: item.name})}>remove</button>
+                <button
+                  onClick={() =>
+                    dispatch({ type: "remove-from-cart", payload: item.name })
+                  }
+                >
+                  remove
+                </button>
                 <Card
                   game={item}
                   width="150px"
@@ -118,12 +130,12 @@ export default function Cart() {
                   pe="none"
                 />
               </CartItem>
-            )
+            );
           })}
         </ItemsContainer>
         {items.length >= 1 && <h5>Total: ${totalPrices}</h5>}
         {items.length >= 1 && <PaymentBtn>Go to payment.</PaymentBtn>}
       </CartItems>
     </CartContainer>
-  )
+  );
 }
