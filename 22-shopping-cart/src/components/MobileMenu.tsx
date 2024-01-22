@@ -1,7 +1,6 @@
-import { useState } from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-
+import { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const MobileMenuBtn = styled.label`
   position: relative;
@@ -16,7 +15,7 @@ const MobileMenuBtn = styled.label`
   border-radius: 0.5em;
   transition: all 0.3s;
   z-index: 999;
-  & > input[type='checkbox'] {
+  & > input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
     display: none;
@@ -42,9 +41,13 @@ const MobileMenuBtn = styled.label`
     transform: translateX(-20px);
     opacity: 0;
   }
-`
-const MobileMenuItemList = styled.ul`
-  display: ${props => props.isOpened? 'flex': 'none'};
+`;
+interface MobileMenuItemListProps {
+  isOpened: boolean;
+}
+const MobileMenuItemList = styled.ul<MobileMenuItemListProps>`
+  display: ${(props) => (props.isOpened ? "flex" : "none")};
+
   flex-direction: column;
   position: absolute;
   align-items: flex-end;
@@ -69,23 +72,23 @@ const MobileMenuItemList = styled.ul`
     list-style: none;
     margin-bottom: 15px;
     margin-right: 50px;
-    
-  } & a {
+  }
+  & a {
     text-decoration: none;
     color: var(--primary);
     font-size: 1.5rem;
-    font-weight: 100
+    font-weight: 100;
   }
   & li:first-child {
     margin-top: 150px;
   }
-`
-const MobileMenuContainer = styled.div``
+`;
+const MobileMenuContainer = styled.div``;
 export default function MobileMenu() {
-  const [isOpened, setIsOpened] = useState<boolean>(false)
+  const [isOpened, setIsOpened] = useState<boolean>(false);
   return (
     <MobileMenuContainer>
-      <MobileMenuBtn >
+      <MobileMenuBtn>
         <input
           type="checkbox"
           id="check"
@@ -96,15 +99,14 @@ export default function MobileMenu() {
         <span className="mid"></span>
         <span className="bot"></span>
       </MobileMenuBtn>
-      <MobileMenuItemList isOpened={isOpened} >
+      <MobileMenuItemList isOpened={isOpened}>
         <li onClick={() => setIsOpened(false)}>
           <Link to="/">Home</Link>
         </li>
         <li onClick={() => setIsOpened(false)}>
           <Link to="/games">All Games</Link>
         </li>
-        
       </MobileMenuItemList>
     </MobileMenuContainer>
-  )
+  );
 }
