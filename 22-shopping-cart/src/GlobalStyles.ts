@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   *,
@@ -23,5 +23,17 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     font-family: 'Inter', sans-serif;
   }
-`
-export default GlobalStyles
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--secondary);
+    border-radius: 15px;
+    &:hover{
+      background-color: var(--terceary);
+      cursor: grab;
+    }
+  }
+`;
+export default GlobalStyles;
