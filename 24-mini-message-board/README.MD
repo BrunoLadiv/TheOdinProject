@@ -7,15 +7,3 @@ This project is part of [The Odin Project](https://www.theodinproject.com/) curr
 ## Live Preview
 
 [Mini Message Board](https://mini-message-board-brunoladiv.fly.dev/)
-
-## Installation
-
-To run this project locally, follow these steps:
-
-```bash
-git clone https://github.com/BrunoLadiv/TheOdinProject/tree/main/24-mini-message-board
-cd 24-mini-message-board
-npm install
-npm start
-
-```
