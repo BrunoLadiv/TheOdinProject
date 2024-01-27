@@ -1,14 +1,16 @@
 const express = require("express")
+const path = require("path")
 const app = express()
 const port = 3000
 
+app.use(express.urlencoded({ extended: true }))
+
 app.set("view engine", "ejs")
-
 app.set("views", __dirname + "/views")
+app.use(express.static(path.join(__dirname + "/public")))
 
-app.get("/", (req, res) => {
-  res.render("index", { message: "Hello, Express with EJS!" })
-})
+const indexRouter = require("./routes/index")
+app.use("/", indexRouter)
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)

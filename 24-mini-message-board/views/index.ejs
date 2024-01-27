@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message board</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+  <body>
+    <h1>Messages:</h1>
+
+    <% messages.forEach(message => { %>
+    <div class="message-bubble">
+      <p>User: <%= message.user %></p>
+      <p>Text: <%= message.text %></p>
+      <p>Date: <%= message.date %></p>
+    </div>
+    <% }) %>
+    <a href="/new"> <button>Add New Message</button></a>
+  </body>
+</html>
