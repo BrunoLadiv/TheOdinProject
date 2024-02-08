@@ -3,6 +3,16 @@ const express = require("express")
 const path = require("path")
 const cookieParser = require("cookie-parser")
 const logger = require("morgan")
+const mongoose = require("mongoose")
+mongoose.set("strictQuery", false)
+
+const mongDB = process.env.MONGODB_URI
+
+async function main() {
+  await mongoose.connect(mongDB)
+}
+
+main().catch((err) => console.log(err))
 
 const indexRouter = require("./routes/index")
 const usersRouter = require("./routes/users")
