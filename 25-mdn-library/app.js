@@ -1,6 +1,8 @@
 const createError = require("http-errors")
 const express = require("express")
 const path = require("path")
+const helmet = require("helmet")
+const compression = require("compression")
 const cookieParser = require("cookie-parser")
 const logger = require("morgan")
 const mongoose = require("mongoose")
@@ -19,8 +21,22 @@ const indexRouter = require("./routes/index")
 const usersRouter = require("./routes/users")
 
 const app = express()
+const RateLimit = require("express-rate-limit")
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20,
+})
+app.use(limiter)
 
 // view engine setup
+app.use(compression())
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    },
+  })
+)
 app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "pug")
 
