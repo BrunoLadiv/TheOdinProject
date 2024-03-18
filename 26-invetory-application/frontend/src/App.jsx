@@ -1,9 +1,9 @@
 import styled from "styled-components"
-import Sidebar from "./components/Sidebar"
+import Header from "./components/Header"
 
 const MaxWidthWrapper = styled.div`
   margin: 0 auto;
-  width: 85%;
+  width: 80%;
   border: 1px solid red;
   min-height: 100vh;
   display: flex;
@@ -12,7 +12,7 @@ const MaxWidthWrapper = styled.div`
 function App() {
   return (
     <MaxWidthWrapper>
-      <Sidebar />
+      <Header />
     </MaxWidthWrapper>
   )
 }
