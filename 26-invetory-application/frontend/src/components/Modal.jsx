@@ -6,11 +6,12 @@ const EditForm = styled.div`
   padding: 20px;
   border: 1px solid #ddd;
   width: 400px;
+  transform: translateY(-100px)
 `
 
 const FormLabel = styled.label`
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 5px; 
 `
 
 const FormInput = styled.input`
@@ -18,6 +19,7 @@ const FormInput = styled.input`
   padding: 8px;
   margin-bottom: 10px;
 `
+
 const FormTextArea = styled.textarea`
   width: 95%;
   padding: 8px;
@@ -31,17 +33,8 @@ const FormButton = styled.button`
   padding: 6px 10px;
   margin-right: 5px;
 `
-const mockup = {
-  name: "iPhone 13",
-  price: 999,
-  category: "Phones",
-  brand: "Apple",
-  quantity: 10,
-  description:
-    "The latest iPhone model with a sleek new design and a powerful new processor.",
-}
 
-export const Dialog = styled.dialog`
+export const DialogElement = styled.dialog`
   position: absolute;
   top: 0;
   left: 0;
@@ -53,9 +46,29 @@ export const Dialog = styled.dialog`
   justify-content: center;
   align-items: center;
 `
+const mockup = {
+  name: "iPhone 13",
+  price: 999,
+  category: "Phones",
+  brand: "Apple",
+  quantity: 10,
+  description:
+    "The latest iPhone model with a sleek new design and a powerful new processor.",
+}
 
-const EditDialog = ({ product = mockup, setEditDialogOpen }) => {
-  const [editedProduct, setEditedProduct] = useState(product)
+const Modal = ({ product = mockup, setEditDialogOpen, isEditing = false }) => {
+  const initialProductState = isEditing
+    ? product
+    : {
+        name: "",
+        price: 0,
+        category: "",
+        brand: "",
+        quantity: 0,
+        description: "",
+      }
+
+  const [editedProduct, setEditedProduct] = useState(initialProductState)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
@@ -65,17 +78,24 @@ const EditDialog = ({ product = mockup, setEditDialogOpen }) => {
     })
   }
 
-  const handleSave = () => {
-    return
+  const handleSave = (e) => {
+    e.preventDefault()
+    // Handle save logic here, either editing existing product or creating a new one
+    // For demonstration purposes, let's just log the edited product
+    console.log(editedProduct)
+    // Close the dialog
+    setEditDialogOpen(false)
   }
+
   return (
-    <Dialog>
-      <EditForm>
-        <h2>Edit Product</h2>
+    <DialogElement>
+      <EditForm onSubmit={handleSave}>
+        <h2>{isEditing ? "Edit Product" : "Create Product"}</h2>
         <form>
           <div>
             <FormLabel>Name:</FormLabel>
             <FormInput
+              required
               type="text"
               name="name"
               value={editedProduct.name}
@@ -85,6 +105,7 @@ const EditDialog = ({ product = mockup, setEditDialogOpen }) => {
           <div>
             <FormLabel>Price:</FormLabel>
             <FormInput
+              required
               type="text"
               name="price"
               value={editedProduct.price}
@@ -94,6 +115,7 @@ const EditDialog = ({ product = mockup, setEditDialogOpen }) => {
           <div>
             <FormLabel>Category:</FormLabel>
             <FormInput
+              required
               type="text"
               name="category"
               value={editedProduct.category}
@@ -103,6 +125,7 @@ const EditDialog = ({ product = mockup, setEditDialogOpen }) => {
           <div>
             <FormLabel>Brand:</FormLabel>
             <FormInput
+              required
               type="text"
               name="brand"
               value={editedProduct.brand}
@@ -112,6 +135,7 @@ const EditDialog = ({ product = mockup, setEditDialogOpen }) => {
           <div>
             <FormLabel>Quantity:</FormLabel>
             <FormInput
+              required
               type="number"
               name="quantity"
               value={editedProduct.quantity}
@@ -121,13 +145,16 @@ const EditDialog = ({ product = mockup, setEditDialogOpen }) => {
           <div>
             <FormLabel>Description:</FormLabel>
             <FormTextArea
+              required
               name="description"
               value={editedProduct.description}
               onChange={handleInputChange}
             />
           </div>
           <div>
-            <FormButton onClick={handleSave}>Save</FormButton>
+            <FormButton type="submit">
+              {isEditing ? "Save" : "Create"}
+            </FormButton>
             <FormButton
               onClick={(e) => {
                 e.preventDefault()
@@ -139,8 +166,8 @@ const EditDialog = ({ product = mockup, setEditDialogOpen }) => {
           </div>
         </form>
       </EditForm>
-    </Dialog>
+    </DialogElement>
   )
 }
 
-export default EditDialog
+export default Modal

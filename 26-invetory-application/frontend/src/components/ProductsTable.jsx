@@ -1,8 +1,9 @@
 import styled from "styled-components"
 import products from "../mockupdb/db"
 import { useState } from "react"
-import EditDialog from "./EditDialog"
+// import EditDialog from "./EditDialog"
 import DeleteDialog from "./DeleteDialog"
+import Modal from "./Modal"
 
 const Table = styled.table`
   width: 100%;
@@ -51,8 +52,12 @@ const ProductsTable = () => {
 
   return (
     <>
-      {deleteDialogOpen && <DeleteDialog setDeleteDialogOpen={setDeleteDialogOpen} />}
-      {editDialogOpen && <EditDialog setEditDialogOpen={setEditDialogOpen} />}
+      {deleteDialogOpen && (
+        <DeleteDialog setDeleteDialogOpen={setDeleteDialogOpen} />
+      )}
+      {editDialogOpen && (
+        <Modal setEditDialogOpen={setEditDialogOpen} isEditing={true} />
+      )}
       <Table>
         <thead>
           <tr>

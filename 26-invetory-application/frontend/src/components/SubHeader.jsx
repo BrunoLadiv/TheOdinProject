@@ -1,5 +1,6 @@
 import styled from "styled-components"
-
+import Modal from "./Modal"
+import { useState } from "react"
 const SubHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -14,8 +15,10 @@ const SubHeaderWrapper = styled.div`
   }
 `
 export default function SubHeader() {
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   return (
     <SubHeaderWrapper>
+      {deleteDialogOpen && <Modal setEditDialogOpen={setDeleteDialogOpen} />}
       <div>
         <label htmlFor="category">Categories:</label>
         <select id="category" name="category">
@@ -24,7 +27,7 @@ export default function SubHeader() {
           <option value="category3">Category 3</option>
         </select>
       </div>
-      <button>Add new Product</button>
+      <button onClick={() => setDeleteDialogOpen(true)}>Add new Product</button>
     </SubHeaderWrapper>
   )
 }
