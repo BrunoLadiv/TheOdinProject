@@ -1,8 +1,7 @@
 import styled from "styled-components"
 import Header from "./components/Header"
 import ProductsTable from "./components/ProductsTable"
-import EditDialog from "./components/EditDialog"
-import { useState } from "react"
+import SubHeader from "./components/SubHeader"
 const MaxWidthWrapper = styled.div`
   margin: 0 auto;
   width: 80%;
@@ -16,6 +15,7 @@ function App() {
     <>
       <MaxWidthWrapper>
         <Header />
+        <SubHeader />
         <ProductsTable />
       </MaxWidthWrapper>
     </>
