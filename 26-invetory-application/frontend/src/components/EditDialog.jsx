@@ -41,7 +41,7 @@ const mockup = {
     "The latest iPhone model with a sleek new design and a powerful new processor.",
 }
 
-const Dialog = styled.dialog`
+export const Dialog = styled.dialog`
   position: absolute;
   top: 0;
   left: 0;
@@ -54,7 +54,7 @@ const Dialog = styled.dialog`
   align-items: center;
 `
 
-const EditDialog = ({ product = mockup, setEditDialogOpen, onCancel }) => {
+const EditDialog = ({ product = mockup, setEditDialogOpen }) => {
   const [editedProduct, setEditedProduct] = useState(product)
 
   const handleInputChange = (event) => {
@@ -66,7 +66,7 @@ const EditDialog = ({ product = mockup, setEditDialogOpen, onCancel }) => {
   }
 
   const handleSave = () => {
-    onSave(editedProduct)
+    return
   }
   return (
     <Dialog>

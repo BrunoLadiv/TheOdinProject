@@ -12,14 +12,12 @@ const MaxWidthWrapper = styled.div`
 `
 
 function App() {
-  const [editDialogOpen, setEditDialogOpen] = useState(false)
   return (
     <>
       <MaxWidthWrapper>
         <Header />
-        <ProductsTable setEditDialogOpen={setEditDialogOpen} />
+        <ProductsTable />
       </MaxWidthWrapper>
-      {editDialogOpen && <EditDialog setEditDialogOpen={setEditDialogOpen} />}
     </>
   )
 }

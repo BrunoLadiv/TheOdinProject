@@ -1,5 +1,8 @@
 import styled from "styled-components"
 import products from "../mockupdb/db"
+import { useState } from "react"
+import EditDialog from "./EditDialog"
+import DeleteDialog from "./DeleteDialog"
 
 const Table = styled.table`
   width: 100%;
@@ -33,46 +36,53 @@ const Button = styled.button`
   margin-right: 5px;
 `
 
-const ProductsTable = ({ setEditDialogOpen }) => {
+const ProductsTable = () => {
+  const [editDialogOpen, setEditDialogOpen] = useState(false)
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const handleEdit = (productId) => {
     console.log(`Edit product with ID: ${productId}`)
     setEditDialogOpen(true)
   }
 
   const handleDelete = (productId) => {
+    setDeleteDialogOpen(true)
     console.log(`Delete product with ID: ${productId}`)
   }
 
   return (
-    <Table>
-      <thead>
-        <tr>
-          <TableHeader>Name</TableHeader>
-          <TableHeader>Price</TableHeader>
-          <TableHeader>Category</TableHeader>
-          <TableHeader>Brand</TableHeader>
-          <TableHeader>Quantity</TableHeader>
-          <TableHeader>ID</TableHeader>
-          <TableHeader>Actions</TableHeader>
-        </tr>
-      </thead>
-      <tbody>
-        {products.map((product) => (
-          <TableRow key={product.id}>
-            <TableCell>{product.name}</TableCell>
-            <TableCell>${product.price.toFixed(2)}</TableCell>
-            <TableCell>{product.category}</TableCell>
-            <TableCell>{product.brand}</TableCell>
-            <TableCell>{product.quantity}</TableCell>
-            <TableCell>{product.id}</TableCell>
-            <TableCell>
-              <Button onClick={() => handleEdit(product.id)}>Edit</Button>
-              <Button onClick={() => handleDelete(product.id)}>Delete</Button>
-            </TableCell>
-          </TableRow>
-        ))}
-      </tbody>
-    </Table>
+    <>
+      {deleteDialogOpen && <DeleteDialog setDeleteDialogOpen={setDeleteDialogOpen} />}
+      {editDialogOpen && <EditDialog setEditDialogOpen={setEditDialogOpen} />}
+      <Table>
+        <thead>
+          <tr>
+            <TableHeader>Name</TableHeader>
+            <TableHeader>Price</TableHeader>
+            <TableHeader>Category</TableHeader>
+            <TableHeader>Brand</TableHeader>
+            <TableHeader>Quantity</TableHeader>
+            <TableHeader>ID</TableHeader>
+            <TableHeader>Actions</TableHeader>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product) => (
+            <TableRow key={product.id}>
+              <TableCell>{product.name}</TableCell>
+              <TableCell>${product.price.toFixed(2)}</TableCell>
+              <TableCell>{product.category}</TableCell>
+              <TableCell>{product.brand}</TableCell>
+              <TableCell>{product.quantity}</TableCell>
+              <TableCell>{product.id}</TableCell>
+              <TableCell>
+                <Button onClick={() => handleEdit(product.id)}>Edit</Button>
+                <Button onClick={() => handleDelete(product.id)}>Delete</Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </tbody>
+      </Table>
+    </>
   )
 }
 
