@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import Header from "./components/Header"
 import ProductsTable from "./components/ProductsTable"
+import EditDialog from "./components/EditDialog"
+import { useState } from "react"
 const MaxWidthWrapper = styled.div`
   margin: 0 auto;
   width: 80%;
@@ -10,11 +12,15 @@ const MaxWidthWrapper = styled.div`
 `
 
 function App() {
+  const [editDialogOpen, setEditDialogOpen] = useState(false)
   return (
-    <MaxWidthWrapper>
-      <Header />
-      <ProductsTable />
-    </MaxWidthWrapper>
+    <>
+      <MaxWidthWrapper>
+        <Header />
+        <ProductsTable setEditDialogOpen={setEditDialogOpen} />
+      </MaxWidthWrapper>
+      {editDialogOpen && <EditDialog setEditDialogOpen={setEditDialogOpen} />}
+    </>
   )
 }
 

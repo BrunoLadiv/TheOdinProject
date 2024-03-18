@@ -1,76 +1,5 @@
 import styled from "styled-components"
-const products = [
-  {
-    id: "1",
-    name: "iPhone 11",
-    price: 699.99,
-    category: "Smartphones",
-    brand: "Apple",
-  },
-  {
-    id: "2",
-    name: "Samsung Galaxy S20",
-    price: 899.99,
-    category: "Smartphones",
-    brand: "Samsung",
-  },
-  {
-    id: "3",
-    name: "Google Pixel 5",
-    price: 699.99,
-    category: "Smartphones",
-    brand: "Google",
-  },
-  {
-    id: "4",
-    name: "Sony PlayStation 5",
-    price: 499.99,
-    category: "Gaming Consoles",
-    brand: "Sony",
-  },
-  {
-    id: "5",
-    name: "Microsoft Xbox Series X",
-    price: 499.99,
-    category: "Gaming Consoles",
-    brand: "Microsoft",
-  },
-  {
-    id: "6",
-    name: "MacBook Air",
-    price: 999.99,
-    category: "Laptops",
-    brand: "Apple",
-  },
-  {
-    id: "7",
-    name: "Dell XPS 13",
-    price: 1199.99,
-    category: "Laptops",
-    brand: "Dell",
-  },
-  {
-    id: "8",
-    name: "LG OLED CX Series",
-    price: 1499.99,
-    category: "Televisions",
-    brand: "LG",
-  },
-  {
-    id: "9",
-    name: "Bose QuietComfort 35 II",
-    price: 299.99,
-    category: "Headphones",
-    brand: "Bose",
-  },
-  {
-    id: "10",
-    name: "Canon EOS Rebel T7i",
-    price: 699.99,
-    category: "Cameras",
-    brand: "Canon",
-  },
-]
+import products from "../mockupdb/db"
 
 const Table = styled.table`
   width: 100%;
@@ -104,9 +33,10 @@ const Button = styled.button`
   margin-right: 5px;
 `
 
-const ProductsTable = () => {
+const ProductsTable = ({ setEditDialogOpen }) => {
   const handleEdit = (productId) => {
     console.log(`Edit product with ID: ${productId}`)
+    setEditDialogOpen(true)
   }
 
   const handleDelete = (productId) => {
@@ -121,6 +51,7 @@ const ProductsTable = () => {
           <TableHeader>Price</TableHeader>
           <TableHeader>Category</TableHeader>
           <TableHeader>Brand</TableHeader>
+          <TableHeader>Quantity</TableHeader>
           <TableHeader>ID</TableHeader>
           <TableHeader>Actions</TableHeader>
         </tr>
@@ -132,6 +63,7 @@ const ProductsTable = () => {
             <TableCell>${product.price.toFixed(2)}</TableCell>
             <TableCell>{product.category}</TableCell>
             <TableCell>{product.brand}</TableCell>
+            <TableCell>{product.quantity}</TableCell>
             <TableCell>{product.id}</TableCell>
             <TableCell>
               <Button onClick={() => handleEdit(product.id)}>Edit</Button>

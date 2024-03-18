@@ -1,0 +1,146 @@
+import { useState } from "react"
+import styled from "styled-components"
+
+const EditForm = styled.div`
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ddd;
+  width: 400px;
+`
+
+const FormLabel = styled.label`
+  display: block;
+  margin-bottom: 5px;
+`
+
+const FormInput = styled.input`
+  width: 95%;
+  padding: 8px;
+  margin-bottom: 10px;
+`
+const FormTextArea = styled.textarea`
+  width: 95%;
+  padding: 8px;
+  margin-bottom: 10px;
+  height: 148px;
+  width: 379px;
+  resize: none;
+`
+
+const FormButton = styled.button`
+  padding: 6px 10px;
+  margin-right: 5px;
+`
+const mockup = {
+  name: "iPhone 13",
+  price: 999,
+  category: "Phones",
+  brand: "Apple",
+  quantity: 10,
+  description:
+    "The latest iPhone model with a sleek new design and a powerful new processor.",
+}
+
+const Dialog = styled.dialog`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.801);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const EditDialog = ({ product = mockup, setEditDialogOpen, onCancel }) => {
+  const [editedProduct, setEditedProduct] = useState(product)
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target
+    setEditedProduct({
+      ...editedProduct,
+      [name]: value,
+    })
+  }
+
+  const handleSave = () => {
+    onSave(editedProduct)
+  }
+  return (
+    <Dialog>
+      <EditForm>
+        <h2>Edit Product</h2>
+        <form>
+          <div>
+            <FormLabel>Name:</FormLabel>
+            <FormInput
+              type="text"
+              name="name"
+              value={editedProduct.name}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <FormLabel>Price:</FormLabel>
+            <FormInput
+              type="text"
+              name="price"
+              value={editedProduct.price}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <FormLabel>Category:</FormLabel>
+            <FormInput
+              type="text"
+              name="category"
+              value={editedProduct.category}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <FormLabel>Brand:</FormLabel>
+            <FormInput
+              type="text"
+              name="brand"
+              value={editedProduct.brand}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <FormLabel>Quantity:</FormLabel>
+            <FormInput
+              type="number"
+              name="quantity"
+              value={editedProduct.quantity}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <FormLabel>Description:</FormLabel>
+            <FormTextArea
+              name="description"
+              value={editedProduct.description}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <FormButton onClick={handleSave}>Save</FormButton>
+            <FormButton
+              onClick={(e) => {
+                e.preventDefault()
+                setEditDialogOpen(false)
+              }}
+            >
+              Cancel
+            </FormButton>
+          </div>
+        </form>
+      </EditForm>
+    </Dialog>
+  )
+}
+
+export default EditDialog
