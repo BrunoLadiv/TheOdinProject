@@ -20,7 +20,8 @@ const postProduct = async (product) => {
 }
 
 const updatedProduct = async (product) => {
-  const response = await api.patch(`/products/${product.id}`, product)
+  console.log(product + 'aqui')
+  const response = await api.patch(`/products/${product._id}`, product)
   return response
 }
 

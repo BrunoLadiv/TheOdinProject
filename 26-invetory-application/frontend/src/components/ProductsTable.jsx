@@ -4,7 +4,7 @@ import { useState } from "react"
 import DeleteDialog from "./DeleteDialog"
 import Modal from "./Modal"
 import { useQuery, useMutation, useQueryClient } from "react-query"
-import { getProducts } from "../services/api"
+import { getProducts, updatedProduct } from "../services/api"
 
 const Table = styled.table`
   width: 100%;
@@ -40,13 +40,9 @@ const Button = styled.button`
 
 const ProductsTable = () => {
   const { isLoading, data: products, error } = useQuery("products", getProducts)
-
+  const [currentProduct, setCurrentProduct] = useState(null)
   const [editDialogOpen, setEditDialogOpen] = useState(false)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
-  const handleEdit = (productId) => {
-    console.log(`Edit product with ID: ${productId}`)
-    setEditDialogOpen(true)
-  }
 
   const handleDelete = (productId) => {
     setDeleteDialogOpen(true)
@@ -54,14 +50,17 @@ const ProductsTable = () => {
   }
   if (isLoading) return "Loading..."
   if (error) return "Error loading products"
-  console.log(products)
   return (
     <>
       {deleteDialogOpen && (
         <DeleteDialog setDeleteDialogOpen={setDeleteDialogOpen} />
       )}
       {editDialogOpen && (
-        <Modal setEditDialogOpen={setEditDialogOpen} isEditing={true} />
+        <Modal
+          setEditDialogOpen={setEditDialogOpen}
+          product={currentProduct}
+          isEditing={true}
+        />
       )}
 
       <Table>
@@ -86,7 +85,14 @@ const ProductsTable = () => {
               <TableCell>{product.quantity}</TableCell>
               <TableCell>{product.id}</TableCell>
               <TableCell>
-                <Button onClick={() => handleEdit(product.id)}>Edit</Button>
+                <Button
+                  onClick={() => {
+                    setCurrentProduct(product)
+                    setEditDialogOpen(true)
+                  }}
+                >
+                  Edit
+                </Button>
                 <Button onClick={() => handleDelete(product.id)}>Delete</Button>
               </TableCell>
             </TableRow>

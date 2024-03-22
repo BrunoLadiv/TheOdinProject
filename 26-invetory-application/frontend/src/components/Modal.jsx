@@ -48,17 +48,8 @@ export const DialogElement = styled.dialog`
   justify-content: center;
   align-items: center;
 `
-const mockup = {
-  name: "iPhone 13",
-  price: 999,
-  category: "Phones",
-  brand: "Apple",
-  quantity: 10,
-  description:
-    "The latest iPhone model with a sleek new design and a powerful new processor.",
-}
 
-const Modal = ({ product = mockup, setEditDialogOpen, isEditing = false }) => {
+const Modal = ({ product, setEditDialogOpen, isEditing = false }) => {
   const queryClient = useQueryClient()
   const initialProductState = isEditing
     ? product
@@ -81,9 +72,11 @@ const Modal = ({ product = mockup, setEditDialogOpen, isEditing = false }) => {
     })
   }
   const mutation = isEditing ? updatedProduct : postProduct
+  
+
+
   const productMutation = useMutation(mutation, {
     onSuccess: (data) => {
-      console.log(data)
       queryClient.invalidateQueries("products")
     },
   })
