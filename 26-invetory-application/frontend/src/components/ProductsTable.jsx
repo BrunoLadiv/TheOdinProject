@@ -1,9 +1,10 @@
 import styled from "styled-components"
-import products from "../mockupdb/db"
 import { useState } from "react"
 // import EditDialog from "./EditDialog"
 import DeleteDialog from "./DeleteDialog"
 import Modal from "./Modal"
+import { useQuery, useMutation, useQueryClient } from "react-query"
+import { getProducts } from "../services/api"
 
 const Table = styled.table`
   width: 100%;
@@ -38,6 +39,8 @@ const Button = styled.button`
 `
 
 const ProductsTable = () => {
+  const { isLoading, data: products, error } = useQuery("products", getProducts)
+
   const [editDialogOpen, setEditDialogOpen] = useState(false)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const handleEdit = (productId) => {
@@ -49,7 +52,9 @@ const ProductsTable = () => {
     setDeleteDialogOpen(true)
     console.log(`Delete product with ID: ${productId}`)
   }
-
+  if (isLoading) return "Loading..."
+  if (error) return "Error loading products"
+  console.log(products)
   return (
     <>
       {deleteDialogOpen && (
@@ -58,6 +63,7 @@ const ProductsTable = () => {
       {editDialogOpen && (
         <Modal setEditDialogOpen={setEditDialogOpen} isEditing={true} />
       )}
+
       <Table>
         <thead>
           <tr>
@@ -71,7 +77,7 @@ const ProductsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {products.data.map((product) => (
             <TableRow key={product.id}>
               <TableCell>{product.name}</TableCell>
               <TableCell>${product.price.toFixed(2)}</TableCell>

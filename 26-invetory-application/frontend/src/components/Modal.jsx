@@ -1,17 +1,19 @@
 import { useState } from "react"
 import styled from "styled-components"
+import { useQueryClient, useMutation } from "react-query"
+import { postProduct, updatedProduct } from "../services/api"
 
 const EditForm = styled.div`
   background-color: white;
   padding: 20px;
   border: 1px solid #ddd;
   width: 400px;
-  transform: translateY(-100px)
+  transform: translateY(-100px);
 `
 
 const FormLabel = styled.label`
   display: block;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 `
 
 const FormInput = styled.input`
@@ -57,6 +59,7 @@ const mockup = {
 }
 
 const Modal = ({ product = mockup, setEditDialogOpen, isEditing = false }) => {
+  const queryClient = useQueryClient()
   const initialProductState = isEditing
     ? product
     : {
@@ -77,13 +80,16 @@ const Modal = ({ product = mockup, setEditDialogOpen, isEditing = false }) => {
       [name]: value,
     })
   }
-
+  const mutation = isEditing ? updatedProduct : postProduct
+  const productMutation = useMutation(mutation, {
+    onSuccess: (data) => {
+      console.log(data)
+      queryClient.invalidateQueries("products")
+    },
+  })
   const handleSave = (e) => {
     e.preventDefault()
-    // Handle save logic here, either editing existing product or creating a new one
-    // For demonstration purposes, let's just log the edited product
-    console.log(editedProduct)
-    // Close the dialog
+    productMutation.mutate(editedProduct)
     setEditDialogOpen(false)
   }
 

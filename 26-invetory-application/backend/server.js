@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import productsRoute from './routes/productsRoute.js'
+import cors from 'cors'
 
 // Create an express app from 'mongoose'
 
@@ -24,6 +25,7 @@ mongoose
 // Middleware
 
 app.use(express.json())
+app.use(cors())
 app.use('/api/products', productsRoute)
 
 // Routes

@@ -1,6 +1,5 @@
 import styled from "styled-components"
-import  Modal  from "./Modal"
-
+import { DialogElement } from "./Modal"
 const DeleteForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -9,6 +8,7 @@ const DeleteForm = styled.form`
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-150px);
   & > div {
     margin-top: 10px;
   }
@@ -22,7 +22,7 @@ const ButtonContainer = styled.div`
 `
 export default function DeleteDialog({ setDeleteDialogOpen }) {
   return (
-    <Modal>
+    <DialogElement>
       <DeleteForm>
         <h2>Action requeries password</h2>
         <input type="password" />
@@ -31,6 +31,6 @@ export default function DeleteDialog({ setDeleteDialogOpen }) {
           <button onClick={() => setDeleteDialogOpen(false)}>Cancel</button>
         </ButtonContainer>
       </DeleteForm>
-    </Modal>
+    </DialogElement>
   )
 }
