@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Dialog } from "./EditDialog"
+import  Modal  from "./Modal"
 
 const DeleteForm = styled.form`
   display: flex;
@@ -20,9 +20,9 @@ const ButtonContainer = styled.div`
   display: flex;
   gap: 10px;
 `
-export default function DeleteDialog({setDeleteDialogOpen}) {
+export default function DeleteDialog({ setDeleteDialogOpen }) {
   return (
-    <Dialog>
+    <Modal>
       <DeleteForm>
         <h2>Action requeries password</h2>
         <input type="password" />
@@ -31,6 +31,6 @@ export default function DeleteDialog({setDeleteDialogOpen}) {
           <button onClick={() => setDeleteDialogOpen(false)}>Cancel</button>
         </ButtonContainer>
       </DeleteForm>
-    </Dialog>
+    </Modal>
   )
 }
