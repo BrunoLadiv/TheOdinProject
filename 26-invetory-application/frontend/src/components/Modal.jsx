@@ -76,7 +76,7 @@ const Modal = ({ product, setEditDialogOpen, isEditing = false }) => {
 
 
   const productMutation = useMutation(mutation, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries("products")
     },
   })

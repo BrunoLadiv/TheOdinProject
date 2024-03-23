@@ -26,6 +26,7 @@ const TableHeader = styled.th`
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  width: ${(props) => props.width || "fit-content"};
 `
 
 const TableCell = styled.td`
@@ -42,7 +43,11 @@ const ProductsTable = () => {
   const { isLoading, data: products, error } = useQuery("products", getProducts)
   const [currentProduct, setCurrentProduct] = useState(null)
   const [editDialogOpen, setEditDialogOpen] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState("All")
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const categories = products
+    ? [...new Set(products.data?.map((product) => product.category))]
+    : ""
 
   const handleDelete = (productId) => {
     setDeleteDialogOpen(true)
@@ -68,7 +73,24 @@ const ProductsTable = () => {
           <tr>
             <TableHeader>Name</TableHeader>
             <TableHeader>Price</TableHeader>
-            <TableHeader>Category</TableHeader>
+            <TableHeader width="250px">
+              Category
+              <select
+                style={{ marginLeft: "30px" }}
+                value={selectedCategory}
+                name="category"
+                defaultValue={"All"}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+              >
+                <option value="All">All</option>
+                {categories &&
+                  categories.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+              </select>
+            </TableHeader>
             <TableHeader>Brand</TableHeader>
             <TableHeader>Quantity</TableHeader>
             <TableHeader>ID</TableHeader>
@@ -76,14 +98,17 @@ const ProductsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {products.data.map((product) => (
-            <TableRow key={product.id}>
+          {products.data.filter(product => {
+            if (selectedCategory === "All") return true
+            return product.category === selectedCategory
+          }).map((product) => (
+            <TableRow key={product._id}>
               <TableCell>{product.name}</TableCell>
               <TableCell>${product.price.toFixed(2)}</TableCell>
               <TableCell>{product.category}</TableCell>
               <TableCell>{product.brand}</TableCell>
               <TableCell>{product.quantity}</TableCell>
-              <TableCell>{product.id}</TableCell>
+              <TableCell title={product._id}>{product._id.slice(-5)}</TableCell>
               <TableCell>
                 <Button
                   onClick={() => {
@@ -93,7 +118,9 @@ const ProductsTable = () => {
                 >
                   Edit
                 </Button>
-                <Button onClick={() => handleDelete(product.id)}>Delete</Button>
+                <Button onClick={() => handleDelete(product._id)}>
+                  Delete
+                </Button>
               </TableCell>
             </TableRow>
           ))}

@@ -19,14 +19,6 @@ export default function SubHeader() {
   return (
     <SubHeaderWrapper>
       {deleteDialogOpen && <Modal setEditDialogOpen={setDeleteDialogOpen} />}
-      <div>
-        <label htmlFor="category">Categories:</label>
-        <select id="category" name="category">
-          <option value="category1">Category 1</option>
-          <option value="category2">Category 2</option>
-          <option value="category3">Category 3</option>
-        </select>
-      </div>
       <button onClick={() => setDeleteDialogOpen(true)}>Add new Product</button>
     </SubHeaderWrapper>
   )
