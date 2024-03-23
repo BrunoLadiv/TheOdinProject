@@ -1,6 +1,6 @@
 # Inventory Manager
 
-![Inventory Manager Screenshot](./screenshot.jpg)
+![Inventory Manager Screenshot](./frontend/screenshot.jpg)
 
 Live Preview: [Inventory Manager Live Preview (backend server may take a while to start (free tier))](https://brunoladiv.github.io/TheOdinProject/26-invetory-application/frontend/dist/)
 
