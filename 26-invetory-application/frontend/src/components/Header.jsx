@@ -29,7 +29,7 @@ const Glass = styled.svg`
   }
 `
 
-export default function Header() {
+export default function Header({ setSearchText, searchText }) {
   return (
     <HeaderContainer>
       <h1>Product Manager</h1>
@@ -38,6 +38,8 @@ export default function Header() {
           type="search"
           placeholder="Search..."
           aria-label="Search for products"
+          onChange={(e) => setSearchText(e.target.value)}
+          value={searchText}
         />
         <Glass
           className="search_icon"

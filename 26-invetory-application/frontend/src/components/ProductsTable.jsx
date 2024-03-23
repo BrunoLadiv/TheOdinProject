@@ -3,8 +3,8 @@ import { useState } from "react"
 // import EditDialog from "./EditDialog"
 import DeleteDialog from "./DeleteDialog"
 import Modal from "./Modal"
-import { useQuery, useMutation, useQueryClient } from "react-query"
-import { getProducts, updatedProduct } from "../services/api"
+import { useQuery } from "react-query"
+import { getProducts } from "../services/api"
 
 const Table = styled.table`
   width: 100%;
@@ -39,7 +39,7 @@ const Button = styled.button`
   margin-right: 5px;
 `
 
-const ProductsTable = () => {
+const ProductsTable = ({ searchText}) => {
   const { isLoading, data: products, error } = useQuery("products", getProducts)
   const [currentProduct, setCurrentProduct] = useState(null)
   const [editDialogOpen, setEditDialogOpen] = useState(false)
@@ -98,32 +98,42 @@ const ProductsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {products.data.filter(product => {
-            if (selectedCategory === "All") return true
-            return product.category === selectedCategory
-          }).map((product) => (
-            <TableRow key={product._id}>
-              <TableCell>{product.name}</TableCell>
-              <TableCell>${product.price.toFixed(2)}</TableCell>
-              <TableCell>{product.category}</TableCell>
-              <TableCell>{product.brand}</TableCell>
-              <TableCell>{product.quantity}</TableCell>
-              <TableCell title={product._id}>{product._id.slice(-5)}</TableCell>
-              <TableCell>
-                <Button
-                  onClick={() => {
-                    setCurrentProduct(product)
-                    setEditDialogOpen(true)
-                  }}
-                >
-                  Edit
-                </Button>
-                <Button onClick={() => handleDelete(product._id)}>
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
+          {products.data
+            .filter((product) => {
+              if (selectedCategory === "All") return true
+              return product.category === selectedCategory
+            })
+            .filter((product) => {
+              if (searchText === "") return true
+              return product.name
+                .toLowerCase()
+                .includes(searchText?.toLowerCase())
+            })
+            .map((product) => (
+              <TableRow key={product._id}>
+                <TableCell>{product.name}</TableCell>
+                <TableCell>${product.price.toFixed(2)}</TableCell>
+                <TableCell>{product.category}</TableCell>
+                <TableCell>{product.brand}</TableCell>
+                <TableCell>{product.quantity}</TableCell>
+                <TableCell title={product._id}>
+                  {product._id.slice(-5)}
+                </TableCell>
+                <TableCell>
+                  <Button
+                    onClick={() => {
+                      setCurrentProduct(product)
+                      setEditDialogOpen(true)
+                    }}
+                  >
+                    Edit
+                  </Button>
+                  <Button onClick={() => handleDelete(product._id)}>
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
         </tbody>
       </Table>
     </>
