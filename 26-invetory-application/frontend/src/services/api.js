@@ -25,8 +25,12 @@ const updatedProduct = async (product) => {
   return response
 }
 
-const deleteProduct = async (product) => {
-  const response = await api.delete(`/products/${product.id}`)
+const deleteProduct = async ({id, password}) => {
+  const response = await api.delete(`/products/${id}`, {
+    data: {
+      password
+    }
+  })
   return response
 }
 

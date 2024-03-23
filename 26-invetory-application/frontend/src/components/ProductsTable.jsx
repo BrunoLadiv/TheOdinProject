@@ -39,26 +39,30 @@ const Button = styled.button`
   margin-right: 5px;
 `
 
-const ProductsTable = ({ searchText}) => {
+const ProductsTable = ({ searchText }) => {
   const { isLoading, data: products, error } = useQuery("products", getProducts)
   const [currentProduct, setCurrentProduct] = useState(null)
   const [editDialogOpen, setEditDialogOpen] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [productDltID, setProductDltID] = useState("")
   const categories = products
     ? [...new Set(products.data?.map((product) => product.category))]
     : ""
 
   const handleDelete = (productId) => {
+    setProductDltID(productId)
     setDeleteDialogOpen(true)
-    console.log(`Delete product with ID: ${productId}`)
   }
   if (isLoading) return "Loading..."
   if (error) return "Error loading products"
   return (
     <>
       {deleteDialogOpen && (
-        <DeleteDialog setDeleteDialogOpen={setDeleteDialogOpen} />
+        <DeleteDialog
+          setDeleteDialogOpen={setDeleteDialogOpen}
+          productDltID={productDltID}
+        />
       )}
       {editDialogOpen && (
         <Modal

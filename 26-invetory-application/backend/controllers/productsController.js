@@ -42,6 +42,16 @@ const updateProduct = async (req, res) => {
 }
 
 const deleteProduct = async (req, res) => {
+  if (!req.params.id) {
+    return res.status(400).json({ error: 'Product ID is required' })
+  }
+  if(!req.body.password || req.body.password === '') {
+    return res.status(400).json({ error: 'Password is required' })
+  }
+  const password = req.body.password
+  if (password !== process.env.PASSWORD) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  } 
   try {
     await Product.findByIdAndDelete(req.params.id)
     res.status(200).json({ message: 'Product deleted successfully' })

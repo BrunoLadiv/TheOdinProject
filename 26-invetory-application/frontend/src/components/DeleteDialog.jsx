@@ -1,5 +1,8 @@
 import styled from "styled-components"
 import { DialogElement } from "./Modal"
+import { useMutation, useQueryClient } from "react-query"
+import { deleteProduct } from "../services/api"
+import { useState } from "react"
 const DeleteForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -20,12 +23,38 @@ const ButtonContainer = styled.div`
   display: flex;
   gap: 10px;
 `
-export default function DeleteDialog({ setDeleteDialogOpen }) {
+export default function DeleteDialog({ setDeleteDialogOpen, productDltID }) {
+  const queryClient = useQueryClient()
+  const [password, setPassword] = useState("")
+
+  const deleteProductMutation = useMutation(deleteProduct, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("products")
+      setDeleteDialogOpen(false)
+    },
+  })
+  function handleDelete(e) {
+    e.preventDefault()
+    const productToDelete = {
+      id: productDltID,
+      password,
+    }
+    deleteProductMutation.mutate(productToDelete)
+  }
   return (
     <DialogElement>
-      <DeleteForm>
+      <DeleteForm onSubmit={handleDelete}>
         <h2>Action requeries password</h2>
-        <input type="password" />
+        <input
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+        />
+        {deleteProductMutation.isLoading && <p>Loading...</p>}
+        {deleteProductMutation.isError && (
+          <p style={{color: "red"}}>Wrong password</p>
+        )}
         <ButtonContainer>
           <button>Delete</button>
           <button onClick={() => setDeleteDialogOpen(false)}>Cancel</button>
