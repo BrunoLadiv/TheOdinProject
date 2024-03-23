@@ -105,7 +105,7 @@ const Modal = ({ product, setEditDialogOpen, isEditing = false }) => {
             <FormLabel>Price:</FormLabel>
             <FormInput
               required
-              type="text"
+              type="number"
               name="price"
               value={editedProduct.price}
               onChange={handleInputChange}
