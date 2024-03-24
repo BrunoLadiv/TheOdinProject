@@ -16,4 +16,13 @@ const createPost = async (req, res) => {
   }
 }
 
-export { createPost }
+const getUserPosts = async (req, res) => {
+  const { author } = req.params
+  try {
+    const posts = await Post.find({ author })
+    res.status(200).json(posts)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+export { createPost, getUserPosts }

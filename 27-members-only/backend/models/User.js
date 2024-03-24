@@ -33,7 +33,6 @@ const userSchema = mongoose.Schema(
         100,
         'Password must be at most 100 characters long, Please try a different password!',
       ],
-      select: false,
     },
     isAdmin: {
       type: Boolean,
