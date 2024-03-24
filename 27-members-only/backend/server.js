@@ -1,8 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import moongose from 'mongoose'
-import authRoutes from './routes/auth.js'
-
+import authRoutes from './routes/authRoutes.js'
+import postsRoutes from './routes/postsRoutes.js'
 
 dotenv.config()
 const PORT = process.env.PORT || 3000
@@ -23,9 +23,9 @@ db.once('open', () => {
 app.use(express.json())
 
 app.use('/api/auth', authRoutes)
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+app.use('/api/posts', postsRoutes)
+app.use('*', (req, res) => {
+  res.status(404).send('404 Page Not found')
 })
 
 app.listen(PORT, () => {

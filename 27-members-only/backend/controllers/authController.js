@@ -24,7 +24,11 @@ const createUser = (req, res) => {
       res.status(201).json({ message: 'User created successfully', user })
     })
     .catch((err) => {
-      res.status(500).json({ message: 'Error creating user' })
+      if (err.name === 'ValidationError') {
+        const errorMessage = Object.values(err.errors)[0].message
+        return res.status(400).json({ message: errorMessage })
+      }
+      res.status(500).json({ message: 'Error creating user', err })
     })
 }
 
