@@ -1,4 +1,4 @@
-import User from '../models/User'
+import User from '../models/User.js'
 
 const createUser = (req, res) => {
   const { email, password, passwordConfirm } = req.body
@@ -19,7 +19,7 @@ const createUser = (req, res) => {
   user
     .save()
     .then((user) => {
-      res.status(201).json({ message: 'User created successfully' })
+      res.status(201).json({ message: 'User created successfully', user })
     })
     .catch((err) => {
       res.status(500).json({ message: 'Error creating user' })

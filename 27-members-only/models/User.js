@@ -4,12 +4,13 @@ const User = mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: [true, 'Email already exists, Please try a different email!'],
   },
   password: {
     type: String,
     required: true,
   },
-  isAdmin:{
+  isAdmin: {
     type: Boolean,
     default: false,
   },
@@ -19,5 +20,4 @@ const User = mongoose.Schema({
   },
 })
 
-
-export default mongoose.model("User", User)
+export default mongoose.model('User', User)
