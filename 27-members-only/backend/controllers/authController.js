@@ -62,4 +62,26 @@ const loginUser = async (req, res) => {
   }
 }
 
-export { createUser, loginUser }
+const becomeMember = async (req, res) => {
+  const { password } = req.body
+  const { id } = req.user
+  if (!id) {
+    return res.status(401).json({ message: 'Unauthorized' })
+  }
+  if (!password) {
+    return res.status(400).json({ message: 'Password Required' })
+  }
+  if (password !== process.env.MEMBER_PASSWORD) {
+    return res.status(401).json({ message: 'Wrong Password' })
+  }
+  try {
+    const user = await User.findById(id)
+    user.isMember = true
+    await user.save()
+    res.status(200).json({ message: 'You are now a member!' })
+  } catch (error) {
+    res.status(500).json({ message: 'Error becoming a member' })
+  }
+}
+
+export { createUser, loginUser, becomeMember }

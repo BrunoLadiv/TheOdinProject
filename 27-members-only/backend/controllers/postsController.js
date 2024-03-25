@@ -1,7 +1,8 @@
 import Post from '../models/Post.js'
 
 const createPost = async (req, res) => {
-  const { title, content, author } = req.body
+  const { id: author } = req.user
+  const { title, content } = req.body
   const newPost = new Post({
     title,
     content,
@@ -17,7 +18,7 @@ const createPost = async (req, res) => {
 }
 
 const getUserPosts = async (req, res) => {
-  const { author } = req.params
+  const { id: author } = req.user
   try {
     const posts = await Post.find({ author })
     res.status(200).json(posts)
