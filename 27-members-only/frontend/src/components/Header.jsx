@@ -7,7 +7,7 @@ export default function Header() {
   const [user, setUser] = useState(true)
 
   return (
-    <div className="bg-gray-200" style={{ height: '600px' }}>
+    <div className="bg-gray-200">
       <div className="relative h-full ">
         <div className="bg-white">
           <div className="2xl:container 2xl:mx-auto">
