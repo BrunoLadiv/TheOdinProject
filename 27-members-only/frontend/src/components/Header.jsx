@@ -3,16 +3,24 @@ import Button from './ui/Button'
 import Dropdown from './ui/Dropdown'
 import NewPostModal from './ui/NewPostModal'
 import SignUpModal from './ui/SignUpModal'
+import SignInModal from './ui/SignInModal'
 export default function Header() {
   const [rotate, setRotate] = useState(false)
   const [show, setShow] = useState(false)
-  const [user, setUser] = useState(true)
+  const [user, setUser] = useState(false)
   const [showNewPostModal, setShowNewPostModal] = useState(false)
+  const [showSigInModal, setShowSignInModal] = useState(false)
+  const [showSigUpModal, setShowSignUpModal] = useState(false)
 
   return (
     <div className="bg-gray-200">
       <div className="relative h-full ">
-        <SignUpModal />
+        {showSigInModal && (
+          <SignInModal setShowSignInModal={setShowSignInModal} />
+        )}
+        {showSigUpModal && (
+          <SignUpModal setShowSignUpModal={setShowSignUpModal} />
+        )}
         {showNewPostModal && (
           <NewPostModal setShowNewPostModal={setShowNewPostModal} />
         )}
@@ -58,8 +66,15 @@ export default function Header() {
                 </div>
                 {!user && (
                   <div className="flex items-center hidden mx-10 sm:flex">
-                    <Button type="secondary">Sign Up</Button>
-                    <Button>Login</Button>
+                    <Button
+                      onClick={() => setShowSignUpModal(true)}
+                      type="secondary"
+                    >
+                      Sign Up
+                    </Button>
+                    <Button onClick={() => setShowSignInModal(true)}>
+                      Login
+                    </Button>
                   </div>
                 )}
                 {/* user signed in */}
@@ -213,8 +228,14 @@ export default function Header() {
               </div>
             </div>
             <div className="flex flex-col justify-end h-full mt-12 ">
-              {!user && <Button>Login</Button>}
-              {!user && <Button>Register</Button>}
+              {!user && (
+                <Button onClick={() => setShowSignInModal(true)}>Login</Button>
+              )}
+              {!user && (
+                <Button onClick={() => setShowSignUpModal(true)}>
+                  Sign Up
+                </Button>
+              )}
               {user && (
                 <Button onClick={() => setShowNewPostModal(true)}>
                   New Post

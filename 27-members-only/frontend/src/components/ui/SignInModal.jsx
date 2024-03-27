@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useEffect } from 'react'
-function SignUpModal({ setShowSignUpModal }) {
+function SignInModal({ setShowSignInModal }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
@@ -16,7 +17,7 @@ function SignUpModal({ setShowSignUpModal }) {
           <div className="relative w-11/12 sm:w-8/12 md:w-10/12 bg-gray-800 shadow  rounded">
             <div className="md:px-10 py-4 px-5 md:py-6">
               <p className="text-2xl font-bold leading-normal text-white ">
-                Sign up
+                Sign in
               </p>
               <div>
                 <div className="bg-gray-50 dark:bg-gray-700 border rounded dark:border-gray-700 border-gray-200 mt-5">
@@ -36,20 +37,20 @@ function SignUpModal({ setShowSignUpModal }) {
               </div>
               <div className="md:flex items-center justify-between mt-4 md:mt-6">
                 <p className="text-xs leading-3 text-gray-600 dark:text-gray-300 ">
-                  Already have an account?{' '}
+                  Don't have an account?
                   <span className="cursor-pointer text-indigo-700 dark:text-indigo-600 underline font-semibold">
-                    Sign In
+                    Sign Up
                   </span>
                 </p>
                 <button className="mt-4 md:mt-0 md:ml-10 p-3 bg-indigo-700 dark:bg-indigo-600 hover:bg-opacity-80 rounded focus:outline-none">
                   <p className="text-sm font-medium leading-none text-gray-100">
-                    Create account
+                    Login
                   </p>
                 </button>
               </div>
             </div>
             <div
-              onClick={() => setShowSignUpModal(false)}
+              onClick={() => setShowSignInModal(false)}
               aria-hidden="true"
               className="cursor-pointer absolute top-0 right-0 m-3 text-gray-800 transition duration-150 ease-in-out"
             >
@@ -78,4 +79,4 @@ function SignUpModal({ setShowSignUpModal }) {
   )
 }
 
-export default SignUpModal
+export default SignInModal
