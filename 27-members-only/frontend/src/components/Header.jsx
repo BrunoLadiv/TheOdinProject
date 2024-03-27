@@ -2,15 +2,17 @@ import { useState } from 'react'
 import Button from './ui/Button'
 import Dropdown from './ui/Dropdown'
 import NewPostModal from './ui/NewPostModal'
+import SignUpModal from './ui/SignUpModal'
 export default function Header() {
   const [rotate, setRotate] = useState(false)
   const [show, setShow] = useState(false)
   const [user, setUser] = useState(true)
-  const [showNewPostModal, setShowNewPostModal] = useState(true)
+  const [showNewPostModal, setShowNewPostModal] = useState(false)
 
   return (
     <div className="bg-gray-200">
       <div className="relative h-full ">
+        <SignUpModal />
         {showNewPostModal && (
           <NewPostModal setShowNewPostModal={setShowNewPostModal} />
         )}
@@ -192,9 +194,7 @@ export default function Header() {
         {/* Mobile and Small devices Navigation */}
         <div
           id="MobileNavigation"
-          className={`${
-            show ? '' : 'hidden'
-          }  sm:hidden h-full bg-white `}
+          className={`${show ? '' : 'hidden'}  sm:hidden h-full bg-white `}
         >
           <div className="flex flex-col justify-between h-full ">
             <div className="flex flex-col px-4 lg:px-7 sm:px-6">
@@ -215,7 +215,11 @@ export default function Header() {
             <div className="flex flex-col justify-end h-full mt-12 ">
               {!user && <Button>Login</Button>}
               {!user && <Button>Register</Button>}
-              {user && <Button onClick={() => setShowNewPostModal(true)} >New Post</Button>}
+              {user && (
+                <Button onClick={() => setShowNewPostModal(true)}>
+                  New Post
+                </Button>
+              )}
               {user && <Button>My Posts</Button>}
               {user && <Button>Logout</Button>}
             </div>
