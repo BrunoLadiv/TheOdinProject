@@ -33,42 +33,16 @@ export default function Header() {
                 </div>
                 {/* For large (i.e. desktop and laptop sized screen) */}
                 <div className="flex-row justify-between flex-auto hidden py-6 border-l border-r border-gray-200 lg:flex px-7">
-                  <div className>
-                    <p className="text-xs font-normal leading-3 text-gray-600 ">
-                      Hi David
-                    </p>
-                    <h3 className="mt-2 text-xl font-bold leading-5 text-gray-800 ">
-                      Welcome Back
-                    </h3>
-                  </div>
-                  <div className=" focus:outline-none focus:ring foucs:ring-offset-2 focus:ring-gray-800 bg-gray-50 flex items-center px-4 py-3.5 space-x-3 rounded ">
-                    <svg
-                      width={16}
-                      height={16}
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M6.66667 11.3333C9.24399 11.3333 11.3333 9.24399 11.3333 6.66667C11.3333 4.08934 9.24399 2 6.66667 2C4.08934 2 2 4.08934 2 6.66667C2 9.24399 4.08934 11.3333 6.66667 11.3333Z"
-                        stroke="#6B7280"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M14 14L10 10"
-                        stroke="#6B7280"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <input
-                      aria-label="Search Bar"
-                      className="w-56 text-sm font-normal leading-4 text-gray-500 placeholder-gray-500 focus:outline-none xl:w-64 bg-gray-50 "
-                      type="text"
-                      placeholder="Search"
-                    />
-                  </div>
+                  {user && (
+                    <div className>
+                      <p className="text-xs font-normal leading-3 text-gray-600 ">
+                        Hi David
+                      </p>
+                      <h3 className="mt-2 text-xl font-bold leading-5 text-gray-800 ">
+                        Welcome Back
+                      </h3>
+                    </div>
+                  )}
                 </div>
                 {!user && (
                   <div className="flex items-center hidden mx-10 sm:flex">
@@ -78,7 +52,13 @@ export default function Header() {
                 )}
                 {/* user signed in */}
                 {user && (
-                  <div className="flex-row justify-end hidden py-6 pl-8 pr-4 sm:flex lg:pr-7 sm:pr-6">
+                  <div className="relative flex-row justify-end hidden py-6 pl-8 pr-4 sm:flex lg:pr-7 sm:pr-6">
+                    {rotate && (
+                      <div className="absolute p-5 bg-white rounded shadow translate-y-1/3">
+                        <p>My posts</p>
+                        <p>Logout</p>
+                      </div>
+                    )}
                     <div className="flex flex-row items-center justify-center ">
                       <img
                         className="w-10 h-10 "
@@ -94,6 +74,7 @@ export default function Header() {
                         </p>
                       </div>
                       <svg
+                        //call dropdown here
                         onClick={() => setRotate(!rotate)}
                         className={`${
                           rotate ? 'rotate-180' : ''
@@ -183,42 +164,16 @@ export default function Header() {
               <div className="flex-col hidden px-4 lg:hidden sm:flex lg:px-7 sm:px-6 ">
                 <hr className="w-full bg-gray-200 " />
                 <div className>
-                  <div className="flex flex-row justify-between flex-auto pb-4 mt-3 lg:hidden">
-                    <p className="text-xs font-normal leading-3 text-gray-600 ">
-                      Hi David
-                    </p>
-                    <h3 className="mt-2 text-xl font-bold leading-5 text-gray-800 ">
-                      Welcome Back
-                    </h3>
-                  </div>
-                  <div className=" focus:outline-none focus:ring foucs:ring-offset-2 focus:ring-gray-800 bg-gray-50 flex items-center px-4 py-3.5 space-x-3 rounded ">
-                    <svg
-                      width={16}
-                      height={16}
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M6.66667 11.3333C9.24399 11.3333 11.3333 9.24399 11.3333 6.66667C11.3333 4.08934 9.24399 2 6.66667 2C4.08934 2 2 4.08934 2 6.66667C2 9.24399 4.08934 11.3333 6.66667 11.3333Z"
-                        stroke="#6B7280"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M14 14L10 10"
-                        stroke="#6B7280"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <input
-                      aria-label="Search Bar"
-                      className="text-sm font-normal leading-4 text-gray-500 placeholder-gray-500 focus:outline-none w-44 lg:w-56 xl:w-64 bg-gray-50"
-                      type="text"
-                      placeholder="Search"
-                    />
-                  </div>
+                  {user && (
+                    <div className="flex flex-row justify-between flex-auto pb-4 mt-3 lg:hidden">
+                      <p className="text-xs font-normal leading-3 text-gray-600 ">
+                        Hi David
+                      </p>
+                      <h3 className="mt-2 text-xl font-bold leading-5 text-gray-800 ">
+                        Welcome Back
+                      </h3>
+                    </div>
+                  )}
                 </div>
               </div>
             </nav>
@@ -245,34 +200,6 @@ export default function Header() {
                     </h3>
                   </div>
                 )}
-              </div>
-              <div className="flex items-center w-auto pl-4 mt-4 space-x-3 rounded sm:w-96 focus:outline-none focus:ring foucs:ring-offset-2 focus:ring-gray-800 bg-gray-50">
-                <svg
-                  width={16}
-                  height={16}
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6.66667 11.3333C9.24399 11.3333 11.3333 9.24399 11.3333 6.66667C11.3333 4.08934 9.24399 2 6.66667 2C4.08934 2 2 4.08934 2 6.66667C2 9.24399 4.08934 11.3333 6.66667 11.3333Z"
-                    stroke="#6B7280"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M14 14L10 10"
-                    stroke="#6B7280"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <input
-                  aria-label="Search Bar"
-                  className=" focus:outline-none w-full bg-gray-50 font-normal pl-2 text-sm leading-4  py-3.5 text-gray-500 placeholder-gray-500 "
-                  type="text"
-                  placeholder="Search"
-                />
               </div>
             </div>
             <div className="flex flex-col justify-end h-full mt-12 ">
