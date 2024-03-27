@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Button from './Button'
-
+import Button from './ui/Button'
+import Dropdown from './ui/Dropdown'
 export default function Header() {
   const [rotate, setRotate] = useState(false)
   const [show, setShow] = useState(false)
@@ -43,6 +43,7 @@ export default function Header() {
                       </h3>
                     </div>
                   )}
+                  {user && <Button>New Post</Button>}
                 </div>
                 {!user && (
                   <div className="flex items-center hidden mx-10 sm:flex">
@@ -53,12 +54,7 @@ export default function Header() {
                 {/* user signed in */}
                 {user && (
                   <div className="relative flex-row justify-end hidden py-6 pl-8 pr-4 sm:flex lg:pr-7 sm:pr-6">
-                    {rotate && (
-                      <div className="absolute p-5 bg-white rounded shadow translate-y-1/3">
-                        <p>My posts</p>
-                        <p>Logout</p>
-                      </div>
-                    )}
+                    {rotate && <Dropdown />}
                     <div className="flex flex-row items-center justify-center ">
                       <img
                         className="w-10 h-10 "
@@ -174,6 +170,7 @@ export default function Header() {
                       </h3>
                     </div>
                   )}
+                  {user && <Button>New Post</Button>}
                 </div>
               </div>
             </nav>
@@ -186,7 +183,7 @@ export default function Header() {
             show ? '' : 'hidden'
           } transform duration-150 sm:hidden h-full bg-white `}
         >
-          <div className="flex flex-col justify-between h-auto ">
+          <div className="flex flex-col justify-between h-full ">
             <div className="flex flex-col px-4 lg:px-7 sm:px-6">
               <hr className="w-full bg-gray-200 " />
               <div className="flex flex-row justify-between flex-auto pb-4 mt-3 lg:hidden">
@@ -205,11 +202,12 @@ export default function Header() {
             <div className="flex flex-col justify-end h-full mt-12 ">
               {!user && <Button>Login</Button>}
               {!user && <Button>Register</Button>}
-              {user && <Button type="secondary">My Posts</Button>}
+              {user && <Button>New Post</Button>}
+              {user && <Button>My Posts</Button>}
               {user && <Button>Logout</Button>}
             </div>
             {user && (
-              <div className="absolute bottom-0 left-0 flex flex-row items-center w-full px-8 py-6 bg-gray-100 ">
+              <div className="bottom-0 left-0 flex flex-row items-center w-full px-8 py-6 bg-gray-100 ">
                 <img
                   className="w-10 h-10 "
                   src="https://i.ibb.co/QMddNDb/Ellipse-14.png"
@@ -223,23 +221,6 @@ export default function Header() {
                     david@alphahulk.com
                   </p>
                 </div>
-                <svg
-                  onClick="rotateIcon()"
-                  className="cursor-pointer transform duration-100 xl:ml-7 ml-3.5 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-gray-800 "
-                  width={14}
-                  height={8}
-                  viewBox="0 0 14 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L7 7L13 1"
-                    stroke="#1F2937"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
               </div>
             )}
           </div>
