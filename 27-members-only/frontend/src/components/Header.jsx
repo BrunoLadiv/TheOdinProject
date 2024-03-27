@@ -1,14 +1,19 @@
 import { useState } from 'react'
 import Button from './ui/Button'
 import Dropdown from './ui/Dropdown'
+import NewPostModal from './ui/NewPostModal'
 export default function Header() {
   const [rotate, setRotate] = useState(false)
   const [show, setShow] = useState(false)
   const [user, setUser] = useState(true)
+  const [showNewPostModal, setShowNewPostModal] = useState(true)
 
   return (
     <div className="bg-gray-200">
       <div className="relative h-full ">
+        {showNewPostModal && (
+          <NewPostModal setShowNewPostModal={setShowNewPostModal} />
+        )}
         <div className="bg-white">
           <div className="2xl:container 2xl:mx-auto">
             <nav className>
@@ -43,7 +48,11 @@ export default function Header() {
                       </h3>
                     </div>
                   )}
-                  {user && <Button>New Post</Button>}
+                  {user && (
+                    <Button onClick={() => setShowNewPostModal(true)}>
+                      New Post
+                    </Button>
+                  )}
                 </div>
                 {!user && (
                   <div className="flex items-center hidden mx-10 sm:flex">
@@ -170,7 +179,11 @@ export default function Header() {
                       </h3>
                     </div>
                   )}
-                  {user && <Button>New Post</Button>}
+                  {user && (
+                    <Button onClick={() => setShowNewPostModal(true)}>
+                      New Post
+                    </Button>
+                  )}
                 </div>
               </div>
             </nav>
@@ -181,7 +194,7 @@ export default function Header() {
           id="MobileNavigation"
           className={`${
             show ? '' : 'hidden'
-          } transform duration-150 sm:hidden h-full bg-white `}
+          }  sm:hidden h-full bg-white `}
         >
           <div className="flex flex-col justify-between h-full ">
             <div className="flex flex-col px-4 lg:px-7 sm:px-6">
@@ -202,7 +215,7 @@ export default function Header() {
             <div className="flex flex-col justify-end h-full mt-12 ">
               {!user && <Button>Login</Button>}
               {!user && <Button>Register</Button>}
-              {user && <Button>New Post</Button>}
+              {user && <Button onClick={() => setShowNewPostModal(true)} >New Post</Button>}
               {user && <Button>My Posts</Button>}
               {user && <Button>Logout</Button>}
             </div>

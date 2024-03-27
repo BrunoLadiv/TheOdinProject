@@ -8,7 +8,6 @@ export default function Dropdown() {
           viewBox="0 0 16 16"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="mr-2"
         >
           <path
             d="M8.00002 8C6.34689 8 4.89064 6.44687 4.75001 4.5375C4.67814 3.56875 4.97814 2.67188 5.59376 2.0125C6.20001 1.35938 7.05626 1 8.00002 1C8.93752 1 9.79064 1.3625 10.4 2.01875C11.0188 2.68437 11.3188 3.57812 11.2469 4.5375C11.1063 6.44687 9.65002 8 8.00002 8ZM8.00002 2C7.33752 2 6.74064 2.24687 6.32501 2.69375C5.90314 3.14687 5.69689 3.77812 5.74689 4.46562C5.84689 5.84062 6.87814 7.00313 7.99689 7.00313C9.11564 7.00313 10.1469 5.84062 10.2469 4.46562C10.2969 3.7875 10.0906 3.15938 9.66252 2.7C9.25002 2.24688 8.65627 2 8.00002 2Z"
@@ -19,7 +18,7 @@ export default function Dropdown() {
             fill="#1F2937"
           />
         </svg>
-        <span className="ml-2">Join the club</span>
+        <span className="ml-2">Join The Club</span>
       </li>
       <li className="flex items-center px-3 py-3 text-sm font-normal leading-3 tracking-normal text-gray-600 cursor-pointer dark:text-black hover:bg-gray-100">
         <svg
