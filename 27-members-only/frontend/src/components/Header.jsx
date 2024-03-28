@@ -5,6 +5,7 @@ import NewPostModal from './ui/NewPostModal'
 import SignUpModal from './ui/SignUpModal'
 import SignInModal from './ui/SignInModal'
 import BecomeMemberModal from './ui/BecomeMemberModal'
+import { useGetPostsQuery } from '../features/api/postsSlice'
 export default function Header() {
   const [rotate, setRotate] = useState(false)
   const [show, setShow] = useState(false)
@@ -13,6 +14,9 @@ export default function Header() {
   const [showSigInModal, setShowSignInModal] = useState(false)
   const [showSigUpModal, setShowSignUpModal] = useState(false)
   const [showBecomeMemberModal, setShowBecomeMemberModal] = useState(false)
+  const { data: posts, isError, isLoading, error } = useGetPostsQuery()
+
+  console.log(posts)
 
   return (
     <div className="bg-gray-200">
