@@ -1,13 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export const postsSlice = createApi({
-  reducerPath: 'postsApiSlice',
+export const api = createApi({
+  reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api' }),
   endpoints: (builder) => ({
     getPosts: builder.query({
       query: () => '/posts',
     }),
+    getUserById: builder.query({
+      query: (userId) => `/auth/user/${userId}`,
+    }),
   }),
 })
 
-export const { useGetPostsQuery } = postsSlice
+export const { useGetPostsQuery, useGetUserByIdQuery } = api

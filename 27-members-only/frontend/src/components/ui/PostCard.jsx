@@ -1,4 +1,9 @@
-export default function PostCard() {
+import { useGetUserByIdQuery } from '../../features/api/api'
+import convertTime from '../../utils/convertTime'
+export default function PostCard({ post }) {
+  const { data } = useGetUserByIdQuery(post.author)
+  console.log(post)
+  const { day, month, year, hours, minutes, amOrPm } = convertTime(post.date)
   return (
     <div className="flex items-center justify-center flex-shrink-0 w-full h-full bg-white border border-gray-200 rounded-md shadow-none cursor-pointer hover:shadow-lg">
       <div className="inline-flex flex-col space-y-1.5 items-start justify-end flex-1 h-full px-4 py-5">
@@ -12,7 +17,7 @@ export default function PostCard() {
           </div>
           <div className="ml-2">
             <p className="text-sm font-medium leading-none text-gray-800">
-              Anita Jane
+              {data?.user.fullName}
             </p>
             <div className="flex justify-start mt-1 space-x-6">
               <div className="flex justify-between text-white">
@@ -53,7 +58,7 @@ export default function PostCard() {
                   />
                 </svg>
                 <p className="text-sm leading-none text-gray-600">
-                  16 March, 2021
+                  {`${day} ${month}, ${year} `}
                 </p>
               </div>
               <div className="flex justify-end text-white">
@@ -79,18 +84,17 @@ export default function PostCard() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <p className="text-sm leading-none text-gray-600">7:26am</p>
+                <p className="text-sm leading-none text-gray-600">
+                  {`${hours}:${minutes} ${amOrPm}`}
+                </p>
               </div>
             </div>
           </div>
         </div>
         <p className="text-sm font-medium leading-none text-gray-800">
-          Random Fact
+          {post.title}
         </p>
-        <p className="text-sm leading-tight text-gray-600">
-          Erotomania is a psychological disorder where the sufferer has
-          delusions that another person is in love with him or her...
-        </p>
+        <p className="text-sm leading-tight text-gray-600">{post.content}</p>
       </div>
     </div>
   )

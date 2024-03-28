@@ -1,5 +1,13 @@
 import PostCard from './ui/PostCard'
+import { useGetPostsQuery } from '../features/api/api'
 export default function Content() {
+  const { data: posts, isLoading, isError, error } = useGetPostsQuery()
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+  if (isError) {
+    return <div>Error: {error.message}</div>
+  }
   return (
     <>
       <div className="container mx-auto">
@@ -8,23 +16,9 @@ export default function Content() {
             {
               //single card
             }
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
+            {posts.map((post) => {
+              return <PostCard key={post._id} post={post} />
+            })}
           </div>
         </div>
       </div>
