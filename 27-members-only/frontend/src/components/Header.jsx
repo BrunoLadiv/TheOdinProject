@@ -4,22 +4,31 @@ import Dropdown from './ui/Dropdown'
 import NewPostModal from './ui/NewPostModal'
 import SignUpModal from './ui/SignUpModal'
 import SignInModal from './ui/SignInModal'
+import BecomeMemberModal from './ui/BecomeMemberModal'
 export default function Header() {
   const [rotate, setRotate] = useState(false)
   const [show, setShow] = useState(false)
-  const [user, setUser] = useState(false)
+  const [user, setUser] = useState(true)
   const [showNewPostModal, setShowNewPostModal] = useState(false)
   const [showSigInModal, setShowSignInModal] = useState(false)
   const [showSigUpModal, setShowSignUpModal] = useState(false)
 
   return (
     <div className="bg-gray-200">
+      <BecomeMemberModal />
+
       <div className="relative h-full ">
         {showSigInModal && (
-          <SignInModal setShowSignInModal={setShowSignInModal} />
+          <SignInModal
+            setShowSignInModal={setShowSignInModal}
+            setShowSignUpModal={setShowSignUpModal}
+          />
         )}
         {showSigUpModal && (
-          <SignUpModal setShowSignUpModal={setShowSignUpModal} />
+          <SignUpModal
+            setShowSignUpModal={setShowSignUpModal}
+            setShowSignInModal={setShowSignInModal}
+          />
         )}
         {showNewPostModal && (
           <NewPostModal setShowNewPostModal={setShowNewPostModal} />

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-function SignUpModal({ setShowSignUpModal }) {
+function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
@@ -37,7 +37,14 @@ function SignUpModal({ setShowSignUpModal }) {
               <div className="md:flex items-center justify-between mt-4 md:mt-6">
                 <p className="text-xs leading-3 text-gray-600 dark:text-gray-300 ">
                   Already have an account?{' '}
-                  <span className="cursor-pointer text-indigo-700 dark:text-indigo-600 underline font-semibold">
+                  <span
+                    onClick={() => {
+                      setShowSignUpModal(false)
+                      setShowSignInModal(true)
+                    }}
+                    aria-hidden="true"
+                    className="cursor-pointer text-indigo-700 dark:text-indigo-600 underline font-semibold"
+                  >
                     Sign In
                   </span>
                 </p>
