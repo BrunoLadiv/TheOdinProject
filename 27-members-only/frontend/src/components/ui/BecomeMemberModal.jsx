@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const BecomeMember = () => {
+const BecomeMember = ({ setShowBecomeMemberModal }) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
@@ -50,7 +50,7 @@ const BecomeMember = () => {
             </button>
             <button
               className="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
-              onclick="modalHandler()"
+              onClick={() => setShowBecomeMemberModal(false)}
             >
               Cancel
             </button>

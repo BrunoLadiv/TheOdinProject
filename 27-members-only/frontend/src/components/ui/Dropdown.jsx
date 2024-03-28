@@ -1,7 +1,10 @@
-export default function Dropdown() {
+export default function Dropdown({ setShowBecomeMemberModal }) {
   return (
     <ul className="absolute visible w-48 py-1 mt-2 transition duration-300 translate-y-1/2 bg-white rounded shadow opacity-100 dark:bg-white">
-      <li className="flex items-center px-3 py-3 text-sm font-normal leading-3 tracking-normal text-black cursor-pointer dark:black hover:bg-gray-100">
+      <li
+        onClick={() => setShowBecomeMemberModal(true)}
+        className="flex items-center px-3 py-3 text-sm font-normal leading-3 tracking-normal text-black cursor-pointer dark:black hover:bg-gray-100"
+      >
         <svg
           width={16}
           height={16}

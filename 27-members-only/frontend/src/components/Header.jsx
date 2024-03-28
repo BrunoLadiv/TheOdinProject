@@ -12,11 +12,15 @@ export default function Header() {
   const [showNewPostModal, setShowNewPostModal] = useState(false)
   const [showSigInModal, setShowSignInModal] = useState(false)
   const [showSigUpModal, setShowSignUpModal] = useState(false)
+  const [showBecomeMemberModal, setShowBecomeMemberModal] = useState(false)
 
   return (
     <div className="bg-gray-200">
-      <BecomeMemberModal />
-
+      {showBecomeMemberModal && (
+        <BecomeMemberModal
+          setShowBecomeMemberModal={setShowBecomeMemberModal}
+        />
+      )}
       <div className="relative h-full ">
         {showSigInModal && (
           <SignInModal
@@ -89,7 +93,11 @@ export default function Header() {
                 {/* user signed in */}
                 {user && (
                   <div className="relative flex-row justify-end hidden py-6 pl-8 pr-4 sm:flex lg:pr-7 sm:pr-6">
-                    {rotate && <Dropdown />}
+                    {rotate && (
+                      <Dropdown
+                        setShowBecomeMemberModal={setShowBecomeMemberModal}
+                      />
+                    )}
                     <div className="flex flex-row items-center justify-center ">
                       <img
                         className="w-10 h-10 "
