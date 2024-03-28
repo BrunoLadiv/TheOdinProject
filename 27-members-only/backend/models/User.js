@@ -54,7 +54,13 @@ const userSchema = mongoose.Schema(
 )
 
 userSchema.virtual('fullName').get(function () {
-  return `${this.name} ${this.lastName}`
+  const fullName = `${this.name} ${this.lastName}`
+
+  const capitalizedFullName = fullName.replace(/\b\w/g, (char) =>
+    char.toUpperCase()
+  )
+
+  return capitalizedFullName
 })
 
 export default mongoose.model('User', userSchema)
