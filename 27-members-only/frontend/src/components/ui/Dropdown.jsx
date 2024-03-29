@@ -1,4 +1,7 @@
+import { useDispatch } from 'react-redux'
+import { logout } from '../../features/auth/authSlice'
 export default function Dropdown({ setShowBecomeMemberModal }) {
+  const dispatch = useDispatch()
   return (
     <ul className="absolute visible w-48 py-1 mt-2 transition duration-300 translate-y-1/2 bg-white rounded shadow opacity-100 dark:bg-white">
       <li
@@ -46,7 +49,10 @@ export default function Dropdown({ setShowBecomeMemberModal }) {
       <li>
         <hr className="my-1 border-gray-200 dark:border-gray-300" />
       </li>
-      <li className="flex items-center px-3 py-3 text-sm font-normal leading-3 tracking-normal text-gray-600 cursor-pointer dark:text-black hover:bg-gray-100">
+      <li
+        onClick={() => dispatch(logout())}
+        className="flex items-center px-3 py-3 text-sm font-normal leading-3 tracking-normal text-gray-600 cursor-pointer dark:text-black hover:bg-gray-100"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="icon icon-tabler icon-tabler-x"

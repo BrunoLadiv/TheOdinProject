@@ -16,7 +16,7 @@ function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
       dispatch(setCredentials({ user: data.user, accessToken: data.token }))
       setTimeout(() => {
         setShowSignUpModal(false)
-      }, 2000)
+      }, 1500)
     }
   }, [data])
 

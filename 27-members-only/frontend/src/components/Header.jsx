@@ -5,10 +5,11 @@ import NewPostModal from './ui/NewPostModal'
 import SignUpModal from './ui/SignUpModal'
 import SignInModal from './ui/SignInModal'
 import BecomeMemberModal from './ui/BecomeMemberModal'
+import { useSelector } from 'react-redux'
 export default function Header() {
   const [rotate, setRotate] = useState(false)
   const [show, setShow] = useState(false)
-  const [user, setUser] = useState(false)
+  const user = useSelector((state) => state.auth.user)
   const [showNewPostModal, setShowNewPostModal] = useState(false)
   const [showSigInModal, setShowSignInModal] = useState(false)
   const [showSigUpModal, setShowSignUpModal] = useState(false)
@@ -64,7 +65,7 @@ export default function Header() {
                   {user && (
                     <div className>
                       <p className="text-xs font-normal leading-3 text-gray-600 ">
-                        Hi David
+                        {user.fullName}
                       </p>
                       <h3 className="mt-2 text-xl font-bold leading-5 text-gray-800 ">
                         Welcome Back
@@ -106,10 +107,10 @@ export default function Header() {
                       />
                       <div className="ml-2">
                         <p className="text-lg font-semibold leading-4 text-gray-800">
-                          David Hulk
+                          {user.fullName}
                         </p>
                         <p className="mt-1 text-xs font-normal leading-3 text-gray-600 ">
-                          david@alphahulk.com
+                          {user.email}
                         </p>
                       </div>
                       <svg
@@ -206,7 +207,7 @@ export default function Header() {
                   {user && (
                     <div className="flex flex-row justify-between flex-auto pb-4 mt-3 lg:hidden">
                       <p className="text-xs font-normal leading-3 text-gray-600 ">
-                        Hi David
+                        {user.fullName}
                       </p>
                       <h3 className="mt-2 text-xl font-bold leading-5 text-gray-800 ">
                         Welcome Back
@@ -235,7 +236,7 @@ export default function Header() {
                 {user && (
                   <div className>
                     <p className="text-xs font-normal leading-3 text-gray-600 ">
-                      Hi David
+                      {user.fullName}
                     </p>
                     <h3 className="mt-2 text-xl font-bold leading-5 text-gray-800 ">
                       Welcome Back
@@ -270,10 +271,10 @@ export default function Header() {
                 />
                 <div className="ml-2">
                   <p className="text-lg font-semibold leading-4 text-gray-800">
-                    David Hulk
+                    {user.fullName}
                   </p>
                   <p className="mt-1 text-xs font-normal leading-3 text-gray-600 ">
-                    david@alphahulk.com
+                    {user.email}
                   </p>
                 </div>
               </div>

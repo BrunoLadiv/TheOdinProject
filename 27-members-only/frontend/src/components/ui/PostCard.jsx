@@ -1,8 +1,9 @@
 import { useGetByIdQuery } from '../../features/auth/authApiSlice'
+import { useSelector } from 'react-redux'
 import convertTime from '../../utils/convertTime'
 export default function PostCard({ post }) {
   const { data } = useGetByIdQuery(post.author)
-  console.log(post)
+  const user = useSelector((state) => state.auth.user)
   const { day, month, year, hours, minutes, amOrPm } = convertTime(post.date)
   return (
     <div className="flex items-center justify-center flex-shrink-0 w-full h-full bg-white border border-gray-200 rounded-md shadow-none cursor-pointer hover:shadow-lg">
@@ -17,7 +18,7 @@ export default function PostCard({ post }) {
           </div>
           <div className="ml-2">
             <p className="text-sm font-medium leading-none text-gray-800">
-              {data?.user.fullName}
+              {user ? data?.user.fullName : 'Become a Member to see the Author'}
             </p>
             <div className="flex justify-start mt-1 space-x-6">
               <div className="flex justify-between text-white">
@@ -58,7 +59,7 @@ export default function PostCard({ post }) {
                   />
                 </svg>
                 <p className="text-sm leading-none text-gray-600">
-                  {`${day} ${month}, ${year} `}
+                  {user && `${day} ${month}, ${year} `}
                 </p>
               </div>
               <div className="flex justify-end text-white">
@@ -85,7 +86,7 @@ export default function PostCard({ post }) {
                   />
                 </svg>
                 <p className="text-sm leading-none text-gray-600">
-                  {`${hours}:${minutes} ${amOrPm}`}
+                  {user && `${hours}:${minutes} ${amOrPm}`}
                 </p>
               </div>
             </div>
