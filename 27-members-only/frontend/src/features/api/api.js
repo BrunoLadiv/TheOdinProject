@@ -10,7 +10,26 @@ export const api = createApi({
     getUserById: builder.query({
       query: (userId) => `/auth/user/${userId}`,
     }),
+    userLogin: builder.mutation({
+      query: (body) => ({
+        url: '/auth/login',
+        method: 'POST',
+        body,
+      }),
+    }),
+    userRegister: builder.mutation({
+      query: (body) => ({
+        url: '/auth/register',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 })
 
-export const { useGetPostsQuery, useGetUserByIdQuery } = api
+export const {
+  useGetPostsQuery,
+  useGetUserByIdQuery,
+  useUserLoginMutation,
+  useUserRegisterMutation,
+} = api

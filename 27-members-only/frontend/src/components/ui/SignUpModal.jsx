@@ -1,11 +1,26 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { useUserRegisterMutation } from '../../features/api/api'
 function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [registerUser, { data, isLoading, isError }] = useUserRegisterMutation()
+
+  console.log(data)
+
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
       document.body.style.overflow = 'auto'
     }
   }, [])
+
+  function handleRegister(e) {
+    e.preventDefault()
+    if (!email || !password || !name || !lastName) return
+    registerUser({ email, password, name, lastName })
+  }
   return (
     <>
       <div className="absolute  w-full min-h-screen inset-0 bg-gray-800 bg-opacity-75 backdrop-blur-lg">
@@ -14,7 +29,10 @@ function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
           className="container mx-auto w-11/12 md:w-2/3 max-w-lg flex justify-center translate-y-1/2"
         >
           <div className="relative w-11/12 sm:w-8/12 md:w-10/12 bg-gray-800 shadow  rounded">
-            <div className="md:px-10 py-4 px-5 md:py-6">
+            <form
+              onSubmit={handleRegister}
+              className="md:px-10 py-4 px-5 md:py-6"
+            >
               <p className="text-2xl font-bold leading-normal text-white ">
                 Sign up
               </p>
@@ -22,8 +40,34 @@ function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
                 <div className="bg-gray-50 dark:bg-gray-700 border rounded dark:border-gray-700 border-gray-200 mt-5">
                   <input
                     className="py-3 pl-4 bg-transparent text-sm font-medium leading-none text-gray-600 placeholder-gray-600 dark:placeholder-gray-300 dark:text-gray-300 w-full focus:outline-none"
+                    type="text"
+                    placeholder="First Name"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    aria-label="first name"
+                  />
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-700 border rounded dark:border-gray-700 border-gray-200 mt-5">
+                  <input
+                    className="py-3 pl-4 bg-transparent text-sm font-medium leading-none text-gray-600 placeholder-gray-600 dark:placeholder-gray-300 dark:text-gray-300 w-full focus:outline-none"
+                    type="text"
+                    placeholder="Last Name"
+                    required
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    aria-label="Last Name"
+                  />
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-700 border rounded dark:border-gray-700 border-gray-200 mt-5">
+                  <input
+                    className="py-3 pl-4 bg-transparent text-sm font-medium leading-none text-gray-600 placeholder-gray-600 dark:placeholder-gray-300 dark:text-gray-300 w-full focus:outline-none"
                     type="email"
                     placeholder="Email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    aria-label="Email"
                   />
                 </div>
                 <div className="bg-gray-50 mt-3 dark:bg-gray-700 border rounded dark:border-gray-700 border-gray-200">
@@ -31,6 +75,10 @@ function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
                     className="py-3 pl-4 bg-transparent text-sm font-medium leading-none text-gray-600 placeholder-gray-600 dark:placeholder-gray-300 dark:text-gray-300 w-full focus:outline-none"
                     type="password"
                     placeholder="Password"
+                    required
+                    aria-label="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </div>
@@ -48,13 +96,18 @@ function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
                     Sign In
                   </span>
                 </p>
-                <button className="mt-4 md:mt-0 md:ml-10 p-3 bg-indigo-700 dark:bg-indigo-600 hover:bg-opacity-80 rounded focus:outline-none">
+                <button
+                  disabled={isLoading}
+                  type="submit"
+                  aria-label="Sign Up"
+                  className="mt-4 md:mt-0 md:ml-10 p-3 bg-indigo-700 dark:bg-indigo-600 hover:bg-opacity-80 rounded focus:outline-none"
+                >
                   <p className="text-sm font-medium leading-none text-gray-100">
                     Create account
                   </p>
                 </button>
               </div>
-            </div>
+            </form>
             <div
               onClick={() => setShowSignUpModal(false)}
               aria-hidden="true"

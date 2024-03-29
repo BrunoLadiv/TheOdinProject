@@ -8,7 +8,7 @@ import BecomeMemberModal from './ui/BecomeMemberModal'
 export default function Header() {
   const [rotate, setRotate] = useState(false)
   const [show, setShow] = useState(false)
-  const [user, setUser] = useState(true)
+  const [user, setUser] = useState(false)
   const [showNewPostModal, setShowNewPostModal] = useState(false)
   const [showSigInModal, setShowSignInModal] = useState(false)
   const [showSigUpModal, setShowSignUpModal] = useState(false)

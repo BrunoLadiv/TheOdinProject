@@ -3,14 +3,11 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 const createUser = async (req, res) => {
-  const { email, password, passwordConfirm, name, lastName } = req.body
+  console.log(req.body)
+  const { email, password, name, lastName } = req.body
 
-  if (!email || !password || !passwordConfirm) {
+  if (!email || !password || !name || !lastName) {
     return res.status(400).json({ message: 'Missing required fields' })
-  }
-
-  if (password !== passwordConfirm) {
-    return res.status(400).json({ message: 'Passwords do not match' })
   }
 
   try {
