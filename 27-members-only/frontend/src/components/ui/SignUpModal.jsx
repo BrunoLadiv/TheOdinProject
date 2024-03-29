@@ -7,7 +7,7 @@ function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [registerUser, { data, isLoading, isError }] = useRegisterMutation()
+  const [registerUser, { data, isLoading, error }] = useRegisterMutation()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
       dispatch(setCredentials({ user: data.user, accessToken: data.token }))
       setTimeout(() => {
         setShowSignUpModal(false)
-      }, 1500)
+      }, 1000)
     }
   }, [data])
 
@@ -95,6 +95,9 @@ function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
               </div>
               {data?.message && (
                 <p className="text-green-500 mt-2">{data.message}</p>
+              )}
+              {error && (
+                <p className="text-red-500 mt-2">{error?.data.message}</p>
               )}
 
               <div className="md:flex items-center justify-between mt-4 md:mt-6">

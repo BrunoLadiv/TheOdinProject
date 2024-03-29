@@ -1,12 +1,39 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { useLoginMutation } from '../../features/auth/authApiSlice'
+import { useDispatch } from 'react-redux'
+import { setCredentials } from '../../features/auth/authSlice'
 function SignInModal({ setShowSignInModal, setShowSignUpModal }) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [login, { data, isLoading, isError,  error }] =
+    useLoginMutation()
+  const dispatch = useDispatch()
+ console.log(data);
+  useEffect(() => {
+    if (data && data.token) {
+      localStorage.setItem('token', data.token)
+      dispatch(setCredentials({ user: data.user, accessToken: data.token }))
+      setTimeout(() => {
+        setShowSignInModal(false)
+      }, 1000)
+    }
+  }, [data])
+
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
       document.body.style.overflow = 'auto'
     }
   }, [])
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    if (!email || !password) {
+      return
+    }
+    login({ email, password })
+  }
   return (
     <>
       <div className="absolute  w-full min-h-screen inset-0 bg-gray-800 bg-opacity-75 backdrop-blur-lg">
@@ -15,7 +42,10 @@ function SignInModal({ setShowSignInModal, setShowSignUpModal }) {
           className="container mx-auto w-11/12 md:w-2/3 max-w-lg flex justify-center translate-y-1/2"
         >
           <div className="relative w-11/12 sm:w-8/12 md:w-10/12 bg-gray-800 shadow  rounded">
-            <div className="md:px-10 py-4 px-5 md:py-6">
+            <form
+              onSubmit={handleSubmit}
+              className="md:px-10 py-4 px-5 md:py-6"
+            >
               <p className="text-2xl font-bold leading-normal text-white ">
                 Sign in
               </p>
@@ -25,6 +55,8 @@ function SignInModal({ setShowSignInModal, setShowSignUpModal }) {
                     className="py-3 pl-4 bg-transparent text-sm font-medium leading-none text-gray-600 placeholder-gray-600 dark:placeholder-gray-300 dark:text-gray-300 w-full focus:outline-none"
                     type="email"
                     placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="bg-gray-50 mt-3 dark:bg-gray-700 border rounded dark:border-gray-700 border-gray-200">
@@ -32,8 +64,14 @@ function SignInModal({ setShowSignInModal, setShowSignUpModal }) {
                     className="py-3 pl-4 bg-transparent text-sm font-medium leading-none text-gray-600 placeholder-gray-600 dark:placeholder-gray-300 dark:text-gray-300 w-full focus:outline-none"
                     type="password"
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
+                {data?.message && (
+                  <p className="text-green-500">{data.message}</p>
+                )}
+                {error && <p className="text-red-500 mt-2">{error.data.message}</p>}
               </div>
               <div className="md:flex items-center justify-between mt-4 md:mt-6">
                 <p className="text-xs leading-3 text-gray-600 dark:text-gray-300 ">
@@ -48,13 +86,17 @@ function SignInModal({ setShowSignInModal, setShowSignUpModal }) {
                     Sign Up
                   </span>
                 </p>
-                <button className="mt-4 md:mt-0 md:ml-10 p-3 bg-indigo-700 dark:bg-indigo-600 hover:bg-opacity-80 rounded focus:outline-none">
+                <button
+                  disabled={isLoading}
+                  type="submit"
+                  className="mt-4 md:mt-0 md:ml-10 p-3 bg-indigo-700 dark:bg-indigo-600 hover:bg-opacity-80 rounded focus:outline-none"
+                >
                   <p className="text-sm font-medium leading-none text-gray-100">
                     Login
                   </p>
                 </button>
               </div>
-            </div>
+            </form>
             <div
               onClick={() => setShowSignInModal(false)}
               aria-hidden="true"
