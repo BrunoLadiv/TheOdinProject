@@ -1,13 +1,24 @@
 import { useEffect, useState } from 'react'
-import { useUserRegisterMutation } from '../../features/api/api'
+import { useRegisterMutation } from '../../features/auth/authApiSlice'
+import { useDispatch } from 'react-redux'
+import { setCredentials } from '../../features/auth/authSlice'
 function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [registerUser, { data, isLoading, isError }] = useUserRegisterMutation()
+  const [registerUser, { data, isLoading, isError }] = useRegisterMutation()
+  const dispatch = useDispatch()
 
-  console.log(data)
+  useEffect(() => {
+    if (data && data.token) {
+      localStorage.setItem('token', data.token)
+      dispatch(setCredentials({ user: data.user, accessToken: data.token }))
+      setTimeout(() => {
+        setShowSignUpModal(false)
+      }, 2000)
+    }
+  }, [data])
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -82,6 +93,10 @@ function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
                   />
                 </div>
               </div>
+              {data?.message && (
+                <p className="text-green-500 mt-2">{data.message}</p>
+              )}
+
               <div className="md:flex items-center justify-between mt-4 md:mt-6">
                 <p className="text-xs leading-3 text-gray-600 dark:text-gray-300 ">
                   Already have an account?{' '}
@@ -102,7 +117,10 @@ function SignUpModal({ setShowSignUpModal, setShowSignInModal }) {
                   aria-label="Sign Up"
                   className="mt-4 md:mt-0 md:ml-10 p-3 bg-indigo-700 dark:bg-indigo-600 hover:bg-opacity-80 rounded focus:outline-none"
                 >
-                  <p className="text-sm font-medium leading-none text-gray-100">
+                  <p
+                    disabled={isLoading}
+                    className="text-sm font-medium leading-none text-gray-100"
+                  >
                     Create account
                   </p>
                 </button>

@@ -1,7 +1,7 @@
-import { useGetUserByIdQuery } from '../../features/api/api'
+import { useGetByIdQuery } from '../../features/auth/authApiSlice'
 import convertTime from '../../utils/convertTime'
 export default function PostCard({ post }) {
-  const { data } = useGetUserByIdQuery(post.author)
+  const { data } = useGetByIdQuery(post.author)
   console.log(post)
   const { day, month, year, hours, minutes, amOrPm } = convertTime(post.date)
   return (

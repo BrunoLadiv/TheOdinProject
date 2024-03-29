@@ -20,9 +20,21 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 db.once('open', () => {
   console.log('MongoDB connected successfully')
 })
+const whitelist = ['http://localhost:3000', 'http://127.0.0.1:5173'] 
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.includes(origin) || !origin) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  credentials: true,
+}
 
 app.use(express.json())
-app.use(cors())
+app.use(cors(corsOptions))
 
 app.use('/api/auth', authRoutes)
 app.use('/api/posts', postsRoutes)

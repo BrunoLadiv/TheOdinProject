@@ -22,9 +22,17 @@ const createUser = async (req, res) => {
     })
 
     const savedUser = await user.save()
+    const secret = process.env.SECRET
+    const token = jwt.sign({ id: savedUser._id }, secret, { expiresIn: '24h' })
+    const resUser = {
+      fullName: savedUser.fullName,
+      email: savedUser.email,
+      isMember: savedUser.isMember,
+      id: savedUser._id,
+    }
     res
       .status(201)
-      .json({ message: 'User created successfully', user: savedUser })
+      .json({ message: 'User created successfully', user: resUser, token })
   } catch (err) {
     if (err.name === 'ValidationError') {
       const errorMessage = Object.values(err.errors)[0].message

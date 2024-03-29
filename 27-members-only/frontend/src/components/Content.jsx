@@ -1,5 +1,5 @@
 import PostCard from './ui/PostCard'
-import { useGetPostsQuery } from '../features/api/api'
+import { useGetPostsQuery } from '../features/posts/postApiSlice'
 export default function Content() {
   const { data: posts, isLoading, isError, error } = useGetPostsQuery()
   if (isLoading) {
