@@ -89,8 +89,14 @@ const becomeMember = async (req, res) => {
   try {
     const user = await User.findById(id)
     user.isMember = true
+    const resUser = {
+      fullName: user.fullName,
+      email: user.email,
+      isMember: user.isMember,
+      id: user._id,
+    }
     await user.save()
-    res.status(200).json({ message: 'You are now a member!' })
+    res.status(200).json({ message: 'You are now a member!', user: resUser })
   } catch (error) {
     res.status(500).json({ message: 'Error becoming a member' })
   }

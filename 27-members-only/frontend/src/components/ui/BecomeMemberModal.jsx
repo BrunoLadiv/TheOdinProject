@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useBecomeMemberMutation } from '../../features/auth/authApiSlice'
+import { useDispatch } from 'react-redux'
+import { setCredentials } from '../../features/auth/authSlice'
 
 const BecomeMember = ({ setShowBecomeMemberModal }) => {
   const [password, setPassword] = useState('')
-  const [becomeMember, { data, isLoading,  error }] =
-    useBecomeMemberMutation()
+  const dispatch = useDispatch()
+  const [becomeMember, { data, isLoading, error }] = useBecomeMemberMutation()
 
-  if (data?.message === "You are now a member!") {
+  if (data?.message === 'You are now a member!') {
+    dispatch(
+      setCredentials({user: data.user})
+    )
     setTimeout(() => {
       setShowBecomeMemberModal(false)
     }, 1000)
