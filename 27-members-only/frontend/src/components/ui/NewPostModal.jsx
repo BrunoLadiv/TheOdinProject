@@ -1,12 +1,26 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { useCreatePostMutation } from '../../features/posts/postApiSlice'
 
 export default function NewPostModal({ setShowNewPostModal }) {
+  const [createPost, { data, error, isLoading }] = useCreatePostMutation()
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  if (data?.message === 'Post created successfully') {
+    setTimeout(() => {
+      setShowNewPostModal(false)
+    }, 1000)
+  }
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
       document.body.style.overflow = 'auto'
     }
   }, [])
+  function handleSubmit(e) {
+    e.preventDefault()
+    if (!title || !content) return
+    createPost({ title, content })
+  }
   return (
     <div className="absolute  w-full min-h-screen inset-0 bg-gray-800 bg-opacity-75 backdrop-blur-lg ">
       <div className="flex items-center justify-center px-4 py-8">
@@ -14,23 +28,32 @@ export default function NewPostModal({ setShowNewPostModal }) {
           <p className="text-lg font-bold leading-none text-gray-800 dark:text-gray-100">
             New Post
           </p>
-          <form className="mt-5">
+          <form onSubmit={handleSubmit} className="mt-5">
             <div className="flex flex-col mt-4">
               <div>
                 <input
                   placeholder="title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                   className="w-full px-4 py-3 mt-2 text-xs font-medium leading-3 text-gray-500 border border-gray-200 rounded-lg resize-none dark:text-gray-400 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 focus:outline-none"
                 ></input>
               </div>
               <textarea
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
                 placeholder="what are you thinking ?"
                 className="px-4 py-3 mt-2 text-xs font-medium leading-3 text-gray-500 border border-gray-200 rounded-lg resize-none h-36 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 dark:border-gray-700 focus:outline-none"
               ></textarea>
             </div>
+            {data?.message && (
+              <p className="text-green-500 mt-2">{data.message}</p>
+            )}
+            {error && <p className="text-red-600 mt-2">{error.message}</p>}
 
             <button
+              type="submit"
+              disabled={isLoading}
               id="submit"
-              onclick="modalHandler()"
               className="px-5 py-3 mt-5 text-xs font-semibold leading-3 text-gray-100 bg-indigo-700 rounded focus:outline-none dark:bg-indigo-600 hover:bg-opacity-80"
             >
               Create

@@ -7,6 +7,7 @@ export const postApiSlice = apiSlice.injectEndpoints({
         url: '/posts',
         method: 'GET',
       }),
+      providesTags: ['Post'],
     }),
     createPost: builder.mutation({
       query: (body) => ({
@@ -14,6 +15,7 @@ export const postApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['Post'],
     }),
   }),
 })
