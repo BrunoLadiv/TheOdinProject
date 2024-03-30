@@ -1,12 +1,27 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { useBecomeMemberMutation } from '../../features/auth/authApiSlice'
 
 const BecomeMember = ({ setShowBecomeMemberModal }) => {
+  const [password, setPassword] = useState('')
+  const [becomeMember, { data, isLoading,  error }] =
+    useBecomeMemberMutation()
+
+  if (data?.message === "You are now a member!") {
+    setTimeout(() => {
+      setShowBecomeMemberModal(false)
+    }, 1000)
+  }
+
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
       document.body.style.overflow = 'auto'
     }
   }, [])
+  function handleSubmit(e) {
+    e.preventDefault()
+    becomeMember({ password })
+  }
   return (
     <div
       className="absolute z-30 w-full min-h-screen inset-0 bg-gray-800 bg-opacity-75 backdrop-blur-lg"
@@ -16,7 +31,10 @@ const BecomeMember = ({ setShowBecomeMemberModal }) => {
         role="alert"
         className="container translate-y-1/2 mx-auto w-11/12 md:w-2/3 max-w-lg"
       >
-        <div className="py-8 px-5 md:px-32 bg-white shadow-md rounded border border-gray-400">
+        <form
+          onSubmit={handleSubmit}
+          className="py-8 px-5 md:px-32 bg-white shadow-md rounded border border-gray-400"
+        >
           <div className="w-full flex justify-center text-gray-600 mb-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -43,19 +61,30 @@ const BecomeMember = ({ setShowBecomeMemberModal }) => {
             id="pass"
             className="mb-5 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
             placeholder="Enter Password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
+          {error && (
+            <p className="text-red-500 text-sm">{error.data.message}</p>
+          )}
+          {data && <p className="text-green-500 text-sm">{data.message}</p>}
           <div className="flex items-center justify-center w-full">
-            <button className="focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">
+            <button
+              type={'submit'}
+              className="focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm"
+            >
               Submit
             </button>
             <button
               className="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
               onClick={() => setShowBecomeMemberModal(false)}
+              disabled={isLoading}
             >
               Cancel
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   )

@@ -6,13 +6,12 @@ import { setCredentials } from '../../features/auth/authSlice'
 function SignInModal({ setShowSignInModal, setShowSignUpModal }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [login, { data, isLoading, isError,  error }] =
-    useLoginMutation()
+  const [login, { data, isLoading, error }] = useLoginMutation()
   const dispatch = useDispatch()
- console.log(data);
   useEffect(() => {
     if (data && data.token) {
       localStorage.setItem('token', data.token)
+      localStorage.setItem('user', JSON.stringify(data.user))
       dispatch(setCredentials({ user: data.user, accessToken: data.token }))
       setTimeout(() => {
         setShowSignInModal(false)
@@ -71,7 +70,9 @@ function SignInModal({ setShowSignInModal, setShowSignUpModal }) {
                 {data?.message && (
                   <p className="text-green-500">{data.message}</p>
                 )}
-                {error && <p className="text-red-500 mt-2">{error.data.message}</p>}
+                {error && (
+                  <p className="text-red-500 mt-2">{error.data.message}</p>
+                )}
               </div>
               <div className="md:flex items-center justify-between mt-4 md:mt-6">
                 <p className="text-xs leading-3 text-gray-600 dark:text-gray-300 ">

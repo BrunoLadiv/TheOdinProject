@@ -19,7 +19,19 @@ export const authApiSlice = apiSlice.injectEndpoints({
     getById: builder.query({
       query: (userId) => `/auth/user/${userId}`,
     }),
+    becomeMember: builder.mutation({
+      query: (body) => ({
+        url: '/auth/become-member',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 })
 
-export const { useLoginMutation, useRegisterMutation, useGetByIdQuery } = authApiSlice
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useGetByIdQuery,
+  useBecomeMemberMutation,
+} = authApiSlice
