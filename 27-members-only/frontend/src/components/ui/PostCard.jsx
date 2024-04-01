@@ -6,8 +6,8 @@ export default function PostCard({ post }) {
   const user = useSelector((state) => state.auth.user)
   const { day, month, year, hours, minutes, amOrPm } = convertTime(post.date)
   return (
-    <div className="flex items-center justify-center flex-shrink-0 w-full h-full bg-white border border-gray-200 rounded-md shadow-none cursor-pointer hover:shadow-lg">
-      <div className="flex flex-col space-y-1.5 items-start flex-1 h-[184px] md:h-[194px] px-4 py-5 max-w-xs lg:max-w-full md:max-w-full overflow-hidden">
+    <div className="flex items-center  justify-center flex-grow-1 flex-shrink-0 w-full h-full bg-white border border-gray-200 rounded-md shadow-none cursor-pointer hover:shadow-lg">
+      <div className="flex flex-col space-y-1.5 items-start flex-1 h-[184px] md:h-[194px] px-4 py-5 max-w-xs md:w-full overflow-hidden">
         <div className="flex flex-row mb-4">
           <div>
             <img

@@ -11,16 +11,35 @@ const createPost = async (req, res) => {
 
   try {
     const savedPost = await newPost.save()
-    res.status(201).json({ post: savedPost, message: 'Post created successfully' })
+    res
+      .status(201)
+      .json({ post: savedPost, message: 'Post created successfully' })
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
 }
 
 const getPosts = async (req, res) => {
+  console.log(req.query)
   try {
-    const posts = await Post.find().sort({ date: -1 })
-    res.status(200).json(posts)
+    // Pagination parameters
+    const page = parseInt(req.query.page) || 1 // Default page is 1
+    const limit = parseInt(req.query.limit) || 12 // Default limit is 10 posts per page
+
+    // Calculate skip based on page and limit
+    const skip = (page - 1) * limit
+
+    // Fetch posts for the current page
+    const posts = await Post.find().sort({ date: -1 }).skip(skip).limit(limit)
+
+    // Fetch total count of posts (for pagination)
+    const totalCount = await Post.countDocuments()
+
+    // Calculate total pages
+    const totalPages = Math.ceil(totalCount / limit)
+
+    // Response with pagination information
+    res.status(200).json({ posts, totalPages, currentPage: page })
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
