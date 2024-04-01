@@ -5,7 +5,7 @@ export const postApiSlice = apiSlice.injectEndpoints({
     getPosts: builder.query({
       query: (params) => ({
         url: `/posts?page=${params?.page ? params.page : 1}&limit=${
-          params?.limit ? params.limit : 6
+          params?.limit ? params.limit : 9
         }}`,
         method: 'GET',
       }),

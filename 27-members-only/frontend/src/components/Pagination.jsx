@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useSearchParams } from 'react-router-dom'
+import { useGetPostsQuery } from '../features/posts/postApiSlice'
 
-export default function Pagination() {
-  const [active, setActive] = useState(1)
+export default function Pagination({ active, setActive, totalPages }) {
   const [searchParams, setSearchParams] = useSearchParams({})
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function Pagination() {
   }, [active])
 
   const next = () => {
-    if (active === 10) return
+    if (active === totalPages) return
 
     setActive(active + 1)
   }
@@ -30,7 +30,7 @@ export default function Pagination() {
         </div>
         <p color="gray" className="font-normal">
           Page <strong className="text-gray-900">{active}</strong> of{' '}
-          <strong className="text-gray-900">10</strong>
+          <strong className="text-gray-900">{totalPages}</strong>
         </p>
         <div onClick={next}>
           <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
