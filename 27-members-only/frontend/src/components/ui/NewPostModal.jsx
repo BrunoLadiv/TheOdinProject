@@ -32,6 +32,7 @@ export default function NewPostModal({ setShowNewPostModal }) {
             <div className="flex flex-col mt-4">
               <div>
                 <input
+                  required
                   placeholder="title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -39,6 +40,7 @@ export default function NewPostModal({ setShowNewPostModal }) {
                 ></input>
               </div>
               <textarea
+                required
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="what are you thinking ?"

@@ -5,11 +5,13 @@ import NewPostModal from './ui/NewPostModal'
 import SignUpModal from './ui/SignUpModal'
 import SignInModal from './ui/SignInModal'
 import BecomeMemberModal from './ui/BecomeMemberModal'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../features/auth/authSlice'
 export default function Header() {
   const [rotate, setRotate] = useState(false)
   const [show, setShow] = useState(false)
   const user = useSelector((state) => state.auth.user)
+  const dispatch = useDispatch()
   const [showNewPostModal, setShowNewPostModal] = useState(false)
   const [showSigInModal, setShowSignInModal] = useState(false)
   const [showSigUpModal, setShowSignUpModal] = useState(false)
@@ -260,7 +262,9 @@ export default function Header() {
                 </Button>
               )}
               {user && <Button>My Posts</Button>}
-              {user && <Button>Logout</Button>}
+              {user && (
+                <Button onClick={() => dispatch(logout())}>Logout</Button>
+              )}
             </div>
             {user && (
               <div className="bottom-0 left-0 flex flex-row items-center w-full px-8 py-6 bg-gray-100 ">
