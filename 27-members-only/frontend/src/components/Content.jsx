@@ -1,7 +1,17 @@
 import PostCard from './ui/PostCard'
 import { useGetPostsQuery } from '../features/posts/postApiSlice'
-export default function Content() {
-  const { data: posts, isLoading, isError, error } = useGetPostsQuery()
+import { useSelector } from 'react-redux'
+export default function Content({ myPosts = false }) {
+  const user = useSelector((state) => state.auth.user)
+  const {
+    data: postsUnfiltered,
+    isLoading,
+    isError,
+    error,
+  } = useGetPostsQuery()
+  const posts = myPosts
+    ? postsUnfiltered?.filter((post) => post.author === user.id)
+    : postsUnfiltered
   if (isLoading) {
     return <div>Loading...</div>
   }

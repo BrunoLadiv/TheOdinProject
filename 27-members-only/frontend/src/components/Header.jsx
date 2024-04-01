@@ -7,6 +7,7 @@ import SignInModal from './ui/SignInModal'
 import BecomeMemberModal from './ui/BecomeMemberModal'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../features/auth/authSlice'
+import { Link } from 'react-router-dom'
 export default function Header() {
   const [rotate, setRotate] = useState(false)
   const [show, setShow] = useState(false)
@@ -44,7 +45,7 @@ export default function Header() {
           <div className="2xl:container 2xl:mx-auto">
             <nav className>
               <div className="flex flex-row justify-between ">
-                <div className="flex items-center py-5 py-6 pl-4 pr-8 space-x-3 lg:pl-7 sm:pl-6">
+                <Link to='/' className="flex items-center py-5 py-6 pl-4 pr-8 space-x-3 lg:pl-7 sm:pl-6">
                   <svg
                     className="cursor-pointer"
                     width={34}
@@ -61,7 +62,7 @@ export default function Header() {
                   <h1 className="text-2xl font-normal leading-6 text-gray-800 ">
                     OpinionBoard
                   </h1>
-                </div>
+                </Link>
                 {/* For large (i.e. desktop and laptop sized screen) */}
                 <div className="flex-row justify-between flex-auto hidden py-6 border-l border-r border-gray-200 lg:flex px-7">
                   {user && (

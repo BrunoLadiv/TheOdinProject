@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { logout } from '../../features/auth/authSlice'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 export default function Dropdown({ setShowBecomeMemberModal }) {
   const user = useSelector((state) => state.auth.user)
 
@@ -8,7 +9,7 @@ export default function Dropdown({ setShowBecomeMemberModal }) {
   return (
     <ul className="absolute visible w-48 py-1 mt-2 transition duration-300 translate-y-1/2 bg-white rounded shadow opacity-100 dark:bg-white">
       {user.isMember ? (
-        <li className='text-green-400'>Club member</li>
+        <li className="text-green-400">Club member</li>
       ) : (
         <li
           onClick={() => setShowBecomeMemberModal(true)}
@@ -33,26 +34,31 @@ export default function Dropdown({ setShowBecomeMemberModal }) {
           <span className="ml-2">Join The Club</span>
         </li>
       )}
-      <li className="flex items-center px-3 py-3 text-sm font-normal leading-3 tracking-normal text-gray-600 cursor-pointer dark:text-black hover:bg-gray-100">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="icon icon-tabler icon-tabler-device-mobile"
-          width={16}
-          height={16}
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+      <Link to="/my-posts">
+        <li
+          to="/my-posts"
+          className="flex items-center px-3 py-3 text-sm font-normal leading-3 tracking-normal text-gray-600 cursor-pointer dark:text-black hover:bg-gray-100"
         >
-          <path stroke="none" d="M0 0h24v24H0z" />
-          <rect x={7} y={4} width={10} height={16} rx={1} />
-          <line x1={11} y1={5} x2={13} y2={5} />
-          <line x1={12} y1={17} x2={12} y2="17.01" />
-        </svg>
-        <span className="ml-2">My Posts</span>
-      </li>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="icon icon-tabler icon-tabler-device-mobile"
+            width={16}
+            height={16}
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />
+            <rect x={7} y={4} width={10} height={16} rx={1} />
+            <line x1={11} y1={5} x2={13} y2={5} />
+            <line x1={12} y1={17} x2={12} y2="17.01" />
+          </svg>
+          <span className="ml-2">My Posts</span>
+        </li>
+      </Link>
       <li>
         <hr className="my-1 border-gray-200 dark:border-gray-300" />
       </li>

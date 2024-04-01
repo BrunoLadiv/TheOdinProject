@@ -7,7 +7,7 @@ export default function PostCard({ post }) {
   const { day, month, year, hours, minutes, amOrPm } = convertTime(post.date)
   return (
     <div className="flex items-center justify-center flex-shrink-0 w-full h-full bg-white border border-gray-200 rounded-md shadow-none cursor-pointer hover:shadow-lg">
-      <div className="inline-flex flex-col space-y-1.5 items-start justify-end flex-1 h-full px-4 py-5">
+      <div className="flex flex-col space-y-1.5 items-start flex-1 h-[184px] md:h-[194px] px-4 py-5 max-w-xs lg:max-w-full md:max-w-full overflow-hidden">
         <div className="flex flex-row mb-4">
           <div>
             <img
@@ -105,7 +105,9 @@ export default function PostCard({ post }) {
         <p className="text-sm font-medium leading-none text-gray-800">
           {post.title}
         </p>
-        <p className="text-sm leading-tight text-gray-600">{post.content}</p>
+        <p className="text-sm break-words leading-tight whitespace-normal  text-gray-600">
+          {post.content}
+        </p>
       </div>
     </div>
   )

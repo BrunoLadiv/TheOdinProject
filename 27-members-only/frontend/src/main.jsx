@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: '/my-posts',
-            element: <h1>My posts page</h1>,
+            element: <Content myPosts={true} />,
           },
         ],
       },

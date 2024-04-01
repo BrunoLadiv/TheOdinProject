@@ -32,6 +32,7 @@ export default function NewPostModal({ setShowNewPostModal }) {
             <div className="flex flex-col mt-4">
               <div>
                 <input
+                  maxLength="280"
                   required
                   placeholder="title"
                   value={title}
@@ -40,6 +41,7 @@ export default function NewPostModal({ setShowNewPostModal }) {
                 ></input>
               </div>
               <textarea
+                maxLength="180"
                 required
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
