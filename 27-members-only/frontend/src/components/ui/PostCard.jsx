@@ -1,13 +1,28 @@
 import { useGetByIdQuery } from '../../features/auth/authApiSlice'
+import { useDeletePostMutation } from '../../features/posts/postApiSlice'
 import { useSelector } from 'react-redux'
 import convertTime from '../../utils/convertTime'
 import userAvatar from '../../assets/user.png'
 export default function PostCard({ post }) {
+  const [deletePost, { isLoading }] = useDeletePostMutation()
   const { data } = useGetByIdQuery(post.author)
   const user = useSelector((state) => state.auth.user)
   const { day, month, year, hours, minutes, amOrPm } = convertTime(post.date)
+  function handleDeletePost() {
+    if (!confirm('Are you sure you want to delete this post?')) return
+
+    deletePost(post._id)
+  }
   return (
-    <div className="flex items-center  justify-center flex-grow-1 flex-shrink-0 w-full h-full bg-white border border-gray-200 rounded-md shadow-none cursor-pointer hover:shadow-lg">
+    <div className="flex items-center relative   justify-center flex-grow-1 flex-shrink-0 w-full h-full bg-white border border-gray-200 rounded-md shadow-none cursor-pointer hover:shadow-lg">
+      {post?.author === user?.id && (
+        <span
+          onClick={isLoading ? '' : handleDeletePost}
+          className="absolute hover:scale-150 top-1 right-4"
+        >
+          x
+        </span>
+      )}
       <div className="flex flex-col space-y-1.5 items-start flex-1 h-[184px] md:h-[194px] lg:px-0 px-4 py-5 max-w-xs md:w-full overflow-hidden">
         <div className="flex flex-row mb-4">
           <div>

@@ -53,4 +53,17 @@ const getUserPosts = async (req, res) => {
     res.status(500).json({ error: error.message })
   }
 }
-export { createPost, getUserPosts, getPosts }
+
+const deletePost = async (req, res) => {
+  const { id } = req.params
+  try {
+    const post = await Post.findByIdAndDelete(id)
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' })
+    }
+    res.status(200).json({ message: 'Post deleted successfully' })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+export { createPost, getUserPosts, getPosts, deletePost }

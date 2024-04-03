@@ -22,7 +22,7 @@ export default function NewPostModal({ setShowNewPostModal }) {
     createPost({ title, content })
   }
   return (
-    <div className="absolute  w-full min-h-screen inset-0 bg-gray-800 bg-opacity-75 backdrop-blur-lg ">
+    <div className="absolute z-50 w-full min-h-screen inset-0 bg-gray-800 bg-opacity-75 backdrop-blur-lg ">
       <div className="flex items-center justify-center px-4 py-8">
         <div className="relative p-6  rounded shadow-lg w-96 bg-gray-800 translate-y-1/2">
           <p className="text-lg font-bold leading-none text-gray-800 dark:text-gray-100">
