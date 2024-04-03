@@ -40,7 +40,7 @@ export default function PostCard({ post }) {
                 user?.isMember ? 'text-gray-800' : ''
               }`}
             >
-              {user?.isMember ? data?.user.fullName : 'Anonymous'}
+              {user?.isMember || post?.author === user?.id ? data?.user.fullName : 'Anonymous'}
             </p>
             <div className="flex justify-start mt-1 space-x-6">
               <div className="flex justify-between text-white">
@@ -81,7 +81,7 @@ export default function PostCard({ post }) {
                   />
                 </svg>
                 <p className="text-sm leading-none text-gray-600">
-                  {user?.isMember ? `${day} ${month}, ${year}` : '*******'}
+                  {user?.isMember || post?.author === user?.id ? `${day} ${month}, ${year}` : '*******'}
                 </p>
               </div>
               <div className="flex justify-end text-white">
@@ -108,7 +108,7 @@ export default function PostCard({ post }) {
                   />
                 </svg>
                 <p className="text-sm leading-none text-gray-600">
-                  {user?.isMember ? `${hours}:${minutes} ${amOrPm}` : '*******'}
+                  {user?.isMember || post?.author === user?.id? `${hours}:${minutes} ${amOrPm}` : '*******'}
                 </p>
               </div>
             </div>

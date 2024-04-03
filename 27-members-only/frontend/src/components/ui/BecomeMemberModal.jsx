@@ -29,7 +29,7 @@ const BecomeMember = ({ setShowBecomeMemberModal }) => {
   }
   return (
     <div
-      className="absolute z-30 w-full min-h-screen inset-0 bg-gray-800 bg-opacity-75 backdrop-blur-lg"
+      className="absolute z-50 w-full min-h-screen inset-0 bg-gray-800 bg-opacity-75 backdrop-blur-lg"
       id="modal"
     >
       <div

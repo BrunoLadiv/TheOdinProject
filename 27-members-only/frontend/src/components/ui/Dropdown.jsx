@@ -7,7 +7,7 @@ export default function Dropdown({ setShowBecomeMemberModal  }) {
 
   const dispatch = useDispatch()
   return (
-    <ul className="absolute visible w-48 py-1 mt-2 transition duration-300 translate-y-1/2 bg-white rounded shadow opacity-100 dark:bg-white">
+    <ul className="absolute z-40 visible w-48 py-1 mt-2 transition duration-300 translate-y-1/2 bg-white rounded shadow opacity-100 dark:bg-white">
       {!user.isMember && (
         <li
           onClick={() => setShowBecomeMemberModal(true)}

@@ -35,7 +35,7 @@ function SignInModal({ setShowSignInModal, setShowSignUpModal }) {
   }
   return (
     <>
-      <div className="absolute  w-full min-h-screen inset-0 bg-gray-800 bg-opacity-75 backdrop-blur-lg">
+      <div className="absolute z-50  w-full min-h-screen inset-0 bg-gray-800 bg-opacity-75 backdrop-blur-lg">
         <div
           role="alert"
           className="container mx-auto w-11/12 md:w-2/3 max-w-lg flex justify-center translate-y-1/2"
