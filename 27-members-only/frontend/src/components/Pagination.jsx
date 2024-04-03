@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useSearchParams } from 'react-router-dom'
 
-export default function Pagination({ active, setActive, totalPages }) {
+export default function Pagination({ active, setActive, totalPages, myPosts }) {
   const [, setSearchParams] = useSearchParams({})
 
   useEffect(() => {
@@ -20,14 +20,12 @@ export default function Pagination({ active, setActive, totalPages }) {
 
     setActive(active - 1)
   }
+  if (myPosts) return
 
   return (
     <div className="flex justify-center">
       <div className="flex items-center gap-8">
-        <div
-          className={active === 1 ? 'hidden' : ''}
-          onClick={prev}
-        >
+        <div className={active === 1 ? 'hidden' : ''} onClick={prev}>
           <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" />
         </div>
         <p color="gray" className="font-normal">

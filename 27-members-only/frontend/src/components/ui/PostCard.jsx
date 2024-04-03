@@ -7,7 +7,7 @@ export default function PostCard({ post }) {
   const { day, month, year, hours, minutes, amOrPm } = convertTime(post.date)
   return (
     <div className="flex items-center  justify-center flex-grow-1 flex-shrink-0 w-full h-full bg-white border border-gray-200 rounded-md shadow-none cursor-pointer hover:shadow-lg">
-      <div className="flex flex-col space-y-1.5 items-start flex-1 h-[184px] md:h-[194px] px-4 py-5 max-w-xs md:w-full overflow-hidden">
+      <div className="flex flex-col space-y-1.5 items-start flex-1 h-[184px] md:h-[194px] lg:px-0 px-4 py-5 max-w-xs md:w-full overflow-hidden">
         <div className="flex flex-row mb-4">
           <div>
             <img
@@ -17,7 +17,8 @@ export default function PostCard({ post }) {
             />
           </div>
           <div className="ml-2">
-            <p title={user?.isMember ? '': 'Join the club the see post details'}
+            <p
+              title={user?.isMember ? '' : 'Join the club the see post details'}
               className={`text-sm font-medium leading-none text-gray-400 ${
                 user?.isMember ? 'text-gray-800' : ''
               }`}
@@ -67,30 +68,30 @@ export default function PostCard({ post }) {
                 </p>
               </div>
               <div className="flex justify-end text-white">
-                  <svg
-                    className="mx-1 fill-current"
-                    width={12}
-                    height={12}
-                    viewBox="0 0 12 12"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M6 10.5C8.48528 10.5 10.5 8.48528 10.5 6C10.5 3.51472 8.48528 1.5 6 1.5C3.51472 1.5 1.5 3.51472 1.5 6C1.5 8.48528 3.51472 10.5 6 10.5Z"
-                      stroke="#4B5563"
-                      strokeWidth="0.75"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M6 3.5V6L7.5 7.5"
-                      stroke="#4B5563"
-                      strokeWidth="0.75"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                <svg
+                  className="mx-1 fill-current"
+                  width={12}
+                  height={12}
+                  viewBox="0 0 12 12"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6 10.5C8.48528 10.5 10.5 8.48528 10.5 6C10.5 3.51472 8.48528 1.5 6 1.5C3.51472 1.5 1.5 3.51472 1.5 6C1.5 8.48528 3.51472 10.5 6 10.5Z"
+                    stroke="#4B5563"
+                    strokeWidth="0.75"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M6 3.5V6L7.5 7.5"
+                    stroke="#4B5563"
+                    strokeWidth="0.75"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
                 <p className="text-sm leading-none text-gray-600">
-                  {user?.isMember ? `${hours}:${minutes} ${amOrPm}`: '*******'}
+                  {user?.isMember ? `${hours}:${minutes} ${amOrPm}` : '*******'}
                 </p>
               </div>
             </div>

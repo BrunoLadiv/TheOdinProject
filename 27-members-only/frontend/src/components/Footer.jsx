@@ -1,8 +1,13 @@
 export default function Footer() {
   return (
-    <footer className="bg-white flex justify-center shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
+    <footer className="bg-white  flex justify-center shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
       <div className="flex justify-center space-x-6">
-        <a href="#" className="text-gray-500 flex gap-2 hover:text-gray-900">
+        <a
+          href="https://github.com/BrunoLadiv/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-500 flex gap-2 hover:text-gray-900"
+        >
           <svg
             className="h-5 w-5"
             fill="currentColor"

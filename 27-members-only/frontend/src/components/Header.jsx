@@ -45,7 +45,10 @@ export default function Header() {
           <div className="2xl:container 2xl:mx-auto">
             <nav className>
               <div className="flex flex-row justify-between ">
-                <Link to='/' className="flex items-center py-5 py-6 pl-4 pr-8 space-x-3 lg:pl-7 sm:pl-6">
+                <Link
+                  to="/"
+                  className="flex items-center py-5 py-6 pl-4 pr-8 space-x-3 lg:pl-7 sm:pl-6"
+                >
                   <svg
                     className="cursor-pointer"
                     width={34}
@@ -262,7 +265,17 @@ export default function Header() {
                   New Post
                 </Button>
               )}
-              {user && <Button>My Posts</Button>}
+              {!user?.isMember && (
+                <Button onClick={() => setShowBecomeMemberModal(true)}>
+                  Become a member
+                </Button>
+              )}
+
+              {user && (
+                <Button>
+                  <Link to="/my-posts">My Posts </Link>
+                </Button>
+              )}
               {user && (
                 <Button onClick={() => dispatch(logout())}>Logout</Button>
               )}

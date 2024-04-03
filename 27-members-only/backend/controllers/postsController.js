@@ -22,9 +22,8 @@ const createPost = async (req, res) => {
 const getPosts = async (req, res) => {
   console.log(req.query)
   try {
-    // Pagination parameters
-    const page = parseInt(req.query.page) || 1 // Default page is 1
-    const limit = parseInt(req.query.limit) || 12 // Default limit is 10 posts per page
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || undefined
 
     // Calculate skip based on page and limit
     const skip = (page - 1) * limit
