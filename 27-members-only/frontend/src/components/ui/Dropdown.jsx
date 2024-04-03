@@ -8,9 +8,7 @@ export default function Dropdown({ setShowBecomeMemberModal }) {
   const dispatch = useDispatch()
   return (
     <ul className="absolute visible w-48 py-1 mt-2 transition duration-300 translate-y-1/2 bg-white rounded shadow opacity-100 dark:bg-white">
-      {user.isMember ? (
-        <li className="text-green-400">Club member</li>
-      ) : (
+      {!user.isMember && (
         <li
           onClick={() => setShowBecomeMemberModal(true)}
           className="flex items-center px-3 py-3 text-sm font-normal leading-3 tracking-normal text-black cursor-pointer dark:black hover:bg-gray-100"
