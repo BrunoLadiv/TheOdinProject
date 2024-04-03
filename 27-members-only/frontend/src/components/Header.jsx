@@ -8,6 +8,7 @@ import BecomeMemberModal from './ui/BecomeMemberModal'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../features/auth/authSlice'
 import { Link } from 'react-router-dom'
+import userAvatar from '../assets/user.png'
 export default function Header() {
   const [rotate, setRotate] = useState(false)
   const [show, setShow] = useState(false)
@@ -108,7 +109,8 @@ export default function Header() {
                     <div className="flex flex-row items-center justify-center ">
                       <img
                         className="w-10 h-10 "
-                        src="https://i.ibb.co/QMddNDb/Ellipse-14.png"
+                        src={userAvatar}
+                        width={'40px'}
                         alt="individual person image-3"
                       />
                       <div className="ml-2">
@@ -121,7 +123,12 @@ export default function Header() {
                       </div>
                       <svg
                         //call dropdown here
-                        onClick={() => setRotate(!rotate)}
+
+                        onClick={() =>
+                          showNewPostModal
+                            ? setRotate(false)
+                            : setRotate(!rotate)
+                        }
                         className={`${
                           rotate ? 'rotate-180' : ''
                         } cursor-pointer transform duration-100 xl:ml-7 lg:ml-3.5 ml-2 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-gray-800`}
@@ -284,7 +291,8 @@ export default function Header() {
               <div className="bottom-0 left-0 flex flex-row items-center w-full px-8 py-6 bg-gray-100 ">
                 <img
                   className="w-10 h-10 "
-                  src="https://i.ibb.co/QMddNDb/Ellipse-14.png"
+                  src={userAvatar}
+                  width={'40px'}
                   alt="individual person image-3"
                 />
                 <div className="ml-2">

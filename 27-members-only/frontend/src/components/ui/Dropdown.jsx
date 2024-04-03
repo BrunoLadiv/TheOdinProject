@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import { logout } from '../../features/auth/authSlice'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-export default function Dropdown({ setShowBecomeMemberModal }) {
+export default function Dropdown({ setShowBecomeMemberModal  }) {
   const user = useSelector((state) => state.auth.user)
 
   const dispatch = useDispatch()

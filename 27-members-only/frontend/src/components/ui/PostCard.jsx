@@ -1,6 +1,7 @@
 import { useGetByIdQuery } from '../../features/auth/authApiSlice'
 import { useSelector } from 'react-redux'
 import convertTime from '../../utils/convertTime'
+import userAvatar from '../../assets/user.png'
 export default function PostCard({ post }) {
   const { data } = useGetByIdQuery(post.author)
   const user = useSelector((state) => state.auth.user)
@@ -12,8 +13,9 @@ export default function PostCard({ post }) {
           <div>
             <img
               className="rounded-full"
-              src="https://i.ibb.co/NmrRq3F/Unsplash-Avatars-0000s-0035-azamat-zhanisov-a5s-RFie-A3-BY-unsplash-1.png"
+              src={userAvatar}
               alt="avatar"
+              width="40px"
             />
           </div>
           <div className="ml-2">
