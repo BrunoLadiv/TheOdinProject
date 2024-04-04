@@ -4,12 +4,12 @@ import App from './App.jsx'
 import './index.css'
 import { store } from './store/store.js'
 import { Provider } from 'react-redux'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createHashRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './components/ErrorPage.jsx'
 import Content from './components/Content.jsx'
 import PrivateRoute from './components/PrivateRoute.jsx'
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: '/',
     element: <App />,
