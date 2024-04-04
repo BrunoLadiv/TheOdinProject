@@ -9,9 +9,8 @@ const BecomeMember = ({ setShowBecomeMemberModal }) => {
   const [becomeMember, { data, isLoading, error }] = useBecomeMemberMutation()
 
   if (data?.message === 'You are now a member!') {
-    dispatch(
-      setCredentials({user: data.user})
-    )
+    localStorage.setItem('user', JSON.stringify(data.user))
+    dispatch(setCredentials({ user: data.user }))
     setTimeout(() => {
       setShowBecomeMemberModal(false)
     }, 1000)
