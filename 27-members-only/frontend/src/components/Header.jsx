@@ -272,7 +272,7 @@ export default function Header() {
                   New Post
                 </Button>
               )}
-              {!user?.isMember && (
+              {user && !user?.isMember && (
                 <Button onClick={() => setShowBecomeMemberModal(true)}>
                   Become a member
                 </Button>
