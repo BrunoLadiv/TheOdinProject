@@ -8,7 +8,7 @@ This is the members only mern project for The Odin Project Curriculum.
 
 ## Live Preview
 
-[Live Preview](https://brunoladiv.github.io/TheOdinProject/27-members-only/frontend/dist/)
+[Live Preview (render server has a cold start, may take a while)](https://brunoladiv.github.io/TheOdinProject/27-members-only/frontend/dist/)
 
 ## Club Password: odinproject
 
