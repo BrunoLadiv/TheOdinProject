@@ -17034,7 +17034,8 @@ const mx = ({ setShowBecomeMemberModal: e }) => {
       r = zr(),
       [i, { data: o, isLoading: l, error: s }] = fx()
     ;(o == null ? void 0 : o.message) === 'You are now a member!' &&
-      (r(Qu({ user: o.user })),
+      (localStorage.setItem('user', JSON.stringify(o.user)),
+      r(Qu({ user: o.user })),
       setTimeout(() => {
         e(!1)
       }, 1e3)),
