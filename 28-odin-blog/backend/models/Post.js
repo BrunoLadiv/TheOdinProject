@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
 
-const Post = new mongoose.SchemaType({
+const Post = new mongoose.Schema({
   title: {
     type: String,
     required: true,
   },
-  body: {
+  content: {
     type: String,
     required: true,
   },

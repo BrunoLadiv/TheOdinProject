@@ -1,7 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
-import authRoute from './routes/authRouter.js'
+import authRouter from './routes/authRouter.js'
+import postsRouter from './routes/postsRouter.js'
 
 dotenv.config()
 
@@ -19,10 +20,11 @@ const app = express()
 
 app.use(express.json())
 
-app.use('/api/auth', authRoute)
+app.use('/api/auth', authRouter)
+app.use('/api/posts', postsRouter)
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+app.get('*', (req, res) => {
+  res.status(404).json({ error: 'Not found' })
 })
 
 app.listen(port, () => {
