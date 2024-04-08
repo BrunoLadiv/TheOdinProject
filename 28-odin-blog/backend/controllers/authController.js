@@ -39,4 +39,37 @@ const createUser = async (req, res) => {
   }
 }
 
-export { createUser }
+const loginUser = async (req, res) => {
+  const { email, password } = req.body
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Missing required fields' })
+  }
+  try {
+    const user = await User.findOne({ email: email })
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid credentials' })
+    }
+
+    const checkPassword = await bcrypt.compare(password, user.password)
+    if (!checkPassword) {
+      return res.status(401).json({ message: 'Invalid credentials' })
+    }
+
+    const secret = process.env.SECRET
+    const token = jwt.sign({ id: user._id }, secret, { expiresIn: '30d' })
+    const resUser = {
+      fullName: user.fullName,
+      email: user.email,
+      isMember: user.isMember,
+      id: user._id,
+    }
+
+    res
+      .status(200)
+      .json({ message: 'User logged in successfully', user: resUser, token })
+  } catch (error) {
+    res.status(500).json({ message: 'Error logging in', error })
+  }
+}
+
+export { createUser, loginUser }
