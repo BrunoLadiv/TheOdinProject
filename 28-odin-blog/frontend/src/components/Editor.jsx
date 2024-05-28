@@ -6,6 +6,7 @@ import "../index.css";
 
 export const Editor = () => {
   const [state, setState] = useState({ value: null });
+  console.log(state.value);
   const handleChange = (value) => {
     setState({ value });
   };
