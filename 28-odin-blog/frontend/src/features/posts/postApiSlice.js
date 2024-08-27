@@ -1,32 +1,43 @@
-import { apiSlice } from '../api/apiSlice'
+import { apiSlice } from "../api/apiSlice";
 
 export const postApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getPost: builder.query({
+      query: (param) => ({
+        url: `/posts/${param.id}`,
+        method: "GET",
+      }),
+    }),
     getPosts: builder.query({
       query: (params) => ({
         url: `/posts?page=${params?.page ? params.page : 1}&limit=${
-          params?.limit ? params.limit : ''
+          params?.limit ? params.limit : ""
         }}`,
-        method: 'GET',
+        method: "GET",
       }),
-      providesTags: ['Post'],
+      providesTags: ["Post"],
     }),
     createPost: builder.mutation({
       query: (body) => ({
-        url: '/posts',
-        method: 'POST',
+        url: "/posts",
+        method: "POST",
         body,
       }),
-      invalidatesTags: ['Post'],
+      invalidatesTags: ["Post"],
     }),
     deletePost: builder.mutation({
       query: (id) => ({
         url: `/posts/${id}`,
-        method: 'DELETE',
+        method: "DELETE",
       }),
-      invalidatesTags: ['Post'],
+      invalidatesTags: ["Post"],
     }),
   }),
-})
+});
 
-export const { useCreatePostMutation, useGetPostsQuery, useDeletePostMutation } = postApiSlice
+export const {
+  useCreatePostMutation,
+  useGetPostsQuery,
+  useDeletePostMutation,
+  useGetPostQuery,
+} = postApiSlice;
