@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CreatePost from "./pages/CreatePost.jsx";
 import Home from "./pages/Home.jsx";
+import PostPage from "./pages/BlogPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,12 +16,16 @@ const router = createBrowserRouter([
     errorElement: <div>404 not found</div>,
     children: [
       {
-        path: "/create-post",
+        path: "/create-blog",
         element: <CreatePost />,
       },
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/blog/:blogId",
+        element: <PostPage />,
       },
     ],
   },
