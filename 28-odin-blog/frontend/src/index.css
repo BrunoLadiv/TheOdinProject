@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #1e1e2e;
+  --bg-dm: #1e1e2e;
   --catppuccino-mocha-fg: #f8f8f2;
   --catppuccino-mocha-accent: #cba6f7;
   --catppuccino-mocha-comment: #6c7086;
@@ -14,12 +14,7 @@
   --catppuccino-mocha-variable: #ffb7b7;
 }
 * {
-  @apply transition-colors duration-200;
-}
-
-body {
-  background-color: var(--background);
-  color: white;
+  @apply transition-colors duration-100;
 }
 
 .text-editor {

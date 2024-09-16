@@ -1,16 +1,26 @@
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function App() {
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);
+  useEffect(() => {
+    const htmlElement = document.documentElement;
+
+    if (isDarkMode) {
+      htmlElement.classList.add("dark");
+    } else {
+      htmlElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
   return (
-    <div
-      className={`max-w-[1024px] bg-sky-700 mx-auto h-screen ${isDarkMode && "dark"}`}
-    >
-      <Header />
-      <Outlet />
-      <footer>Footer</footer>
+    <div className={`dark:bg-[var(--bg-dm)] dark:text-white `}>
+      <div className={`max-w-[1024px]  mx-auto h-screen `}>
+        <Header />
+        <Outlet />
+        <footer>Footer</footer>
+      </div>
     </div>
   );
 }
