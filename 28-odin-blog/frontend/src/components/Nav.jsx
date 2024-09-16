@@ -13,7 +13,7 @@ function Links() {
 function NavLinks({ isOpen, setIsOpen }) {
   return (
     <>
-      <div className="hidden md:flex gap-5">
+      <div className="hidden text-xl md:flex gap-5">
         <Links />
       </div>
       <div className="md:hidden relative">
