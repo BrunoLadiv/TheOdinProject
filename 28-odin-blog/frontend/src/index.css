@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 body,
-html {
-  height: 100%;
+html,
+#root {
+  min-height: 100%;
 }
 
 :root {

@@ -20,7 +20,7 @@ export const Editor = () => {
     createPost(post);
   };
   return (
-    <div className="text-editor prose">
+    <div className="text-editor prose dark:prose-invert">
       <div>
         <input
           type="text"
