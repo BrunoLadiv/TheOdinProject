@@ -4,9 +4,11 @@ import { useState } from "react";
 function Links() {
   return (
     <>
-      <a href="/">Blog</a>
-      <a>Tags</a>
-      <a>Projects</a>
+      <a className="hover:text-[#ed8796]" href="/">
+        Blog
+      </a>
+      <a className="hover:text-[#ed8796]">Tags</a>
+      <a className="hover:text-[#ed8796]">Projects</a>
     </>
   );
 }

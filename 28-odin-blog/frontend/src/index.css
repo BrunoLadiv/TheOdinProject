@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+body,
+html {
+  height: 100%;
+}
+
 :root {
   --bg-dm: #1e1e2e;
   --catppuccino-mocha-fg: #f8f8f2;

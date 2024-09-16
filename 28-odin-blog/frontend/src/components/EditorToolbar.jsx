@@ -44,6 +44,17 @@ Font.whitelist = [
 ];
 Quill.register(Font, true);
 
+function customImageHandler() {
+  const url = prompt("Enter image URL:");
+  if (url) {
+    const editor = this.quill;
+    const range = editor.getSelection();
+    if (range) {
+      editor.insertEmbed(range.index, "image", url);
+    }
+  }
+}
+
 export const modules = {
   syntax: {
     highlight: (text) => hljs.highlightAuto(text).value,
@@ -53,6 +64,7 @@ export const modules = {
     handlers: {
       undo: undoChange,
       redo: redoChange,
+      image: customImageHandler,
     },
   },
   history: {
@@ -64,7 +76,7 @@ export const modules = {
 
 export const formats = [
   "header",
-  //"font",
+  "font",
   "size",
   "bold",
   "italic",
@@ -73,7 +85,7 @@ export const formats = [
   "strike",
   "script",
   "blockquote",
-  // "background",
+  "background",
   "list",
   "bullet",
   "indent",

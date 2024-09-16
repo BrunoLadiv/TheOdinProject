@@ -7,9 +7,7 @@ import { useCreatePostMutation } from "../features/posts/postApiSlice";
 
 export const Editor = () => {
   const [createPost, { data, error, isLoading }] = useCreatePostMutation();
-  console.log(data);
   const [post, setPost] = useState({ content: null, title: null });
-  console.log(post);
   const handleContentChange = (content) => {
     setPost({ ...post, content });
   };
@@ -22,7 +20,7 @@ export const Editor = () => {
     createPost(post);
   };
   return (
-    <div className="text-editor">
+    <div className="text-editor prose">
       <div>
         <input
           type="text"
@@ -41,9 +39,6 @@ export const Editor = () => {
         modules={modules}
         formats={formats}
       />
-      <h1>preview:</h1>
-      <h2>{post.title}</h2>
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
       <button
         disabled={!post.title || !post.content || isLoading}
         className="border-zinc-50 bg-black rounded p-6 hover:bg-blue-300"

@@ -17,10 +17,16 @@ const Header = () => {
       <div className="flex items-center gap-4">
         <Nav />
         {!isDarkMode && (
-          <MdOutlineDarkMode onClick={handleDarkMode} className="text-2xl" />
+          <MdOutlineDarkMode
+            onClick={handleDarkMode}
+            className="text-2xl hover:text-[purple]"
+          />
         )}
         {isDarkMode && (
-          <MdOutlineWbSunny onClick={handleDarkMode} className="text-2xl" />
+          <MdOutlineWbSunny
+            onClick={handleDarkMode}
+            className="text-2xl hover:text-yellow-400"
+          />
         )}
       </div>
     </header>

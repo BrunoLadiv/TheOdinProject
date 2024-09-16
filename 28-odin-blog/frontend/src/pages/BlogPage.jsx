@@ -8,7 +8,7 @@ export default function BlogPage() {
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <h1>Error</h1>;
   return (
-    <div>
+    <div className="prose">
       <h1>{data.post.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: data.post.content }} />
     </div>

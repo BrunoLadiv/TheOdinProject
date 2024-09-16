@@ -15,8 +15,8 @@ function App() {
     }
   }, [isDarkMode]);
   return (
-    <div className={`dark:bg-[var(--bg-dm)] dark:text-white `}>
-      <div className={`max-w-[1024px]  mx-auto h-screen `}>
+    <div className={`dark:bg-[var(--bg-dm)] dark:text-white h-full`}>
+      <div className={`max-w-[1024px]  mx-auto `}>
         <Header />
         <Outlet />
         <footer>Footer</footer>
