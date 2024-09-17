@@ -2,7 +2,7 @@ import { FaGithubAlt } from "react-icons/fa";
 
 export default function AuthorCard() {
   return (
-    <div className="flex gap-2 prose dark:prose-invert">
+    <div className="flex gap-2 prose dark:prose-invert border-b border-gray-700">
       <img
         className="rounded-full h-12 w-12"
         src="https://avatars.githubusercontent.com/u/32538094?v=4"
