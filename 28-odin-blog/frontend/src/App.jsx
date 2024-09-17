@@ -15,8 +15,10 @@ function App() {
     }
   }, [isDarkMode]);
   return (
-    <div className={`dark:bg-[var(--bg-dm)] dark:text-white h-full`}>
-      <div className={`max-w-[1024px]  mx-auto `}>
+    <div className={`dark:bg-[var(--bg-dm)] dark:text-white flex flex-col`}>
+      <div
+        className={`max-w-[1024px] min-h-screen  mx-auto flex flex-col w-full`}
+      >
         <Header />
         <Outlet />
         <footer>Footer</footer>

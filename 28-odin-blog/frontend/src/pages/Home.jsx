@@ -12,7 +12,7 @@ const HomePage = () => {
     navigate(`/blog/${id}`);
   };
   return (
-    <div>
+    <div className="flex-grow">
       <h1>Posts</h1>
       <ul>
         {data?.posts?.map((post) => (

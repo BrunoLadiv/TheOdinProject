@@ -5,11 +5,11 @@
 body,
 html,
 #root {
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 :root {
-  --bg-dm: #1e1e2e;
+  --bg-dm: rgb(3, 7, 18);
   --catppuccino-mocha-fg: #f8f8f2;
   --catppuccino-mocha-accent: #cba6f7;
   --catppuccino-mocha-comment: #6c7086;
