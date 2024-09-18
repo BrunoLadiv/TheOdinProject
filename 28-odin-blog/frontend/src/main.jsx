@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CreatePost from "./pages/CreatePost.jsx";
 import Home from "./pages/Home.jsx";
 import PostPage from "./pages/BlogPage.jsx";
+import Tags from "./pages/Tags.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/create-blog",
         element: <CreatePost />,
+      },
+      {
+        path: "/tags",
+        element: <Tags/>,
       },
       {
         path: "/",
