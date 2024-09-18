@@ -4,7 +4,7 @@ export const postApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getPost: builder.query({
       query: (param) => ({
-        url: `/posts/${param.id}`,
+        url: `/posts/${param.slug}`,
         method: "GET",
       }),
     }),

@@ -3,8 +3,8 @@ import { useGetPostQuery } from "../features/posts/postApiSlice.js";
 import AuthorCard from "../components/authorCard";
 
 export default function BlogPage() {
-  const { blogId } = useParams();
-  const { data, isLoading, error } = useGetPostQuery({ id: blogId });
+  const { slug } = useParams();
+  const { data, isLoading, error } = useGetPostQuery({ slug });
   console.log(data);
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <h1>Error</h1>;

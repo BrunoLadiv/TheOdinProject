@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-
+import slugify from "slugify"
 const Post = new mongoose.Schema({
   cover_img: {
     type: String,
@@ -12,6 +12,10 @@ const Post = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+  },
+  slug: {
+    type: String,
+    unique: true,
   },
   content: {
     type: String,
@@ -38,5 +42,12 @@ const Post = new mongoose.Schema({
     },
   ],
 })
+
+Post.pre('save', function (next) {
+  if (this.isModified('title')) {
+    this.slug = slugify(this.title, { lower: true, strict: true });
+  }
+  next();
+});
 
 export default mongoose.model('Post', Post)

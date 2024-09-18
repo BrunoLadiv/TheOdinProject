@@ -53,7 +53,7 @@ export const Editor = () => {
           Description:
           <input
             type="text"
-            name="title"
+            name="description"
             onChange={handleDescriptionChange}
             value={post.description}
           />

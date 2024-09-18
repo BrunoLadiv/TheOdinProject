@@ -25,9 +25,8 @@ const createPost = async (req, res) => {
 
 const getPost = async (req, res) => {
   try {
-    console.log(req.params.id)
-    const postId = req.params.id
-    const post = await Post.findById(postId)
+    console.log(req.params.slug)
+    const post = await Post.findOne({ slug: req.params.slug });
     res.status(200).json({ post })
   } catch (error) {
     res.status(500).json({ error: error.message })
