@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import Footer from "./components/Footer";
 
 function App() {
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);
@@ -21,7 +22,7 @@ function App() {
       >
         <Header />
         <Outlet />
-        <footer>Footer</footer>
+        <Footer />
       </div>
     </div>
   );

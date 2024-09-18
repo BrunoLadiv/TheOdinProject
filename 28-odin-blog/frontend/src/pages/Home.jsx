@@ -1,5 +1,6 @@
 import { useGetPostsQuery } from "../features/posts/postApiSlice";
 import { useNavigate } from "react-router-dom";
+import BlogCard from "../components/BlogCard";
 
 const HomePage = () => {
   const { data, error, isLoading } = useGetPostsQuery({ page: 1, limit: 10 });
@@ -15,14 +16,8 @@ const HomePage = () => {
     <div className="flex-grow">
       <h1>Posts</h1>
       <ul>
-        {data?.posts?.map((post) => (
-          <li
-            className="border-solid border-2 border-red-800 p-9"
-            key={post._id}
-            onClick={() => goToPost(post._id)}
-          >
-            <h2>{post.title}</h2>
-          </li>
+        {data?.posts?.map((blog) => (
+          <BlogCard key={blog._id} blog={blog} />
         ))}
       </ul>
     </div>
