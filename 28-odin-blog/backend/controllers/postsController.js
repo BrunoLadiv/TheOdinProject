@@ -2,6 +2,7 @@ import Post from '../models/Post.js'
 
 const createPost = async (req, res) => {
   const { id: author } = req.user
+  console.log(req.body)
   const { title, content, cover_img, tags } = req.body
   const newPost = new Post({
     tags,

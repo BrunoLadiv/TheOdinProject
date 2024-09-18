@@ -11,7 +11,7 @@ export default function BlogCard({ blog, goToPost }) {
         >
           <img
             className="object-cover h-full w-full transition-transform duration-300 hover:scale-125"
-            src="https://www.thetalhatahir.com/_next/image?url=%2Fstatic%2Fimages%2Fdevin.png&w=1920&q=75"
+            src={blog.cover_img}
           />
         </div>
         <p className="text-xs">{formatDate(blog.date)}</p>
@@ -21,10 +21,9 @@ export default function BlogCard({ blog, goToPost }) {
           {blog.title}
         </h3>
 
-        <span className="text-green-500 text-xs">TECH, AI, JS, CODE</span>
+        <span className="text-green-500 text-xs">{blog.tags.map((tag)=>tag + " ")}</span>
         <p className="mb-1">
-          Will ai dominate, will jobs be lost lorem lalala lorel
-          loreajfdasjflajf
+          todo description in db
         </p>
         <p
           onClick={() => goToPost(blog._id)}

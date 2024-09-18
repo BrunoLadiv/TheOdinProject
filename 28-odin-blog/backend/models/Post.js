@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
 
 const Post = new mongoose.Schema({
-  coverImg: {
+  cover_img: {
     type: String,
-    require: true,
+    required: true,
   },
   title: {
     type: String,
