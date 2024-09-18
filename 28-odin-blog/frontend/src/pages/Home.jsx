@@ -13,11 +13,12 @@ const HomePage = () => {
     navigate(`/blog/${id}`);
   };
   return (
-    <div className="flex-grow">
+    <div className="min-w-full flex-grow">
       <h1>Posts</h1>
       <ul>
         {data?.posts?.map((blog) => (
-          <BlogCard key={blog._id} blog={blog} />
+          <BlogCard goToPost={goToPost} key={blog._id} blog={blog} />
+
         ))}
       </ul>
     </div>
