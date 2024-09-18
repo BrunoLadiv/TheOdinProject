@@ -10,13 +10,13 @@ function App() {
     const htmlElement = document.documentElement;
 
     if (isDarkMode) {
-      htmlElement.classList.add("dark");
+      htmlElement.classList.add("dark","bg-[var(--bg-dm)]");
     } else {
-      htmlElement.classList.remove("dark");
+      htmlElement.classList.remove("dark", "bg-[var(--bg-dm)]");
     }
   }, [isDarkMode]);
   return (
-    <div className={`dark:bg-[var(--bg-dm)] dark:text-white flex flex-col`}>
+    <div className={` dark:text-white flex flex-col`}>
       <div
         className={`max-w-[1024px] min-h-screen  mx-auto flex flex-col w-full`}
       >

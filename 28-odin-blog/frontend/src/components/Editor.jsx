@@ -12,10 +12,14 @@ export const Editor = () => {
     title: null,
     cover_img: null,
     tags: null,
+    description: null,
   })
   console.log(post)
   const handleContentChange = (content) => {
     setPost({ ...post, content })
+  }
+  const handleDescriptionChange = (e) => {
+    setPost({ ...post, description: e.target.value })
   }
   const handleCoverIMGChange = (e) => {
     setPost({ ...post, cover_img: e.target.value })
@@ -29,9 +33,8 @@ export const Editor = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!post.content || !post.title || !post.cover_img || !post.tags) return
+    if (!post.description || !post.content || !post.title || !post.cover_img || !post.tags) return
     const tagsArray = post.tags.split(' ').filter((tag) => tag.trim() !== '')
-    console.log(tagsArray)
     createPost({...post, tags: tagsArray})
   }
   return (
@@ -44,6 +47,15 @@ export const Editor = () => {
             name="title"
             onChange={handleTitleChange}
             value={post.title}
+          />
+        </label>
+        <label>
+          Description:
+          <input
+            type="text"
+            name="title"
+            onChange={handleDescriptionChange}
+            value={post.description}
           />
         </label>
         <label>
