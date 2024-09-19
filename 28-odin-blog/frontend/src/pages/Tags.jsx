@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 export default function Tags() {
   const { data, isLoading, error } = useGetTagsQuery()
   const navigate = useNavigate()
-  console.log(data)
   const goToTag = (tag) => {
     navigate(`/tags/${tag}`)
   }

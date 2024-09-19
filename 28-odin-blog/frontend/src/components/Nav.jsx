@@ -1,16 +1,21 @@
-import { RxHamburgerMenu } from "react-icons/rx";
-import { IoMdClose } from "react-icons/io";
-import { useState } from "react";
+import { RxHamburgerMenu } from 'react-icons/rx'
+import { IoMdClose } from 'react-icons/io'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 function Links() {
   return (
     <>
-      <a className="hover:text-[#ed8796]" href="/">
+      <Link className="hover:text-[#ed8796]" to="/">
         Blog
-      </a>
-      <a className="hover:text-[#ed8796]">Tags</a>
-      <a className="hover:text-[#ed8796]">Projects</a>
+      </Link>
+      <Link className="hover:text-[#ed8796]" to={'/tags'}>
+        Tags
+      </Link>
+      <Link className="hover:text-[#ed8796]" to="/projects">
+        Projects
+      </Link>
     </>
-  );
+  )
 }
 function NavLinks({ isOpen, setIsOpen }) {
   return (
@@ -32,11 +37,11 @@ function NavLinks({ isOpen, setIsOpen }) {
         )}
       </div>
     </>
-  );
+  )
 }
 
 export default function Nav() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <nav>
       <NavLinks isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -48,5 +53,5 @@ export default function Nav() {
         </div>
       )}
     </nav>
-  );
+  )
 }
