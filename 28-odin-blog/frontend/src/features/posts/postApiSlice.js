@@ -8,6 +8,13 @@ export const postApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getTags:builder.query({
+      query: () =>({
+        url: `/tags`,
+        method: "GET"
+
+      })
+    }),
     getPosts: builder.query({
       query: (params) => ({
         url: `/posts?page=${params?.page ? params.page : 1}&limit=${
@@ -40,4 +47,5 @@ export const {
   useGetPostsQuery,
   useDeletePostMutation,
   useGetPostQuery,
+  useGetTagsQuery
 } = postApiSlice;
