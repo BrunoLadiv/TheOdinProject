@@ -1,17 +1,21 @@
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { IoMdClose } from 'react-icons/io'
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 function Links() {
+  const location = useLocation()
+  
+
   return (
     <>
-      <Link className="hover:text-[#ed8796]" to="/">
+      <Link className={`hover:text-[#ed8796] ${location.pathname === '/' ? 'border-b border-violet-600' : ''}`} to="/">
         Blog
       </Link>
-      <Link className="hover:text-[#ed8796]" to={'/tags'}>
+      <Link className={`hover:text-[#ed8796] ${location.pathname.startsWith("/tags") ? 'border-b border-violet-600' : ''}`} to={'/tags'}>
         Tags
       </Link>
-      <Link className="hover:text-[#ed8796]" to="/projects">
+      <Link className={`hover:text-[#ed8796] ${location.pathname.startsWith("/projects") ? 'border-b border-violet-600' : ''}`} to="/projects">
         Projects
       </Link>
     </>
