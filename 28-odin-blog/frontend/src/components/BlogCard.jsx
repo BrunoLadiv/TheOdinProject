@@ -1,5 +1,5 @@
 import { formatDate } from '../utils/utils'
-export default function BlogCard({ blog, goToPost }) {
+export default function BlogCard({ blog, goToPost, goToTag }) {
   console.log(blog)
 
   return (
@@ -21,10 +21,18 @@ export default function BlogCard({ blog, goToPost }) {
           {blog.title}
         </h3>
 
-        <span className="text-green-500 text-xs">{blog.tags.map((tag)=>tag.toUpperCase() + " ")}</span>
-        <p className="mb-1  line-clamp-2">
-          {blog?.description}
-        </p>
+        <div className='flex gap-1'>
+          {blog.tags.map((tag) => (
+            <span
+              onClick={() => goToTag(tag)}
+              className="text-green-500 text-xs hover:text-pink-500 cursor-pointer"
+              key={tag}
+            >
+              {tag.toUpperCase()}
+            </span>
+          ))}
+        </div>
+        <p className="mb-1  line-clamp-2">{blog?.description}</p>
         <p
           onClick={() => goToPost(blog.slug)}
           className="text-green-500 cursor-pointer"

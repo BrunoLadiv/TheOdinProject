@@ -38,20 +38,24 @@ const getPosts = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1
     const limit = parseInt(req.query.limit) || undefined
+    const tag = req.query.tag || '' // Single tag for filtering
 
     // Calculate skip based on page and limit
     const skip = (page - 1) * limit
 
-    // Fetch posts for the current page
-    const posts = await Post.find().sort({ date: -1 }).skip(skip).limit(limit)
+    // Build query for filtering by a single tag
+    const query = tag ? { tags: tag } : {}
 
-    // Fetch total count of posts (for pagination)
-    const totalCount = await Post.countDocuments()
+    // Fetch posts for the current page with filtering by tag
+    const posts = await Post.find(query).sort({ date: -1 }).skip(skip).limit(limit)
+
+    // Fetch total count of posts with the same filter
+    const totalCount = await Post.countDocuments(query)
 
     // Calculate total pages
-    const totalPages = Math.ceil(totalCount / limit)
+    const totalPages = limit ? Math.ceil(totalCount / limit) : 1
 
-    // Response with pagination information
+    // Response with pagination and filtering information
     res.status(200).json({ posts, totalPages, currentPage: page })
   } catch (error) {
     res.status(500).json({ error: error.message })
