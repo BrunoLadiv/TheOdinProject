@@ -5,17 +5,35 @@ import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 function Links() {
   const location = useLocation()
-  
 
   return (
     <>
-      <Link className={`hover:text-[#ed8796] ${location.pathname === '/' ? 'border-b border-violet-600' : ''}`} to="/">
+      <Link
+        className={`hover:text-[#ed8796] ${
+          location.pathname === '/' ? 'border-b border-blue-500' : ''
+        }`}
+        to="/"
+      >
         Blog
       </Link>
-      <Link className={`hover:text-[#ed8796] ${location.pathname.startsWith("/tags") ? 'border-b border-violet-600' : ''}`} to={'/tags'}>
+      <Link
+        className={`hover:text-[#ed8796] ${
+          location.pathname.startsWith('/tags')
+            ? 'border-b border-blue-500'
+            : ''
+        }`}
+        to={'/tags'}
+      >
         Tags
       </Link>
-      <Link className={`hover:text-[#ed8796] ${location.pathname.startsWith("/projects") ? 'border-b border-violet-600' : ''}`} to="/projects">
+      <Link
+        className={`hover:text-[#ed8796] ${
+          location.pathname.startsWith('/projects')
+            ? 'border-b border-blue-500'
+            : ''
+        }`}
+        to="/projects"
+      >
         Projects
       </Link>
     </>

@@ -15,7 +15,7 @@ export default function Tags() {
       <h1 className="border-r mr-4 border-blue-500 self-center text-6xl">
         Tags
       </h1>
-      <div className="flex h-full my-auto gap-2 flex-wrap items-start">
+      <div className="flex h-full md:my-auto gap-2 flex-wrap items-start">
         {data.map((tag) => {
           return (
             <div
