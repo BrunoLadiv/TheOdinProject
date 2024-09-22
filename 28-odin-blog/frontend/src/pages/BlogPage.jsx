@@ -9,8 +9,8 @@ export default function BlogPage() {
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <h1>Error</h1>;
   return (
-    <div className="grid mt-12 gap-8 grid-cols-4">
-      <div className="mt-24">
+    <div className="grid px-2 md:mt-12 gap-4 grid-cols-4">
+      <div className="md:mt-24">
         <div className="flex flex-col gap-2">
           <p className="text-xs">AUTHOR</p>
           <AuthorCard />
@@ -24,7 +24,7 @@ export default function BlogPage() {
           </div>
         </div>
       </div>
-      <div className="prose dark:prose-invert col-span-3">
+      <div className="prose dark:prose-invert md:col-span-3 col-span-4">
         <h1>{data.post.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: data.post.content }} />
       </div>

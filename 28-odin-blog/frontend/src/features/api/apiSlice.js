@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const baseUrl = "http://localhost:3000/api/";
+const baseUrl = "http://192.168.1.19:3000/api/";
 const testToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZTdhOGMxMmQyNjM1NTQ3YWE2MzQyNyIsImlhdCI6MTcyNjQ1ODA0OSwiZXhwIjoxNzI3MDYyODQ5fQ._wNrezxmT7P5LLhDRnM9QsPv9ojd8QA-OTW0tE5cw-4";
 const baseQuery = fetchBaseQuery({
