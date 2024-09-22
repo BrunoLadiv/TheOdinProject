@@ -1,14 +1,15 @@
-import { useGetTagsQuery } from '../features/posts/postApiSlice'
-import { useNavigate } from 'react-router-dom'
+import { useGetTagsQuery } from "../features/posts/postApiSlice";
+import { useNavigate } from "react-router-dom";
+import Loader from "../components/Loader";
 export default function Tags() {
-  const { data, isLoading, error } = useGetTagsQuery()
-  const navigate = useNavigate()
+  const { data, isLoading, error } = useGetTagsQuery();
+  const navigate = useNavigate();
   const goToTag = (tag) => {
-    navigate(`/tags/${tag}`)
-  }
+    navigate(`/tags/${tag}`);
+  };
 
-  if (isLoading) return <h3>Loading</h3>
-  if (error) return <h3>{error.message}</h3>
+  if (isLoading) return <Loader />;
+  if (error) return <h3>{error.message}</h3>;
 
   return (
     <div className="w-3/5 mx-auto mt-16 min-h-72 flex flex-wrap">
@@ -26,9 +27,9 @@ export default function Tags() {
               <span className="text-blue-500">{tag._id.toUpperCase()} </span>
               <span className="text-gray-500">({tag.count})</span>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }
