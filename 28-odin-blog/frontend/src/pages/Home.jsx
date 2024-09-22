@@ -1,5 +1,5 @@
 import { useGetPostsQuery } from "../features/posts/postApiSlice";
-import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
 import BlogCard from "../components/BlogCard";
@@ -8,10 +8,7 @@ import Pagination from "../components/Pagination";
 const HomePage = () => {
   const { tag } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(location);
-  console.log(searchParams);
   const currentPage = parseInt(searchParams.get("page")) || 1;
   const { data, error, isLoading } = useGetPostsQuery({
     page: currentPage,
@@ -19,7 +16,6 @@ const HomePage = () => {
     tag,
   });
   const handlePageChange = (newPage) => {
-    // Update the query param for page
     setSearchParams({ page: newPage });
   };
 
@@ -34,7 +30,9 @@ const HomePage = () => {
   };
   return (
     <div className="min-w-full flex-grow">
-      <h1>Posts</h1>
+      <h1 className="text-2xl mb-2 ml-2">
+        {tag ? tag.toUpperCase() + `(${data.posts.length})` : "Latest"}
+      </h1>
       <ul>
         {data?.posts?.map((blog) => (
           <BlogCard
