@@ -20,7 +20,7 @@ const HomePage = () => {
     setSearchParams({ page: newPage });
   };
 
-  if (true) return <Loader />;
+  if (isLoading) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
   console.log(data);
   const goToPost = (id) => {
