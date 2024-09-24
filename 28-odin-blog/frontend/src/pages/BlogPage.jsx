@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useGetPostQuery } from "../features/posts/postApiSlice.js";
 import AuthorCard from "../components/authorCard";
 import Loader from "../components/Loader.jsx";
-import Comments from "../components/Comments.jsx";
+import Comment from "../components/Comment.jsx";
 import CommentForm from "../components/CommentForm.jsx";
 
 export default function BlogPage() {
@@ -32,8 +32,11 @@ export default function BlogPage() {
         <h1>{data.post.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: data.post.content }} />
       </div>
+      <h2 className="md:col-start-2 text-xl">Comments </h2>
+      <Comment />
+      <Comment />
+      <Comment />
       <CommentForm />
-      <Comments />
     </div>
   );
 }

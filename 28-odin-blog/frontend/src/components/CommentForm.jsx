@@ -7,14 +7,14 @@ const CommentForm = () => {
           <input
             placeholder="Your name"
             type="text"
-            className="rounded"
+            className="pl-4 rounded bg-blue-100"
             name="name"
           />
         </label>
         <textarea
           name="comment"
           placeholder="What are you thinking?"
-          className="md:p-10 h-[124px] resize-none rounded w-full"
+          className="p-4 h-[124px] bg-blue-100 resize-none rounded w-full"
         />
       </form>
       <button class="cursor-pointer md:w-44 md:h-12 h-10 bg-blue-600 md:self-end text-white rounded-lg hover:bg-blue-700 hover:shadow-lg transition-all group active:w-11 active:h-11 active:rounded-full active:duration-300 ease-in-out">
