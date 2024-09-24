@@ -10,7 +10,7 @@ function Links({ setIsOpen }) {
     <>
       <Link
         onClick={() => setIsOpen(false)}
-        className={`mt-16 hover:text-[#ed8796] ${
+        className={`md:mt-0 mt-16 hover:text-[#ed8796] ${
           location.pathname === "/" ? "border-b border-blue-500" : ""
         }`}
         to="/"

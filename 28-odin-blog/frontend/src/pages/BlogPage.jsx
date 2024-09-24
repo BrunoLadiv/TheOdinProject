@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useGetPostQuery } from "../features/posts/postApiSlice.js";
 import AuthorCard from "../components/authorCard";
 import Loader from "../components/Loader.jsx";
+import Comments from "../components/Comments.jsx";
+import CommentForm from "../components/CommentForm.jsx";
 
 export default function BlogPage() {
   const { slug } = useParams();
@@ -30,6 +32,8 @@ export default function BlogPage() {
         <h1>{data.post.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: data.post.content }} />
       </div>
+      <CommentForm />
+      <Comments />
     </div>
   );
 }
