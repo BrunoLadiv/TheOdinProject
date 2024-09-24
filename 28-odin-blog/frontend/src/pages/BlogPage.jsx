@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useGetPostQuery } from "../features/posts/postApiSlice.js";
+import {
+  useGetPostQuery,
+  useAddCommentMutation,
+} from "../features/posts/postApiSlice.js";
 import AuthorCard from "../components/authorCard";
 import Loader from "../components/Loader.jsx";
 import Comment from "../components/Comment.jsx";
@@ -8,6 +11,10 @@ import CommentForm from "../components/CommentForm.jsx";
 
 export default function BlogPage() {
   const { slug } = useParams();
+  const [
+    createComment,
+    { data: commentData, error: commentError, isLoading: commentIsLoading },
+  ] = useAddCommentMutation();
   const { data, isLoading, error } = useGetPostQuery({ slug });
   console.log(data);
   if (isLoading) return <Loader />;
@@ -33,10 +40,12 @@ export default function BlogPage() {
         <div dangerouslySetInnerHTML={{ __html: data.post.content }} />
       </div>
       <h2 className="md:col-start-2 text-xl">Comments </h2>
-      <Comment />
-      <Comment />
-      <Comment />
-      <CommentForm />
+      <div className="md:col-start-2 col-span-full">
+        {data?.post.comments.map((comment) => {
+          return <Comment key={comment._id} comment={comment} />;
+        })}
+      </div>
+      <CommentForm createComment={createComment} slug={slug} />
     </div>
   );
 }
