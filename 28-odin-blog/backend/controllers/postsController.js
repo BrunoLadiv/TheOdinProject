@@ -26,9 +26,10 @@ const createPost = async (req, res) => {
 
 const getPost = async (req, res) => {
   try {
-    const post = await Post.findOne({ slug: req.params.slug }).populate(
-      "comments",
-    );
+    const post = await Post.findOne({ slug: req.params.slug }).populate({
+      path: "comments",
+      options: { sort: { createdAt: -1 } },
+    });
     res.status(200).json({ post });
   } catch (error) {
     res.status(500).json({ error: error.message });
