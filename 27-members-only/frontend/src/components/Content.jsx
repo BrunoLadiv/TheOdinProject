@@ -41,4 +41,3 @@ export default function Content({ myPosts = false }) {
     </>
   )
 }
-// a function that adds two numbers
