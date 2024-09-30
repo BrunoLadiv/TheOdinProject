@@ -9,6 +9,7 @@ import CreatePost from "./pages/CreatePost.jsx";
 import Home from "./pages/Home.jsx";
 import PostPage from "./pages/BlogPage.jsx";
 import Tags from "./pages/Tags.jsx";
+import AdminPage from "./pages/AdminPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/admin",
+        element: <AdminPage />,
       },
       {
         path: "/blog/:slug",

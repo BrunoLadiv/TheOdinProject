@@ -76,7 +76,7 @@ export const Editor = () => {
         modules={modules}
         formats={formats}
       />
-      {error && <p className='text-red-700 text-center m-0 mt-2'>{error?.data.message}</p>}
+      {error && <p className='text-red-700 text-center m-0 mt-2'>Error: {error?.data.message}</p>}
       <button
         disabled={isLoading}
         className="w-full bg-blue-500 text-white text-xl p-2  mt-4 disabled:bg-gray-200 disabled:cursor-not-allowed rounded"
