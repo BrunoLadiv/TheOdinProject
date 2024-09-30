@@ -4,77 +4,68 @@ import EditorToolbar, { modules, formats } from './EditorToolbar'
 import 'react-quill/dist/quill.snow.css'
 import '../index.css'
 import { useCreatePostMutation } from '../features/posts/postApiSlice'
+import Input from './Input'
 
 export const Editor = () => {
   const [createPost, { data, error, isLoading }] = useCreatePostMutation()
   const [post, setPost] = useState({
-    content: null,
-    title: null,
-    cover_img: null,
-    tags: null,
-    description: null,
+    content: '',
+    title: '',
+    cover_img: '',
+    tags: '',
+    description: '',
   })
-  console.log(post)
+
+  console.log(error)
+
+  const handlePost = (e) => {
+    setPost(
+      { ...post, [e.target.name]: e.target.value }
+    )
+  }
+
   const handleContentChange = (content) => {
     setPost({ ...post, content })
   }
-  const handleDescriptionChange = (e) => {
-    setPost({ ...post, description: e.target.value })
-  }
-  const handleCoverIMGChange = (e) => {
-    setPost({ ...post, cover_img: e.target.value })
-  }
-  const handleTagsChange = (e) => {
 
-    setPost({ ...post, tags: e.target.value })
-  }
-  const handleTitleChange = (e) => {
-    setPost({ ...post, title: e.target.value })
-  }
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!post.description || !post.content || !post.title || !post.cover_img || !post.tags) return
     const tagsArray = post.tags.split(' ').filter((tag) => tag.trim() !== '')
-    createPost({...post, tags: tagsArray})
+    createPost({ ...post, tags: tagsArray })
   }
   return (
-    <div className="text-editor prose dark:prose-invert">
-      <div className="flex flex-col">
-        <label>
-          Title:
-          <input
-            type="text"
-            name="title"
-            onChange={handleTitleChange}
-            value={post.title}
-          />
-        </label>
-        <label>
-          Description:
-          <input
-            type="text"
-            name="description"
-            onChange={handleDescriptionChange}
-            value={post.description}
-          />
-        </label>
-        <label>
-          Cover Image:
-          <input
-            type="text"
-            name="cover_image"
-            onChange={handleCoverIMGChange}
-            value={post.cover_img}
-          />
-        </label>
-        <label>
-          TAGS:
-          <input
-            type="text"
-            name="tags"
-            onChange={handleTagsChange}
-          />
-        </label>
+    <form onSubmit={handleSubmit} className="text-editor prose dark:prose-invert">
+
+      <div className="flex gap-4 mb-4 flex-col">
+        <Input
+          type="text"
+          name="title"
+          placeholder="Blog Title"
+          onChange={handlePost}
+          value={post.title}
+        />
+        <Input
+          type="text"
+          placeholder="Description"
+          name="description"
+          onChange={handlePost}
+          value={post.description}
+        />
+        <Input
+          type="text"
+          placeholder="Cover image"
+          name="cover_img"
+          onChange={handlePost}
+          value={post.cover_img}
+        />
+        <Input
+          type="text"
+
+          placeholder="Tags"
+          name="tags"
+          onChange={handlePost}
+        />
       </div>
       <EditorToolbar />
       <ReactQuill
@@ -85,14 +76,14 @@ export const Editor = () => {
         modules={modules}
         formats={formats}
       />
+      {error && <p className='text-red-700 text-center m-0 mt-2'>{error?.data.message}</p>}
       <button
-        disabled={!post.title || !post.content || isLoading}
-        className="border-zinc-50 bg-black rounded p-6 hover:bg-blue-300"
-        onClick={handleSubmit}
+        disabled={isLoading}
+        className="w-full bg-blue-500 text-white text-xl p-2  mt-4 disabled:bg-gray-200 disabled:cursor-not-allowed rounded"
       >
-        Create post
+        Create Blog
       </button>
-    </div>
+    </form>
   )
 }
 

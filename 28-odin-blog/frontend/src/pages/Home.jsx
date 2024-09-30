@@ -22,7 +22,6 @@ const HomePage = () => {
 
   if (isLoading) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
-  console.log(data);
   const goToPost = (id) => {
     navigate(`/blog/${id}`);
   };
@@ -30,7 +29,7 @@ const HomePage = () => {
     navigate(`/tags/${tag}`);
   };
   return (
-    <div className="min-w-full flex-grow">
+    <div className="md:mt-28 min-w-full flex-grow">
       <h1 className="md:text-2xl mb-2 ml-2">
         {tag ? tag.toUpperCase() + `(${data.posts.length})` : "Latest"}
       </h1>
