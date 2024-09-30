@@ -1,9 +1,9 @@
 export default function LoginForm() {
   return (
-    <div className="flex min-h-screen md:mt-32 justify-center bg-white dark:bg-gray-950 p-12">
+    <div className="flex h-full md:mt-34 justify-center bg-white dark:bg-gray-950 mt-14 md:p-12">
       <form action="">
         <div className="max-w-sm rounded-3xl bg-gradient-to-b from-sky-300 to-purple-500 p-px dark:from-gray-800 dark:to-transparent">
-          <div className="rounded-[calc(1.5rem-1px)] bg-white px-10 p-12 dark:bg-gray-900">
+          <div className="rounded-[calc(1.5rem-1px)] bg-white md:px-10 md:p-12 p-6 dark:bg-gray-900">
 
             <div className="space-y-8">
               <div className="space-y-6">
