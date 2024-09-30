@@ -14,8 +14,10 @@ const Header = () => {
   };
   return (
     <header className="flex sticky top-0 z-10 mx-auto w-full items-center justify-between p-8">
-      <Link to={'/'}>
-      <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-800 via-purple-500 to-blue-500 bg-clip-text text-transparent font-serif">Bruno Vidal</h1>
+      <Link to={"/"}>
+        <h1 className="text-xl md:text-4xl font-bold bg-gradient-to-r from-blue-800 via-purple-500 to-blue-500 bg-clip-text text-transparent font-serif">
+          Bruno Vidal
+        </h1>
       </Link>
       <div className="flex items-center gap-4">
         <Nav />

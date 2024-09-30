@@ -31,7 +31,7 @@ const HomePage = () => {
   };
   return (
     <div className="min-w-full flex-grow">
-      <h1 className="text-2xl mb-2 ml-2">
+      <h1 className="md:text-2xl mb-2 ml-2">
         {tag ? tag.toUpperCase() + `(${data.posts.length})` : "Latest"}
       </h1>
       <ul>

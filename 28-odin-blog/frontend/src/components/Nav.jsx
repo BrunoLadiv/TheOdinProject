@@ -28,17 +28,18 @@ function Links({ setIsOpen }) {
       >
         Tags
       </Link>
-      <Link
-        onClick={() => setIsOpen(false)}
-        className={`hover:text-[#ed8796] ${
-          location.pathname.startsWith("/projects")
-            ? "border-b border-blue-500"
-            : ""
-        }`}
-        to="/projects"
-      >
-        Projects
-      </Link>
+      {/* #TODO projects section */}
+      {/* <Link */}
+      {/*   onClick={() => setIsOpen(false)} */}
+      {/*   className={`hover:text-[#ed8796] ${ */}
+      {/*     location.pathname.startsWith("/projects") */}
+      {/*       ? "border-b border-blue-500" */}
+      {/*       : "" */}
+      {/*   }`} */}
+      {/*   to="/projects" */}
+      {/* > */}
+      {/*   Projects */}
+      {/* </Link> */}
     </>
   );
 }
@@ -46,7 +47,7 @@ function NavLinks({ isOpen, setIsOpen }) {
   return (
     <>
       <div className="hidden text-xl md:flex gap-5">
-        <Links />
+        <Links setIsOpen={setIsOpen} />
       </div>
       <div className="md:hidden relative">
         {isOpen ? (
