@@ -2,7 +2,6 @@ import { useState } from "react"
 
 export default function LoginForm({ login, isLoading, error }) {
   const [userCred, setUserCred] = useState({ email: "", password: "" })
-  console.log(userCred)
   function handleLogin(e) {
     e.preventDefault()
     if (!userCred.email || !userCred.password) return
@@ -38,7 +37,7 @@ export default function LoginForm({ login, isLoading, error }) {
                   onChange={(e) => setUserCred({ ...userCred, password: e.target.value })}
                 />
               </div>
-
+              {error && <span className="text-red-600 mt-2">{error.data.message}</span>}
               <button disabled={isLoading} className="h-9 px-3 w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700 transition duration-500 rounded-md text-white">
                 Signin
               </button>

@@ -10,6 +10,7 @@ import Home from "./pages/Home.jsx";
 import PostPage from "./pages/BlogPage.jsx";
 import Tags from "./pages/Tags.jsx";
 import AdminPage from "./pages/AdminPage.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/create-blog",
-        element: <CreatePost />,
+        element: <PrivateRoute />,
       },
       {
         path: "/tags",
