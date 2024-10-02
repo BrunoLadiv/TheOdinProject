@@ -1,42 +1,55 @@
-import { useState } from 'react'
-import ReactQuill from 'react-quill'
-import EditorToolbar, { modules, formats } from './EditorToolbar'
-import 'react-quill/dist/quill.snow.css'
-import '../index.css'
-import { useCreatePostMutation } from '../features/posts/postApiSlice'
-import Input from './Input'
+import { useEffect, useState } from "react";
+import ReactQuill from "react-quill";
+import EditorToolbar, { modules, formats } from "./EditorToolbar";
+import "react-quill/dist/quill.snow.css";
+import "../index.css";
+import { useCreatePostMutation } from "../features/posts/postApiSlice";
+import Input from "./Input";
+import { useNavigate } from "react-router-dom";
 
 export const Editor = () => {
-  const [createPost, { data, error, isLoading }] = useCreatePostMutation()
+  const [createPost, { data, error, isLoading }] = useCreatePostMutation();
+  const navigate = useNavigate();
   const [post, setPost] = useState({
-    content: '',
-    title: '',
-    cover_img: '',
-    tags: '',
-    description: '',
-  })
-
-  console.log(error)
+    content: "",
+    title: "",
+    cover_img: "",
+    tags: "",
+    description: "",
+  });
+  console.log(data);
+  useEffect(() => {
+    if (data?.post.slug) {
+      navigate(`/blog/${data?.post.slug}`);
+    }
+  }, [navigate, data]);
 
   const handlePost = (e) => {
-    setPost(
-      { ...post, [e.target.name]: e.target.value }
-    )
-  }
+    setPost({ ...post, [e.target.name]: e.target.value });
+  };
 
   const handleContentChange = (content) => {
-    setPost({ ...post, content })
-  }
+    setPost({ ...post, content });
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!post.description || !post.content || !post.title || !post.cover_img || !post.tags) return
-    const tagsArray = post.tags.split(' ').filter((tag) => tag.trim() !== '')
-    createPost({ ...post, tags: tagsArray })
-  }
+    e.preventDefault();
+    if (
+      !post.description ||
+      !post.content ||
+      !post.title ||
+      !post.cover_img ||
+      !post.tags
+    )
+      return;
+    const tagsArray = post.tags.split(" ").filter((tag) => tag.trim() !== "");
+    createPost({ ...post, tags: tagsArray });
+  };
   return (
-    <form onSubmit={handleSubmit} className="text-editor prose dark:prose-invert">
-
+    <form
+      onSubmit={handleSubmit}
+      className="text-editor prose dark:prose-invert"
+    >
       <div className="flex gap-4 mb-4 flex-col">
         <Input
           type="text"
@@ -61,7 +74,6 @@ export const Editor = () => {
         />
         <Input
           type="text"
-
           placeholder="Tags"
           name="tags"
           onChange={handlePost}
@@ -72,11 +84,15 @@ export const Editor = () => {
         theme="snow"
         value={post.content}
         onChange={handleContentChange}
-        placeholder={'Write something awesome...'}
+        placeholder={"Write something awesome..."}
         modules={modules}
         formats={formats}
       />
-      {error && <p className='text-red-700 text-center m-0 mt-2'>Error: {error?.data.message}</p>}
+      {error && (
+        <p className="text-red-700 text-center m-0 mt-2">
+          Error: {error?.data.message}
+        </p>
+      )}
       <button
         disabled={isLoading}
         className="w-full bg-blue-500 text-white text-xl p-2  mt-4 disabled:bg-gray-200 disabled:cursor-not-allowed rounded"
@@ -84,7 +100,7 @@ export const Editor = () => {
         Create Blog
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default Editor
+export default Editor;
