@@ -1,6 +1,7 @@
 import { useGetPostsQuery } from "../features/posts/postApiSlice";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
+import Hero from "../components/Hero";
 import { useParams } from "react-router-dom";
 import BlogCard from "../components/BlogCard";
 import Pagination from "../components/Pagination";
@@ -29,10 +30,11 @@ const HomePage = () => {
     navigate(`/tags/${tag}`);
   };
   return (
-    <div className="md:mt-28 min-w-full flex-grow">
-      <h1 className="md:text-2xl mb-2 ml-2">
+    <div className="md:mt-8 md:p-4 min-w-full flex-grow">
+      <Hero />
+      <h4 className="text-gray-500 md:text-xl mb-2 ml-2">
         {tag ? tag.toUpperCase() + `(${data.posts.length})` : "Latest"}
-      </h1>
+      </h4>
       <ul>
         {data?.posts?.map((blog) => (
           <BlogCard
