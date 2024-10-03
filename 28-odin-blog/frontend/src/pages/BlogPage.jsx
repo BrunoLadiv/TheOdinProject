@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import {
   useGetPostQuery,
   useAddCommentMutation,
@@ -11,12 +11,31 @@ import CommentForm from "../components/CommentForm.jsx";
 
 export default function BlogPage() {
   const { slug } = useParams();
+  const { pathname } = useLocation();
+
   const [
     createComment,
     { data: commentData, error: commentError, isLoading: commentIsLoading },
   ] = useAddCommentMutation();
   const { data, isLoading, error } = useGetPostQuery({ slug });
-  console.log(data);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (commentData && commentData._id) {
+      const commentID = commentData._id;
+
+      setTimeout(() => {
+        const element = document.getElementById(commentID);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 200);
+    }
+  }, [commentData]);
+
   if (isLoading) return <Loader />;
   if (error) return <h1>Error</h1>;
   return (
