@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-      import Header from "./components/Header";
+import Header from "./components/Header";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import Footer from "./components/Footer";
@@ -10,7 +10,7 @@ function App() {
     const htmlElement = document.documentElement;
 
     if (isDarkMode) {
-      htmlElement.classList.add("dark","bg-[var(--bg-dm)]");
+      htmlElement.classList.add("dark", "bg-[var(--bg-dm)]");
     } else {
       htmlElement.classList.remove("dark", "bg-[var(--bg-dm)]");
     }

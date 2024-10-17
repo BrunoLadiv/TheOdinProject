@@ -47,9 +47,11 @@ export default function BlogPage() {
         </div>
         <div className="flex flex-col mt-4">
           <p className="text-xs">TAGS</p>
-          <div className="flex gap-2 text-green-600 dark:text-[#ea76cb]">
+          <div className="flex flex-wrap text-xs gap-2 text-green-600 dark:text-[#ea76cb]">
             {data.post.tags.map((tag) => (
-              <Link to={`/tags/${tag}`}>{tag.toUpperCase()}</Link>
+              <Link className="hover:text-pink-500" to={`/tags/${tag}`}>
+                {tag.toUpperCase()}
+              </Link>
             ))}
           </div>
         </div>
