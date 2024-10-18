@@ -116,21 +116,24 @@ const addCommentToPost = async (req, res) => {
   }
 };
 
-// Update a blog post by ID
 const updateBlog = async (req, res) => {
   try {
-    const blog = req.body;
+    const blogData = req.body;
 
-    // Find the blog post by ID and update the content
-    const updatedBlog = await Post.findByIdAndUpdate(
-      blog._id,
-      blog,
-      { new: true }, // return the updated blog post
-    );
+    const blog = await Post.findById(blogData._id);
 
-    if (!updatedBlog) {
+    if (!blog) {
       return res.status(404).json({ message: "Blog post not found" });
     }
+
+    blog.title = blogData.title;
+    blog.cover_img = blogData.cover_img;
+    blog.description = blogData.description;
+    blog.content = blogData.content;
+    blog.author = blogData.author;
+    blog.tags = blogData.tags;
+
+    const updatedBlog = await blog.save();
 
     res.status(200).json(updatedBlog);
   } catch (error) {
