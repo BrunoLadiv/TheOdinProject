@@ -59,14 +59,14 @@ export default function BlogPage() {
   if (error) return <h1>Error</h1>;
   return (
     <div className="grid px-2 md:mt-12 gap-4 grid-cols-4">
-      <div className="md:mt-24">
+      <div className="md:mt-24 col-span-full md:col-span-1">
         <div className="flex flex-col gap-2">
           <p className="text-xs">AUTHOR</p>
           <AuthorCard />
         </div>
         <div className="flex flex-col mt-4">
           <p className="text-xs">TAGS</p>
-          <div className="flex flex-wrap text-xs gap-2 text-green-600 dark:text-[#ea76cb]">
+          <div className="flex flex-wrap  text-xs gap-2 text-green-600 dark:text-[#ea76cb]">
             {data.post.tags.map((tag) => (
               <Link
                 key={tag}
