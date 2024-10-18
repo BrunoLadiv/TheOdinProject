@@ -1,8 +1,9 @@
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import {
   useGetPostQuery,
   useAddCommentMutation,
+  useDeletePostMutation,
 } from "../features/posts/postApiSlice.js";
 import AuthorCard from "../components/authorCard";
 import Loader from "../components/Loader.jsx";
@@ -12,12 +13,15 @@ import CommentForm from "../components/CommentForm.jsx";
 export default function BlogPage() {
   const { slug } = useParams();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const [
     createComment,
     { data: commentData, error: commentError, isLoading: commentIsLoading },
   ] = useAddCommentMutation();
   const { data, isLoading, error } = useGetPostQuery({ slug });
+  const [deleteBlog, { isLoading: deleteIsLoading, isError: deleteIsError }] =
+    useDeletePostMutation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,7 +39,21 @@ export default function BlogPage() {
       }, 200);
     }
   }, [commentData]);
-  console.log(data?.post);
+  async function handleDelete() {
+    const confirm = window.confirm(
+      "Are you sure you want to delete this blog?",
+    );
+    if (confirm) {
+      try {
+        await deleteBlog({ slug: data.post.slug }).unwrap();
+        console.log("blog deleted");
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    return;
+  }
 
   if (isLoading) return <Loader />;
   if (error) return <h1>Error</h1>;
@@ -68,6 +86,7 @@ export default function BlogPage() {
             <button>edit blog</button>
           </Link>
         )}
+        <button onClick={handleDelete}>Delete post</button>
         <div dangerouslySetInnerHTML={{ __html: data.post.content }} />
       </div>
       <h2 className="md:col-start-2 text-xl">Comments </h2>

@@ -79,15 +79,20 @@ const getUserPosts = async (req, res) => {
 };
 
 const deletePost = async (req, res) => {
-  const { id } = req.params;
+  const slug = req.params.slug;
   try {
-    const post = await Post.findByIdAndDelete(id);
-    if (!post) {
+    const deletedPost = await Post.findOneAndDelete({ slug });
+
+    if (!deletedPost) {
       return res.status(404).json({ message: "Post not found" });
     }
-    res.status(200).json({ message: "Post deleted successfully" });
+
+    res
+      .status(200)
+      .json({ message: "Post deleted successfully", post: deletedPost });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 

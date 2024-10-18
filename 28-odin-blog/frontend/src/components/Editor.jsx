@@ -29,7 +29,6 @@ export const Editor = () => {
       description: "",
     },
   );
-  console.log(updatedData);
   const tagsArray =
     post.tags instanceof Array
       ? post.tags
