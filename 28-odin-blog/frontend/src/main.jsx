@@ -5,7 +5,6 @@ import "./index.css";
 import { store } from "./store/store.js";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import CreatePost from "./pages/CreatePost.jsx";
 import Home from "./pages/Home.jsx";
 import PostPage from "./pages/BlogPage.jsx";
 import Tags from "./pages/Tags.jsx";
@@ -23,8 +22,12 @@ const router = createBrowserRouter([
         element: <PrivateRoute />,
       },
       {
+        path: "/edit-blog",
+        element: <PrivateRoute />,
+      },
+      {
         path: "/tags",
-        element: <Tags/>,
+        element: <Tags />,
       },
       {
         path: "/tags/:tag",

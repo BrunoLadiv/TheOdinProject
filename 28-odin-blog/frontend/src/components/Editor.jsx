@@ -3,26 +3,49 @@ import ReactQuill from "react-quill";
 import EditorToolbar, { modules, formats } from "./EditorToolbar";
 import "react-quill/dist/quill.snow.css";
 import "../index.css";
-import { useCreatePostMutation } from "../features/posts/postApiSlice";
+import {
+  useCreatePostMutation,
+  useUpdatePostMutation,
+} from "../features/posts/postApiSlice";
 import Input from "./Input";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const Editor = () => {
   const [createPost, { data, error, isLoading }] = useCreatePostMutation();
+  const [
+    updatePost,
+    { data: updatedData, error: updatingError, isLoading: updatingIsLoading },
+  ] = useUpdatePostMutation();
   const navigate = useNavigate();
-  const [post, setPost] = useState({
-    content: "",
-    title: "",
-    cover_img: "",
-    tags: "",
-    description: "",
-  });
-  console.log(data);
+  const location = useLocation();
+  const { blog } = location.state || {};
+  const editMode = location.pathname == "/edit-blog";
+  const [post, setPost] = useState(
+    blog || {
+      content: "",
+      title: "",
+      cover_img: "",
+      tags: "",
+      description: "",
+    },
+  );
+  console.log(updatedData);
+  const tagsArray =
+    post.tags instanceof Array
+      ? post.tags
+      : post.tags.split(",").filter((tag) => tag.trim() !== "");
+
   useEffect(() => {
     if (data?.post.slug) {
       navigate(`/blog/${data?.post.slug}`);
     }
-  }, [navigate, data]);
+    if (editMode && !blog) {
+      navigate("/");
+    }
+    if (updatedData?.slug) {
+      navigate(`/blog/${updatedData?.slug}`);
+    }
+  }, [navigate, data, blog, location, updatedData]);
 
   const handlePost = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
@@ -42,7 +65,10 @@ export const Editor = () => {
       !post.tags
     )
       return;
-    const tagsArray = post.tags.split(" ").filter((tag) => tag.trim() !== "");
+    if (editMode) {
+      updatePost({ ...post, tags: tagsArray });
+      return;
+    }
     createPost({ ...post, tags: tagsArray });
   };
   return (
@@ -75,6 +101,7 @@ export const Editor = () => {
         <Input
           type="text"
           placeholder="Tags"
+          value={post.tags}
           name="tags"
           onChange={handlePost}
         />
@@ -97,7 +124,7 @@ export const Editor = () => {
         disabled={isLoading}
         className="w-full bg-blue-500 text-white text-xl p-2  mt-4 disabled:bg-gray-200 disabled:cursor-not-allowed rounded"
       >
-        Create Blog
+        {editMode ? "Update" : "Create"} Blog
       </button>
     </form>
   );

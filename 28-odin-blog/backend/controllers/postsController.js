@@ -116,7 +116,31 @@ const addCommentToPost = async (req, res) => {
   }
 };
 
+// Update a blog post by ID
+const updateBlog = async (req, res) => {
+  try {
+    const blog = req.body;
+
+    // Find the blog post by ID and update the content
+    const updatedBlog = await Post.findByIdAndUpdate(
+      blog._id,
+      blog,
+      { new: true }, // return the updated blog post
+    );
+
+    if (!updatedBlog) {
+      return res.status(404).json({ message: "Blog post not found" });
+    }
+
+    res.status(200).json(updatedBlog);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 export {
+  updateBlog,
   addCommentToPost,
   getPost,
   createPost,
