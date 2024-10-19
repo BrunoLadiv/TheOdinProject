@@ -1578,6 +1578,10 @@ const Hero = () => {
             <i className="ci ci-mongodb ci-xl"></i>
             <span>MongoDB</span>
           </span>
+          <span className="flex items-center gap-1">
+            <i className="ci ci-ts ci-xl"></i>
+            <span>TypeScript</span>
+          </span>
         </div>
       </div>
     </div>
