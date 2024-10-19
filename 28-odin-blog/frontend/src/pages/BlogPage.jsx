@@ -9,6 +9,8 @@ import AuthorCard from "../components/authorCard";
 import Loader from "../components/Loader.jsx";
 import Comment from "../components/Comment.jsx";
 import CommentForm from "../components/CommentForm.jsx";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 export default function BlogPage() {
   const { slug } = useParams();
@@ -79,14 +81,19 @@ export default function BlogPage() {
           </div>
         </div>
       </div>
-      <div className="prose dark:prose-invert md:col-span-3 col-span-4">
+      <div className="prose dark:prose-invert relative md:col-span-3 col-span-4">
         <h1>{data.post.title}</h1>
-        {data && (
+
+        <div className="absolute top-0 right-5 flex gap-4">
           <Link to="/edit-blog" state={{ blog: data.post }}>
-            <button>edit blog</button>
+            <FaEdit className="hover:scale-125" title="Edit Blog" />
           </Link>
-        )}
-        <button onClick={handleDelete}>Delete post</button>
+          <MdDelete
+            className="hover:scale-125 hover:cursor-pointer"
+            title="Delete Blog"
+            onClick={handleDelete}
+          />
+        </div>
         <div dangerouslySetInnerHTML={{ __html: data.post.content }} />
       </div>
       <h2 className="md:col-start-2 text-xl">Comments </h2>
