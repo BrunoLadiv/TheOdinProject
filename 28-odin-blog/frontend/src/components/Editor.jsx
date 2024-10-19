@@ -32,8 +32,10 @@ export const Editor = () => {
   const tagsArray =
     post.tags instanceof Array
       ? post.tags
-      : post.tags.split(",").filter((tag) => tag.trim() !== "");
-
+      : post.tags
+          .split(",")
+          .filter((tag) => tag.trim() !== "")
+          .map((tag) => tag.toLowerCase());
   useEffect(() => {
     if (data?.post.slug) {
       navigate(`/blog/${data?.post.slug}`);
