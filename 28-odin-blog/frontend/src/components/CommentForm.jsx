@@ -24,7 +24,7 @@ const CommentForm = ({ slug, createComment }) => {
           <span className="text-xl">Leave a comment: </span>
           <input
             placeholder="Your name"
-            minlength="3"
+            minLength="3"
             type="text"
             className="pl-4 dark:text-black rounded bg-blue-100"
             name="author"
@@ -40,7 +40,7 @@ const CommentForm = ({ slug, createComment }) => {
         </label>
         <div className="relative">
           <textarea
-            minlength="3"
+            minLength="3"
             name="content"
             placeholder="What are you thinking?"
             className="p-4 h-[124px] dark:text-black bg-blue-100 resize-none rounded w-full"
