@@ -25,6 +25,7 @@ const whitelist = [
   "100.20.92.101",
   "44.225.181.72",
   "44.227.217.144",
+  "https://bruno-vidal.onrender.com",
 ];
 
 const corsOptions = {
