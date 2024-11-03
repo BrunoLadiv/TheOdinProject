@@ -1,84 +1,70 @@
 "use client";
 import { useState, useRef } from "react";
+import CharSelectPopUp from "./CharSelectPopUp";
 
 export default function Map({ map }) {
   const [imgCoords, setImgCoords] = useState({ xPercent: 0, yPercent: 0 });
+  const containerRef = useRef(null);
   const imgRef = useRef(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [popupPos, setPopupPos] = useState({ x: 0, y: 0 });
 
   function handleImageClick(event) {
+    event.stopPropagation();
+
+    if (!showPopup) {
+      const containerRect = containerRef.current.getBoundingClientRect();
+
+      const x =
+        event.clientX - containerRect.left + containerRef.current.scrollLeft;
+      const y =
+        event.clientY - containerRect.top + containerRef.current.scrollTop;
+
+      const viewportWidth = window.innerWidth;
+      const popupWidth = 200;
+      const rightEdge = event.clientX + popupWidth;
+      const adjustedX = rightEdge > viewportWidth ? x - popupWidth : x;
+
+      setPopupPos({
+        x: adjustedX,
+        y: y,
+      });
+    }
     setShowPopup(!showPopup);
-    // // Get the click position relative to the image
-    // if (imgRef.current) {
-    //   const img = imgRef.current;
-    //   const rect = img.getBoundingClientRect();
-    //
-    //   const xOffset = event.clientX - rect.left - window.scrollX;
-    //   const yOffset = event.clientY - rect.top - window.scrollY;
-    //
-    //   const xPercent = (xOffset / rect.width) * 100;
-    //   const yPercent = (yOffset / rect.height) * 100;
-    //
-    //   // Check if the click position matches the saved coordinates
-    //   const tolerance = 2; // Allow for a small tolerance
-    //   if (
-    //     Math.abs(xPercent - imgCoords.xPercent) <= tolerance &&
-    //     Math.abs(yPercent - imgCoords.yPercent) <= tolerance
-    //   ) {
-    //     setShowPopup(true); // Show the popup if clicked at the saved position
-    //   } else {
-    //     setShowPopup(false); // Hide the popup otherwise
-    //   }
-    // }
   }
 
   function handleMouseMove(event) {
     if (imgRef.current) {
       const img = imgRef.current;
       const rect = img.getBoundingClientRect();
-
       const xOffset = event.clientX - rect.left;
       const yOffset = event.clientY - rect.top;
-
       const xPercent = (xOffset / rect.width) * 100;
       const yPercent = (yOffset / rect.height) * 100;
-
       setImgCoords({ xPercent, yPercent });
-      setMousePos({
-        x: event.clientX + window.scrollX,
-        y: event.clientY + window.scrollY,
-      });
+    }
+  }
 
-      console.log(
-        `Mouse moved to: X=${xPercent.toFixed(2)}%, Y=${yPercent.toFixed(2)}%`,
-      );
+  function handleClickOutside(event) {
+    if (showPopup && !event.target.closest(".popup-menu")) {
+      setShowPopup(false);
     }
   }
 
   return (
     <div
+      ref={containerRef}
       onMouseMove={handleMouseMove}
-      onClick={handleImageClick}
-      className="relative min-w-screen"
+      onClick={handleClickOutside}
+      className="relative  max-w-screen"
     >
       <img
         ref={imgRef}
-        className="min-w-[1024px] max-w-none"
         src={map.imgUrl}
         alt={map.name}
+        onClick={handleImageClick}
       />
-      {showPopup && (
-        <div
-          style={{
-            left: `${mousePos.x}px`,
-            top: `${mousePos.y}px`,
-          }}
-          className="absolute text-black bg-white p-2"
-        >
-          You found Waldo!{" "}
-        </div>
-      )}
+      {showPopup && <CharSelectPopUp popupPos={popupPos} />}
     </div>
   );
 }
