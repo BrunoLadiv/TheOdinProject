@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <div
       onMouseMove={handleMouseMove}
-      onClick={handleImageClick} // Attach click handler to the container
+      onClick={handleImageClick}
       className="relative min-w-screen"
     >
       <img
@@ -68,15 +68,15 @@ export default function Home() {
         src="/images/game1.jpeg"
         alt="find game img"
       />
-      {showPopup && ( // Conditional rendering of the popup
+      {showPopup && (
         <div
           style={{
-            left: `${mousePos.x}px`, // Position the popup based on saved coordinates
+            left: `${mousePos.x}px`,
             top: `${mousePos.y}px`,
           }}
           className="absolute text-black bg-white p-2"
         >
-          You found Waldo! {/* Replace with your popup content */}
+          You found Waldo!{" "}
         </div>
       )}
     </div>
