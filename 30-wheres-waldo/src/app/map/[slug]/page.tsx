@@ -1,8 +1,18 @@
+import Map from "@/app/components/Map";
+import prisma from "@/lib/db";
 export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const slug = (await params).slug;
-  return <div>My Post: {slug}</div>;
+  const map = await prisma.map.findUnique({
+    where: { slug },
+  });
+  console.log(map);
+  if (!map) {
+    return <div>Map not found</div>;
+  }
+
+  return <Map map={map} />;
 }
