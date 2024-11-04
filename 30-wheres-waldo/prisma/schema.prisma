@@ -14,11 +14,21 @@ datasource db {
 }
 
 model Map {
-  id     Int     @id @default(autoincrement())
-  name   String  @unique
-  imgUrl String
-  slug   String  @unique
-  scores Score[]
+  id         Int         @id @default(autoincrement())
+  name       String      @unique
+  imgUrl     String
+  slug       String      @unique
+  scores     Score[]
+  characters Character[]
+}
+
+model Character {
+  id       Int     @id @default(autoincrement())
+  name     String
+  xPercent Decimal
+  yPercent Decimal
+  Map      Map?    @relation(fields: [mapId], references: [id])
+  mapId    Int?
 }
 
 model Score {

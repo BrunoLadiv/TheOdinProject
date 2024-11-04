@@ -11,6 +11,7 @@ export default function Map({ map }) {
 
   function handleImageClick(event) {
     event.stopPropagation();
+    console.log(imgCoords);
 
     if (!showPopup) {
       const containerRect = containerRef.current.getBoundingClientRect();
@@ -56,9 +57,10 @@ export default function Map({ map }) {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onClick={handleClickOutside}
-      className="relative  max-w-screen"
+      className="relative overflow-auto max-w-screen"
     >
       <img
+        className="min-w-[1024px]"
         ref={imgRef}
         src={map.imgUrl}
         alt={map.name}
