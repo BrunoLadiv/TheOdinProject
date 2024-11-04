@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
 import CharSelectPopUp from "./CharSelectPopUp";
+import { checkLocation } from "@/actions/actions";
 
 export default function Map({ map }) {
   const [imgCoords, setImgCoords] = useState({ xPercent: 0, yPercent: 0 });
@@ -9,7 +10,7 @@ export default function Map({ map }) {
   const [showPopup, setShowPopup] = useState(false);
   const [popupPos, setPopupPos] = useState({ x: 0, y: 0 });
 
-  function handleImageClick(event) {
+  async function handleImageClick(event) {
     event.stopPropagation();
     console.log(imgCoords);
 
@@ -30,6 +31,19 @@ export default function Map({ map }) {
         x: adjustedX,
         y: y,
       });
+    }
+    try {
+      const characterName = "one-punch-man";
+      const result = await checkLocation(
+        map.id,
+        imgCoords.xPercent,
+        imgCoords.yPercent,
+        characterName,
+      );
+
+      alert(result.message);
+    } catch (error) {
+      console.error("Error:", error);
     }
     setShowPopup(!showPopup);
   }
@@ -60,7 +74,7 @@ export default function Map({ map }) {
       className="relative overflow-auto max-w-screen"
     >
       <img
-        className="min-w-[1024px]"
+        className="min-w-[1024]"
         ref={imgRef}
         src={map.imgUrl}
         alt={map.name}
