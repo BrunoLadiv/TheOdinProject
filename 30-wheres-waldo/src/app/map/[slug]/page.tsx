@@ -8,6 +8,14 @@ export default async function Page({
   const slug = (await params).slug;
   const map = await prisma.map.findUnique({
     where: { slug },
+    include: {
+      characters: {
+        select: {
+          name: true,
+          img: true,
+        },
+      },
+    },
   });
   console.log(map);
   if (!map) {

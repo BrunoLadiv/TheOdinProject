@@ -25,6 +25,7 @@ model Map {
 model Character {
   id       Int     @id @default(autoincrement())
   name     String  @unique
+  img      String?
   xPercent Decimal
   yPercent Decimal
   Map      Map?    @relation(fields: [mapId], references: [id])
