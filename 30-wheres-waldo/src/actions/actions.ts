@@ -15,7 +15,7 @@ export async function checkLocation(
   });
 
   if (!character) {
-    return { success: false, message: "Character not found" };
+    return;
   }
 
   const tolerance = 3;

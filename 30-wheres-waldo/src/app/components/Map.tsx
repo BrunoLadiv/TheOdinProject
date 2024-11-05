@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import CharSelectPopUp from "./CharSelectPopUp";
 import { checkLocation } from "@/actions/actions";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 export default function Map({ map }) {
   const [imgCoords, setImgCoords] = useState({ xPercent: 0, yPercent: 0 });
@@ -15,8 +16,8 @@ export default function Map({ map }) {
     xPercent: 0,
     yPercent: 0,
   });
-  console.log(choosenCharLocation);
-  console.log(choosenChar);
+  const { foundChars, setFoundChars } = useGlobalContext();
+  console.log(foundChars);
 
   useEffect(() => {
     const checkCharacterLocation = async () => {
@@ -28,7 +29,10 @@ export default function Map({ map }) {
           choosenChar,
         );
 
-        console.log(result);
+        if (result?.success) {
+          setFoundChars([...foundChars, { name: choosenChar, isFound: true }]);
+        }
+
         setChoosenChar("");
       } catch (error) {
         console.error("Error:", error);
