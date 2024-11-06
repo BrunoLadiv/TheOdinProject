@@ -3,6 +3,8 @@ import { useEffect, useState, useRef } from "react";
 import CharSelectPopUp from "./CharSelectPopUp";
 import { checkLocation } from "@/actions/actions";
 import { useGlobalContext } from "@/context/GlobalContext";
+import { toast } from "sonner";
+import MapHeader from "./MapHeader";
 
 export default function Map({ map }) {
   const [imgCoords, setImgCoords] = useState({ xPercent: 0, yPercent: 0 });
@@ -17,9 +19,14 @@ export default function Map({ map }) {
     yPercent: 0,
   });
   const { foundChars, setFoundChars } = useGlobalContext();
-  console.log(foundChars);
+  const isCharacterFound = foundChars.some(
+    (char) => char.name === choosenChar && char.isFound,
+  );
+  console.log(imgCoords);
 
   useEffect(() => {
+    if (isCharacterFound || choosenChar === "") return;
+
     const checkCharacterLocation = async () => {
       try {
         const result = await checkLocation(
@@ -31,6 +38,13 @@ export default function Map({ map }) {
 
         if (result?.success) {
           setFoundChars([...foundChars, { name: choosenChar, isFound: true }]);
+          toast.success(`${choosenChar.toUpperCase()} found!`, {
+            className: "border border-green-500 bg-green-200",
+          });
+        } else {
+          toast.error(`${choosenChar.toUpperCase()} not found, try again`, {
+            className: "border border-red-500 bg-red-200",
+          });
         }
 
         setChoosenChar("");
@@ -94,6 +108,7 @@ export default function Map({ map }) {
       onClick={handleClickOutside}
       className="relative overflow-auto max-w-screen"
     >
+      <MapHeader characters={characters} />
       <img
         className="min-w-[1024px]"
         ref={imgRef}
