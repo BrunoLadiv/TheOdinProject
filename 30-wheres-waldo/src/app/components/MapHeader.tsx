@@ -11,7 +11,8 @@ type MapHeaderProps = {
 export default function MapHeader({ characters }: MapHeaderProps) {
   const { foundChars } = useGlobalContext();
   return (
-    <div className="fixed min-w-full justify-center top-10 flex right-0">
+    <div className="fixed min-w-full justify-between top-10 flex flex-col md:flex-row right-0">
+      <div className="min-w-[225px]"></div>
       <div className="flex gap-2">
         {characters.map((character) => {
           const isFound = foundChars.some(
@@ -35,7 +36,10 @@ export default function MapHeader({ characters }: MapHeaderProps) {
           );
         })}
       </div>
-      <div>02:04:23</div>
+      <div className="flex gap-4 font-font1 bg-black bg-opacity-60 text-5xl p-2 mr-2">
+        <img height={40} width={40} src="/images/clock.svg" alt="Clock" />
+        <span> 02:04:23</span>
+      </div>
     </div>
   );
 }

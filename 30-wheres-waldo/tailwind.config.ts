@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        font1: ['"VT323"', "monospace"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
