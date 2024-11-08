@@ -5,6 +5,7 @@ import { checkLocation } from "@/actions/actions";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { toast } from "sonner";
 import MapHeader from "./MapHeader";
+import Dialog from "./Dialog";
 
 export default function Map({ map }) {
   const [imgCoords, setImgCoords] = useState({ xPercent: 0, yPercent: 0 });
@@ -22,7 +23,7 @@ export default function Map({ map }) {
   const isCharacterFound = foundChars.some(
     (char) => char.name === choosenChar && char.isFound,
   );
-  console.log(imgCoords);
+  console.log(choosenCharLocation);
 
   useEffect(() => {
     if (isCharacterFound || choosenChar === "") return;
@@ -108,6 +109,7 @@ export default function Map({ map }) {
       onClick={handleClickOutside}
       className="relative overflow-auto max-w-screen"
     >
+      <Dialog />
       <MapHeader characters={characters} />
       <img
         className="min-w-[1024px]"

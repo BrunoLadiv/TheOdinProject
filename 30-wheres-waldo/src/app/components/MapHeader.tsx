@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { useGlobalContext } from "@/context/GlobalContext";
+import { useEffect, useState } from "react";
+import Timer from "./Timer";
 type MapHeaderProps = {
   characters: [
     {
@@ -9,9 +11,12 @@ type MapHeaderProps = {
   ];
 };
 export default function MapHeader({ characters }: MapHeaderProps) {
-  const { foundChars } = useGlobalContext();
+  const { foundChars, isGameOver, setIsGameOver } = useGlobalContext();
+  useEffect(() => {
+    if (foundChars.length === characters.length) setIsGameOver(true);
+  }, [foundChars]);
   return (
-    <div className="fixed min-w-full justify-between top-10 flex flex-col md:flex-row right-0">
+    <div className="fixed min-w-full justify-center md:justify-between gap-4 top-10 flex flex-wrap md:flex-row right-0 z-40">
       <div className="min-w-[225px]"></div>
       <div className="flex gap-2">
         {characters.map((character) => {
@@ -36,9 +41,9 @@ export default function MapHeader({ characters }: MapHeaderProps) {
           );
         })}
       </div>
-      <div className="flex gap-4 font-font1 bg-black bg-opacity-60 text-5xl p-2 mr-2">
+      <div className="flex gap-4 font-font1  bg-black/50 text-5xl p-2 mr-2">
         <img height={40} width={40} src="/images/clock.svg" alt="Clock" />
-        <span> 02:04:23</span>
+        <Timer isGameOver={isGameOver} />
       </div>
     </div>
   );
