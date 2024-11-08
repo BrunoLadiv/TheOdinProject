@@ -23,7 +23,7 @@ export default function CharSelectPopUp({
         position: "absolute",
         left: `${popupPos.x}px`,
         top: `${popupPos.y}px`,
-        zIndex: 1000,
+        zIndex: 20,
       }}
       className="popup-menu bg-white p-2 shadow-lg rounded"
     >

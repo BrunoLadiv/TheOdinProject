@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import formatTime from "@/lib/helpers/formatTime";
 
-export default function Timer({ isGameOver }) {
-  const [time, setTime] = useState(0);
-
+export default function Timer({ isGameOver, time, setTime }) {
   useEffect(() => {
     if (isGameOver) return;
 
@@ -13,19 +12,9 @@ export default function Timer({ isGameOver }) {
     return () => clearInterval(timerInterval);
   }, [isGameOver]);
 
-  const formatTime = () => {
-    const minutes = String(Math.floor((time / 60000) % 60)).padStart(2, "0");
-    const seconds = String(Math.floor((time / 1000) % 60)).padStart(2, "0");
-    const milliseconds = String(Math.floor((time % 1000) / 10)).padStart(
-      2,
-      "0",
-    );
-    return `${minutes}:${seconds}:${milliseconds}`;
-  };
-
   return (
     <div className="timer">
-      <span>{formatTime()}</span>
+      <span>{formatTime(time)}</span>
     </div>
   );
 }

@@ -19,11 +19,10 @@ export default function Map({ map }) {
     xPercent: 0,
     yPercent: 0,
   });
-  const { foundChars, setFoundChars } = useGlobalContext();
+  const { foundChars, setFoundChars, isGameOver } = useGlobalContext();
   const isCharacterFound = foundChars.some(
     (char) => char.name === choosenChar && char.isFound,
   );
-  console.log(choosenCharLocation);
 
   useEffect(() => {
     if (isCharacterFound || choosenChar === "") return;
@@ -103,28 +102,31 @@ export default function Map({ map }) {
   }
 
   return (
-    <div
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onClick={handleClickOutside}
-      className="relative overflow-auto max-w-screen"
-    >
-      <Dialog />
-      <MapHeader characters={characters} />
-      <img
-        className="min-w-[1024px]"
-        ref={imgRef}
-        src={map.imgUrl}
-        alt={map.name}
-        onClick={handleImageClick}
-      />
-      {showPopup && (
-        <CharSelectPopUp
-          setChoosenChar={setChoosenChar}
-          characters={characters}
-          popupPos={popupPos}
+    <>
+      {isGameOver && <Dialog mapId={map.id} />}
+
+      <div
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onClick={handleClickOutside}
+        className="relative overflow-auto max-w-screen"
+      >
+        <MapHeader characters={characters} />
+        <img
+          className="min-w-[1024px]"
+          ref={imgRef}
+          src={map.imgUrl}
+          alt={map.name}
+          onClick={handleImageClick}
         />
-      )}
-    </div>
+        {showPopup && (
+          <CharSelectPopUp
+            setChoosenChar={setChoosenChar}
+            characters={characters}
+            popupPos={popupPos}
+          />
+        )}
+      </div>
+    </>
   );
 }

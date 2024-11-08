@@ -1,6 +1,34 @@
 "use server";
 import prisma from "@/lib/db";
 
+type AddScoreParams = {
+  userName: string;
+  mapId: number;
+  timeTaken: number;
+};
+
+export async function addScore({ userName, mapId, timeTaken }: AddScoreParams) {
+  console.log(userName, mapId, timeTaken);
+  if (!userName || !mapId || typeof timeTaken !== "number") {
+    throw new Error("userName, mapId, and timeTaken are required.");
+  }
+
+  try {
+    const score = await prisma.score.create({
+      data: {
+        userName,
+        mapId,
+        value: timeTaken,
+      },
+    });
+
+    return { message: "Score added successfully", score };
+  } catch (error) {
+    console.error("Error adding score:", error);
+    throw new Error("Failed to add score.");
+  }
+}
+
 export async function checkLocation(
   mapId: number,
   xPercent: number,

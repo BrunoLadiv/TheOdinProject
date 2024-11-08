@@ -11,7 +11,8 @@ type MapHeaderProps = {
   ];
 };
 export default function MapHeader({ characters }: MapHeaderProps) {
-  const { foundChars, isGameOver, setIsGameOver } = useGlobalContext();
+  const { foundChars, isGameOver, setIsGameOver, time, setTime } =
+    useGlobalContext();
   useEffect(() => {
     if (foundChars.length === characters.length) setIsGameOver(true);
   }, [foundChars]);
@@ -43,7 +44,7 @@ export default function MapHeader({ characters }: MapHeaderProps) {
       </div>
       <div className="flex gap-4 font-font1  bg-black/50 text-5xl p-2 mr-2">
         <img height={40} width={40} src="/images/clock.svg" alt="Clock" />
-        <Timer isGameOver={isGameOver} />
+        <Timer isGameOver={isGameOver} time={time} setTime={setTime} />
       </div>
     </div>
   );
