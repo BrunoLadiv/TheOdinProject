@@ -1,32 +1,43 @@
 import prisma from "@/lib/db";
 import formatTime from "@/lib/helpers/formatTime";
 
-export default async function getHighScores() {
+export default async function getHighScores({ searchParams }) {
   let rank = 0;
+  const score = searchParams?.score;
   try {
     const scores = await prisma.score.findMany({
       orderBy: {
-        value: "desc",
+        value: "asc",
       },
+      take: 10,
     });
 
-    console.log(scores);
     return (
-      <div>
-        <ol className="list-decimal pb-4 px-14 pt-4 font-font1 text-2xl border w-[400px] mt-[10%] rounded mx-auto border-green-500">
-          <h1 className="mb-4 text-center text-5xl">LEADERBOARD</h1>
-          {scores.map((score) => {
-            rank += 1;
-            return (
-              <li className="flex gap-4 mx-auto" key={score.id}>
-                <span className="w-36 max-w-36 overflow-hidden ">
-                  {`${rank} ${score.userName}`}
-                </span>
-                <span>{formatTime(score.value)}</span>
-              </li>
-            );
-          })}
-        </ol>
+      <div className="w-screen h-screen  flex justify-center">
+        <div className="pb-4 px-14 flex flex-col  pt-4 font-font1 text-2xl self-start border w-[400px] rounded border-yellow-200 bg-black/50 mt-28 mx-auto">
+          <h1 className="mb-4 text-center text-5xl text-yellow-300">
+            LEADERBOARD
+          </h1>
+          <span className="text-center text-sky-600">top 10</span>
+          <ol className="list-decimal flex flex-col">
+            {scores.map((score) => {
+              rank += 1;
+              return (
+                <li className="flex gap-4 mx-auto" key={score.id}>
+                  <span className="w-36 max-w-36 overflow-hidden ">
+                    {`${rank} ${score.userName}`}
+                  </span>
+                  <span>{formatTime(score.value)}</span>
+                </li>
+              );
+            })}
+          </ol>
+          {score && (
+            <h3 className="text-center mt-4 text-pink-600">
+              Your score: {formatTime(Number(score))}
+            </h3>
+          )}
+        </div>
       </div>
     );
   } catch (error) {
