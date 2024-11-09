@@ -19,7 +19,7 @@ export default function CharAvatar({ character, setChoosenChar }: CharProps) {
         ${isFound ? "bg-green-500" : "hover:bg-slate-300"}`}
     >
       <Image width={40} height={40} alt={character.name} src={character.img} />
-      <span className="text-sm mr-2 font-font1">
+      <span className="text-md mr-2 font-font1">
         {" "}
         {character.name.toUpperCase()}{" "}
       </span>
