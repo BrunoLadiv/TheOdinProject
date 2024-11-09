@@ -42,7 +42,7 @@ export default async function getHighScores({ searchParams }) {
             href="/map/universe-infested"
             className="mt-4 text-center border border-yellow-300 py-2 rounded hover:bg-yellow-200 hover:text-black "
           >
-            PLAY AGAIN
+            {score ? "PLAY AGAIN" : "START GAME"}
           </Link>
         </div>
       </div>
