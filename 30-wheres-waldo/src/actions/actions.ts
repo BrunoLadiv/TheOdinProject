@@ -8,7 +8,6 @@ type AddScoreParams = {
 };
 
 export async function addScore({ userName, mapId, timeTaken }: AddScoreParams) {
-  console.log(userName, mapId, timeTaken);
   if (!userName || !mapId || typeof timeTaken !== "number") {
     throw new Error("userName, mapId, and timeTaken are required.");
   }

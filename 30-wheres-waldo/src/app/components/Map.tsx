@@ -23,7 +23,6 @@ export default function Map({ map }) {
   const isCharacterFound = foundChars.some(
     (char) => char.name === choosenChar && char.isFound,
   );
-  console.log(choosenCharLocation);
 
   useEffect(() => {
     if (isCharacterFound || choosenChar === "") return;
