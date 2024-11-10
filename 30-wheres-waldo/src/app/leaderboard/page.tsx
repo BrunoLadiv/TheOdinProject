@@ -15,7 +15,7 @@ export default async function getHighScores({ searchParams }) {
 
     return (
       <div className="w-screen h-screen bg-[url('/images/universe11-infested.jpeg')] bg-cover bg-no-repeat flex justify-center">
-        <div className="pb-4 px-14 flex flex-col  pt-4 font-font1 text-2xl self-start border w-[400px] rounded border-yellow-200 bg-black/50 mt-28 mx-auto">
+        <div className="pb-4 px-14 flex flex-col  pt-4 font-font1 text-2xl self-start border w-[400px] rounded border-yellow-200 bg-black/50 mt-12 md:mt-28 mx-auto">
           <h1 className="mb-4 text-center text-5xl text-yellow-300">
             LEADERBOARD
           </h1>

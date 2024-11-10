@@ -23,6 +23,7 @@ export default function Map({ map }) {
   const isCharacterFound = foundChars.some(
     (char) => char.name === choosenChar && char.isFound,
   );
+  console.log(choosenCharLocation);
 
   useEffect(() => {
     if (isCharacterFound || choosenChar === "") return;
@@ -95,11 +96,10 @@ export default function Map({ map }) {
     }
   }
 
-  function handleClickOutside(event) {
-    if (showPopup && !event.target.closest(".popup-menu")) {
-      setShowPopup(false);
-    }
-  }
+  //   if (showPopup && !event.target.closest(".popup-menu")) {
+  //     setShowPopup(false);
+  //   }
+  // }
 
   return (
     <>
@@ -108,7 +108,7 @@ export default function Map({ map }) {
       <div
         ref={containerRef}
         onMouseMove={handleMouseMove}
-        onClick={handleClickOutside}
+        onClick={handleImageClick}
         className="relative overflow-auto max-w-screen"
       >
         <MapHeader characters={characters} />
@@ -117,7 +117,6 @@ export default function Map({ map }) {
           ref={imgRef}
           src={map.imgUrl}
           alt={map.name}
-          onClick={handleImageClick}
         />
         {showPopup && (
           <CharSelectPopUp
