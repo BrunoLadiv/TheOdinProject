@@ -25,6 +25,13 @@ export default function Map({ map }) {
   );
 
   useEffect(() => {
+    setChoosenCharLocation({
+      yPercent: imgCoords.yPercent,
+      xPercent: imgCoords.xPercent,
+    });
+  }, [imgCoords]);
+
+  useEffect(() => {
     if (isCharacterFound || choosenChar === "") return;
 
     const checkCharacterLocation = async () => {
@@ -41,10 +48,16 @@ export default function Map({ map }) {
           toast.success(`${choosenChar.toUpperCase()} found!`, {
             className: "border border-green-500 bg-green-200",
           });
+          setTimeout(() => {
+            setShowPopup(false);
+          }, 500);
         } else {
           toast.error(`${choosenChar.toUpperCase()} not found, try again`, {
             className: "border border-red-500 bg-red-200",
           });
+          setTimeout(() => {
+            setShowPopup(false);
+          }, 500);
         }
 
         setChoosenChar("");
@@ -54,15 +67,21 @@ export default function Map({ map }) {
     };
 
     checkCharacterLocation();
-  }, [choosenChar]);
+  }, [choosenChar, choosenCharLocation]);
 
   async function handleImageClick(event) {
     event.stopPropagation();
-    setChoosenCharLocation({
-      yPercent: imgCoords.yPercent,
-      xPercent: imgCoords.xPercent,
-    });
     if (!showPopup) {
+      if (imgRef.current) {
+        const img = imgRef.current;
+        const rect = img.getBoundingClientRect();
+        const xOffset = event.clientX - rect.left;
+        const yOffset = event.clientY - rect.top;
+        const xPercent = (xOffset / rect.width) * 100;
+        const yPercent = (yOffset / rect.height) * 100;
+        setImgCoords({ xPercent, yPercent });
+      }
+
       const containerRect = containerRef.current.getBoundingClientRect();
 
       const x =
@@ -83,39 +102,18 @@ export default function Map({ map }) {
     setShowPopup(!showPopup);
   }
 
-  function handleMouseMove(event) {
-    if (imgRef.current) {
-      const img = imgRef.current;
-      const rect = img.getBoundingClientRect();
-      const xOffset = event.clientX - rect.left;
-      const yOffset = event.clientY - rect.top;
-      const xPercent = (xOffset / rect.width) * 100;
-      const yPercent = (yOffset / rect.height) * 100;
-      setImgCoords({ xPercent, yPercent });
-    }
-  }
-
-  //   if (showPopup && !event.target.closest(".popup-menu")) {
-  //     setShowPopup(false);
-  //   }
-  // }
-
   return (
     <>
       {isGameOver && <Dialog mapId={map.id} />}
 
-      <div
-        ref={containerRef}
-        onMouseMove={handleMouseMove}
-        onClick={handleImageClick}
-        className="relative overflow-auto max-w-screen"
-      >
+      <div ref={containerRef} className="relative overflow-auto max-w-screen">
         <MapHeader characters={characters} />
         <img
           className="min-w-[1024px]"
           ref={imgRef}
           src={map.imgUrl}
           alt={map.name}
+          onClick={handleImageClick}
         />
         {showPopup && (
           <CharSelectPopUp

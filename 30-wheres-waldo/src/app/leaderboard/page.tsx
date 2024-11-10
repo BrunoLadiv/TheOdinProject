@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default async function getHighScores({ searchParams }) {
   let rank = 0;
-  const score = searchParams?.score;
+  const { score } = await searchParams;
   try {
     const scores = await prisma.score.findMany({
       orderBy: {
