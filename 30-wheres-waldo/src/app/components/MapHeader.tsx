@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useGlobalContext } from "@/context/GlobalContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Timer from "./Timer";
 type MapHeaderProps = {
   characters: [

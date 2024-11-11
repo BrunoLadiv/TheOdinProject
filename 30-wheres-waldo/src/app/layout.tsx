@@ -18,6 +18,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Spy Scout",
   description: "Find the spies",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
