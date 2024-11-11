@@ -109,7 +109,7 @@ export default function Map({ map }) {
       <div ref={containerRef} className="relative overflow-auto max-w-screen">
         <MapHeader characters={characters} />
         <img
-          className="min-w-[1024px]"
+          className="mx-auto min-w-[1024px]"
           ref={imgRef}
           src={map.imgUrl}
           alt={map.name}

@@ -17,7 +17,7 @@ export default function MapHeader({ characters }: MapHeaderProps) {
     if (foundChars.length === characters.length) setIsGameOver(true);
   }, [foundChars]);
   return (
-    <div className="fixed min-w-full justify-center md:justify-between gap-4 md:top-10 flex flex-wrap md:flex-row right-0 z-20 md:z-40">
+    <div className="fixed min-w-full  justify-center md:justify-between gap-4 md:top-10 flex flex-wrap md:flex-row right-0 z-20 md:z-40">
       <div className="min-w-[225px] hidden md:block"></div>
       <div className="flex order-2 gap-2">
         {characters.map((character) => {
